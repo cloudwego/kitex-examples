@@ -20,8 +20,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/cloudwego/examples/hello/kitex_gen/api"
-	"github.com/cloudwego/examples/hello/kitex_gen/api/hello"
+	"github.com/cloudwego/kitex-examples/hello/kitex_gen/api"
+	"github.com/cloudwego/kitex-examples/hello/kitex_gen/api/hello"
 	"github.com/cloudwego/kitex/client"
 )
 

@@ -5,7 +5,7 @@ package echo
 import (
 	"context"
 
-	"github.com/cloudwego/examples/streaming/kitex_gen/pbapi"
+	"github.com/cloudwego/kitex-examples/streaming/kitex_gen/pbapi"
 
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/client/callopt"

@@ -16,7 +16,7 @@
 syntax = "proto3";
 package pbapi;
 // The greeting service definition.
-option go_package = "github.com/cloudwego/examples/kitex_gen/pbapi";
+option go_package = "github.com/cloudwego/kitex-examples/kitex_gen/pbapi";
 
 message Request {
   string message = 1;

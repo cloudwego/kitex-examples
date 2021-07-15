@@ -5,7 +5,7 @@ package echo
 import (
 	"context"
 
-	"github.com/cloudwego/examples/kitex_gen/api"
+	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 
 	"github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"

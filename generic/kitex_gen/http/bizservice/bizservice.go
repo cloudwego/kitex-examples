@@ -5,7 +5,7 @@ package bizservice
 import (
 	"context"
 
-	"github.com/cloudwego/examples/generic/kitex_gen/http"
+	"github.com/cloudwego/kitex-examples/generic/kitex_gen/http"
 
 	"github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"

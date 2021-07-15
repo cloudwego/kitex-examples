@@ -18,7 +18,7 @@ package main
 import (
 	"log"
 
-	api "github.com/cloudwego/examples/hello/kitex_gen/api/hello"
+	api "github.com/cloudwego/kitex-examples/hello/kitex_gen/api/hello"
 )
 
 func main() {

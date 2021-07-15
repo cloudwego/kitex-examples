@@ -19,8 +19,8 @@ import (
 	"context"
 	"log"
 
-	"github.com/cloudwego/examples/generic/kitex_gen/http"
-	"github.com/cloudwego/examples/generic/kitex_gen/http/bizservice"
+	"github.com/cloudwego/kitex-examples/generic/kitex_gen/http"
+	"github.com/cloudwego/kitex-examples/generic/kitex_gen/http/bizservice"
 	"github.com/cloudwego/kitex/pkg/klog"
 )
 

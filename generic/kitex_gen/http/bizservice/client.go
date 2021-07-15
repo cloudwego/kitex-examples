@@ -5,7 +5,7 @@ package bizservice
 import (
 	"context"
 
-	"github.com/cloudwego/examples/generic/kitex_gen/http"
+	"github.com/cloudwego/kitex-examples/generic/kitex_gen/http"
 
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/client/callopt"

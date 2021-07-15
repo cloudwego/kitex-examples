@@ -22,8 +22,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cloudwego/examples/streaming/kitex_gen/pbapi"
-	"github.com/cloudwego/examples/streaming/kitex_gen/pbapi/echo"
+	"github.com/cloudwego/kitex-examples/streaming/kitex_gen/pbapi"
+	"github.com/cloudwego/kitex-examples/streaming/kitex_gen/pbapi/echo"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"golang.org/x/sync/errgroup"
 )

@@ -20,8 +20,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/cloudwego/examples/kitex_gen/pbapi"
-	"github.com/cloudwego/examples/kitex_gen/pbapi/echo"
+	"github.com/cloudwego/kitex-examples/kitex_gen/pbapi"
+	"github.com/cloudwego/kitex-examples/kitex_gen/pbapi/echo"
 	"github.com/cloudwego/kitex/client"
 )
 

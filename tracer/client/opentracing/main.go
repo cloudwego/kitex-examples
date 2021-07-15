@@ -26,10 +26,10 @@ import (
 	"github.com/uber/jaeger-client-go"
 	jaegercfg "github.com/uber/jaeger-client-go/config"
 
-	"github.com/cloudwego/examples/kitex_gen/api"
-	"github.com/cloudwego/examples/kitex_gen/api/echo"
-	internal_opentracing "github.com/cloudwego/kitex-contrib/opentracing"
+	"github.com/cloudwego/kitex-examples/kitex_gen/api"
+	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 	"github.com/cloudwego/kitex/client"
+	internal_opentracing "github.com/kitex-contrib/opentracing"
 )
 
 /*

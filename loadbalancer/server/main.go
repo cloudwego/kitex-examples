@@ -21,8 +21,8 @@ import (
 	"net"
 	"sync"
 
-	"github.com/cloudwego/examples/kitex_gen/api"
-	"github.com/cloudwego/examples/kitex_gen/api/echo"
+	"github.com/cloudwego/kitex-examples/kitex_gen/api"
+	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/server"
 )

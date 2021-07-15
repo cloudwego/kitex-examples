@@ -20,13 +20,13 @@ import (
 	"log"
 	"time"
 
-	"github.com/cloudwego/examples/kitex_gen/api"
-	"github.com/cloudwego/examples/kitex_gen/api/echo"
+	"github.com/cloudwego/kitex-examples/kitex_gen/api"
+	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 	"github.com/cloudwego/kitex/client"
 )
 
 func main() {
-	client, err := echo.NewClient("echo", client.WithHostPorts("0.0.0.0:8888"))
+	client, err := echo.NewClient("echo", client.WithHostPorts("[::1]:8888"))
 	if err != nil {
 		log.Fatal(err)
 	}

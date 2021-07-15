@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/cloudwego/examples/kitex_gen/pbapi"
+	"github.com/cloudwego/kitex-examples/kitex_gen/pbapi"
 
 	"github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"

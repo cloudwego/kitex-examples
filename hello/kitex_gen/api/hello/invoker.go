@@ -3,7 +3,7 @@
 package hello
 
 import (
-	"github.com/cloudwego/examples/hello/kitex_gen/api"
+	"github.com/cloudwego/kitex-examples/hello/kitex_gen/api"
 	"github.com/cloudwego/kitex/server"
 )
 

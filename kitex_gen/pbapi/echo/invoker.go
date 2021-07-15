@@ -3,7 +3,7 @@
 package echo
 
 import (
-	"github.com/cloudwego/examples/kitex_gen/pbapi"
+	"github.com/cloudwego/kitex-examples/kitex_gen/pbapi"
 	"github.com/cloudwego/kitex/server"
 )
 
