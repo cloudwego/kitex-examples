@@ -29,7 +29,7 @@ import (
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/server"
-	internal_opentracing "github.com/kitex-contrib/opentracing"
+	internal_opentracing "github.com/kitex-contrib/tracer-opentracing"
 )
 
 var _ api.Echo = &EchoImpl{}
