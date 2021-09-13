@@ -3,11 +3,11 @@ module github.com/cloudwego/kitex-examples
 go 1.16
 
 require (
-	github.com/HdrHistogram/hdrhistogram-go v1.1.0 // indirect
+	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
 	github.com/apache/thrift v0.13.0
-	github.com/bytedance/gopkg v0.0.0-20210709064845-3c00f9323f09
-	github.com/cloudwego/kitex v0.0.1
-	github.com/kitex-contrib/tracer-opentracing v0.0.1
+	github.com/bytedance/gopkg v0.0.0-20210716082555-acbf5a2aa7e2
+	github.com/cloudwego/kitex v0.0.4
+	github.com/kitex-contrib/tracer-opentracing v0.0.2
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/uber/jaeger-client-go v2.29.1+incompatible

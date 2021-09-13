@@ -53,7 +53,7 @@ export JAEGER_AGENT_PORT=6831
 */
 
 // InitJaeger ...
-func InitJaeger(service string) (server.Option, io.Closer) {
+func InitJaeger(service string) (server.Suite, io.Closer) {
 	cfg, _ := jaegercfg.FromEnv()
 	cfg.ServiceName = service
 	tracer, closer, err := cfg.NewTracer(jaegercfg.Logger(jaeger.StdLogger))
@@ -61,13 +61,13 @@ func InitJaeger(service string) (server.Option, io.Closer) {
 		panic(fmt.Sprintf("ERROR: cannot init Jaeger: %v\n", err))
 	}
 	opentracing.InitGlobalTracer(tracer)
-	return internal_opentracing.DefaultServerOption(), closer
+	return internal_opentracing.NewDefaultServerSuite(), closer
 }
 
 func main() {
-	tracerOpt, closer := InitJaeger("kitex-server")
+	tracerSuite, closer := InitJaeger("kitex-server")
 	defer closer.Close()
-	svr := echo.NewServer(new(EchoImpl), tracerOpt)
+	svr := echo.NewServer(new(EchoImpl), server.WithSuite(tracerSuite))
 	if err := svr.Run(); err != nil {
 		log.Println("server stopped with error:", err)
 	} else {
