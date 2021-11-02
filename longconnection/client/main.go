@@ -32,7 +32,7 @@ func main() {
 		MaxIdleGlobal:     1000,
 		MaxIdleTimeout:    60 * time.Second,
 	}
-	client, err := echo.NewClient("echo", client.WithHostPorts("0.0.0.0:8888"), client.WithLongConnection(cfg))
+	client, err := echo.NewClient("echo", client.WithHostPorts("127.0.0.1:8888"), client.WithLongConnection(cfg))
 	if err != nil {
 		log.Fatal(err)
 	}
