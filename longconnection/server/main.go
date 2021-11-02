@@ -36,7 +36,10 @@ func (s *EchoImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Respon
 }
 
 func main() {
-	svr := echo.NewServer(new(EchoImpl))
+	svr := echo.NewServer(
+		new(EchoImpl),
+		server.WithServiceAddr(&net.TCPAddr{IP: net.IPv4(127, 0, 0, 1), Port: 8888}),
+	)
 	if err := svr.Run(); err != nil {
 		log.Println("server stopped with error:", err)
 	} else {
