@@ -75,7 +75,7 @@ func main() {
 		server.WithLimit(&limit.Option{MaxConnections: 1000, MaxQPS: 100}),                        // limit
 		server.WithMuxTransport(),                                                                 //Multiplex
 		server.WithSuite(tracer),                                                                  // tracer
-		server.WithMiddleware(acl.NewACLMiddleware([]acl.RejectFunc{control.CpuReject})),          // access_control
+		server.WithMiddleware(acl.NewACLMiddleware([]acl.RejectFunc{control.CPUReject})),          // access_control
 		server.WithRegistry(r),
 		server.WithRegistryInfo(&registry.Info{ServiceName: constant.ServiceName, Addr: addr, Weight: discovery.DefaultWeight}),
 	)

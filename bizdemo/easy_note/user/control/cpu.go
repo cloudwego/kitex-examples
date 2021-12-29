@@ -25,10 +25,10 @@ import (
 	"github.com/shirou/gopsutil/cpu"
 )
 
-func CpuReject(ctx context.Context, request interface{}) error {
-	cpuPercent := cpuPercent()
-	err := errno.Errno{Code: errno.ServiceErr.Code, Msg: fmt.Sprintf("cpu = %.2g", cpuPercent)}
-	if cpuPercent > constant.CpuRateLimit {
+func CPUReject(ctx context.Context, request interface{}) error {
+	c := cpuPercent()
+	err := errno.Errno{Code: errno.ServiceErr.Code, Msg: fmt.Sprintf("cpu = %.2g", c)}
+	if c > constant.CPURateLimit {
 		return err
 	}
 	return nil

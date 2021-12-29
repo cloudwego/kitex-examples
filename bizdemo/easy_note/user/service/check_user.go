@@ -39,7 +39,9 @@ func NewCheckUserService(ctx context.Context) *CheckUserService {
 func (s *CheckUserService) CheckUser(req *user.CheckUserRequest) (int64, error) {
 
 	h := md5.New()
-	io.WriteString(h, req.Password)
+	if _, err := io.WriteString(h, req.Password); err != nil {
+		return 0, err
+	}
 	passWord := fmt.Sprintf("%x", h.Sum(nil))
 
 	userName := req.UserName

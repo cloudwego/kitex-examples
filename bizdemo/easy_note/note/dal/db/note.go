@@ -23,8 +23,7 @@ import (
 
 // CreateNote  create notes
 func CreateNote(ctx context.Context, notes []*model.Note) error {
-	conn := GetDBWriter(ctx)
-	if err := conn.Create(notes).Error; err != nil {
+	if err := DB.WithContext(ctx).Create(notes).Error; err != nil {
 		return err
 	}
 	return nil
@@ -36,8 +35,7 @@ func MGetNotes(ctx context.Context, noteIDs []int64) ([]*model.Note, error) {
 		return res, nil
 	}
 
-	conn := GetDBReader(ctx)
-	if err := conn.Where("id in ?", noteIDs).Find(&res).Error; err != nil {
+	if err := DB.WithContext(ctx).Where("id in ?", noteIDs).Find(&res).Error; err != nil {
 		return res, err
 	}
 
@@ -45,7 +43,7 @@ func MGetNotes(ctx context.Context, noteIDs []int64) ([]*model.Note, error) {
 }
 
 func UpdateNote(ctx context.Context, noteID, userID int64, title, content *string) error {
-	conn := GetDBWriter(ctx)
+
 	params := map[string]interface{}{}
 	if title != nil {
 		params["title"] = *title
@@ -54,7 +52,8 @@ func UpdateNote(ctx context.Context, noteID, userID int64, title, content *strin
 	if content != nil {
 		params["content"] = *content
 	}
-	if err := conn.Model(&model.Note{}).Where("id = ? and user_id = ?", noteID, userID).
+
+	if err := DB.WithContext(ctx).Model(&model.Note{}).Where("id = ? and user_id = ?", noteID, userID).
 		Updates(params).Error; err != nil {
 		return err
 	}
@@ -62,18 +61,17 @@ func UpdateNote(ctx context.Context, noteID, userID int64, title, content *strin
 }
 
 func DelNote(ctx context.Context, noteID, userID int64) error {
-	conn := GetDBWriter(ctx)
-	if err := conn.Where("id = ? and user_id = ? ", noteID, userID).Delete(&model.Note{}).Error; err != nil {
+
+	if err := DB.WithContext(ctx).Where("id = ? and user_id = ? ", noteID, userID).Delete(&model.Note{}).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
 func QueryNote(ctx context.Context, userID int64, searchKey *string, limit, offset int) ([]*model.Note, int64, error) {
-	conn := GetDBWriter(ctx)
 	var total int64
 	var res []*model.Note
-	conn = conn.Model(&model.Note{}).Where("user_id = ?", userID)
+	conn := DB.WithContext(ctx).Model(&model.Note{}).Where("user_id = ?", userID)
 
 	if searchKey != nil {
 		conn = conn.Where("title like ?", "%"+*searchKey+"%")

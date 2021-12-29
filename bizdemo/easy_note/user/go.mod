@@ -14,6 +14,5 @@ require (
 	google.golang.org/protobuf v1.27.1
 	gorm.io/driver/mysql v1.2.1
 	gorm.io/gorm v1.22.4
-	gorm.io/plugin/dbresolver v1.1.0
 	gorm.io/plugin/opentracing v0.0.0-20211213123506-2713cb54af60
 )

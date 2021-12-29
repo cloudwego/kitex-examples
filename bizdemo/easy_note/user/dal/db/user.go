@@ -27,8 +27,7 @@ func MGetUsers(ctx context.Context, userIDs []int64) ([]*model.User, error) {
 		return res, nil
 	}
 
-	conn := GetDBReader(ctx)
-	if err := conn.Where("id in ?", userIDs).Find(&res).Error; err != nil {
+	if err := DB.WithContext(ctx).Where("id in ?", userIDs).Find(&res).Error; err != nil {
 		return nil, err
 	}
 
@@ -36,14 +35,13 @@ func MGetUsers(ctx context.Context, userIDs []int64) ([]*model.User, error) {
 }
 
 func CreateUser(ctx context.Context, users []*model.User) error {
-	conn := GetDBWriter(ctx)
-	return conn.Create(users).Error
+
+	return DB.WithContext(ctx).Create(users).Error
 }
 
 func QueryUser(ctx context.Context, userName string) ([]*model.User, error) {
-	conn := GetDBReader(ctx)
 	res := make([]*model.User, 0)
-	if err := conn.Where("user_name = ?", userName).Find(&res).Error; err != nil {
+	if err := DB.WithContext(ctx).Where("user_name = ?", userName).Find(&res).Error; err != nil {
 		return nil, err
 	}
 

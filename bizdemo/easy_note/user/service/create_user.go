@@ -46,7 +46,10 @@ func (s *CreateUserService) CreateUser(req *user.CreateUserRequest) error {
 	}
 
 	h := md5.New()
-	io.WriteString(h, req.Password)
+
+	if _, err = io.WriteString(h, req.Password); err != nil {
+		return err
+	}
 	passWord := fmt.Sprintf("%x", h.Sum(nil))
 
 	return db.CreateUser(s.ctx, []*model.User{{

@@ -25,14 +25,6 @@ import (
 
 var _ endpoint.Middleware = CommonMiddleware
 
-type args interface {
-	GetFirstArgument() interface{}
-}
-
-type result interface {
-	GetResult() interface{}
-}
-
 func CommonMiddleware(next endpoint.Endpoint) endpoint.Endpoint {
 	return func(ctx context.Context, req, resp interface{}) (err error) {
 		ri := rpcinfo.GetRPCInfo(ctx)
