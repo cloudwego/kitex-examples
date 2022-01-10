@@ -12,14 +12,14 @@ docker-compose up
 ```shell
 cd note
 sh build.sh
-sh output/bootstrap.s
+sh output/bootstrap.sh
 ```
 
 ### 3.Run User RPC Server
 ```shell
 cd user
 sh build.sh
-sh output/bootstrap.s
+sh output/bootstrap.sh
 ```
 
 ### 4.Run API Server
