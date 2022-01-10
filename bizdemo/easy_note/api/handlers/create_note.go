@@ -22,10 +22,11 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/kitex/demo/note"
-	noterpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
+	noteRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
 	"github.com/gin-gonic/gin"
 )
 
+// CreateNote  create note info
 func CreateNote(c *gin.Context) {
 	var noteVar NoteParam
 
@@ -35,8 +36,10 @@ func CreateNote(c *gin.Context) {
 	}
 	claims := jwt.ExtractClaims(c)
 	userID := int64(claims[constant.IdentityKey].(float64))
-	if err := noterpc.CreateNote(context.Background(), &note.CreateNoteRequest{UserId: userID,
-		Content: noteVar.Content, Title: noteVar.Title}); err != nil {
+	if err := noteRpc.CreateNote(context.Background(), &note.CreateNoteRequest{
+		UserId:  userID,
+		Content: noteVar.Content, Title: noteVar.Title,
+	}); err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)
 		return
 	}

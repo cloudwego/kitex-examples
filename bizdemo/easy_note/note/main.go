@@ -21,6 +21,9 @@ import (
 	"log"
 	"net"
 
+	"github.com/cloudwego/kitex/pkg/discovery"
+	"github.com/cloudwego/kitex/pkg/registry"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/constant"
 	"github.com/opentracing/opentracing-go"
 
@@ -69,10 +72,11 @@ func main() {
 		server.WithMiddleware(middleware.ServerMiddleware),
 		server.WithServiceAddr(addr),                                                     // address
 		server.WithLimit(&limit.Option{MaxConnections: 1000, MaxQPS: 100}),               // limit
-		server.WithMuxTransport(),                                                        //Multiplex
+		server.WithMuxTransport(),                                                        // Multiplex
 		server.WithSuite(tracer),                                                         // tracer
 		server.WithMiddleware(acl.NewACLMiddleware([]acl.RejectFunc{control.MemReject})), // access_control
 		server.WithRegistry(r),
+		server.WithRegistryInfo(&registry.Info{ServiceName: constant.ServiceName, Addr: addr, Weight: discovery.DefaultWeight}),
 	)
 	Init()
 	err = svr.Run()

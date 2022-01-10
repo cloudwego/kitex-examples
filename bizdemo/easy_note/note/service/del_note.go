@@ -26,14 +26,15 @@ type DelNoteService struct {
 	ctx context.Context
 }
 
+// NewDelNoteService new DelNoteService
 func NewDelNoteService(ctx context.Context) *DelNoteService {
 	return &DelNoteService{
 		ctx: ctx,
 	}
 }
 
+// DelNote  delete note info
 func (s *DelNoteService) DelNote(req *note.DelNoteRequest) error {
-
 	if err := db.DelNote(s.ctx, req.NoteId, req.UserId); err != nil {
 		return err
 	}

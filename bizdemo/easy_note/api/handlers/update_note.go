@@ -23,10 +23,11 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/kitex/demo/note"
-	noterpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
+	noteRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
 	"github.com/gin-gonic/gin"
 )
 
+// UpdateNote update user info
 func UpdateNote(c *gin.Context) {
 	var noteVar NoteParam
 
@@ -54,7 +55,7 @@ func UpdateNote(c *gin.Context) {
 		req.Content = &noteVar.Content
 	}
 
-	if err := noterpc.UpdateNote(context.Background(), req); err != nil {
+	if err = noteRpc.UpdateNote(context.Background(), req); err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)
 		return
 	}

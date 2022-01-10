@@ -28,6 +28,7 @@ type Response struct {
 	Data    interface{} `json:"data"`
 }
 
+// SendResponse  pack response
 func SendResponse(c *gin.Context, err error, data interface{}) {
 	Err := errno.DecodeErr(err)
 	c.JSON(http.StatusOK, Response{

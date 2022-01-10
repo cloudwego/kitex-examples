@@ -23,10 +23,11 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/kitex/demo/note"
-	noterpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
+	noteRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
 	"github.com/gin-gonic/gin"
 )
 
+// DeleteNote  delete note info
 func DeleteNote(c *gin.Context) {
 	claims := jwt.ExtractClaims(c)
 	userID := int64(claims[constant.IdentityKey].(float64))
@@ -37,7 +38,7 @@ func DeleteNote(c *gin.Context) {
 		return
 	}
 
-	if err = noterpc.DelNote(context.Background(), &note.DelNoteRequest{
+	if err = noteRpc.DelNote(context.Background(), &note.DelNoteRequest{
 		NoteId: noteID, UserId: userID,
 	}); err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)

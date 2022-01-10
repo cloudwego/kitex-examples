@@ -21,6 +21,7 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/model"
 )
 
+// MGetUsers  bulk get list of user info
 func MGetUsers(ctx context.Context, userIDs []int64) ([]*model.User, error) {
 	res := make([]*model.User, 0)
 	if len(userIDs) == 0 {
@@ -34,11 +35,12 @@ func MGetUsers(ctx context.Context, userIDs []int64) ([]*model.User, error) {
 	return res, nil
 }
 
+// CreateUser  create user info
 func CreateUser(ctx context.Context, users []*model.User) error {
-
 	return DB.WithContext(ctx).Create(users).Error
 }
 
+// QueryUser  query list of user info
 func QueryUser(ctx context.Context, userName string) ([]*model.User, error) {
 	res := make([]*model.User, 0)
 	if err := DB.WithContext(ctx).Where("user_name = ?", userName).Find(&res).Error; err != nil {

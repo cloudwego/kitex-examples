@@ -31,15 +31,16 @@ func (e Errno) Error() string {
 
 var (
 	Success    = Errno{Code: 0, Msg: "success"}
-	ServiceErr = Errno{Code: 10001, Msg: "服务器开小差了"}
+	ServiceErr = Errno{Code: 10001, Msg: "服务器开小差了(Service is unable to start successfully)"}
 )
 
 func NewErrno(code int64, msg string) Errno {
 	return Errno{code, msg}
 }
 
+// DecodeErr  translate error to Errno
 func DecodeErr(err error) Errno {
-	var Err = Errno{}
+	Err := Errno{}
 
 	if errors.As(err, &Err) {
 		return Err

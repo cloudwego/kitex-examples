@@ -25,6 +25,7 @@ import (
 	"github.com/shirou/gopsutil/cpu"
 )
 
+// CPUReject  cpu acl control
 func CPUReject(ctx context.Context, request interface{}) error {
 	c := cpuPercent()
 	err := errno.Errno{Code: errno.ServiceErr.Code, Msg: fmt.Sprintf("cpu = %.2g", c)}

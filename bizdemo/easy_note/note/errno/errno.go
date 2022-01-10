@@ -33,15 +33,17 @@ func (e Errno) Error() string {
 }
 
 var (
-	Success    = Errno{Code: 0, Msg: "success"}
-	ServiceErr = Errno{Code: 10001, Msg: "服务器开小差了"}
-	ParamErr   = Errno{Code: 10002, Msg: "参数错误"}
+	Success    = Errno{Code: 0, Msg: "Success"}
+	ServiceErr = Errno{Code: 10001, Msg: "服务器开小差了(Service is unable to start successfully)"}
+	ParamErr   = Errno{Code: 10002, Msg: "参数错误(Wrong Parameter has been given)"}
 )
 
+// ToBaseResp  build baseResp from Errno
 func (e *Errno) ToBaseResp() *note.BaseResp {
 	return &note.BaseResp{StatusCode: e.Code, StatusMessage: e.Msg, ServiceTime: time.Now().Unix()}
 }
 
+// BuildBaseResp  build baseResp from error
 func BuildBaseResp(err error) *note.BaseResp {
 	if err == nil {
 		return Success.ToBaseResp()
@@ -57,5 +59,4 @@ func BuildBaseResp(err error) *note.BaseResp {
 	s.Msg = err.Error()
 
 	return s.ToBaseResp()
-
 }

@@ -55,7 +55,6 @@ func main() {
 				return "", jwt.ErrMissingLoginValues
 			}
 			return userrpc.CheckUser(context.Background(), &user.CheckUserRequest{UserName: loginVar.UserName, Password: loginVar.PassWord})
-
 		},
 		TokenLookup: "header: Authorization, query: token, cookie: jwt",
 

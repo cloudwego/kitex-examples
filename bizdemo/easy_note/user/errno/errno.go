@@ -34,19 +34,20 @@ func (e Errno) Error() string {
 
 var (
 	Success             = Errno{Code: 0, Msg: "success"}
-	ServiceErr          = Errno{Code: 10001, Msg: "服务器开小差了"}
-	ParamErr            = Errno{Code: 10002, Msg: "参数错误"}
-	LoginErr            = Errno{Code: 10003, Msg: "用户名或密码错误"}
-	UserNotExistErr     = Errno{Code: 10004, Msg: "用户不存在"}
-	UserAlreadyExistErr = Errno{Code: 10004, Msg: "用户已存在"}
+	ServiceErr          = Errno{Code: 10001, Msg: "服务器开小差了(Service is unable to start successfully)"}
+	ParamErr            = Errno{Code: 10002, Msg: "参数错误(Wrong parameter has been given)"}
+	LoginErr            = Errno{Code: 10003, Msg: "用户名或密码错误(Wrong username or password)"}
+	UserNotExistErr     = Errno{Code: 10004, Msg: "用户不存在(User does not exist)"}
+	UserAlreadyExistErr = Errno{Code: 10004, Msg: "用户已存在(User exists already)"}
 )
 
+// ToBaseResp  build baseResp from Errno
 func (e *Errno) ToBaseResp() *user.BaseResp {
 	return &user.BaseResp{StatusCode: e.Code, StatusMessage: e.Msg, ServiceTime: time.Now().Unix()}
 }
 
+// BuildBaseResp  build baseResp from error
 func BuildBaseResp(err error) *user.BaseResp {
-
 	if err == nil {
 		return Success.ToBaseResp()
 	}
@@ -60,5 +61,4 @@ func BuildBaseResp(err error) *user.BaseResp {
 	s.Msg = err.Error()
 
 	return ServiceErr.ToBaseResp()
-
 }

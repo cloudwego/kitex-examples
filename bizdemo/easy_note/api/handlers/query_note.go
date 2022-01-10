@@ -22,10 +22,11 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/kitex/demo/note"
-	noterpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
+	noteRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
 	"github.com/gin-gonic/gin"
 )
 
+// QueryNote  query list of note info
 func QueryNote(c *gin.Context) {
 	claims := jwt.ExtractClaims(c)
 	userID := int64(claims[constant.IdentityKey].(float64))
@@ -38,7 +39,7 @@ func QueryNote(c *gin.Context) {
 		SendResponse(c, errno.DecodeErr(err), nil)
 	}
 
-	notes, total, err := noterpc.QueryNotes(context.Background(),
+	notes, total, err := noteRpc.QueryNotes(context.Background(),
 		&note.QueryNoteRequest{UserId: userID, Offset: queryVar.Limit, Limit: queryVar.Offset})
 	if err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)

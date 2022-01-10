@@ -30,14 +30,15 @@ type CheckUserService struct {
 	ctx context.Context
 }
 
+// NewCheckUserService new CheckUserService
 func NewCheckUserService(ctx context.Context) *CheckUserService {
 	return &CheckUserService{
 		ctx: ctx,
 	}
 }
 
+// CheckUser  check user info
 func (s *CheckUserService) CheckUser(req *user.CheckUserRequest) (int64, error) {
-
 	h := md5.New()
 	if _, err := io.WriteString(h, req.Password); err != nil {
 		return 0, err

@@ -20,6 +20,7 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/model"
 )
 
+// User pack user info
 func User(u *model.User) *user.User {
 	if u == nil {
 		return nil
@@ -28,6 +29,7 @@ func User(u *model.User) *user.User {
 	return &user.User{UserId: int64(u.ID), UserName: u.UserName, Avatar: "test"}
 }
 
+// Users pack list of user info
 func Users(us []*model.User) []*user.User {
 	users := make([]*user.User, 0)
 	for _, u := range us {

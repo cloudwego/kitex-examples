@@ -36,9 +36,7 @@ import (
 	trace "github.com/kitex-contrib/tracer-opentracing"
 )
 
-var (
-	userClient userservice.Client
-)
+var userClient userservice.Client
 
 func initJaeger(service string) (client.Suite, io.Closer) {
 	cfg, _ := jaegercfg.FromEnv()
@@ -51,8 +49,8 @@ func initJaeger(service string) (client.Suite, io.Closer) {
 	return trace.NewDefaultClientSuite(), closer
 }
 
+// Init  init user rpc client
 func Init() {
-
 	tracer, _ := initJaeger(constant.ServiceName)
 
 	r, err := etcd.NewEtcdResolver([]string{"127.0.0.1:2379"})
@@ -66,12 +64,12 @@ func Init() {
 		constant.UserServiceName,
 		client.WithMiddleware(middleware.CommonMiddleware),
 		client.WithMiddleware(middleware.ClientMiddleware),
-		client.WithMuxConnection(1),                    //mux
+		client.WithMuxConnection(1),                    // mux
 		client.WithRPCTimeout(3*time.Second),           // rpc timeout
 		client.WithConnectTimeout(50*time.Millisecond), // conn timeout
 		client.WithFailureRetry(fp),                    // retry
 		client.WithSuite(tracer),                       // tracer
-		client.WithResolver(r),
+		client.WithResolver(r),                         // resolver
 	)
 	if err != nil {
 		panic(err)
@@ -80,6 +78,7 @@ func Init() {
 	userClient = c
 }
 
+// CreateUser  create user info
 func CreateUser(ctx context.Context, req *user.CreateUserRequest) error {
 	resp, err := userClient.CreateUser(ctx, req)
 	if err != nil {
@@ -92,6 +91,7 @@ func CreateUser(ctx context.Context, req *user.CreateUserRequest) error {
 	return nil
 }
 
+// CheckUser  check user info
 func CheckUser(ctx context.Context, req *user.CheckUserRequest) (int64, error) {
 	resp, err := userClient.CheckUser(ctx, req)
 	if err != nil {
@@ -103,6 +103,7 @@ func CheckUser(ctx context.Context, req *user.CheckUserRequest) (int64, error) {
 	return resp.UserId, nil
 }
 
+// MGetUser  bulk list of user info
 func MGetUser(ctx context.Context, req *user.MGetUserRequest) ([]*user.User, error) {
 	resp, err := userClient.MGetUser(ctx, req)
 	if err != nil {

@@ -20,6 +20,7 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/user"
 )
 
+// Init  init rpc client
 func Init() {
 	user.Init()
 	note.Init()

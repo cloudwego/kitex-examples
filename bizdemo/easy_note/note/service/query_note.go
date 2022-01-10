@@ -27,10 +27,12 @@ type QueryNoteService struct {
 	ctx context.Context
 }
 
+// NewQueryNoteService  new QueryNoteService
 func NewQueryNoteService(ctx context.Context) *QueryNoteService {
 	return &QueryNoteService{ctx: ctx}
 }
 
+// QueryNoteService query list of note info
 func (s *QueryNoteService) QueryNoteService(req *note.QueryNoteRequest) ([]*note.Note, int64, error) {
 	noteModels, total, err := db.QueryNote(s.ctx, req.UserId, req.SearchKey, int(req.Limit), int(req.Offset))
 	if err != nil {

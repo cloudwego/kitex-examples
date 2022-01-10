@@ -20,10 +20,11 @@ import (
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/kitex/demo/user"
-	userprc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/user"
+	userRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/user"
 	"github.com/gin-gonic/gin"
 )
 
+// Register  register user info
 func Register(c *gin.Context) {
 	var registerVar UserParam
 
@@ -32,7 +33,7 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	if err := userprc.CreateUser(context.Background(), &user.CreateUserRequest{
+	if err := userRpc.CreateUser(context.Background(), &user.CreateUserRequest{
 		UserName: registerVar.UserName,
 		Password: registerVar.PassWord,
 	}); err != nil {

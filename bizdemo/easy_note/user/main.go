@@ -73,7 +73,7 @@ func main() {
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: constant.ServiceName}), // server name
 		server.WithServiceAddr(addr),                                                              // address
 		server.WithLimit(&limit.Option{MaxConnections: 1000, MaxQPS: 100}),                        // limit
-		server.WithMuxTransport(),                                                                 //Multiplex
+		server.WithMuxTransport(),                                                                 // Multiplex
 		server.WithSuite(tracer),                                                                  // tracer
 		server.WithMiddleware(acl.NewACLMiddleware([]acl.RejectFunc{control.CPUReject})),          // access_control
 		server.WithRegistry(r),
