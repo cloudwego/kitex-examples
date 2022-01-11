@@ -28,7 +28,7 @@ type NoteServiceImpl struct{}
 
 // CreateNote implements the NoteServiceImpl interface.
 func (s *NoteServiceImpl) CreateNote(ctx context.Context, req *note.CreateNoteRequest) (resp *note.CreateNoteResponse, err error) {
-	// TODO: Your code here...
+
 	resp = new(note.CreateNoteResponse)
 
 	if req.UserId <= 0 || len(req.Title) == 0 || len(req.Content) == 0 {
@@ -48,7 +48,7 @@ func (s *NoteServiceImpl) CreateNote(ctx context.Context, req *note.CreateNoteRe
 
 // MGetNote implements the NoteServiceImpl interface.
 func (s *NoteServiceImpl) MGetNote(ctx context.Context, req *note.MGetNoteRequest) (resp *note.MGetNoteResponse, err error) {
-	// TODO: Your code here...
+
 	resp = new(note.MGetNoteResponse)
 
 	if len(req.NoteIds) == 0 {
@@ -68,7 +68,6 @@ func (s *NoteServiceImpl) MGetNote(ctx context.Context, req *note.MGetNoteReques
 
 // DelNote implements the NoteServiceImpl interface.
 func (s *NoteServiceImpl) DelNote(ctx context.Context, req *note.DelNoteRequest) (resp *note.DelNoteResponse, err error) {
-	// TODO: Your code here...
 
 	resp = new(note.DelNoteResponse)
 
@@ -87,7 +86,7 @@ func (s *NoteServiceImpl) DelNote(ctx context.Context, req *note.DelNoteRequest)
 
 // QueryNote implements the NoteServiceImpl interface.
 func (s *NoteServiceImpl) QueryNote(ctx context.Context, req *note.QueryNoteRequest) (resp *note.QueryNoteResponse, err error) {
-	// TODO: Your code here...
+
 	resp = new(note.QueryNoteResponse)
 	if req.UserId <= 0 || req.Limit < 0 || req.Offset < 0 {
 		resp.BaseResp = errno.ParamErr.ToBaseResp()
@@ -106,7 +105,7 @@ func (s *NoteServiceImpl) QueryNote(ctx context.Context, req *note.QueryNoteRequ
 
 // UpdateNote implements the NoteServiceImpl interface.
 func (s *NoteServiceImpl) UpdateNote(ctx context.Context, req *note.UpdateNoteRequest) (resp *note.UpdateNoteResponse, err error) {
-	// TODO: Your code here...
+
 	resp = new(note.UpdateNoteResponse)
 
 	if req.NoteId <= 0 {

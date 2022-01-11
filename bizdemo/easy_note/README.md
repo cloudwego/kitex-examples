@@ -1,6 +1,58 @@
 #Easy Note
 
 ---
+
+## Introduction
+
+---
+Add a demo for `kitex` which implements a simple note service,the demo is divided into three main sections.
+
+| Service Name    |  Usage    | Framework    | protocol    | Path                   | IDL                                      |
+| --------------- | ------------ | ---------- | -------- | ---------------------- | ----------------------------------------- |
+| api             | http interface | kitex/gin  | http     | bizdemo/easy_note/api  |                                           |
+| kitex.demo.user | user data management | kitex/gorm | protobuf | bizdemo/easy_note/user |        bizdemo/easy_note/idl/user.proto  |
+| kitex.demo.note | note data management | kitex/gorm | thrift   | bizdemo/easy_note/note |        bizdemo/easy_note/idl/note.thrift |
+
+### call relations
+
+```
+                       ┌───────┐
+          ┌───────────►│  api  │◄─────────────────┐
+          │            └───────┘                  │
+          │                                       │
+          │                                       │
+          │                                       │
+          │                                       │
+          │                                       │
+┌─────────┴─────────┐                   ┌─────────┴────────┐
+│  kitex.demo.user  │                   │ kitex.demo.note  │
+└───────────────────┘                   └──────────────────┘
+```
+
+
+
+###  Use Basic Features
+
+- Middleware、Rate Limiting、Request Retry、Timeout Control、Connection Multiplexing
+- Tracing,Customized Access Control
+- Service Discovery and Register https://github.com/kitex-contrib/registry-etcd
+
+
+
+### catalog introduce
+
+| catalog       | introduce      |
+| ---------- | ---------------- |
+| constant   | constant        |
+| control    |  customized access control    |
+| dal,model  | db operation and model     |
+| errno      | customized error number |
+| middleware | RPC middleware     |
+| pack       | data pack         |
+| service    | business logic   |
+
+
+
 ## Quick Start
 
 ---
