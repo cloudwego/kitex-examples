@@ -1,4 +1,4 @@
-#Easy Note
+# Easy Note
 
 ---
 
