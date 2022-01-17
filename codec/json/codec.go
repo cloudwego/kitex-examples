@@ -19,6 +19,7 @@ import (
 	"context"
 	"encoding/binary"
 	"encoding/json"
+	"errors"
 	"fmt"
 
 	"github.com/cloudwego/kitex/pkg/klog"
@@ -36,7 +37,21 @@ func NewJsonCodec(debug bool) remote.Codec {
 }
 
 func (jc *JsonCodec) Encode(ctx context.Context, message remote.Message, out remote.ByteBuffer) error {
-	payload, err := json.Marshal(message.Data())
+	var validData interface{}
+	switch message.MessageType() {
+	case remote.Exception:
+		switch e := message.Data().(type) {
+		case *remote.TransError:
+			validData = &Exception{e.TypeID(), e.Error()}
+		case error:
+			validData = &Exception{remote.InternalError, e.Error()}
+		default:
+			return errors.New("exception relay must implement error type")
+		}
+	default:
+		validData = message.Data()
+	}
+	payload, err := json.Marshal(validData)
 	if err != nil {
 		return perrors.NewProtocolError(fmt.Errorf("json encode, marshal payload failed: %w", err))
 	}
@@ -92,6 +107,14 @@ func (jc *JsonCodec) Decode(ctx context.Context, message remote.Message, in remo
 	}
 	if jc.printDebugInfo {
 		klog.Debugf("encoded payload: %s\n", data.Payload)
+	}
+	if remote.MessageType(data.MsgType) == remote.Exception {
+		var exception Exception
+		err = json.Unmarshal(data.Payload, &exception)
+		if err != nil {
+			return perrors.NewProtocolError(fmt.Errorf("json decode, unmarshal payload failed: %w", err))
+		}
+		return exception
 	}
 	err = json.Unmarshal(data.Payload, message.Data())
 	if err != nil {
