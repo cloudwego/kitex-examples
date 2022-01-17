@@ -15,10 +15,24 @@
 
 package json
 
+import "github.com/apache/thrift/lib/go/thrift"
+
 type Meta struct {
 	ServiceName string
 	MethodName  string
 	SeqID       int32
 	MsgType     uint32
 	Payload     []byte
+}
+
+type Exception struct {
+	TypeID  int32
+	Message string
+}
+
+func (e Exception) Error() string {
+	if e.Message != "" {
+		return e.Message
+	}
+	return thrift.NewTApplicationException(e.TypeID, "").Error()
 }
