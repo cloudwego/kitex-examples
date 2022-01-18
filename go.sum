@@ -21,8 +21,8 @@ github.com/choleraehyq/pid v0.0.12 h1:JLiTCsz2gStQZ3YWet+p9hktRnWzk7VJigpzvGV+I2
 github.com/choleraehyq/pid v0.0.12/go.mod h1:uhzeFgxJZWQsZulelVQZwdASxQ9TIPZYL4TPkQMtL/U=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cloudwego/kitex v0.0.4/go.mod h1:EIjPJ4Dom2ornk7xDCdKpUpOnf4Tulevimh4Tn05OGc=
-github.com/cloudwego/kitex v0.1.3 h1:fWVZR4TuKbLTK6JxWbHhmUyOAqyEmhW+CqnOrx674nU=
-github.com/cloudwego/kitex v0.1.3/go.mod h1:qxxpIUl5zvbcvcQeKrlm2t2f1BBxt4EPMksBUFwr6QA=
+github.com/cloudwego/kitex v0.1.4 h1:fxCH6yN3IrDeVPX62d2O01wwIbUOtT0Piu/VDK7yQm8=
+github.com/cloudwego/kitex v0.1.4/go.mod h1:qxxpIUl5zvbcvcQeKrlm2t2f1BBxt4EPMksBUFwr6QA=
 github.com/cloudwego/netpoll v0.0.2/go.mod h1:rZOiNI0FYjuvNybXKKhAPUja03loJi/cdv2F55AE6E8=
 github.com/cloudwego/netpoll v0.0.3/go.mod h1:rZOiNI0FYjuvNybXKKhAPUja03loJi/cdv2F55AE6E8=
 github.com/cloudwego/netpoll v0.1.0/go.mod h1:rZOiNI0FYjuvNybXKKhAPUja03loJi/cdv2F55AE6E8=
