@@ -33,12 +33,12 @@ func (e Errno) Error() string {
 }
 
 var (
-	Success             = Errno{Code: 0, Msg: "success"}
-	ServiceErr          = Errno{Code: 10001, Msg: "服务器开小差了(Service is unable to start successfully)"}
-	ParamErr            = Errno{Code: 10002, Msg: "参数错误(Wrong parameter has been given)"}
-	LoginErr            = Errno{Code: 10003, Msg: "用户名或密码错误(Wrong username or password)"}
-	UserNotExistErr     = Errno{Code: 10004, Msg: "用户不存在(User does not exist)"}
-	UserAlreadyExistErr = Errno{Code: 10004, Msg: "用户已存在(User exists already)"}
+	Success             = Errno{Code: 0, Msg: "Success"}
+	ServiceErr          = Errno{Code: 10001, Msg: "Service is unable to start successfully"}
+	ParamErr            = Errno{Code: 10002, Msg: "Wrong parameter has been given"}
+	LoginErr            = Errno{Code: 10003, Msg: "Wrong username or password"}
+	UserNotExistErr     = Errno{Code: 10004, Msg: "User does not exist"}
+	UserAlreadyExistErr = Errno{Code: 10004, Msg: "User exists already"}
 )
 
 // ToBaseResp  build baseResp from Errno

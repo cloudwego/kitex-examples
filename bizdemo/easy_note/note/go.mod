@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/apache/thrift v0.15.0
-	github.com/cloudwego/kitex v0.1.3
+	github.com/cloudwego/kitex v0.1.4
 	github.com/kitex-contrib/registry-etcd v0.0.0-20211207110456-45d9f8b00e1f
 	github.com/kitex-contrib/tracer-opentracing v0.0.3
 	github.com/opentracing/opentracing-go v1.2.0

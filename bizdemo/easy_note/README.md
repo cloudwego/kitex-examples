@@ -16,17 +16,38 @@ Add a demo for `kitex` which implements a simple note service,the demo is divide
 ### call relations
 
 ```
-                       ┌───────┐
-          ┌───────────►│  api  │◄─────────────────┐
-          │            └───────┘                  │
-          │                                       │
-          │                                       │
-          │                                       │
-          │                                       │
-          │                                       │
-┌─────────┴─────────┐                   ┌─────────┴────────┐
-│  kitex.demo.user  │                   │ kitex.demo.note  │
-└───────────────────┘                   └──────────────────┘
+                                    http
+                            ┌────────────────────┐
+                            │                    │
+       ┌────────────────────►  kitex.demo.api    ◄──────────────────────────┐
+       │                    │                    │                          │
+       │                    └──────────▲─────────┘                          │
+       │                               │                                    │
+       │                               │                                    │
+       │                               │                                  protobuf
+    thrift                          resolve                                 │
+       │                               │                                    │
+       │                               │                                    │
+       │                               │                                    │
+       │                               │                                    │
+       │                               │                                    │
+       │                    ┌──────────▼─────────┐                          │
+       │                    │                    │                          │
+       │        ┌───────────►       Etcd         ◄─────────────────┐        │
+       │        │           │                    │                 │        │
+       │        │           └────────────────────┘                 │        │
+       │        │                                                  │        │
+       │      register                                           register   │
+       │        │                                                  │        │
+       │        │                                                  │        │
+       │        │                                                  │        │
+       │        │                                                  │        │
+┌──────▼────────┴───┐                                           ┌──┴────────▼─────────┐
+│                   │                                           │                     │
+│ kitex.demo.note   │                                           │  kitex.demo.user    │
+│                   │                                           │                     │
+└───────────────────┘                                           └─────────────────────┘
+
 ```
 
 
@@ -34,8 +55,12 @@ Add a demo for `kitex` which implements a simple note service,the demo is divide
 ###  Use Basic Features
 
 - Middleware、Rate Limiting、Request Retry、Timeout Control、Connection Multiplexing
-- Tracing,Customized Access Control
-- Service Discovery and Register https://github.com/kitex-contrib/registry-etcd
+- Tracing
+  - use jaeger to tracing
+- Customized Access Control
+  - achieve CPU utilization rate access control and VirtualMemory access control
+- Service Discovery and Register
+  - use [registry-etcd](https://github.com/kitex-contrib/registry-etcd) to discovery and register service
 
 
 
@@ -95,6 +120,14 @@ curl --location --request POST '127.0.0.1:8080/register' \
     "password":"123456"
 }'
 ```
+#### response 
+```javascript
+{
+    "code": 0,
+    "message": "Success",
+    "data": null
+}
+```
 
 ### Login
 #### will return jwt token
@@ -106,6 +139,14 @@ curl --location --request POST '127.0.0.1:8080/login' \
     "username":"kinggo",
     "password":"123456"
 }'
+```
+#### response
+```javascript
+{
+    "code": 200,
+    "expire": "2022-01-19T01:56:46+08:00",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDI1Mjg2MDYsImlkIjoxLCJvcmlnX2lhdCI6MTY0MjUyNTAwNn0.k7Ah9G4Enap9YiDP_rKr5HSzF-fc3cIxwMZAGeOySqU"
+}
 ```
 
 ### Create Note
@@ -119,12 +160,39 @@ curl --location --request POST '127.0.0.1:8080/auth/note' \
     "content":"test content"
 }'
 ```
+#### response
+```javascript
+{
+    "code": 0,
+    "message": "Success",
+    "data": null
+}
+```
 
 ### Query Note
 
 ```shell
 curl --location --request GET '127.0.0.1:8080/auth/note?offset=0&limit=20' \
 --header 'Authorization: Bearer $token'
+```
+#### response
+```javascript
+{
+    "code": 0,
+    "message": "Success",
+    "data": {
+        "notes": [
+            {
+                "note_id": 1,
+                "user_id": 1,
+                "title": "test title",
+                "content": "test content",
+                "create_time": 1642525063
+            }
+        ],
+        "total": 1
+    }
+}
 ```
 
 ### Update Note
@@ -138,10 +206,26 @@ curl --location --request PUT '127.0.0.1:8080/auth/note/$note_id' \
     "content":"test"
 }'
 ```
+#### response
+```javascript
+{
+    "code": 0,
+    "message": "Success",
+    "data": null
+}
+```
 
 ### Delete Note
 
 ```shell
 curl --location --request DELETE '127.0.0.1:8080/auth/note/$note_id' \
 --header 'Authorization: Bearer $token'
+```
+#### response
+```javascript
+{
+    "code": 0,
+    "message": "Success",
+    "data": null
+}
 ```
