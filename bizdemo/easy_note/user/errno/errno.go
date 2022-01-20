@@ -38,7 +38,7 @@ var (
 	ParamErr            = Errno{Code: 10002, Msg: "Wrong parameter has been given"}
 	LoginErr            = Errno{Code: 10003, Msg: "Wrong username or password"}
 	UserNotExistErr     = Errno{Code: 10004, Msg: "User does not exist"}
-	UserAlreadyExistErr = Errno{Code: 10004, Msg: "User exists already"}
+	UserAlreadyExistErr = Errno{Code: 10005, Msg: "User exists already"}
 )
 
 // ToBaseResp  build baseResp from Errno
