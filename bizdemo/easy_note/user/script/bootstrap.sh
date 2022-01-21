@@ -15,7 +15,6 @@
 # limitations under the License.
 #
 
-export PSM=${PSM:-kitex.demo.note}
 CURDIR=$(cd $(dirname $0); pwd)
 
 if [ "X$1" != "X" ]; then
