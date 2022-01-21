@@ -80,7 +80,7 @@ req    resp                            │                                   res
 
 ## Quick Start
 
----
+
 ### 1.Setup Basic Dependence
 ```shell
 docker-compose up
@@ -105,6 +105,14 @@ cd api
 chmod +x run.sh
 ./run.sh
 ```
+
+### 5.Jaeger 
+
+visit `http://127.0.0.1:16686/` on  browser.
+
+#### Snapshots
+
+<img src="images/shot.png" width="2850"  alt=""/>
 
 
 ## API requests 
