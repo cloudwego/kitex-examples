@@ -31,7 +31,7 @@ type EchoImpl struct{}
 
 // Echo implements the Echo interface.
 func (s *EchoImpl) Echo(ctx context.Context, req *pbapi.Request) (resp *pbapi.Response, err error) {
-	klog.Debug("echo called")
+	klog.Info("echo called")
 	return &pbapi.Response{Message: req.Message}, nil
 }
 

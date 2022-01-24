@@ -50,7 +50,7 @@ func main() {
 		if err != nil {
 			klog.Fatal(err)
 		}
-		klog.Debug(result.Success)
+		klog.Info(result.Success)
 		time.Sleep(time.Second)
 	}
 }
