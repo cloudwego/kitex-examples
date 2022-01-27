@@ -30,14 +30,14 @@ func CommonMiddleware(next endpoint.Endpoint) endpoint.Endpoint {
 	return func(ctx context.Context, req, resp interface{}) (err error) {
 		ri := rpcinfo.GetRPCInfo(ctx)
 		// get real request
-		klog.Debugf("real request: %+v\n", req)
+		klog.Infof("real request: %+v\n", req)
 		// get remote service information
-		klog.Debugf("remote service name: %v, remote method: %v\n", ri.To().ServiceName(), ri.To().Method())
+		klog.Infof("remote service name: %s, remote method: %s\n", ri.To().ServiceName(), ri.To().Method())
 		if err = next(ctx, req, resp); err != nil {
 			return err
 		}
 		// get real response
-		klog.Debugf("real response: %+v\n", resp)
+		klog.Infof("real response: %+v\n", resp)
 		return nil
 	}
 }
@@ -47,7 +47,7 @@ func ServerMiddleware(next endpoint.Endpoint) endpoint.Endpoint {
 	return func(ctx context.Context, req, resp interface{}) (err error) {
 		ri := rpcinfo.GetRPCInfo(ctx)
 		// get client information
-		klog.Debugf("client address: %v\n", ri.From().Address())
+		klog.Infof("client address: %v\n", ri.From().Address())
 		if err := next(ctx, req, resp); err != nil {
 			return err
 		}

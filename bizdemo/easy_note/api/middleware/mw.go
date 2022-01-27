@@ -30,14 +30,14 @@ func CommonMiddleware(next endpoint.Endpoint) endpoint.Endpoint {
 	return func(ctx context.Context, req, resp interface{}) (err error) {
 		ri := rpcinfo.GetRPCInfo(ctx)
 		// get real request
-		klog.Debugf("real request: %+v\n", req)
+		klog.Infof("real request: %+v\n", req)
 		// get remote service information
-		klog.Debugf("remote service name: %v, remote method: %v\n", ri.To().ServiceName(), ri.To().Method())
+		klog.Infof("remote service name: %s, remote method: %s\n", ri.To().ServiceName(), ri.To().Method())
 		if err = next(ctx, req, resp); err != nil {
 			return err
 		}
 		// get real response
-		klog.Debugf("real response: %+v\n", resp)
+		klog.Infof("real response: %+v\n", resp)
 		return nil
 	}
 }
@@ -47,12 +47,12 @@ func ClientMiddleware(next endpoint.Endpoint) endpoint.Endpoint {
 	return func(ctx context.Context, req, resp interface{}) (err error) {
 		ri := rpcinfo.GetRPCInfo(ctx)
 		// get timeout information
-		klog.Debugf("rpc timeout: %v, readwrite timeout: %v\n", ri.Config().RPCTimeout(), ri.Config().ConnectTimeout())
+		klog.Infof("rpc timeout: %v, readwrite timeout: %v\n", ri.Config().RPCTimeout(), ri.Config().ConnectTimeout())
 		if err = next(ctx, req, resp); err != nil {
 			return err
 		}
 		// get server information
-		klog.Debugf("server address: %v\n", ri.To().Address())
+		klog.Infof("server address: %v\n", ri.To().Address())
 		return nil
 	}
 }

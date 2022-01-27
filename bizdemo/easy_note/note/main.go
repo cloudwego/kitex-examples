@@ -17,8 +17,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/cloudwego/kitex/pkg/klog"
 	"io"
-	"log"
 	"net"
 
 	"github.com/cloudwego/kitex/pkg/discovery"
@@ -81,6 +81,6 @@ func main() {
 	Init()
 	err = svr.Run()
 	if err != nil {
-		log.Println(err.Error())
+		klog.Fatal(err)
 	}
 }

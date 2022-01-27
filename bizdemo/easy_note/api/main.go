@@ -17,7 +17,7 @@ package main
 
 import (
 	"context"
-	"log"
+	"github.com/cloudwego/kitex/pkg/klog"
 	"net/http"
 	"time"
 
@@ -73,6 +73,6 @@ func main() {
 	auth.DELETE("/note/:note_id", handlers.DeleteNote)
 
 	if err := http.ListenAndServe(":8080", r); err != nil {
-		log.Fatal(err)
+		klog.Fatal(err)
 	}
 }
