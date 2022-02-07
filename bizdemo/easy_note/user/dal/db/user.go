@@ -21,7 +21,7 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/model"
 )
 
-// MGetUsers  bulk get list of user info
+// MGetUsers  multiple get list of user info
 func MGetUsers(ctx context.Context, userIDs []int64) ([]*model.User, error) {
 	res := make([]*model.User, 0)
 	if len(userIDs) == 0 {

@@ -99,7 +99,7 @@ func CheckUser(ctx context.Context, req *user.CheckUserRequest) (int64, error) {
 	return resp.UserId, nil
 }
 
-// MGetUser  bulk list of user info
+// MGetUser  multiple  list of user info
 func MGetUser(ctx context.Context, req *user.MGetUserRequest) ([]*user.User, error) {
 	resp, err := userClient.MGetUser(ctx, req)
 	if err != nil {

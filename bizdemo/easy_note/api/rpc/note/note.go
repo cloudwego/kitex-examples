@@ -87,7 +87,7 @@ func CreateNote(ctx context.Context, req *note.CreateNoteRequest) error {
 	return nil
 }
 
-// MGetNotes  bulk get list of note info
+// MGetNotes  multiple  get list of note info
 func MGetNotes(ctx context.Context, req *note.MGetNoteRequest) ([]*note.Note, error) {
 	resp, err := noteClient.MGetNote(ctx, req)
 	if err != nil {

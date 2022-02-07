@@ -32,7 +32,7 @@ func NewMGetUserService(ctx context.Context) *MGetUserService {
 	return &MGetUserService{ctx: ctx}
 }
 
-// MGetUser bulk get list of user info
+// MGetUser  multiple get list of user info
 func (s *MGetUserService) MGetUser(req *user.MGetUserRequest) ([]*user.User, error) {
 	modelUsers, err := db.MGetUsers(s.ctx, req.UserIds)
 	if err != nil {

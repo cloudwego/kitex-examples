@@ -29,7 +29,7 @@ func CreateNote(ctx context.Context, notes []*model.Note) error {
 	return nil
 }
 
-// MGetNotes  bulk get list of note info
+// MGetNotes  multiple get list of note info
 func MGetNotes(ctx context.Context, noteIDs []int64) ([]*model.Note, error) {
 	var res []*model.Note
 	if len(noteIDs) == 0 {
