@@ -33,9 +33,5 @@ func NewUpdateNoteService(ctx context.Context) *UpdateNoteService {
 
 // UpdateNote update note info
 func (s *UpdateNoteService) UpdateNote(req *note.UpdateNoteRequest) error {
-	if err := db.UpdateNote(s.ctx, req.NoteId, req.UserId, req.Title, req.Content); err != nil {
-		return err
-	}
-
-	return nil
+	return db.UpdateNote(s.ctx, req.NoteId, req.UserId, req.Title, req.Content)
 }

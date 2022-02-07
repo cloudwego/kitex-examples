@@ -53,12 +53,11 @@ func BuildBaseResp(err error) *user.BaseResp {
 	}
 
 	ErrNo := Errno{}
-
 	if errors.As(err, &ErrNo) {
 		return ErrNo.ToBaseResp()
 	}
+
 	s := ServiceErr
 	s.Msg = err.Error()
-
-	return ServiceErr.ToBaseResp()
+	return s.ToBaseResp()
 }

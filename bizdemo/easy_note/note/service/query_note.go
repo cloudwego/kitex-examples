@@ -38,7 +38,7 @@ func (s *QueryNoteService) QueryNoteService(req *note.QueryNoteRequest) ([]*note
 	if err != nil {
 		return nil, 0, err
 	}
-	notes := pack.Notes(noteModels)
 
+	notes := pack.Notes(noteModels)
 	return notes, total, nil
 }

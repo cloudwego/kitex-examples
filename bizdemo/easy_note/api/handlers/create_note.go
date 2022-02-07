@@ -29,11 +29,11 @@ import (
 // CreateNote  create note info
 func CreateNote(c *gin.Context) {
 	var noteVar NoteParam
-
 	if err := c.ShouldBind(&noteVar); err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)
 		return
 	}
+
 	claims := jwt.ExtractClaims(c)
 	userID := int64(claims[constant.IdentityKey].(float64))
 	if err := noteRpc.CreateNote(context.Background(), &note.CreateNoteRequest{

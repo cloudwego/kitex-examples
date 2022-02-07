@@ -51,29 +51,27 @@ func initJaeger(service string) (client.Suite, io.Closer) {
 
 // Init  init note rpc server
 func Init() {
+	tracer, _ := initJaeger(constant.ServiceName)
+
 	r, err := etcd.NewEtcdResolver([]string{"127.0.0.1:2379"})
 	if err != nil {
 		panic(err)
 	}
-	tracer, _ := initJaeger(constant.ServiceName)
-
-	fp := retry.NewFailurePolicy()
 
 	c, err := noteservice.NewClient(
 		constant.NoteServiceName,
 		client.WithMiddleware(middleware.CommonMiddleware),
 		client.WithMiddleware(middleware.ClientMiddleware),
-		client.WithMuxConnection(1),                    // mux
-		client.WithRPCTimeout(3*time.Second),           // rpc timeout
-		client.WithConnectTimeout(50*time.Millisecond), // conn timeout
-		client.WithFailureRetry(fp),                    // retry
-		client.WithSuite(tracer),                       // tracer
-		client.WithResolver(r),                         // resolver
+		client.WithMuxConnection(1),                       // mux
+		client.WithRPCTimeout(3*time.Second),              // rpc timeout
+		client.WithConnectTimeout(50*time.Millisecond),    // conn timeout
+		client.WithFailureRetry(retry.NewFailurePolicy()), // retry
+		client.WithSuite(tracer),                          // tracer
+		client.WithResolver(r),                            // resolver
 	)
 	if err != nil {
 		panic(err)
 	}
-
 	noteClient = c
 }
 
@@ -86,7 +84,6 @@ func CreateNote(ctx context.Context, req *note.CreateNoteRequest) error {
 	if resp.BaseResp.StatusCode != 0 {
 		return errno.NewErrno(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
 	}
-
 	return nil
 }
 
@@ -108,11 +105,9 @@ func QueryNotes(ctx context.Context, req *note.QueryNoteRequest) ([]*note.Note, 
 	if err != nil {
 		return nil, 0, err
 	}
-
 	if resp.BaseResp.StatusCode != 0 {
 		return nil, 0, errno.NewErrno(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
 	}
-
 	return resp.Notes, resp.Total, nil
 }
 
@@ -125,7 +120,6 @@ func UpdateNote(ctx context.Context, req *note.UpdateNoteRequest) error {
 	if resp.BaseResp.StatusCode != 0 {
 		return errno.NewErrno(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
 	}
-
 	return nil
 }
 
@@ -135,10 +129,8 @@ func DelNote(ctx context.Context, req *note.DelNoteRequest) error {
 	if err != nil {
 		return err
 	}
-
 	if resp.BaseResp.StatusCode != 0 {
 		return errno.NewErrno(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
 	}
-
 	return nil
 }

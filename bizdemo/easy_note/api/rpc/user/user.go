@@ -58,23 +58,20 @@ func Init() {
 		panic(err)
 	}
 
-	fp := retry.NewFailurePolicy()
-
 	c, err := userservice.NewClient(
 		constant.UserServiceName,
 		client.WithMiddleware(middleware.CommonMiddleware),
 		client.WithMiddleware(middleware.ClientMiddleware),
-		client.WithMuxConnection(1),                    // mux
-		client.WithRPCTimeout(3*time.Second),           // rpc timeout
-		client.WithConnectTimeout(50*time.Millisecond), // conn timeout
-		client.WithFailureRetry(fp),                    // retry
-		client.WithSuite(tracer),                       // tracer
-		client.WithResolver(r),                         // resolver
+		client.WithMuxConnection(1),                       // mux
+		client.WithRPCTimeout(3*time.Second),              // rpc timeout
+		client.WithConnectTimeout(50*time.Millisecond),    // conn timeout
+		client.WithFailureRetry(retry.NewFailurePolicy()), // retry
+		client.WithSuite(tracer),                          // tracer
+		client.WithResolver(r),                            // resolver
 	)
 	if err != nil {
 		panic(err)
 	}
-
 	userClient = c
 }
 
@@ -87,7 +84,6 @@ func CreateUser(ctx context.Context, req *user.CreateUserRequest) error {
 	if resp.BaseResp.StatusCode != 0 {
 		return errno.NewErrno(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
 	}
-
 	return nil
 }
 
@@ -109,10 +105,8 @@ func MGetUser(ctx context.Context, req *user.MGetUserRequest) ([]*user.User, err
 	if err != nil {
 		return nil, err
 	}
-
 	if resp.BaseResp.StatusCode != 0 {
 		return nil, errno.NewErrno(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
 	}
-
 	return resp.Users, nil
 }

@@ -1,9 +1,6 @@
 # Easy Note
 
-
-
 ## Introduction
-
 
 Add a demo for `kitex` which implements a simple note service,the demo is divided into three main sections.
 
@@ -50,8 +47,6 @@ req    resp                            │                                   res
       thrift                                                           protobuf
 ```
 
-
-
 ###  Use Basic Features
 
 - Middleware、Rate Limiting、Request Retry、Timeout Control、Connection Multiplexing
@@ -61,8 +56,6 @@ req    resp                            │                                   res
   - achieve CPU utilization rate access control and VirtualMemory access control
 - Service Discovery and Register
   - use [registry-etcd](https://github.com/kitex-contrib/registry-etcd) to discovery and register service
-
-
 
 ### catalog introduce
 
@@ -76,15 +69,13 @@ req    resp                            │                                   res
 | pack       | data pack         |
 | service    | business logic   |
 
-
-
 ## Quick Start
-
 
 ### 1.Setup Basic Dependence
 ```shell
 docker-compose up
 ```
+
 ### 2.Run Note RPC Server
 ```shell
 cd note
@@ -114,12 +105,9 @@ visit `http://127.0.0.1:16686/` on  browser.
 
 <img src="images/shot.png" width="2850"  alt=""/>
 
-
 ## API requests 
 
----
 ### Register
-
 ```shell
 curl --location --request POST '127.0.0.1:8080/register' \
 --header 'Content-Type: application/json' \
@@ -128,7 +116,8 @@ curl --location --request POST '127.0.0.1:8080/register' \
     "password":"123456"
 }'
 ```
-#### response 
+
+#### response
 ```javascript
 {
     "code": 0,
@@ -138,8 +127,8 @@ curl --location --request POST '127.0.0.1:8080/register' \
 ```
 
 ### Login
-#### will return jwt token
 
+#### will return jwt token
 ```shell
 curl --location --request POST '127.0.0.1:8080/login' \
 --header 'Content-Type: application/json' \
@@ -148,6 +137,7 @@ curl --location --request POST '127.0.0.1:8080/login' \
     "password":"123456"
 }'
 ```
+
 #### response
 ```javascript
 {
@@ -158,7 +148,6 @@ curl --location --request POST '127.0.0.1:8080/login' \
 ```
 
 ### Create Note
-
 ```shell
 curl --location --request POST '127.0.0.1:8080/auth/note' \
 --header 'Authorization: Bearer $token' \
@@ -168,6 +157,7 @@ curl --location --request POST '127.0.0.1:8080/auth/note' \
     "content":"test content"
 }'
 ```
+
 #### response
 ```javascript
 {
@@ -178,11 +168,11 @@ curl --location --request POST '127.0.0.1:8080/auth/note' \
 ```
 
 ### Query Note
-
 ```shell
 curl --location --request GET '127.0.0.1:8080/auth/note?offset=0&limit=20' \
 --header 'Authorization: Bearer $token'
 ```
+
 #### response
 ```javascript
 {
@@ -204,7 +194,6 @@ curl --location --request GET '127.0.0.1:8080/auth/note?offset=0&limit=20' \
 ```
 
 ### Update Note
-
 ```shell
 curl --location --request PUT '127.0.0.1:8080/auth/note/$note_id' \
 --header 'Authorization: Bearer $token' \
@@ -214,6 +203,7 @@ curl --location --request PUT '127.0.0.1:8080/auth/note/$note_id' \
     "content":"test"
 }'
 ```
+
 #### response
 ```javascript
 {
@@ -224,11 +214,11 @@ curl --location --request PUT '127.0.0.1:8080/auth/note/$note_id' \
 ```
 
 ### Delete Note
-
 ```shell
 curl --location --request DELETE '127.0.0.1:8080/auth/note/$note_id' \
 --header 'Authorization: Bearer $token'
 ```
+
 #### response
 ```javascript
 {

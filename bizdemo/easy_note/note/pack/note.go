@@ -43,6 +43,5 @@ func Notes(ms []*model.Note) []*note.Note {
 			notes = append(notes, n)
 		}
 	}
-
 	return notes
 }

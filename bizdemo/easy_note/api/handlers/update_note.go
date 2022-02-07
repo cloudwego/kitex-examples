@@ -30,7 +30,6 @@ import (
 // UpdateNote update user info
 func UpdateNote(c *gin.Context) {
 	var noteVar NoteParam
-
 	if err := c.ShouldBind(&noteVar); err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)
 		return
@@ -38,7 +37,6 @@ func UpdateNote(c *gin.Context) {
 
 	claims := jwt.ExtractClaims(c)
 	userID := int64(claims[constant.IdentityKey].(float64))
-
 	noteIDStr := c.Param(constant.NoteID)
 	noteID, err := strconv.ParseInt(noteIDStr, 10, 64)
 	if err != nil {
@@ -50,15 +48,12 @@ func UpdateNote(c *gin.Context) {
 	if len(noteVar.Title) != 0 {
 		req.Title = &noteVar.Title
 	}
-
 	if len(noteVar.Content) != 0 {
 		req.Content = &noteVar.Content
 	}
-
 	if err = noteRpc.UpdateNote(context.Background(), req); err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)
 		return
 	}
-
 	SendResponse(c, errno.Success, nil)
 }

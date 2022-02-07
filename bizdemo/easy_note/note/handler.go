@@ -40,7 +40,6 @@ func (s *NoteServiceImpl) CreateNote(ctx context.Context, req *note.CreateNoteRe
 		resp.BaseResp = errno.BuildBaseResp(err)
 		return resp, nil
 	}
-
 	resp.BaseResp = errno.Success.ToBaseResp()
 	return resp, nil
 }
@@ -72,6 +71,7 @@ func (s *NoteServiceImpl) DelNote(ctx context.Context, req *note.DelNoteRequest)
 		resp.BaseResp = errno.ParamErr.ToBaseResp()
 		return resp, nil
 	}
+
 	err = service.NewDelNoteService(ctx).DelNote(req)
 	if err != nil {
 		resp.BaseResp = errno.BuildBaseResp(err)
@@ -84,10 +84,12 @@ func (s *NoteServiceImpl) DelNote(ctx context.Context, req *note.DelNoteRequest)
 // QueryNote implements the NoteServiceImpl interface.
 func (s *NoteServiceImpl) QueryNote(ctx context.Context, req *note.QueryNoteRequest) (resp *note.QueryNoteResponse, err error) {
 	resp = new(note.QueryNoteResponse)
+
 	if req.UserId <= 0 || req.Limit < 0 || req.Offset < 0 {
 		resp.BaseResp = errno.ParamErr.ToBaseResp()
 		return resp, nil
 	}
+
 	notes, total, err := service.NewQueryNoteService(ctx).QueryNoteService(req)
 	if err != nil {
 		resp.BaseResp = errno.BuildBaseResp(err)

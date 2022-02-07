@@ -25,7 +25,7 @@ import (
 
 var _ endpoint.Middleware = CommonMiddleware
 
-// CommonMiddleware  common middleware
+// CommonMiddleware  common middleware print some rpc info、real request and real response
 func CommonMiddleware(next endpoint.Endpoint) endpoint.Endpoint {
 	return func(ctx context.Context, req, resp interface{}) (err error) {
 		ri := rpcinfo.GetRPCInfo(ctx)
@@ -42,7 +42,7 @@ func CommonMiddleware(next endpoint.Endpoint) endpoint.Endpoint {
 	}
 }
 
-// ServerMiddleware server middleware
+// ServerMiddleware server middleware print client address
 func ServerMiddleware(next endpoint.Endpoint) endpoint.Endpoint {
 	return func(ctx context.Context, req, resp interface{}) (err error) {
 		ri := rpcinfo.GetRPCInfo(ctx)

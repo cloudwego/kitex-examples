@@ -39,9 +39,5 @@ func (s *CreateNoteService) CreateNote(req *note.CreateNoteRequest) error {
 		Title:   req.Title,
 		Content: req.Content,
 	}
-	if err := db.CreateNote(s.ctx, []*model.Note{noteModel}); err != nil {
-		return err
-	}
-
-	return nil
+	return db.CreateNote(s.ctx, []*model.Note{noteModel})
 }

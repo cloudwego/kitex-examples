@@ -39,7 +39,6 @@ func MGetNotes(ctx context.Context, noteIDs []int64) ([]*model.Note, error) {
 	if err := DB.WithContext(ctx).Where("id in ?", noteIDs).Find(&res).Error; err != nil {
 		return res, err
 	}
-
 	return res, nil
 }
 
@@ -49,24 +48,16 @@ func UpdateNote(ctx context.Context, noteID, userID int64, title, content *strin
 	if title != nil {
 		params["title"] = *title
 	}
-
 	if content != nil {
 		params["content"] = *content
 	}
-
-	if err := DB.WithContext(ctx).Model(&model.Note{}).Where("id = ? and user_id = ?", noteID, userID).
-		Updates(params).Error; err != nil {
-		return err
-	}
-	return nil
+	return DB.WithContext(ctx).Model(&model.Note{}).Where("id = ? and user_id = ?", noteID, userID).
+		Updates(params).Error
 }
 
 // DelNote  delete note info
 func DelNote(ctx context.Context, noteID, userID int64) error {
-	if err := DB.WithContext(ctx).Where("id = ? and user_id = ? ", noteID, userID).Delete(&model.Note{}).Error; err != nil {
-		return err
-	}
-	return nil
+	return DB.WithContext(ctx).Where("id = ? and user_id = ? ", noteID, userID).Delete(&model.Note{}).Error
 }
 
 // QueryNote  query list of note info

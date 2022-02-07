@@ -34,7 +34,6 @@ func QueryNote(c *gin.Context) {
 		Limit  int64 `json:"limit"`
 		Offset int64 `json:"offset"`
 	}
-
 	if err := c.BindQuery(&queryVar); err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)
 	}
@@ -45,6 +44,5 @@ func QueryNote(c *gin.Context) {
 		SendResponse(c, errno.DecodeErr(err), nil)
 		return
 	}
-
 	SendResponse(c, errno.Success, map[string]interface{}{constant.Total: total, constant.Notes: notes})
 }

@@ -27,7 +27,6 @@ import (
 // Register  register user info
 func Register(c *gin.Context) {
 	var registerVar UserParam
-
 	if err := c.ShouldBind(&registerVar); err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)
 		return
@@ -40,6 +39,5 @@ func Register(c *gin.Context) {
 		SendResponse(c, errno.DecodeErr(err), nil)
 		return
 	}
-
 	SendResponse(c, errno.Success, nil)
 }

@@ -31,7 +31,6 @@ func MGetUsers(ctx context.Context, userIDs []int64) ([]*model.User, error) {
 	if err := DB.WithContext(ctx).Where("id in ?", userIDs).Find(&res).Error; err != nil {
 		return nil, err
 	}
-
 	return res, nil
 }
 
@@ -46,6 +45,5 @@ func QueryUser(ctx context.Context, userName string) ([]*model.User, error) {
 	if err := DB.WithContext(ctx).Where("user_name = ?", userName).Find(&res).Error; err != nil {
 		return nil, err
 	}
-
 	return res, nil
 }

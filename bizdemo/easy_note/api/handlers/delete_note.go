@@ -44,6 +44,5 @@ func DeleteNote(c *gin.Context) {
 		SendResponse(c, errno.DecodeErr(err), nil)
 		return
 	}
-
 	SendResponse(c, errno.Success, nil)
 }

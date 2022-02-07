@@ -17,9 +17,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/cloudwego/kitex/pkg/klog"
 	"io"
 	"net"
+
+	"github.com/cloudwego/kitex/pkg/klog"
 
 	"github.com/cloudwego/kitex/pkg/discovery"
 	"github.com/cloudwego/kitex/pkg/registry"
@@ -65,6 +66,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	addr := &net.TCPAddr{IP: net.IPv4(127, 0, 0, 1), Port: 8888}
 	svr := note.NewServer(new(NoteServiceImpl),
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: constant.ServiceName}), // server name
@@ -75,8 +77,8 @@ func main() {
 		server.WithMuxTransport(),                                                        // Multiplex
 		server.WithSuite(tracer),                                                         // tracer
 		server.WithMiddleware(acl.NewACLMiddleware([]acl.RejectFunc{control.MemReject})), // access_control
-		server.WithRegistry(r),
-		server.WithRegistryInfo(&registry.Info{ServiceName: constant.ServiceName, Addr: addr, Weight: discovery.DefaultWeight}),
+		server.WithRegistry(r),                                                           // registry
+		server.WithRegistryInfo(&registry.Info{ServiceName: constant.ServiceName, Addr: addr, Weight: discovery.DefaultWeight}), // registry info
 	)
 	Init()
 	err = svr.Run()

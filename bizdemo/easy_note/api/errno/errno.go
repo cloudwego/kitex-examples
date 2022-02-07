@@ -41,12 +41,11 @@ func NewErrno(code int64, msg string) Errno {
 // DecodeErr  translate error to Errno
 func DecodeErr(err error) Errno {
 	Err := Errno{}
-
 	if errors.As(err, &Err) {
 		return Err
 	}
+
 	s := ServiceErr
 	s.Msg = err.Error()
-
 	return s
 }

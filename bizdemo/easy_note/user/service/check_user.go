@@ -46,16 +46,13 @@ func (s *CheckUserService) CheckUser(req *user.CheckUserRequest) (int64, error) 
 	passWord := fmt.Sprintf("%x", h.Sum(nil))
 
 	userName := req.UserName
-
 	users, err := db.QueryUser(s.ctx, userName)
 	if err != nil {
 		return 0, err
 	}
-
 	if len(users) == 0 {
 		return 0, errno.UserNotExistErr
 	}
-
 	u := users[0]
 	if u.Password != passWord {
 		return 0, errno.LoginErr

@@ -50,13 +50,11 @@ func BuildBaseResp(err error) *note.BaseResp {
 	}
 
 	ErrNo := Errno{}
-
 	if errors.As(err, &ErrNo) {
 		return ErrNo.ToBaseResp()
 	}
 
 	s := ServiceErr
 	s.Msg = err.Error()
-
 	return s.ToBaseResp()
 }

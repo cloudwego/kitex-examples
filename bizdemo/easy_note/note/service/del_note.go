@@ -35,9 +35,5 @@ func NewDelNoteService(ctx context.Context) *DelNoteService {
 
 // DelNote  delete note info
 func (s *DelNoteService) DelNote(req *note.DelNoteRequest) error {
-	if err := db.DelNote(s.ctx, req.NoteId, req.UserId); err != nil {
-		return err
-	}
-
-	return nil
+	return db.DelNote(s.ctx, req.NoteId, req.UserId)
 }

@@ -17,9 +17,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/cloudwego/kitex/pkg/klog"
 	"io"
 	"net"
+
+	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/cloudwego/kitex/pkg/rpcinfo"
 
 	"github.com/cloudwego/kitex/pkg/discovery"
 	"github.com/cloudwego/kitex/pkg/registry"
@@ -33,7 +35,6 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/middleware"
 	"github.com/cloudwego/kitex/pkg/acl"
 	"github.com/cloudwego/kitex/pkg/limit"
-	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	etcd "github.com/kitex-contrib/registry-etcd"
 	trace "github.com/kitex-contrib/tracer-opentracing"
@@ -68,20 +69,19 @@ func main() {
 
 	addr := &net.TCPAddr{IP: net.IPv4(127, 0, 0, 1), Port: 8889}
 	svr := user.NewServer(new(UserServiceImpl),
-		server.WithMiddleware(middleware.CommonMiddleware), // middleware
-		server.WithMiddleware(middleware.ServerMiddleware),
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: constant.ServiceName}), // server name
-		server.WithServiceAddr(addr),                                                              // address
-		server.WithLimit(&limit.Option{MaxConnections: 1000, MaxQPS: 100}),                        // limit
-		server.WithMuxTransport(),                                                                 // Multiplex
-		server.WithSuite(tracer),                                                                  // tracer
-		server.WithMiddleware(acl.NewACLMiddleware([]acl.RejectFunc{control.CPUReject})),          // access_control
-		server.WithRegistry(r),
-		server.WithRegistryInfo(&registry.Info{ServiceName: constant.ServiceName, Addr: addr, Weight: discovery.DefaultWeight}),
+		server.WithMiddleware(middleware.CommonMiddleware),                                        // middleware
+		server.WithMiddleware(middleware.ServerMiddleware),
+		server.WithServiceAddr(addr),                                                     // address
+		server.WithLimit(&limit.Option{MaxConnections: 1000, MaxQPS: 100}),               // limit
+		server.WithMuxTransport(),                                                        // Multiplex
+		server.WithSuite(tracer),                                                         // tracer
+		server.WithMiddleware(acl.NewACLMiddleware([]acl.RejectFunc{control.CPUReject})), // access_control
+		server.WithRegistry(r),                                                           // registry
+		server.WithRegistryInfo(&registry.Info{ServiceName: constant.ServiceName, Addr: addr, Weight: discovery.DefaultWeight}), // registry info
 	)
 	Init()
 	err = svr.Run()
-
 	if err != nil {
 		klog.Fatal(err)
 	}

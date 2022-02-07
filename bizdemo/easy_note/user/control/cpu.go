@@ -28,9 +28,8 @@ import (
 // CPUReject  cpu acl control
 func CPUReject(ctx context.Context, request interface{}) error {
 	c := cpuPercent()
-	err := errno.Errno{Code: errno.ServiceErr.Code, Msg: fmt.Sprintf("cpu = %.2g", c)}
 	if c > constant.CPURateLimit {
-		return err
+		return errno.Errno{Code: errno.ServiceErr.Code, Msg: fmt.Sprintf("cpu = %.2g", c)}
 	}
 	return nil
 }

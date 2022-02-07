@@ -17,9 +17,10 @@ package main
 
 import (
 	"context"
-	"github.com/cloudwego/kitex/pkg/klog"
 	"net/http"
 	"time"
+
+	"github.com/cloudwego/kitex/pkg/klog"
 
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
@@ -56,8 +57,7 @@ func main() {
 			}
 			return userrpc.CheckUser(context.Background(), &user.CheckUserRequest{UserName: loginVar.UserName, Password: loginVar.PassWord})
 		},
-		TokenLookup: "header: Authorization, query: token, cookie: jwt",
-
+		TokenLookup:   "header: Authorization, query: token, cookie: jwt",
 		TokenHeadName: "Bearer",
 		TimeFunc:      time.Now,
 	})
