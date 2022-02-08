@@ -43,4 +43,4 @@ export JAEGER_AGENT_HOST="127.0.0.1"
 export JAEGER_AGENT_PORT=6831
 
 
-exec "$CURDIR/bin/kitex.demo.note"
+exec "$CURDIR/bin/kitex.demo.user"

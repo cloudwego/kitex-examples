@@ -31,9 +31,9 @@ func QueryNote(c *gin.Context) {
 	claims := jwt.ExtractClaims(c)
 	userID := int64(claims[constant.IdentityKey].(float64))
 	var queryVar struct {
-		Limit         int64  `json:"limit"`
-		Offset        int64  `json:"offset"`
-		SearchKeyword string `json:"search_keyword"`
+		Limit         int64  `json:"limit" form:"limit"`
+		Offset        int64  `json:"offset" form:"offset"`
+		SearchKeyword string `json:"search_keyword" form:"search_keyword"`
 	}
 	if err := c.BindQuery(&queryVar); err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)
@@ -44,7 +44,7 @@ func QueryNote(c *gin.Context) {
 		return
 	}
 
-	req := &note.QueryNoteRequest{UserId: userID, Offset: queryVar.Limit, Limit: queryVar.Offset}
+	req := &note.QueryNoteRequest{UserId: userID, Offset: queryVar.Offset, Limit: queryVar.Limit}
 	if len(queryVar.SearchKeyword) != 0 {
 		req.SearchKey = &queryVar.SearchKeyword
 	}
