@@ -38,6 +38,11 @@ func DeleteNote(c *gin.Context) {
 		return
 	}
 
+	if noteID <= 0 {
+		SendResponse(c, errno.ParamErr, nil)
+		return
+	}
+
 	if err = noteRpc.DelNote(context.Background(), &note.DelNoteRequest{
 		NoteId: noteID, UserId: userID,
 	}); err != nil {

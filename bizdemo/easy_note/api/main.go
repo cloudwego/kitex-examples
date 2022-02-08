@@ -55,6 +55,11 @@ func main() {
 			if err := c.ShouldBind(&loginVar); err != nil {
 				return "", jwt.ErrMissingLoginValues
 			}
+
+			if len(loginVar.UserName) == 0 || len(loginVar.PassWord) == 0 {
+				return "", jwt.ErrMissingLoginValues
+			}
+
 			return userrpc.CheckUser(context.Background(), &user.CheckUserRequest{UserName: loginVar.UserName, Password: loginVar.PassWord})
 		},
 		TokenLookup:   "header: Authorization, query: token, cookie: jwt",
@@ -62,15 +67,17 @@ func main() {
 		TimeFunc:      time.Now,
 	})
 
-	r.POST("/login", authMiddleware.LoginHandler)
-	r.POST("/register", handlers.Register)
+	v1 := r.Group("/v1")
+	user1 := v1.Group("/user")
+	user1.POST("/login", authMiddleware.LoginHandler)
+	user1.POST("/register", handlers.Register)
 
-	auth := r.Group("/auth")
-	auth.Use(authMiddleware.MiddlewareFunc())
-	auth.GET("/note", handlers.QueryNote)
-	auth.POST("/note", handlers.CreateNote)
-	auth.PUT("/note/:note_id", handlers.UpdateNote)
-	auth.DELETE("/note/:note_id", handlers.DeleteNote)
+	note1 := v1.Group("/note")
+	note1.Use(authMiddleware.MiddlewareFunc())
+	note1.GET("/query", handlers.QueryNote)
+	note1.POST("", handlers.CreateNote)
+	note1.PUT("/:note_id", handlers.UpdateNote)
+	note1.DELETE("/:note_id", handlers.DeleteNote)
 
 	if err := http.ListenAndServe(":8080", r); err != nil {
 		klog.Fatal(err)

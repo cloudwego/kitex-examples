@@ -32,6 +32,11 @@ func Register(c *gin.Context) {
 		return
 	}
 
+	if len(registerVar.UserName) == 0 || len(registerVar.PassWord) == 0 {
+		SendResponse(c, errno.ParamErr, nil)
+		return
+	}
+
 	if err := userRpc.CreateUser(context.Background(), &user.CreateUserRequest{
 		UserName: registerVar.UserName,
 		Password: registerVar.PassWord,

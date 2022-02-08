@@ -31,15 +31,24 @@ func QueryNote(c *gin.Context) {
 	claims := jwt.ExtractClaims(c)
 	userID := int64(claims[constant.IdentityKey].(float64))
 	var queryVar struct {
-		Limit  int64 `json:"limit"`
-		Offset int64 `json:"offset"`
+		Limit         int64  `json:"limit"`
+		Offset        int64  `json:"offset"`
+		SearchKeyword string `json:"search_keyword"`
 	}
 	if err := c.BindQuery(&queryVar); err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)
 	}
 
-	notes, total, err := noteRpc.QueryNotes(context.Background(),
-		&note.QueryNoteRequest{UserId: userID, Offset: queryVar.Limit, Limit: queryVar.Offset})
+	if queryVar.Limit < 0 || queryVar.Offset < 0 {
+		SendResponse(c, errno.ParamErr, nil)
+		return
+	}
+
+	req := &note.QueryNoteRequest{UserId: userID, Offset: queryVar.Limit, Limit: queryVar.Offset}
+	if len(queryVar.SearchKeyword) != 0 {
+		req.SearchKey = &queryVar.SearchKeyword
+	}
+	notes, total, err := noteRpc.QueryNotes(context.Background(), req)
 	if err != nil {
 		SendResponse(c, errno.DecodeErr(err), nil)
 		return

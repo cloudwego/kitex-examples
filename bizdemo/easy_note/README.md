@@ -109,7 +109,7 @@ visit `http://127.0.0.1:16686/` on  browser.
 
 ### Register
 ```shell
-curl --location --request POST '127.0.0.1:8080/register' \
+curl --location --request POST '127.0.0.1:8080/v1/user/register' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "username":"kinggo",
@@ -130,7 +130,7 @@ curl --location --request POST '127.0.0.1:8080/register' \
 
 #### will return jwt token
 ```shell
-curl --location --request POST '127.0.0.1:8080/login' \
+curl --location --request POST '127.0.0.1:8080/v1/user/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "username":"kinggo",
@@ -149,7 +149,7 @@ curl --location --request POST '127.0.0.1:8080/login' \
 
 ### Create Note
 ```shell
-curl --location --request POST '127.0.0.1:8080/auth/note' \
+curl --location --request POST '127.0.0.1:8080/v1/note' \
 --header 'Authorization: Bearer $token' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -169,7 +169,7 @@ curl --location --request POST '127.0.0.1:8080/auth/note' \
 
 ### Query Note
 ```shell
-curl --location --request GET '127.0.0.1:8080/auth/note?offset=0&limit=20' \
+curl --location --request GET '127.0.0.1:8080/v1/note?offset=0&limit=20&search_keyword=test' \
 --header 'Authorization: Bearer $token'
 ```
 
@@ -195,7 +195,7 @@ curl --location --request GET '127.0.0.1:8080/auth/note?offset=0&limit=20' \
 
 ### Update Note
 ```shell
-curl --location --request PUT '127.0.0.1:8080/auth/note/$note_id' \
+curl --location --request PUT '127.0.0.1:8080/v1/note/$note_id' \
 --header 'Authorization: Bearer $token' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -215,7 +215,7 @@ curl --location --request PUT '127.0.0.1:8080/auth/note/$note_id' \
 
 ### Delete Note
 ```shell
-curl --location --request DELETE '127.0.0.1:8080/auth/note/$note_id' \
+curl --location --request DELETE '127.0.0.1:8080/v1/note/$note_id' \
 --header 'Authorization: Bearer $token'
 ```
 

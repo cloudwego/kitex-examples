@@ -44,6 +44,11 @@ func UpdateNote(c *gin.Context) {
 		return
 	}
 
+	if noteID <= 0 {
+		SendResponse(c, errno.ParamErr, nil)
+		return
+	}
+
 	req := &note.UpdateNoteRequest{NoteId: noteID, UserId: userID}
 	if len(noteVar.Title) != 0 {
 		req.Title = &noteVar.Title

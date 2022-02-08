@@ -34,6 +34,11 @@ func CreateNote(c *gin.Context) {
 		return
 	}
 
+	if len(noteVar.Title) == 0 || len(noteVar.Content) == 0 {
+		SendResponse(c, errno.ParamErr, nil)
+		return
+	}
+
 	claims := jwt.ExtractClaims(c)
 	userID := int64(claims[constant.IdentityKey].(float64))
 	if err := noteRpc.CreateNote(context.Background(), &note.CreateNoteRequest{

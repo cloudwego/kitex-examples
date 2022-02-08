@@ -32,6 +32,7 @@ func (e Errno) Error() string {
 var (
 	Success    = Errno{Code: 0, Msg: "Success"}
 	ServiceErr = Errno{Code: 10001, Msg: "Service is unable to start successfully"}
+	ParamErr   = Errno{Code: 10002, Msg: "Wrong Parameter has been given"}
 )
 
 func NewErrno(code int64, msg string) Errno {
