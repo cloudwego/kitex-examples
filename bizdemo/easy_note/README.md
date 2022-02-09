@@ -169,7 +169,7 @@ curl --location --request POST '127.0.0.1:8080/v1/note' \
 
 ### Query Note
 ```shell
-curl --location --request GET '127.0.0.1:8080/v1/note?offset=0&limit=20&search_keyword=test' \
+curl --location --request GET '127.0.0.1:8080/v1/note/query?offset=0&limit=20&search_keyword=test' \
 --header 'Authorization: Bearer $token'
 ```
 
