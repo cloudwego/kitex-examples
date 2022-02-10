@@ -49,7 +49,7 @@ func initJaeger(service string) (client.Suite, io.Closer) {
 	return trace.NewDefaultClientSuite(), closer
 }
 
-// Init  init note rpc server
+// Init init note rpc server
 func Init() {
 	tracer, _ := initJaeger(constant.ServiceName)
 
@@ -75,7 +75,7 @@ func Init() {
 	noteClient = c
 }
 
-// CreateNote  create note info
+// CreateNote create note info
 func CreateNote(ctx context.Context, req *note.CreateNoteRequest) error {
 	resp, err := noteClient.CreateNote(ctx, req)
 	if err != nil {
@@ -87,7 +87,7 @@ func CreateNote(ctx context.Context, req *note.CreateNoteRequest) error {
 	return nil
 }
 
-// MGetNotes  multiple  get list of note info
+// MGetNotes multiple get list of note info
 func MGetNotes(ctx context.Context, req *note.MGetNoteRequest) ([]*note.Note, error) {
 	resp, err := noteClient.MGetNote(ctx, req)
 	if err != nil {
@@ -99,7 +99,7 @@ func MGetNotes(ctx context.Context, req *note.MGetNoteRequest) ([]*note.Note, er
 	return resp.Notes, nil
 }
 
-// QueryNotes  query list of note info
+// QueryNotes query list of note info
 func QueryNotes(ctx context.Context, req *note.QueryNoteRequest) ([]*note.Note, int64, error) {
 	resp, err := noteClient.QueryNote(ctx, req)
 	if err != nil {
@@ -111,7 +111,7 @@ func QueryNotes(ctx context.Context, req *note.QueryNoteRequest) ([]*note.Note, 
 	return resp.Notes, resp.Total, nil
 }
 
-// UpdateNote  update note info
+// UpdateNote update note info
 func UpdateNote(ctx context.Context, req *note.UpdateNoteRequest) error {
 	resp, err := noteClient.UpdateNote(ctx, req)
 	if err != nil {

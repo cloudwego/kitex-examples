@@ -26,7 +26,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// CreateNote  create note info
+// CreateNote create note info
 func CreateNote(c *gin.Context) {
 	var noteVar NoteParam
 	if err := c.ShouldBind(&noteVar); err != nil {

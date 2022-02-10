@@ -49,7 +49,7 @@ func initJaeger(service string) (client.Suite, io.Closer) {
 	return trace.NewDefaultClientSuite(), closer
 }
 
-// Init  init user rpc client
+// Init init user rpc client
 func Init() {
 	tracer, _ := initJaeger(constant.ServiceName)
 
@@ -75,7 +75,7 @@ func Init() {
 	userClient = c
 }
 
-// CreateUser  create user info
+// CreateUser create user info
 func CreateUser(ctx context.Context, req *user.CreateUserRequest) error {
 	resp, err := userClient.CreateUser(ctx, req)
 	if err != nil {
@@ -87,7 +87,7 @@ func CreateUser(ctx context.Context, req *user.CreateUserRequest) error {
 	return nil
 }
 
-// CheckUser  check user info
+// CheckUser check user info
 func CheckUser(ctx context.Context, req *user.CheckUserRequest) (int64, error) {
 	resp, err := userClient.CheckUser(ctx, req)
 	if err != nil {
@@ -99,7 +99,7 @@ func CheckUser(ctx context.Context, req *user.CheckUserRequest) (int64, error) {
 	return resp.UserId, nil
 }
 
-// MGetUser  multiple  list of user info
+// MGetUser multiple list of user info
 func MGetUser(ctx context.Context, req *user.MGetUserRequest) ([]*user.User, error) {
 	resp, err := userClient.MGetUser(ctx, req)
 	if err != nil {

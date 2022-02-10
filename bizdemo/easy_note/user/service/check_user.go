@@ -37,7 +37,7 @@ func NewCheckUserService(ctx context.Context) *CheckUserService {
 	}
 }
 
-// CheckUser  check user info
+// CheckUser check user info
 func (s *CheckUserService) CheckUser(req *user.CheckUserRequest) (int64, error) {
 	h := md5.New()
 	if _, err := io.WriteString(h, req.Password); err != nil {

@@ -24,7 +24,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Register  register user info
+// Register register user info
 func Register(c *gin.Context) {
 	var registerVar UserParam
 	if err := c.ShouldBind(&registerVar); err != nil {

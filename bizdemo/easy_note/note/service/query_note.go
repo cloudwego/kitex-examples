@@ -27,7 +27,7 @@ type QueryNoteService struct {
 	ctx context.Context
 }
 
-// NewQueryNoteService  new QueryNoteService
+// NewQueryNoteService new QueryNoteService
 func NewQueryNoteService(ctx context.Context) *QueryNoteService {
 	return &QueryNoteService{ctx: ctx}
 }

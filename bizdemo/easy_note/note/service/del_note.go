@@ -33,7 +33,7 @@ func NewDelNoteService(ctx context.Context) *DelNoteService {
 	}
 }
 
-// DelNote  delete note info
+// DelNote delete note info
 func (s *DelNoteService) DelNote(req *note.DelNoteRequest) error {
 	return db.DelNote(s.ctx, req.NoteId, req.UserId)
 }

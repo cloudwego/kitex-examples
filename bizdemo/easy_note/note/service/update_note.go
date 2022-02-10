@@ -26,7 +26,7 @@ type UpdateNoteService struct {
 	ctx context.Context
 }
 
-// NewUpdateNoteService  new UpdateNoteService
+// NewUpdateNoteService new UpdateNoteService
 func NewUpdateNoteService(ctx context.Context) *UpdateNoteService {
 	return &UpdateNoteService{ctx: ctx}
 }

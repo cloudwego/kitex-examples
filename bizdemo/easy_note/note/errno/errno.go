@@ -38,12 +38,12 @@ var (
 	ParamErr   = Errno{ErrCode: 10002, ErrMsg: "Wrong Parameter has been given"}
 )
 
-// ToBaseResp  build baseResp from Errno
+// ToBaseResp build baseResp from Errno
 func (e *Errno) ToBaseResp() *note.BaseResp {
 	return &note.BaseResp{StatusCode: e.ErrCode, StatusMessage: e.ErrMsg, ServiceTime: time.Now().Unix()}
 }
 
-// BuildBaseResp  build baseResp from error
+// BuildBaseResp build baseResp from error
 func BuildBaseResp(err error) *note.BaseResp {
 	if err == nil {
 		return Success.ToBaseResp()

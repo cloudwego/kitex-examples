@@ -17,7 +17,7 @@ package dal
 
 import "github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/dal/db"
 
-// Init  init dal
+// Init init dal
 func Init() {
 	db.Init() // mysql init
 }

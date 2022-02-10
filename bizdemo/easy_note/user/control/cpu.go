@@ -25,7 +25,7 @@ import (
 	"github.com/shirou/gopsutil/cpu"
 )
 
-// CPUReject  cpu acl control
+// CPUReject cpu acl control
 func CPUReject(ctx context.Context, request interface{}) error {
 	c := cpuPercent()
 	if c > constant.CPURateLimit {

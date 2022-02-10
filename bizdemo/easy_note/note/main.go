@@ -42,7 +42,6 @@ import (
 	jaegercfg "github.com/uber/jaeger-client-go/config"
 )
 
-// InitJaeger ...
 func InitJaeger(service string) (server.Suite, io.Closer) {
 	cfg, _ := jaegercfg.FromEnv()
 	cfg.ServiceName = service

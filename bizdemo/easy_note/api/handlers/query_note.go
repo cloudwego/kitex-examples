@@ -26,7 +26,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// QueryNote  query list of note info
+// QueryNote query list of note info
 func QueryNote(c *gin.Context) {
 	claims := jwt.ExtractClaims(c)
 	userID := int64(claims[constant.IdentityKey].(float64))

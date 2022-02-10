@@ -46,7 +46,6 @@ func Init() {
 	dal.Init()
 }
 
-// InitJaeger ...
 func InitJaeger(service string) (server.Suite, io.Closer) {
 	cfg, _ := jaegercfg.FromEnv()
 	cfg.ServiceName = service

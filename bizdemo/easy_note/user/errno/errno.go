@@ -41,12 +41,12 @@ var (
 	UserAlreadyExistErr = Errno{ErrCode: 10005, ErrMsg: "User already exists"}
 )
 
-// ToBaseResp  build baseResp from Errno
+// ToBaseResp build baseResp from Errno
 func (e *Errno) ToBaseResp() *user.BaseResp {
 	return &user.BaseResp{StatusCode: e.ErrCode, StatusMessage: e.ErrMsg, ServiceTime: time.Now().Unix()}
 }
 
-// BuildBaseResp  build baseResp from error
+// BuildBaseResp build baseResp from error
 func BuildBaseResp(err error) *user.BaseResp {
 	if err == nil {
 		return Success.ToBaseResp()

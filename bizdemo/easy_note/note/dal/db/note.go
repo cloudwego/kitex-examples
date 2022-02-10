@@ -21,7 +21,7 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/model"
 )
 
-// CreateNote  create note info
+// CreateNote create note info
 func CreateNote(ctx context.Context, notes []*model.Note) error {
 	if err := DB.WithContext(ctx).Create(notes).Error; err != nil {
 		return err
@@ -29,7 +29,7 @@ func CreateNote(ctx context.Context, notes []*model.Note) error {
 	return nil
 }
 
-// MGetNotes  multiple get list of note info
+// MGetNotes multiple get list of note info
 func MGetNotes(ctx context.Context, noteIDs []int64) ([]*model.Note, error) {
 	var res []*model.Note
 	if len(noteIDs) == 0 {
@@ -42,7 +42,7 @@ func MGetNotes(ctx context.Context, noteIDs []int64) ([]*model.Note, error) {
 	return res, nil
 }
 
-// UpdateNote  update note info
+// UpdateNote update note info
 func UpdateNote(ctx context.Context, noteID, userID int64, title, content *string) error {
 	params := map[string]interface{}{}
 	if title != nil {
@@ -55,12 +55,12 @@ func UpdateNote(ctx context.Context, noteID, userID int64, title, content *strin
 		Updates(params).Error
 }
 
-// DelNote  delete note info
+// DelNote delete note info
 func DelNote(ctx context.Context, noteID, userID int64) error {
 	return DB.WithContext(ctx).Where("id = ? and user_id = ? ", noteID, userID).Delete(&model.Note{}).Error
 }
 
-// QueryNote  query list of note info
+// QueryNote query list of note info
 func QueryNote(ctx context.Context, userID int64, searchKey *string, limit, offset int) ([]*model.Note, int64, error) {
 	var total int64
 	var res []*model.Note

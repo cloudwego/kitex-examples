@@ -27,7 +27,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// DeleteNote  delete note info
+// DeleteNote delete note info
 func DeleteNote(c *gin.Context) {
 	claims := jwt.ExtractClaims(c)
 	userID := int64(claims[constant.IdentityKey].(float64))

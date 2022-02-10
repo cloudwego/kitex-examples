@@ -27,12 +27,12 @@ type CreateNoteService struct {
 	ctx context.Context
 }
 
-// NewCreateNoteService  new CreateNoteService
+// NewCreateNoteService new CreateNoteService
 func NewCreateNoteService(ctx context.Context) *CreateNoteService {
 	return &CreateNoteService{ctx: ctx}
 }
 
-// CreateNote  create note info
+// CreateNote create note info
 func (s *CreateNoteService) CreateNote(req *note.CreateNoteRequest) error {
 	noteModel := &model.Note{
 		UserID:  req.UserId,

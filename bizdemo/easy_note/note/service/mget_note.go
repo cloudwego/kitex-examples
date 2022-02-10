@@ -27,12 +27,12 @@ type MGetNoteService struct {
 	ctx context.Context
 }
 
-// NewMGetNoteService  new MGetNoteService
+// NewMGetNoteService new MGetNoteService
 func NewMGetNoteService(ctx context.Context) *MGetNoteService {
 	return &MGetNoteService{ctx: ctx}
 }
 
-// MGetNote  multiple get list of note info
+// MGetNote multiple get list of note info
 func (s *MGetNoteService) MGetNote(req *note.MGetNoteRequest) ([]*note.Note, error) {
 	noteModels, err := db.MGetNotes(s.ctx, req.NoteIds)
 	if err != nil {

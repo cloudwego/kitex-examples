@@ -36,7 +36,7 @@ func NewCreateUserService(ctx context.Context) *CreateUserService {
 	return &CreateUserService{ctx: ctx}
 }
 
-// CreateUser  create user info.
+// CreateUser create user info.
 func (s *CreateUserService) CreateUser(req *user.CreateUserRequest) error {
 	users, err := db.QueryUser(s.ctx, req.UserName)
 	if err != nil {

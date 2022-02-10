@@ -25,7 +25,7 @@ import (
 
 var DB *gorm.DB
 
-// Init  init DB
+// Init init DB
 func Init() {
 	var err error
 	DB, err = gorm.Open(mysql.Open(constant.MySQLDefaultDSN),
