@@ -30,7 +30,7 @@ import (
 func CreateNote(c *gin.Context) {
 	var noteVar NoteParam
 	if err := c.ShouldBind(&noteVar); err != nil {
-		SendResponse(c, errno.DecodeErr(err), nil)
+		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
 
@@ -45,7 +45,7 @@ func CreateNote(c *gin.Context) {
 		UserId:  userID,
 		Content: noteVar.Content, Title: noteVar.Title,
 	}); err != nil {
-		SendResponse(c, errno.DecodeErr(err), nil)
+		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
 	SendResponse(c, errno.Success, nil)

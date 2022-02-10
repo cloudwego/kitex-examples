@@ -21,32 +21,32 @@ import (
 )
 
 type Errno struct {
-	Code int64
-	Msg  string
+	ErrCode int64
+	ErrMsg  string
 }
 
 func (e Errno) Error() string {
-	return fmt.Sprintf("code=%d, msg=%s", e.Code, e.Msg)
+	return fmt.Sprintf("err_code=%d, err_msg=%s", e.ErrCode, e.ErrMsg)
 }
 
 var (
-	Success    = Errno{Code: 0, Msg: "Success"}
-	ServiceErr = Errno{Code: 10001, Msg: "Service is unable to start successfully"}
-	ParamErr   = Errno{Code: 10002, Msg: "Wrong Parameter has been given"}
+	Success    = Errno{ErrCode: 0, ErrMsg: "Success"}
+	ServiceErr = Errno{ErrCode: 10001, ErrMsg: "Service is unable to start successfully"}
+	ParamErr   = Errno{ErrCode: 10002, ErrMsg: "Wrong Parameter has been given"}
 )
 
 func NewErrno(code int64, msg string) Errno {
 	return Errno{code, msg}
 }
 
-// DecodeErr  translate error to Errno
-func DecodeErr(err error) Errno {
+// ConvertErr convert error to Errno
+func ConvertErr(err error) Errno {
 	Err := Errno{}
 	if errors.As(err, &Err) {
 		return Err
 	}
 
 	s := ServiceErr
-	s.Msg = err.Error()
+	s.ErrMsg = err.Error()
 	return s
 }

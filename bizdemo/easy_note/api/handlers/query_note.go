@@ -36,7 +36,7 @@ func QueryNote(c *gin.Context) {
 		SearchKeyword string `json:"search_keyword" form:"search_keyword"`
 	}
 	if err := c.BindQuery(&queryVar); err != nil {
-		SendResponse(c, errno.DecodeErr(err), nil)
+		SendResponse(c, errno.ConvertErr(err), nil)
 	}
 
 	if queryVar.Limit < 0 || queryVar.Offset < 0 {
@@ -50,7 +50,7 @@ func QueryNote(c *gin.Context) {
 	}
 	notes, total, err := noteRpc.QueryNotes(context.Background(), req)
 	if err != nil {
-		SendResponse(c, errno.DecodeErr(err), nil)
+		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
 	SendResponse(c, errno.Success, map[string]interface{}{constant.Total: total, constant.Notes: notes})

@@ -31,7 +31,7 @@ import (
 func UpdateNote(c *gin.Context) {
 	var noteVar NoteParam
 	if err := c.ShouldBind(&noteVar); err != nil {
-		SendResponse(c, errno.DecodeErr(err), nil)
+		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
 
@@ -40,7 +40,7 @@ func UpdateNote(c *gin.Context) {
 	noteIDStr := c.Param(constant.NoteID)
 	noteID, err := strconv.ParseInt(noteIDStr, 10, 64)
 	if err != nil {
-		SendResponse(c, errno.DecodeErr(err), nil)
+		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
 
@@ -57,7 +57,7 @@ func UpdateNote(c *gin.Context) {
 		req.Content = &noteVar.Content
 	}
 	if err = noteRpc.UpdateNote(context.Background(), req); err != nil {
-		SendResponse(c, errno.DecodeErr(err), nil)
+		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
 	SendResponse(c, errno.Success, nil)

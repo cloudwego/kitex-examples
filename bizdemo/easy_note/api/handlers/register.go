@@ -28,7 +28,7 @@ import (
 func Register(c *gin.Context) {
 	var registerVar UserParam
 	if err := c.ShouldBind(&registerVar); err != nil {
-		SendResponse(c, errno.DecodeErr(err), nil)
+		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
 
@@ -41,7 +41,7 @@ func Register(c *gin.Context) {
 		UserName: registerVar.UserName,
 		Password: registerVar.PassWord,
 	}); err != nil {
-		SendResponse(c, errno.DecodeErr(err), nil)
+		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
 	SendResponse(c, errno.Success, nil)

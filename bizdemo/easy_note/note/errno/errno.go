@@ -24,23 +24,23 @@ import (
 )
 
 type Errno struct {
-	Code int64
-	Msg  string
+	ErrCode int64
+	ErrMsg  string
 }
 
 func (e Errno) Error() string {
-	return fmt.Sprintf("code=%d, msg=%s", e.Code, e.Msg)
+	return fmt.Sprintf("code=%d, msg=%s", e.ErrCode, e.ErrMsg)
 }
 
 var (
-	Success    = Errno{Code: 0, Msg: "Success"}
-	ServiceErr = Errno{Code: 10001, Msg: "Service is unable to start successfully"}
-	ParamErr   = Errno{Code: 10002, Msg: "Wrong Parameter has been given"}
+	Success    = Errno{ErrCode: 0, ErrMsg: "Success"}
+	ServiceErr = Errno{ErrCode: 10001, ErrMsg: "Service is unable to start successfully"}
+	ParamErr   = Errno{ErrCode: 10002, ErrMsg: "Wrong Parameter has been given"}
 )
 
 // ToBaseResp  build baseResp from Errno
 func (e *Errno) ToBaseResp() *note.BaseResp {
-	return &note.BaseResp{StatusCode: e.Code, StatusMessage: e.Msg, ServiceTime: time.Now().Unix()}
+	return &note.BaseResp{StatusCode: e.ErrCode, StatusMessage: e.ErrMsg, ServiceTime: time.Now().Unix()}
 }
 
 // BuildBaseResp  build baseResp from error
@@ -55,6 +55,6 @@ func BuildBaseResp(err error) *note.BaseResp {
 	}
 
 	s := ServiceErr
-	s.Msg = err.Error()
+	s.ErrMsg = err.Error()
 	return s.ToBaseResp()
 }

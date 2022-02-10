@@ -29,7 +29,7 @@ import (
 func CPUReject(ctx context.Context, request interface{}) error {
 	c := cpuPercent()
 	if c > constant.CPURateLimit {
-		return errno.Errno{Code: errno.ServiceErr.Code, Msg: fmt.Sprintf("cpu = %.2g", c)}
+		return errno.Errno{ErrCode: errno.ServiceErr.ErrCode, ErrMsg: fmt.Sprintf("cpu = %.2g", c)}
 	}
 	return nil
 }

@@ -34,7 +34,7 @@ func DeleteNote(c *gin.Context) {
 	noteIDStr := c.Param(constant.NoteID)
 	noteID, err := strconv.ParseInt(noteIDStr, 10, 64)
 	if err != nil {
-		SendResponse(c, errno.DecodeErr(err), nil)
+		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
 
@@ -46,7 +46,7 @@ func DeleteNote(c *gin.Context) {
 	if err = noteRpc.DelNote(context.Background(), &note.DelNoteRequest{
 		NoteId: noteID, UserId: userID,
 	}); err != nil {
-		SendResponse(c, errno.DecodeErr(err), nil)
+		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
 	SendResponse(c, errno.Success, nil)

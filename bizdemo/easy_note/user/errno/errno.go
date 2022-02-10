@@ -24,26 +24,26 @@ import (
 )
 
 type Errno struct {
-	Code int64
-	Msg  string
+	ErrCode int64
+	ErrMsg  string
 }
 
 func (e Errno) Error() string {
-	return fmt.Sprintf("code=%d, msg=%s", e.Code, e.Msg)
+	return fmt.Sprintf("code=%d, msg=%s", e.ErrCode, e.ErrMsg)
 }
 
 var (
-	Success             = Errno{Code: 0, Msg: "Success"}
-	ServiceErr          = Errno{Code: 10001, Msg: "Service is unable to start successfully"}
-	ParamErr            = Errno{Code: 10002, Msg: "Wrong parameter has been given"}
-	LoginErr            = Errno{Code: 10003, Msg: "Wrong username or password"}
-	UserNotExistErr     = Errno{Code: 10004, Msg: "User does not exist"}
-	UserAlreadyExistErr = Errno{Code: 10005, Msg: "User already exists"}
+	Success             = Errno{ErrCode: 0, ErrMsg: "Success"}
+	ServiceErr          = Errno{ErrCode: 10001, ErrMsg: "Service is unable to start successfully"}
+	ParamErr            = Errno{ErrCode: 10002, ErrMsg: "Wrong parameter has been given"}
+	LoginErr            = Errno{ErrCode: 10003, ErrMsg: "Wrong username or password"}
+	UserNotExistErr     = Errno{ErrCode: 10004, ErrMsg: "User does not exist"}
+	UserAlreadyExistErr = Errno{ErrCode: 10005, ErrMsg: "User already exists"}
 )
 
 // ToBaseResp  build baseResp from Errno
 func (e *Errno) ToBaseResp() *user.BaseResp {
-	return &user.BaseResp{StatusCode: e.Code, StatusMessage: e.Msg, ServiceTime: time.Now().Unix()}
+	return &user.BaseResp{StatusCode: e.ErrCode, StatusMessage: e.ErrMsg, ServiceTime: time.Now().Unix()}
 }
 
 // BuildBaseResp  build baseResp from error
@@ -58,6 +58,6 @@ func BuildBaseResp(err error) *user.BaseResp {
 	}
 
 	s := ServiceErr
-	s.Msg = err.Error()
+	s.ErrMsg = err.Error()
 	return s.ToBaseResp()
 }
