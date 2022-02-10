@@ -21,7 +21,7 @@ struct BaseResp {
     3:i64 service_time
 }
 
-struct Note{
+struct Note {
     1:i64 note_id;
     2:i64 user_id
     3:string title
@@ -75,7 +75,7 @@ struct QueryNoteRequest {
     4:i64 limit
 }
 
-struct QueryNoteResponse{
+struct QueryNoteResponse {
     1:list<Note> notes
     2:i64 total
     3:BaseResp base_resp
