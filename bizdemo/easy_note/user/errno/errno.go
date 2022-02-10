@@ -29,7 +29,7 @@ type Errno struct {
 }
 
 func (e Errno) Error() string {
-	return fmt.Sprintf("code=%d,msg=%s", e.Code, e.Msg)
+	return fmt.Sprintf("code=%d, msg=%s", e.Code, e.Msg)
 }
 
 var (
