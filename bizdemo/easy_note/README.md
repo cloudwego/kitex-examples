@@ -61,7 +61,7 @@ req    resp                            │                                   res
 
 | catalog       | introduce      |
 | ---------- | ---------------- |
-| pkgh/constant   | constant        |
+| pkg/constants   | constant        |
 | pkg/control    |  customized access control    |
 | pkg/errno      | customized error number |
 | pkg/middleware | RPC middleware     |
