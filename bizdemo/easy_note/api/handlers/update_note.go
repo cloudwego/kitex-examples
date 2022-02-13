@@ -19,11 +19,12 @@ import (
 	"context"
 	"strconv"
 
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc"
+
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/notedemo"
-	noteRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
 	"github.com/gin-gonic/gin"
 )
 
@@ -56,7 +57,7 @@ func UpdateNote(c *gin.Context) {
 	if len(noteVar.Content) != 0 {
 		req.Content = &noteVar.Content
 	}
-	if err = noteRpc.UpdateNote(context.Background(), req); err != nil {
+	if err = rpc.UpdateNote(context.Background(), req); err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}

@@ -18,11 +18,12 @@ package handlers
 import (
 	"context"
 
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc"
+
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/notedemo"
-	noteRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
 	"github.com/gin-gonic/gin"
 )
 
@@ -48,7 +49,7 @@ func QueryNote(c *gin.Context) {
 	if len(queryVar.SearchKeyword) != 0 {
 		req.SearchKey = &queryVar.SearchKeyword
 	}
-	notes, total, err := noteRpc.QueryNotes(context.Background(), req)
+	notes, total, err := rpc.QueryNotes(context.Background(), req)
 	if err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return

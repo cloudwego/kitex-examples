@@ -18,9 +18,10 @@ package handlers
 import (
 	"context"
 
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/userdemo"
-	userRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/user"
 	"github.com/gin-gonic/gin"
 )
 
@@ -37,7 +38,7 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	err := userRpc.CreateUser(context.Background(), &userdemo.CreateUserRequest{
+	err := rpc.CreateUser(context.Background(), &userdemo.CreateUserRequest{
 		UserName: registerVar.UserName,
 		Password: registerVar.PassWord,
 	})

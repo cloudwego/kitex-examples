@@ -19,11 +19,12 @@ import (
 	"context"
 	"strconv"
 
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc"
+
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/notedemo"
-	noteRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
 	"github.com/gin-gonic/gin"
 )
 
@@ -43,7 +44,7 @@ func DeleteNote(c *gin.Context) {
 		return
 	}
 
-	err = noteRpc.DeleteNote(context.Background(), &notedemo.DeleteNoteRequest{
+	err = rpc.DeleteNote(context.Background(), &notedemo.DeleteNoteRequest{
 		NoteId: noteID, UserId: userID,
 	})
 	if err != nil {

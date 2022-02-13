@@ -27,12 +27,11 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/handlers"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/userdemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc"
-	userrpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/user"
 	"github.com/gin-gonic/gin"
 )
 
 func Init() {
-	rpc.Init()
+	rpc.InitRPC()
 }
 
 func main() {
@@ -60,7 +59,7 @@ func main() {
 				return "", jwt.ErrMissingLoginValues
 			}
 
-			return userrpc.CheckUser(context.Background(), &userdemo.CheckUserRequest{UserName: loginVar.UserName, Password: loginVar.PassWord})
+			return rpc.CheckUser(context.Background(), &userdemo.CheckUserRequest{UserName: loginVar.UserName, Password: loginVar.PassWord})
 		},
 		TokenLookup:   "header: Authorization, query: token, cookie: jwt",
 		TokenHeadName: "Bearer",

@@ -13,17 +13,13 @@
 // limitations under the License.
 //
 
-package note
+package rpc
 
 import (
 	"context"
-	"fmt"
-	"io"
 	"time"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
-	"github.com/opentracing/opentracing-go"
-
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/notedemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/notedemo/noteservice"
@@ -31,27 +27,12 @@ import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"
 	etcd "github.com/kitex-contrib/registry-etcd"
-	trace "github.com/kitex-contrib/tracer-opentracing"
-	"github.com/uber/jaeger-client-go"
-	jaegercfg "github.com/uber/jaeger-client-go/config"
 )
 
 var noteClient noteservice.Client
 
-func initJaeger(service string) (client.Suite, io.Closer) {
-	cfg, _ := jaegercfg.FromEnv()
-	cfg.ServiceName = service
-	tracer, closer, err := cfg.NewTracer(jaegercfg.Logger(jaeger.StdLogger))
-	if err != nil {
-		panic(fmt.Sprintf("ERROR: cannot init Jaeger: %v\n", err))
-	}
-	opentracing.InitGlobalTracer(tracer)
-	return trace.NewDefaultClientSuite(), closer
-}
-
-// Init init note rpc server
-func Init() {
-	tracer, _ := initJaeger(constant.ServiceName)
+// InitNoteRpc init note rpc client
+func InitNoteRpc() {
 
 	r, err := etcd.NewEtcdResolver([]string{"127.0.0.1:2379"})
 	if err != nil {
@@ -61,12 +42,12 @@ func Init() {
 	c, err := noteservice.NewClient(
 		constant.NoteServiceName,
 		client.WithMiddleware(middleware.CommonMiddleware),
-		client.WithMiddleware(middleware.ClientMiddleware),
+		client.WithInstanceMW(middleware.ClientMiddleware),
 		client.WithMuxConnection(1),                       // mux
 		client.WithRPCTimeout(3*time.Second),              // rpc timeout
 		client.WithConnectTimeout(50*time.Millisecond),    // conn timeout
 		client.WithFailureRetry(retry.NewFailurePolicy()), // retry
-		client.WithSuite(tracer),                          // tracer
+		client.WithSuite(tracerSuit),                      // tracer
 		client.WithResolver(r),                            // resolver
 	)
 	if err != nil {

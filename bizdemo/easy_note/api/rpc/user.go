@@ -13,19 +13,13 @@
 // limitations under the License.
 //
 
-package user
+package rpc
 
 import (
 	"context"
-	"fmt"
-	"io"
 	"time"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
-	"github.com/opentracing/opentracing-go"
-	"github.com/uber/jaeger-client-go"
-	jaegercfg "github.com/uber/jaeger-client-go/config"
-
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/userdemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/userdemo/userservice"
@@ -33,25 +27,12 @@ import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"
 	etcd "github.com/kitex-contrib/registry-etcd"
-	trace "github.com/kitex-contrib/tracer-opentracing"
 )
 
 var userClient userservice.Client
 
-func initJaeger(service string) (client.Suite, io.Closer) {
-	cfg, _ := jaegercfg.FromEnv()
-	cfg.ServiceName = service
-	tracer, closer, err := cfg.NewTracer(jaegercfg.Logger(jaeger.StdLogger))
-	if err != nil {
-		panic(fmt.Sprintf("ERROR: cannot init Jaeger: %v\n", err))
-	}
-	opentracing.InitGlobalTracer(tracer)
-	return trace.NewDefaultClientSuite(), closer
-}
-
-// Init init user rpc client
-func Init() {
-	tracer, _ := initJaeger(constant.ServiceName)
+// InitUserRpc init user rpc client
+func InitUserRpc() {
 
 	r, err := etcd.NewEtcdResolver([]string{"127.0.0.1:2379"})
 	if err != nil {
@@ -61,12 +42,12 @@ func Init() {
 	c, err := userservice.NewClient(
 		constant.UserServiceName,
 		client.WithMiddleware(middleware.CommonMiddleware),
-		client.WithMiddleware(middleware.ClientMiddleware),
+		client.WithInstanceMW(middleware.ClientMiddleware),
 		client.WithMuxConnection(1),                       // mux
 		client.WithRPCTimeout(3*time.Second),              // rpc timeout
 		client.WithConnectTimeout(50*time.Millisecond),    // conn timeout
 		client.WithFailureRetry(retry.NewFailurePolicy()), // retry
-		client.WithSuite(tracer),                          // tracer
+		client.WithSuite(tracerSuit),                      // tracer
 		client.WithResolver(r),                            // resolver
 	)
 	if err != nil {
@@ -97,16 +78,4 @@ func CheckUser(ctx context.Context, req *userdemo.CheckUserRequest) (int64, erro
 		return 0, errno.NewErrno(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
 	}
 	return resp.UserId, nil
-}
-
-// MGetUser multiple get list of user info
-func MGetUser(ctx context.Context, req *userdemo.MGetUserRequest) ([]*userdemo.User, error) {
-	resp, err := userClient.MGetUser(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-	if resp.BaseResp.StatusCode != 0 {
-		return nil, errno.NewErrno(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
-	}
-	return resp.Users, nil
 }
