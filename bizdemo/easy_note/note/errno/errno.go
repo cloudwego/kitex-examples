@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/kitex/demo/note"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/notedemo"
 )
 
 type Errno struct {
@@ -39,12 +39,12 @@ var (
 )
 
 // ToBaseResp build baseResp from Errno
-func (e *Errno) ToBaseResp() *note.BaseResp {
-	return &note.BaseResp{StatusCode: e.ErrCode, StatusMessage: e.ErrMsg, ServiceTime: time.Now().Unix()}
+func (e *Errno) ToBaseResp() *notedemo.BaseResp {
+	return &notedemo.BaseResp{StatusCode: e.ErrCode, StatusMessage: e.ErrMsg, ServiceTime: time.Now().Unix()}
 }
 
 // BuildBaseResp build baseResp from error
-func BuildBaseResp(err error) *note.BaseResp {
+func BuildBaseResp(err error) *notedemo.BaseResp {
 	if err == nil {
 		return Success.ToBaseResp()
 	}

@@ -27,8 +27,8 @@ import (
 	jaegercfg "github.com/uber/jaeger-client-go/config"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/kitex/demo/user"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/kitex/demo/user/userservice"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/userdemo"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/userdemo/userservice"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/middleware"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"
@@ -76,7 +76,7 @@ func Init() {
 }
 
 // CreateUser create user info
-func CreateUser(ctx context.Context, req *user.CreateUserRequest) error {
+func CreateUser(ctx context.Context, req *userdemo.CreateUserRequest) error {
 	resp, err := userClient.CreateUser(ctx, req)
 	if err != nil {
 		return err
@@ -88,7 +88,7 @@ func CreateUser(ctx context.Context, req *user.CreateUserRequest) error {
 }
 
 // CheckUser check user info
-func CheckUser(ctx context.Context, req *user.CheckUserRequest) (int64, error) {
+func CheckUser(ctx context.Context, req *userdemo.CheckUserRequest) (int64, error) {
 	resp, err := userClient.CheckUser(ctx, req)
 	if err != nil {
 		return 0, err
@@ -99,8 +99,8 @@ func CheckUser(ctx context.Context, req *user.CheckUserRequest) (int64, error) {
 	return resp.UserId, nil
 }
 
-// MGetUser multiple list of user info
-func MGetUser(ctx context.Context, req *user.MGetUserRequest) ([]*user.User, error) {
+// MGetUser multiple get list of user info
+func MGetUser(ctx context.Context, req *userdemo.MGetUserRequest) ([]*userdemo.User, error) {
 	resp, err := userClient.MGetUser(ctx, req)
 	if err != nil {
 		return nil, err

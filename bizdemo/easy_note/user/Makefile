@@ -1,2 +1,2 @@
 server:
-	kitex -I ../idl/ -type protobuf -service  kitex.demo.user ../idl/user.proto
+	kitex -I ../idl/ -type protobuf -service  demouser ../idl/user.proto

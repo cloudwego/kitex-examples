@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-RUN_NAME="kitex.demo.note"
+RUN_NAME="demonote"
 
 mkdir -p output/bin
 cp script/* output/

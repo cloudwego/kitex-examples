@@ -23,7 +23,7 @@ import (
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/dal/db"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/errno"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/kitex_gen/kitex/demo/user"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/kitex_gen/userdemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/model"
 )
 
@@ -37,7 +37,7 @@ func NewCreateUserService(ctx context.Context) *CreateUserService {
 }
 
 // CreateUser create user info.
-func (s *CreateUserService) CreateUser(req *user.CreateUserRequest) error {
+func (s *CreateUserService) CreateUser(req *userdemo.CreateUserRequest) error {
 	users, err := db.QueryUser(s.ctx, req.UserName)
 	if err != nil {
 		return err

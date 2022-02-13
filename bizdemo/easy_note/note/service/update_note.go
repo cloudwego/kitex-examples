@@ -19,7 +19,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/dal/db"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/kitex/demo/note"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/notedemo"
 )
 
 type UpdateNoteService struct {
@@ -32,6 +32,6 @@ func NewUpdateNoteService(ctx context.Context) *UpdateNoteService {
 }
 
 // UpdateNote update note info
-func (s *UpdateNoteService) UpdateNote(req *note.UpdateNoteRequest) error {
+func (s *UpdateNoteService) UpdateNote(req *notedemo.UpdateNoteRequest) error {
 	return db.UpdateNote(s.ctx, req.NoteId, req.UserId, req.Title, req.Content)
 }

@@ -19,7 +19,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/kitex/demo/user"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/userdemo"
 	userRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/user"
 	"github.com/gin-gonic/gin"
 )
@@ -37,10 +37,11 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	if err := userRpc.CreateUser(context.Background(), &user.CreateUserRequest{
+	err := userRpc.CreateUser(context.Background(), &userdemo.CreateUserRequest{
 		UserName: registerVar.UserName,
 		Password: registerVar.PassWord,
-	}); err != nil {
+	})
+	if err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}

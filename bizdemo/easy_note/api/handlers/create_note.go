@@ -21,7 +21,7 @@ import (
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/kitex/demo/note"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/notedemo"
 	noteRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
 	"github.com/gin-gonic/gin"
 )
@@ -41,10 +41,11 @@ func CreateNote(c *gin.Context) {
 
 	claims := jwt.ExtractClaims(c)
 	userID := int64(claims[constant.IdentityKey].(float64))
-	if err := noteRpc.CreateNote(context.Background(), &note.CreateNoteRequest{
+	err := noteRpc.CreateNote(context.Background(), &notedemo.CreateNoteRequest{
 		UserId:  userID,
 		Content: noteVar.Content, Title: noteVar.Title,
-	}); err != nil {
+	})
+	if err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}

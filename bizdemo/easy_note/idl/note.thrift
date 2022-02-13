@@ -84,7 +84,7 @@ struct QueryNoteResponse {
 service NoteService {
     CreateNoteResponse CreateNote(1:CreateNoteRequest req)
     MGetNoteResponse MGetNote(1:MGetNoteRequest req)
-    DeleteNoteResponse DelNote(1:DeleteNoteRequest req)
+    DeleteNoteResponse DeleteNote(1:DeleteNoteRequest req)
     QueryNoteResponse QueryNote(1:QueryNoteRequest req)
     UpdateNoteResponse UpdateNote(1:UpdateNoteRequest req)
 }

@@ -19,7 +19,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/dal/db"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/kitex/demo/note"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/notedemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/pack"
 )
 
@@ -33,7 +33,7 @@ func NewMGetNoteService(ctx context.Context) *MGetNoteService {
 }
 
 // MGetNote multiple get list of note info
-func (s *MGetNoteService) MGetNote(req *note.MGetNoteRequest) ([]*note.Note, error) {
+func (s *MGetNoteService) MGetNote(req *notedemo.MGetNoteRequest) ([]*notedemo.Note, error) {
 	noteModels, err := db.MGetNotes(s.ctx, req.NoteIds)
 	if err != nil {
 		return nil, err

@@ -22,15 +22,12 @@ import (
 
 	"github.com/cloudwego/kitex/pkg/klog"
 
-	"github.com/cloudwego/kitex/pkg/discovery"
-	"github.com/cloudwego/kitex/pkg/registry"
-
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/constant"
 	"github.com/opentracing/opentracing-go"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/control"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/dal"
-	note "github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/kitex/demo/note/noteservice"
+	note "github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/notedemo/noteservice"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/middleware"
 	"github.com/cloudwego/kitex/pkg/acl"
 	"github.com/cloudwego/kitex/pkg/limit"
@@ -66,7 +63,8 @@ func main() {
 		panic(err)
 	}
 
-	addr := &net.TCPAddr{IP: net.IPv4(127, 0, 0, 1), Port: 8888}
+	addr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:8888")
+
 	svr := note.NewServer(new(NoteServiceImpl),
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: constant.ServiceName}), // server name
 		server.WithMiddleware(middleware.CommonMiddleware),                                        // middleWare
@@ -77,7 +75,6 @@ func main() {
 		server.WithSuite(tracer),                                                         // tracer
 		server.WithMiddleware(acl.NewACLMiddleware([]acl.RejectFunc{control.MemReject})), // access_control
 		server.WithRegistry(r),                                                           // registry
-		server.WithRegistryInfo(&registry.Info{ServiceName: constant.ServiceName, Addr: addr, Weight: discovery.DefaultWeight}), // registry info
 	)
 	Init()
 	err = svr.Run()

@@ -7,8 +7,8 @@ Add a demo for `kitex` which implements a simple note service,the demo is divide
 | Service Name    |  Usage    | Framework    | protocol    | Path                   | IDL                                      |
 | --------------- | ------------ | ---------- | -------- | ---------------------- | ----------------------------------------- |
 | api             | http interface | kitex/gin  | http     | bizdemo/easy_note/api  |                                           |
-| kitex.demo.user | user data management | kitex/gorm | protobuf | bizdemo/easy_note/user |        bizdemo/easy_note/idl/user.proto  |
-| kitex.demo.note | note data management | kitex/gorm | thrift   | bizdemo/easy_note/note |        bizdemo/easy_note/idl/note.thrift |
+| demouser | user data management | kitex/gorm | protobuf | bizdemo/easy_note/user |        bizdemo/easy_note/idl/user.proto  |
+| demonote | note data management | kitex/gorm | thrift   | bizdemo/easy_note/note |        bizdemo/easy_note/idl/note.thrift |
 
 ### call relations
 
@@ -16,7 +16,7 @@ Add a demo for `kitex` which implements a simple note service,the demo is divide
                                     http
                            ┌────────────────────────┐
  ┌─────────────────────────┤                        ├───────────────────────────────┐
- │                         │   kitex.demo.api       │                               │
+ │                         │         api            │                               │
  │      ┌──────────────────►                        │◄──────────────────────┐       │
  │      │                  └───────────▲────────────┘                       │       │
  │      │                              │                                    │       │
@@ -41,7 +41,7 @@ req    resp                            │                                   res
  │      │       │                                                  │        │       │
 ┌▼──────┴───────┴───┐                                           ┌──┴────────┴───────▼─┐
 │                   │                                           │                     │
-│ kitex.demo.note   │                                           │  kitex.demo.user    │
+│       demonote    │                                           │        demouser     │
 │                   │                                           │                     │
 └───────────────────┘                                           └─────────────────────┘
       thrift                                                           protobuf

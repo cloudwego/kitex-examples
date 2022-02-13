@@ -19,7 +19,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/errno"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/kitex_gen/kitex/demo/user"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/kitex_gen/userdemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/service"
 )
 
@@ -27,8 +27,8 @@ import (
 type UserServiceImpl struct{}
 
 // CreateUser implements the UserServiceImpl interface.
-func (s *UserServiceImpl) CreateUser(ctx context.Context, req *user.CreateUserRequest) (resp *user.CreateUserResponse, err error) {
-	resp = new(user.CreateUserResponse)
+func (s *UserServiceImpl) CreateUser(ctx context.Context, req *userdemo.CreateUserRequest) (resp *userdemo.CreateUserResponse, err error) {
+	resp = new(userdemo.CreateUserResponse)
 
 	if len(req.UserName) == 0 || len(req.Password) == 0 {
 		resp.BaseResp = errno.ParamErr.ToBaseResp()
@@ -45,8 +45,8 @@ func (s *UserServiceImpl) CreateUser(ctx context.Context, req *user.CreateUserRe
 }
 
 // MGetUser implements the UserServiceImpl interface.
-func (s *UserServiceImpl) MGetUser(ctx context.Context, req *user.MGetUserRequest) (resp *user.MGetUserResponse, err error) {
-	resp = new(user.MGetUserResponse)
+func (s *UserServiceImpl) MGetUser(ctx context.Context, req *userdemo.MGetUserRequest) (resp *userdemo.MGetUserResponse, err error) {
+	resp = new(userdemo.MGetUserResponse)
 
 	if len(req.UserIds) == 0 {
 		resp.BaseResp = errno.ParamErr.ToBaseResp()
@@ -64,8 +64,8 @@ func (s *UserServiceImpl) MGetUser(ctx context.Context, req *user.MGetUserReques
 }
 
 // CheckUser implements the UserServiceImpl interface.
-func (s *UserServiceImpl) CheckUser(ctx context.Context, req *user.CheckUserRequest) (resp *user.CheckUserResponse, err error) {
-	resp = new(user.CheckUserResponse)
+func (s *UserServiceImpl) CheckUser(ctx context.Context, req *userdemo.CheckUserRequest) (resp *userdemo.CheckUserResponse, err error) {
+	resp = new(userdemo.CheckUserResponse)
 
 	if len(req.UserName) == 0 || len(req.Password) == 0 {
 		resp.BaseResp = errno.ParamErr.ToBaseResp()

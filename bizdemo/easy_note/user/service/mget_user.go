@@ -19,7 +19,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/dal/db"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/kitex_gen/kitex/demo/user"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/kitex_gen/userdemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/pack"
 )
 
@@ -33,7 +33,7 @@ func NewMGetUserService(ctx context.Context) *MGetUserService {
 }
 
 // MGetUser multiple get list of user info
-func (s *MGetUserService) MGetUser(req *user.MGetUserRequest) ([]*user.User, error) {
+func (s *MGetUserService) MGetUser(req *userdemo.MGetUserRequest) ([]*userdemo.User, error) {
 	modelUsers, err := db.MGetUsers(s.ctx, req.UserIds)
 	if err != nil {
 		return nil, err

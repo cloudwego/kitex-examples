@@ -22,7 +22,7 @@ import (
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/constant"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/errno"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/kitex/demo/note"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/kitex_gen/notedemo"
 	noteRpc "github.com/cloudwego/kitex-examples/bizdemo/easy_note/api/rpc/note"
 	"github.com/gin-gonic/gin"
 )
@@ -49,7 +49,7 @@ func UpdateNote(c *gin.Context) {
 		return
 	}
 
-	req := &note.UpdateNoteRequest{NoteId: noteID, UserId: userID}
+	req := &notedemo.UpdateNoteRequest{NoteId: noteID, UserId: userID}
 	if len(noteVar.Title) != 0 {
 		req.Title = &noteVar.Title
 	}

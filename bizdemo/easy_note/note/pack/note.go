@@ -16,17 +16,17 @@
 package pack
 
 import (
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/kitex/demo/note"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/notedemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/model"
 )
 
 // Note pack note info
-func Note(m *model.Note) *note.Note {
+func Note(m *model.Note) *notedemo.Note {
 	if m == nil {
 		return nil
 	}
 
-	return &note.Note{
+	return &notedemo.Note{
 		NoteId:     int64(m.ID),
 		UserId:     m.UserID,
 		Title:      m.Title,
@@ -36,8 +36,8 @@ func Note(m *model.Note) *note.Note {
 }
 
 // Notes pack list of note info
-func Notes(ms []*model.Note) []*note.Note {
-	notes := make([]*note.Note, 0)
+func Notes(ms []*model.Note) []*notedemo.Note {
+	notes := make([]*notedemo.Note, 0)
 	for _, m := range ms {
 		if n := Note(m); n != nil {
 			notes = append(notes, n)

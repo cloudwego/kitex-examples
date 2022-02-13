@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-RUN_NAME="kitex.demo.user"
+RUN_NAME="demouser"
 
 mkdir -p output/bin
 cp script/* output/

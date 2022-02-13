@@ -19,7 +19,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/dal/db"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/kitex/demo/note"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/notedemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/model"
 )
 
@@ -33,7 +33,7 @@ func NewCreateNoteService(ctx context.Context) *CreateNoteService {
 }
 
 // CreateNote create note info
-func (s *CreateNoteService) CreateNote(req *note.CreateNoteRequest) error {
+func (s *CreateNoteService) CreateNote(req *notedemo.CreateNoteRequest) error {
 	noteModel := &model.Note{
 		UserID:  req.UserId,
 		Title:   req.Title,

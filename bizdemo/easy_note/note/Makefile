@@ -1,2 +1,2 @@
 server:
-	kitex -service kitex.demo.note ../idl/note.thrift
+	kitex -service demonote ../idl/note.thrift

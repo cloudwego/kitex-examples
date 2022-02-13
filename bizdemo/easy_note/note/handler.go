@@ -19,7 +19,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/errno"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/kitex/demo/note"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/notedemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/service"
 )
 
@@ -27,8 +27,8 @@ import (
 type NoteServiceImpl struct{}
 
 // CreateNote implements the NoteServiceImpl interface.
-func (s *NoteServiceImpl) CreateNote(ctx context.Context, req *note.CreateNoteRequest) (resp *note.CreateNoteResponse, err error) {
-	resp = new(note.CreateNoteResponse)
+func (s *NoteServiceImpl) CreateNote(ctx context.Context, req *notedemo.CreateNoteRequest) (resp *notedemo.CreateNoteResponse, err error) {
+	resp = new(notedemo.CreateNoteResponse)
 
 	if req.UserId <= 0 || len(req.Title) == 0 || len(req.Content) == 0 {
 		resp.BaseResp = errno.ParamErr.ToBaseResp()
@@ -45,8 +45,8 @@ func (s *NoteServiceImpl) CreateNote(ctx context.Context, req *note.CreateNoteRe
 }
 
 // MGetNote implements the NoteServiceImpl interface.
-func (s *NoteServiceImpl) MGetNote(ctx context.Context, req *note.MGetNoteRequest) (resp *note.MGetNoteResponse, err error) {
-	resp = new(note.MGetNoteResponse)
+func (s *NoteServiceImpl) MGetNote(ctx context.Context, req *notedemo.MGetNoteRequest) (resp *notedemo.MGetNoteResponse, err error) {
+	resp = new(notedemo.MGetNoteResponse)
 
 	if len(req.NoteIds) == 0 {
 		resp.BaseResp = errno.ParamErr.ToBaseResp()
@@ -63,9 +63,9 @@ func (s *NoteServiceImpl) MGetNote(ctx context.Context, req *note.MGetNoteReques
 	return resp, nil
 }
 
-// DelNote implements the NoteServiceImpl interface.
-func (s *NoteServiceImpl) DelNote(ctx context.Context, req *note.DelNoteRequest) (resp *note.DelNoteResponse, err error) {
-	resp = new(note.DelNoteResponse)
+// DeleteNote implements the NoteServiceImpl interface.
+func (s *NoteServiceImpl) DeleteNote(ctx context.Context, req *notedemo.DeleteNoteRequest) (resp *notedemo.DeleteNoteResponse, err error) {
+	resp = new(notedemo.DeleteNoteResponse)
 
 	if req.NoteId <= 0 {
 		resp.BaseResp = errno.ParamErr.ToBaseResp()
@@ -82,8 +82,8 @@ func (s *NoteServiceImpl) DelNote(ctx context.Context, req *note.DelNoteRequest)
 }
 
 // QueryNote implements the NoteServiceImpl interface.
-func (s *NoteServiceImpl) QueryNote(ctx context.Context, req *note.QueryNoteRequest) (resp *note.QueryNoteResponse, err error) {
-	resp = new(note.QueryNoteResponse)
+func (s *NoteServiceImpl) QueryNote(ctx context.Context, req *notedemo.QueryNoteRequest) (resp *notedemo.QueryNoteResponse, err error) {
+	resp = new(notedemo.QueryNoteResponse)
 
 	if req.UserId <= 0 || req.Limit < 0 || req.Offset < 0 {
 		resp.BaseResp = errno.ParamErr.ToBaseResp()
@@ -102,8 +102,8 @@ func (s *NoteServiceImpl) QueryNote(ctx context.Context, req *note.QueryNoteRequ
 }
 
 // UpdateNote implements the NoteServiceImpl interface.
-func (s *NoteServiceImpl) UpdateNote(ctx context.Context, req *note.UpdateNoteRequest) (resp *note.UpdateNoteResponse, err error) {
-	resp = new(note.UpdateNoteResponse)
+func (s *NoteServiceImpl) UpdateNote(ctx context.Context, req *notedemo.UpdateNoteRequest) (resp *notedemo.UpdateNoteResponse, err error) {
+	resp = new(notedemo.UpdateNoteResponse)
 
 	if req.NoteId <= 0 {
 		resp.BaseResp = errno.ParamErr.ToBaseResp()

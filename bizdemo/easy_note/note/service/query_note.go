@@ -19,7 +19,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/dal/db"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/kitex/demo/note"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/notedemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/pack"
 )
 
@@ -33,7 +33,7 @@ func NewQueryNoteService(ctx context.Context) *QueryNoteService {
 }
 
 // QueryNoteService query list of note info
-func (s *QueryNoteService) QueryNoteService(req *note.QueryNoteRequest) ([]*note.Note, int64, error) {
+func (s *QueryNoteService) QueryNoteService(req *notedemo.QueryNoteRequest) ([]*notedemo.Note, int64, error) {
 	noteModels, total, err := db.QueryNote(s.ctx, req.UserId, req.SearchKey, int(req.Limit), int(req.Offset))
 	if err != nil {
 		return nil, 0, err

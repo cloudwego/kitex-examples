@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/kitex_gen/kitex/demo/user"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/kitex_gen/userdemo"
 )
 
 type Errno struct {
@@ -37,17 +37,17 @@ var (
 	ServiceErr          = Errno{ErrCode: 10001, ErrMsg: "Service is unable to start successfully"}
 	ParamErr            = Errno{ErrCode: 10002, ErrMsg: "Wrong parameter has been given"}
 	LoginErr            = Errno{ErrCode: 10003, ErrMsg: "Wrong username or password"}
-	UserNotExistErr     = Errno{ErrCode: 10004, ErrMsg: "User does not exist"}
+	UserNotExistErr     = Errno{ErrCode: 10004, ErrMsg: "User does not exists"}
 	UserAlreadyExistErr = Errno{ErrCode: 10005, ErrMsg: "User already exists"}
 )
 
 // ToBaseResp build baseResp from Errno
-func (e *Errno) ToBaseResp() *user.BaseResp {
-	return &user.BaseResp{StatusCode: e.ErrCode, StatusMessage: e.ErrMsg, ServiceTime: time.Now().Unix()}
+func (e *Errno) ToBaseResp() *userdemo.BaseResp {
+	return &userdemo.BaseResp{StatusCode: e.ErrCode, StatusMessage: e.ErrMsg, ServiceTime: time.Now().Unix()}
 }
 
 // BuildBaseResp build baseResp from error
-func BuildBaseResp(err error) *user.BaseResp {
+func BuildBaseResp(err error) *userdemo.BaseResp {
 	if err == nil {
 		return Success.ToBaseResp()
 	}

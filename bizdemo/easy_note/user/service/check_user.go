@@ -23,7 +23,7 @@ import (
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/dal/db"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/errno"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/kitex_gen/kitex/demo/user"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/kitex_gen/userdemo"
 )
 
 type CheckUserService struct {
@@ -38,7 +38,7 @@ func NewCheckUserService(ctx context.Context) *CheckUserService {
 }
 
 // CheckUser check user info
-func (s *CheckUserService) CheckUser(req *user.CheckUserRequest) (int64, error) {
+func (s *CheckUserService) CheckUser(req *userdemo.CheckUserRequest) (int64, error) {
 	h := md5.New()
 	if _, err := io.WriteString(h, req.Password); err != nil {
 		return 0, err
