@@ -78,21 +78,21 @@ docker-compose up
 
 ### 2.Run Note RPC Server
 ```shell
-cd note
+cd cmd/note
 sh build.sh
 sh output/bootstrap.sh
 ```
 
 ### 3.Run User RPC Server
 ```shell
-cd user
+cd cmd/user
 sh build.sh
 sh output/bootstrap.sh
 ```
 
 ### 4.Run API Server
 ```shell
-cd api
+cd cmd/api
 chmod +x run.sh
 ./run.sh
 ```
