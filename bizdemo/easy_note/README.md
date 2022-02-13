@@ -6,9 +6,9 @@ Add a demo for `kitex` which implements a simple note service,the demo is divide
 
 | Service Name    |  Usage    | Framework    | protocol    | Path                   | IDL                                      |
 | --------------- | ------------ | ---------- | -------- | ---------------------- | ----------------------------------------- |
-| demoapi         | http interface | kitex/gin  | http     | bizdemo/easy_note/api  |                                           |
-| demouser | user data management | kitex/gorm | protobuf | bizdemo/easy_note/user |        bizdemo/easy_note/idl/user.proto  |
-| demonote | note data management | kitex/gorm | thrift   | bizdemo/easy_note/note |        bizdemo/easy_note/idl/note.thrift |
+| demoapi         | http interface | kitex/gin  | http     | bizdemo/easy_note/cmd/api  |                                           |
+| demouser | user data management | kitex/gorm | protobuf | bizdemo/easy_note/cmd/user |        bizdemo/easy_note/idl/user.proto  |
+| demonote | note data management | kitex/gorm | thrift   | bizdemo/easy_note/cmd/note |        bizdemo/easy_note/idl/note.thrift |
 
 ### call relations
 
@@ -61,11 +61,11 @@ req    resp                            │                                   res
 
 | catalog       | introduce      |
 | ---------- | ---------------- |
-| constant   | constant        |
-| control    |  customized access control    |
-| dal,model  | db operation and model     |
-| errno      | customized error number |
-| middleware | RPC middleware     |
+| pkgh/constant   | constant        |
+| pkg/control    |  customized access control    |
+| pkg/errno      | customized error number |
+| pkg/middleware | RPC middleware     |
+| dal   | db operation              |
 | pack       | data pack         |
 | service    | business logic   |
 
