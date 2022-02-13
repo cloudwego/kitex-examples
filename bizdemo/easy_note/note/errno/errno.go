@@ -23,6 +23,12 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/note/kitex_gen/notedemo"
 )
 
+const (
+	SuccessCode    = 0
+	ServiceErrCode = 10001
+	ParamErrCode   = 10002
+)
+
 type Errno struct {
 	ErrCode int64
 	ErrMsg  string
@@ -32,11 +38,20 @@ func (e Errno) Error() string {
 	return fmt.Sprintf("code=%d, msg=%s", e.ErrCode, e.ErrMsg)
 }
 
+func NewErrno(code int64, msg string) Errno {
+	return Errno{code, msg}
+}
+
 var (
-	Success    = Errno{ErrCode: 0, ErrMsg: "Success"}
-	ServiceErr = Errno{ErrCode: 10001, ErrMsg: "Service is unable to start successfully"}
-	ParamErr   = Errno{ErrCode: 10002, ErrMsg: "Wrong Parameter has been given"}
+	Success    = NewErrno(SuccessCode, "Success")
+	ServiceErr = NewErrno(ServiceErrCode, "Service is unable to start successfully")
+	ParamErr   = NewErrno(ParamErrCode, "Wrong Parameter has been given")
 )
+
+func (e Errno) WithMessage(msg string) Errno {
+	e.ErrMsg = msg
+	return e
+}
 
 // ToBaseResp build baseResp from Errno
 func (e *Errno) ToBaseResp() *notedemo.BaseResp {

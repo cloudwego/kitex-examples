@@ -20,6 +20,12 @@ import (
 	"fmt"
 )
 
+const (
+	SuccessCode    = 0
+	ServiceErrCode = 10001
+	ParamErrCode   = 10002
+)
+
 type Errno struct {
 	ErrCode int64
 	ErrMsg  string
@@ -30,9 +36,9 @@ func (e Errno) Error() string {
 }
 
 var (
-	Success    = Errno{ErrCode: 0, ErrMsg: "Success"}
-	ServiceErr = Errno{ErrCode: 10001, ErrMsg: "Service is unable to start successfully"}
-	ParamErr   = Errno{ErrCode: 10002, ErrMsg: "Wrong Parameter has been given"}
+	Success    = Errno{ErrCode: SuccessCode, ErrMsg: "Success"}
+	ServiceErr = Errno{ErrCode: ServiceErrCode, ErrMsg: "Service is unable to start successfully"}
+	ParamErr   = Errno{ErrCode: ParamErrCode, ErrMsg: "Wrong Parameter has been given"}
 )
 
 func NewErrno(code int64, msg string) Errno {

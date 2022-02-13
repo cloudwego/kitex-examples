@@ -23,6 +23,15 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/user/kitex_gen/userdemo"
 )
 
+const (
+	SuccessCode             = 0
+	ServiceErrCode          = 10001
+	ParamErrCode            = 10002
+	LoginErrCode            = 10003
+	UserNotExistErrCode     = 10004
+	UserAlreadyExistErrCode = 10005
+)
+
 type Errno struct {
 	ErrCode int64
 	ErrMsg  string
@@ -32,13 +41,22 @@ func (e Errno) Error() string {
 	return fmt.Sprintf("code=%d, msg=%s", e.ErrCode, e.ErrMsg)
 }
 
+func (e Errno) WithMessage(msg string) Errno {
+	e.ErrMsg = msg
+	return e
+}
+
+func NewErrno(code int64, msg string) Errno {
+	return Errno{code, msg}
+}
+
 var (
-	Success             = Errno{ErrCode: 0, ErrMsg: "Success"}
-	ServiceErr          = Errno{ErrCode: 10001, ErrMsg: "Service is unable to start successfully"}
-	ParamErr            = Errno{ErrCode: 10002, ErrMsg: "Wrong parameter has been given"}
-	LoginErr            = Errno{ErrCode: 10003, ErrMsg: "Wrong username or password"}
-	UserNotExistErr     = Errno{ErrCode: 10004, ErrMsg: "User does not exists"}
-	UserAlreadyExistErr = Errno{ErrCode: 10005, ErrMsg: "User already exists"}
+	Success             = NewErrno(SuccessCode, "Success")
+	ServiceErr          = NewErrno(ServiceErrCode, "Service is unable to start successfully")
+	ParamErr            = NewErrno(ParamErrCode, "Wrong parameter has been given")
+	LoginErr            = NewErrno(LoginErrCode, "Wrong username or password")
+	UserNotExistErr     = NewErrno(UserNotExistErrCode, "User does not exists")
+	UserAlreadyExistErr = NewErrno(UserAlreadyExistErrCode, "User already exists")
 )
 
 // ToBaseResp build baseResp from Errno

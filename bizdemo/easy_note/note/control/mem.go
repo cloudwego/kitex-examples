@@ -28,7 +28,7 @@ import (
 func MemReject(ctx context.Context, request interface{}) error {
 	m := memPercent()
 	if m > constant.MemRateLimit {
-		return errno.Errno{ErrCode: errno.ServiceErr.ErrCode, ErrMsg: fmt.Sprintf("mem = %.2g", m)}
+		return errno.ServiceErr.WithMessage(fmt.Sprintf("mem = %.2g", m))
 	}
 	return nil
 }

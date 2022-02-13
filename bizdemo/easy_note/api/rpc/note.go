@@ -33,7 +33,6 @@ var noteClient noteservice.Client
 
 // InitNoteRpc init note rpc client
 func InitNoteRpc() {
-
 	r, err := etcd.NewEtcdResolver([]string{"127.0.0.1:2379"})
 	if err != nil {
 		panic(err)

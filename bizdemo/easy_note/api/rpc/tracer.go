@@ -26,9 +26,7 @@ import (
 	jaegercfg "github.com/uber/jaeger-client-go/config"
 )
 
-var (
-	tracerSuit client.Suite
-)
+var tracerSuit client.Suite
 
 func init() {
 	cfg, _ := jaegercfg.FromEnv()
