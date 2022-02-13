@@ -23,6 +23,8 @@ import (
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 )
 
+var _ endpoint.Middleware = ServerMiddleware
+
 // ServerMiddleware server middleware print client address
 func ServerMiddleware(next endpoint.Endpoint) endpoint.Endpoint {
 	return func(ctx context.Context, req, resp interface{}) (err error) {
