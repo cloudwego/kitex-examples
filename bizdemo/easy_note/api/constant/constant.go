@@ -21,7 +21,7 @@ const (
 	Total           = "total"
 	Notes           = "notes"
 	NoteID          = "note_id"
-	ServiceName     = "kitex.demo.api"
-	NoteServiceName = "kitex.demo.note"
-	UserServiceName = "kitex.demo.user"
+	ServiceName     = "demoapi"
+	NoteServiceName = "demonote"
+	UserServiceName = "demouser"
 )

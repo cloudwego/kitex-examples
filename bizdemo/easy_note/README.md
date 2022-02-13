@@ -6,7 +6,7 @@ Add a demo for `kitex` which implements a simple note service,the demo is divide
 
 | Service Name    |  Usage    | Framework    | protocol    | Path                   | IDL                                      |
 | --------------- | ------------ | ---------- | -------- | ---------------------- | ----------------------------------------- |
-| api             | http interface | kitex/gin  | http     | bizdemo/easy_note/api  |                                           |
+| demoapi         | http interface | kitex/gin  | http     | bizdemo/easy_note/api  |                                           |
 | demouser | user data management | kitex/gorm | protobuf | bizdemo/easy_note/user |        bizdemo/easy_note/idl/user.proto  |
 | demonote | note data management | kitex/gorm | thrift   | bizdemo/easy_note/note |        bizdemo/easy_note/idl/note.thrift |
 
@@ -16,7 +16,7 @@ Add a demo for `kitex` which implements a simple note service,the demo is divide
                                     http
                            ┌────────────────────────┐
  ┌─────────────────────────┤                        ├───────────────────────────────┐
- │                         │         api            │                               │
+ │                         │         demoapi        │                               │
  │      ┌──────────────────►                        │◄──────────────────────┐       │
  │      │                  └───────────▲────────────┘                       │       │
  │      │                              │                                    │       │
