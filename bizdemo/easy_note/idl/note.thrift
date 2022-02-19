@@ -22,11 +22,13 @@ struct BaseResp {
 }
 
 struct Note {
-    1:i64 note_id;
+    1:i64 note_id
     2:i64 user_id
-    3:string title
-    4:string content
-    5:i64 create_time
+    3:string user_name
+    4:string user_avatar
+    5:string title
+    6:string content
+    7:i64 create_time
 }
 
 struct CreateNoteRequest {
