@@ -30,7 +30,7 @@ func BuildBaseResp(err error) *userdemo.BaseResp {
 		return baseResp(errno.Success)
 	}
 
-	e := errno.Errno{}
+	e := errno.ErrNo{}
 	if errors.As(err, &e) {
 		return baseResp(e)
 	}
@@ -39,6 +39,6 @@ func BuildBaseResp(err error) *userdemo.BaseResp {
 	return baseResp(s)
 }
 
-func baseResp(err errno.Errno) *userdemo.BaseResp {
+func baseResp(err errno.ErrNo) *userdemo.BaseResp {
 	return &userdemo.BaseResp{StatusCode: err.ErrCode, StatusMessage: err.ErrMsg, ServiceTime: time.Now().Unix()}
 }

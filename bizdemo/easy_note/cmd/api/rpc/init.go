@@ -17,7 +17,6 @@ package rpc
 
 // InitRPC init rpc client
 func InitRPC() {
-	initTracer()
 	initUserRpc()
 	initNoteRpc()
 }

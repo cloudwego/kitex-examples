@@ -16,59 +16,38 @@
 package main
 
 import (
-	"fmt"
-	"io"
 	"net"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/control"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
-
-	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/cloudwego/kitex/pkg/rpcinfo"
-
-	"github.com/opentracing/opentracing-go"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/user/dal"
 	user "github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo/userservice"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/control"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
+	tracer2 "github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/tracer"
 	"github.com/cloudwego/kitex/pkg/acl"
+	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/limit"
+	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	etcd "github.com/kitex-contrib/registry-etcd"
 	trace "github.com/kitex-contrib/tracer-opentracing"
-	"github.com/uber/jaeger-client-go"
-	jaegercfg "github.com/uber/jaeger-client-go/config"
 )
 
 func Init() {
+	tracer2.InitJaeger(constants.UserServiceName)
 	dal.Init()
 }
 
-func InitJaeger(service string) (server.Suite, io.Closer) {
-	cfg, _ := jaegercfg.FromEnv()
-	cfg.ServiceName = service
-	tracer, closer, err := cfg.NewTracer(jaegercfg.Logger(jaeger.StdLogger))
-	if err != nil {
-		panic(fmt.Sprintf("ERROR: cannot init Jaeger: %v\n", err))
-	}
-	opentracing.InitGlobalTracer(tracer)
-	return trace.NewDefaultServerSuite(), closer
-}
-
 func main() {
-	tracer, closer := InitJaeger(constants.UserServiceName)
-	defer closer.Close()
-
-	r, err := etcd.NewEtcdRegistry([]string{"127.0.0.1:2379"})
+	r, err := etcd.NewEtcdRegistry([]string{constants.EtcdAddress})
 	if err != nil {
 		panic(err)
 	}
-
 	addr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:8889")
 	if err != nil {
 		panic(err)
 	}
-
+	Init()
 	svr := user.NewServer(new(UserServiceImpl),
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: constants.UserServiceName}), // server name
 		server.WithMiddleware(middleware.CommonMiddleware),                                             // middleware
@@ -76,11 +55,10 @@ func main() {
 		server.WithServiceAddr(addr),                                                     // address
 		server.WithLimit(&limit.Option{MaxConnections: 1000, MaxQPS: 100}),               // limit
 		server.WithMuxTransport(),                                                        // Multiplex
-		server.WithSuite(tracer),                                                         // tracer
+		server.WithSuite(trace.NewDefaultServerSuite()),                                  // tracer
 		server.WithMiddleware(acl.NewACLMiddleware([]acl.RejectFunc{control.CPUReject})), // access_control
 		server.WithRegistry(r),                                                           // registry
 	)
-	Init()
 	err = svr.Run()
 	if err != nil {
 		klog.Fatal(err)

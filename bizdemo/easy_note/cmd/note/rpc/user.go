@@ -17,19 +17,17 @@ package rpc
 
 import (
 	"context"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
 	"time"
 
-	trace "github.com/kitex-contrib/tracer-opentracing"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
-
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo/userservice"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"
 	etcd "github.com/kitex-contrib/registry-etcd"
+	trace "github.com/kitex-contrib/tracer-opentracing"
 )
 
 var userClient userservice.Client
@@ -58,7 +56,7 @@ func initUserRpc() {
 }
 
 // MGetUser multiple get list of user info
-func MGetUser(ctx context.Context, req *userdemo.MGetUserRequest) ([]*userdemo.User, error) {
+func MGetUser(ctx context.Context, req *userdemo.MGetUserRequest) (map[int64]*userdemo.User, error) {
 	resp, err := userClient.MGetUser(ctx, req)
 	if err != nil {
 		return nil, err
@@ -66,5 +64,9 @@ func MGetUser(ctx context.Context, req *userdemo.MGetUserRequest) ([]*userdemo.U
 	if resp.BaseResp.StatusCode != 0 {
 		return nil, errno.NewErrNo(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
 	}
-	return resp.Users, nil
+	res := make(map[int64]*userdemo.User)
+	for _, u := range resp.Users {
+		res[u.UserId] = u
+	}
+	return res, nil
 }

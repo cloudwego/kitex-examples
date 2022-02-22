@@ -18,6 +18,9 @@ package service
 import (
 	"context"
 
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/note/rpc"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/note/dal/db"
@@ -39,7 +42,17 @@ func (s *MGetNoteService) MGetNote(req *notedemo.MGetNoteRequest) ([]*notedemo.N
 	if err != nil {
 		return nil, err
 	}
-
+	uIds := pack.UserIds(noteModels)
+	userMap, err := rpc.MGetUser(s.ctx, &userdemo.MGetUserRequest{UserIds: uIds})
+	if err != nil {
+		return nil, err
+	}
 	notes := pack.Notes(noteModels)
+	for i := 0; i < len(notes); i++ {
+		if u, ok := userMap[notes[i].UserId]; ok {
+			notes[i].UserName = u.UserName
+			notes[i].UserAvatar = u.Avatar
+		}
+	}
 	return notes, nil
 }

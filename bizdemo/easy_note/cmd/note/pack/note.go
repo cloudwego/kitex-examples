@@ -45,3 +45,20 @@ func Notes(ms []*db.Note) []*notedemo.Note {
 	}
 	return notes
 }
+
+func UserIds(ms []*db.Note) []int64 {
+	uIds := make([]int64, 0)
+	if len(ms) == 0 {
+		return uIds
+	}
+	uIdMap := make(map[int64]struct{})
+	for _, m := range ms {
+		if m != nil {
+			uIdMap[m.UserID] = struct{}{}
+		}
+	}
+	for uId := range uIdMap {
+		uIds = append(uIds, uId)
+	}
+	return uIds
+}

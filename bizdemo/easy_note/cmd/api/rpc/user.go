@@ -19,17 +19,15 @@ import (
 	"context"
 	"time"
 
-	trace "github.com/kitex-contrib/tracer-opentracing"
-
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo/userservice"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo/userservice"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"
 	etcd "github.com/kitex-contrib/registry-etcd"
+	trace "github.com/kitex-contrib/tracer-opentracing"
 )
 
 var userClient userservice.Client

@@ -20,18 +20,18 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
-
-	"github.com/cloudwego/kitex/pkg/klog"
-
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/handlers"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/tracer"
+	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/gin-gonic/gin"
 )
 
 func Init() {
+	tracer.InitJaeger(constants.ApiServiceName)
 	rpc.InitRPC()
 }
 

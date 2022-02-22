@@ -183,6 +183,8 @@ curl --location --request GET '127.0.0.1:8080/v1/note/query?offset=0&limit=20&se
             {
                 "note_id": 1,
                 "user_id": 1,
+                "user_name": "kinggo",
+                "user_avatar": "test",
                 "title": "test title",
                 "content": "test content",
                 "create_time": 1642525063
