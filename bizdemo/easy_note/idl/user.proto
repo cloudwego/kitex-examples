@@ -58,7 +58,7 @@ message CheckUserResponse{
 }
 
 service UserService {
-  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {}
-  rpc MGetUser (MGetUserRequest) returns (MGetUserResponse) {}
-  rpc CheckUser (CheckUserRequest) returns (CheckUserResponse) {}
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {}
+    rpc MGetUser (MGetUserRequest) returns (MGetUserResponse) {}
+    rpc CheckUser (CheckUserRequest) returns (CheckUserResponse) {}
 }

@@ -18,14 +18,14 @@ package main
 import (
 	"net"
 
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/bound"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/note/dal"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/note/rpc"
 	note "github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo/noteservice"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/control"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
 	tracer2 "github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/tracer"
-	"github.com/cloudwego/kitex/pkg/acl"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/limit"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
@@ -53,12 +53,12 @@ func main() {
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: constants.NoteServiceName}), // server name
 		server.WithMiddleware(middleware.CommonMiddleware),                                             // middleWare
 		server.WithMiddleware(middleware.ServerMiddleware),
-		server.WithServiceAddr(addr),                                                     // address
-		server.WithLimit(&limit.Option{MaxConnections: 1000, MaxQPS: 100}),               // limit
-		server.WithMuxTransport(),                                                        // Multiplex
-		server.WithSuite(trace.NewDefaultServerSuite()),                                  // tracer
-		server.WithMiddleware(acl.NewACLMiddleware([]acl.RejectFunc{control.MemReject})), // access_control
-		server.WithRegistry(r),                                                           // registry
+		server.WithServiceAddr(addr),                                       // address
+		server.WithLimit(&limit.Option{MaxConnections: 1000, MaxQPS: 100}), // limit
+		server.WithMuxTransport(),                                          // Multiplex
+		server.WithSuite(trace.NewDefaultServerSuite()),                    // tracer
+		server.WithBoundHandler(bound.CpuLimitHandler{}),                   // BoundHandler
+		server.WithRegistry(r),                                             // registry
 	)
 	err = svr.Run()
 	if err != nil {

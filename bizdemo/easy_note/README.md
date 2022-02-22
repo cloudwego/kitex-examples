@@ -52,8 +52,8 @@ req    resp                            │                                   res
 - Middleware、Rate Limiting、Request Retry、Timeout Control、Connection Multiplexing
 - Tracing
   - use jaeger to tracing
-- Customized Access Control
-  - achieve CPU utilization rate access control and VirtualMemory access control
+- Customized BoundHandler
+  - achieve CPU utilization rate customized Bound Handler
 - Service Discovery and Register
   - use [registry-etcd](https://github.com/kitex-contrib/registry-etcd) to discovery and register service
 
@@ -62,7 +62,7 @@ req    resp                            │                                   res
 | catalog       | introduce      |
 | ---------- | ---------------- |
 | pkg/constants   | constant        |
-| pkg/control    |  customized access control    |
+| pkg/bound    |  customized bound handler    |
 | pkg/errno      | customized error number |
 | pkg/middleware | RPC middleware     |
 | dal   | db operation              |
