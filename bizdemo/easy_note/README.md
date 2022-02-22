@@ -53,7 +53,7 @@ req    resp                            │                                   res
 - Tracing
   - use jaeger to tracing
 - Customized BoundHandler
-  - achieve CPU utilization rate customized Bound Handler
+  - achieve CPU utilization rate customized bound handler
 - Service Discovery and Register
   - use [registry-etcd](https://github.com/kitex-contrib/registry-etcd) to discovery and register service
 
@@ -65,6 +65,7 @@ req    resp                            │                                   res
 | pkg/bound    |  customized bound handler    |
 | pkg/errno      | customized error number |
 | pkg/middleware | RPC middleware     |
+| pkg/tracer  | init jaeger     |
 | dal   | db operation              |
 | pack       | data pack         |
 | service    | business logic   |

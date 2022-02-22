@@ -16,13 +16,10 @@
 package main
 
 import (
-	"net"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/bound"
-
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/note/dal"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/note/rpc"
 	note "github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo/noteservice"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/bound"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
 	tracer2 "github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/tracer"
@@ -32,6 +29,7 @@ import (
 	"github.com/cloudwego/kitex/server"
 	etcd "github.com/kitex-contrib/registry-etcd"
 	trace "github.com/kitex-contrib/tracer-opentracing"
+	"net"
 )
 
 func Init() {
@@ -41,14 +39,15 @@ func Init() {
 }
 
 func main() {
-	Init()
-	r, err := etcd.NewEtcdRegistry([]string{"127.0.0.1:2379"}) // r should not be reused.
+	r, err := etcd.NewEtcdRegistry([]string{constants.EtcdAddress}) // r should not be reused.
 	if err != nil {
 		panic(err)
 	}
-
 	addr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:8888")
-
+	if err != nil {
+		panic(err)
+	}
+	Init()
 	svr := note.NewServer(new(NoteServiceImpl),
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: constants.NoteServiceName}), // server name
 		server.WithMiddleware(middleware.CommonMiddleware),                                             // middleWare
