@@ -29,13 +29,11 @@ var _ endpoint.Middleware = ClientMiddleware
 func ClientMiddleware(next endpoint.Endpoint) endpoint.Endpoint {
 	return func(ctx context.Context, req, resp interface{}) (err error) {
 		ri := rpcinfo.GetRPCInfo(ctx)
-		// get timeout information
-		klog.Infof("rpc timeout: %v, readwrite timeout: %v\n", ri.Config().RPCTimeout(), ri.Config().ConnectTimeout())
+		// get server information
+		klog.Infof("server address: %v, rpc timeout: %v, readwrite timeout: %v\n", ri.To().Address(), ri.Config().RPCTimeout(), ri.Config().ConnectTimeout())
 		if err = next(ctx, req, resp); err != nil {
 			return err
 		}
-		// get server information
-		klog.Infof("server address: %v\n", ri.To().Address())
 		return nil
 	}
 }

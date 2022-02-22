@@ -17,6 +17,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/note/rpc"
 	"io"
 	"net"
 
@@ -52,6 +53,7 @@ func InitJaeger(service string) (server.Suite, io.Closer) {
 }
 
 func Init() {
+	rpc.InitRPC()
 	dal.Init()
 }
 

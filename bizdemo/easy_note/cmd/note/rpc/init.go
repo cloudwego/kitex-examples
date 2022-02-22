@@ -19,5 +19,4 @@ package rpc
 func InitRPC() {
 	initTracer()
 	initUserRpc()
-	initNoteRpc()
 }

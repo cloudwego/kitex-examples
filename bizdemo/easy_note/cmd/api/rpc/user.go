@@ -19,6 +19,8 @@ import (
 	"context"
 	"time"
 
+	trace "github.com/kitex-contrib/tracer-opentracing"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
@@ -32,9 +34,8 @@ import (
 
 var userClient userservice.Client
 
-// InitUserRpc init user rpc client
-func InitUserRpc() {
-	r, err := etcd.NewEtcdResolver([]string{"127.0.0.1:2379"})
+func initUserRpc() {
+	r, err := etcd.NewEtcdResolver([]string{constants.EtcdAddress})
 	if err != nil {
 		panic(err)
 	}
@@ -47,7 +48,7 @@ func InitUserRpc() {
 		client.WithRPCTimeout(3*time.Second),              // rpc timeout
 		client.WithConnectTimeout(50*time.Millisecond),    // conn timeout
 		client.WithFailureRetry(retry.NewFailurePolicy()), // retry
-		client.WithSuite(tracerSuit),                      // tracer
+		client.WithSuite(trace.NewDefaultClientSuite()),   // tracer
 		client.WithResolver(r),                            // resolver
 	)
 	if err != nil {
@@ -63,7 +64,7 @@ func CreateUser(ctx context.Context, req *userdemo.CreateUserRequest) error {
 		return err
 	}
 	if resp.BaseResp.StatusCode != 0 {
-		return errno.NewErrno(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
+		return errno.NewErrNo(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
 	}
 	return nil
 }
@@ -75,7 +76,7 @@ func CheckUser(ctx context.Context, req *userdemo.CheckUserRequest) (int64, erro
 		return 0, err
 	}
 	if resp.BaseResp.StatusCode != 0 {
-		return 0, errno.NewErrno(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
+		return 0, errno.NewErrNo(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
 	}
 	return resp.UserId, nil
 }

@@ -17,32 +17,31 @@ package rpc
 
 import (
 	"context"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
 	"time"
 
 	trace "github.com/kitex-contrib/tracer-opentracing"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
 
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo/noteservice"
-
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo/userservice"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"
 	etcd "github.com/kitex-contrib/registry-etcd"
 )
 
-var noteClient noteservice.Client
+var userClient userservice.Client
 
-func initNoteRpc() {
+func initUserRpc() {
 	r, err := etcd.NewEtcdResolver([]string{constants.EtcdAddress})
 	if err != nil {
 		panic(err)
 	}
 
-	c, err := noteservice.NewClient(
-		constants.NoteServiceName,
+	c, err := userservice.NewClient(
+		constants.UserServiceName,
 		client.WithMiddleware(middleware.CommonMiddleware),
 		client.WithInstanceMW(middleware.ClientMiddleware),
 		client.WithMuxConnection(1),                       // mux
@@ -55,53 +54,17 @@ func initNoteRpc() {
 	if err != nil {
 		panic(err)
 	}
-	noteClient = c
+	userClient = c
 }
 
-// CreateNote create note info
-func CreateNote(ctx context.Context, req *notedemo.CreateNoteRequest) error {
-	resp, err := noteClient.CreateNote(ctx, req)
+// MGetUser multiple get list of user info
+func MGetUser(ctx context.Context, req *userdemo.MGetUserRequest) ([]*userdemo.User, error) {
+	resp, err := userClient.MGetUser(ctx, req)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	if resp.BaseResp.StatusCode != 0 {
-		return errno.NewErrNo(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
+		return nil, errno.NewErrNo(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
 	}
-	return nil
-}
-
-// QueryNotes query list of note info
-func QueryNotes(ctx context.Context, req *notedemo.QueryNoteRequest) ([]*notedemo.Note, int64, error) {
-	resp, err := noteClient.QueryNote(ctx, req)
-	if err != nil {
-		return nil, 0, err
-	}
-	if resp.BaseResp.StatusCode != 0 {
-		return nil, 0, errno.NewErrNo(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
-	}
-	return resp.Notes, resp.Total, nil
-}
-
-// UpdateNote update note info
-func UpdateNote(ctx context.Context, req *notedemo.UpdateNoteRequest) error {
-	resp, err := noteClient.UpdateNote(ctx, req)
-	if err != nil {
-		return err
-	}
-	if resp.BaseResp.StatusCode != 0 {
-		return errno.NewErrNo(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
-	}
-	return nil
-}
-
-// DeleteNote delete note info
-func DeleteNote(ctx context.Context, req *notedemo.DeleteNoteRequest) error {
-	resp, err := noteClient.DeleteNote(ctx, req)
-	if err != nil {
-		return err
-	}
-	if resp.BaseResp.StatusCode != 0 {
-		return errno.NewErrNo(resp.BaseResp.StatusCode, resp.BaseResp.StatusMessage)
-	}
-	return nil
+	return resp.Users, nil
 }
