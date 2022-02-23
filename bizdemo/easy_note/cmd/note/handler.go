@@ -19,11 +19,10 @@ import (
 	"context"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/note/pack"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
-
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/note/service"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
 )
 
 // NoteServiceImpl implements the last service interface defined in the IDL.
@@ -91,6 +90,9 @@ func (s *NoteServiceImpl) QueryNote(ctx context.Context, req *notedemo.QueryNote
 	if req.UserId <= 0 || req.Limit < 0 || req.Offset < 0 {
 		resp.BaseResp = pack.BuildBaseResp(errno.ParamErr)
 		return resp, nil
+	}
+	if req.Limit == 0 {
+		req.Limit = constants.DefaultLimit
 	}
 
 	notes, total, err := service.NewQueryNoteService(ctx).QueryNoteService(req)
