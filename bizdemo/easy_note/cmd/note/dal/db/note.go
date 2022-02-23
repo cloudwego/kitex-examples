@@ -68,8 +68,8 @@ func UpdateNote(ctx context.Context, noteID, userID int64, title, content *strin
 		Updates(params).Error
 }
 
-// DelNote delete note info
-func DelNote(ctx context.Context, noteID, userID int64) error {
+// DeleteNote delete note info
+func DeleteNote(ctx context.Context, noteID, userID int64) error {
 	return DB.WithContext(ctx).Where("id = ? and user_id = ? ", noteID, userID).Delete(&Note{}).Error
 }
 
