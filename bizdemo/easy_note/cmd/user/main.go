@@ -56,7 +56,7 @@ func main() {
 		server.WithLimit(&limit.Option{MaxConnections: 1000, MaxQPS: 100}), // limit
 		server.WithMuxTransport(),                                          // Multiplex
 		server.WithSuite(trace.NewDefaultServerSuite()),                    // tracer
-		server.WithBoundHandler(bound.CpuLimitHandler{}),                   // BoundHandler
+		server.WithBoundHandler(bound.NewCpuLimitHandler()),                // BoundHandler
 		server.WithRegistry(r),                                             // registry
 	)
 	err = svr.Run()
