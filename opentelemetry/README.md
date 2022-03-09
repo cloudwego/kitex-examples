@@ -26,7 +26,32 @@ URL: `http://host.docker.internal:8428/`
 - RPC Metrics
 - Runtime Metrics
 
-## Tracing associated logs
+## Tracing associated Logs
+
+#### set logger impl
+```go
+import (
+    "github.com/kitex-contrib/obs-opentelemetry/logging/kitexlogrus"
+)
+
+func init()  {
+    klog.SetLogger(kitexlogrus.NewLogger())
+    klog.SetLevel(klog.LevelDebug)
+
+}
+```
+
+#### log with context
+
+```go
+// Echo implements the Echo interface.
+func (s *EchoImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
+	klog.CtxDebugf(ctx, "echo called: %s", req.GetMessage())
+	return &api.Response{Message: req.Message}, nil
+}
+```
+
+#### view log
 
 ```log
 {"level":"debug","msg":"echo called: my request","span_id":"056e0cf9a8b2cec3","time":"2022-03-09T02:47:28+08:00","trace_flags":"01","trace_id":"33bdd3c81c9eb6cbc0fbb59c57ce088b"}
