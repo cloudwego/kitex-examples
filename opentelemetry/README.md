@@ -31,7 +31,7 @@ URL: `http://host.docker.internal:8428/`
 #### set logger impl
 ```go
 import (
-    "github.com/kitex-contrib/obs-opentelemetry/logging/kitexlogrus"
+    kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
 )
 
 func init()  {
