@@ -99,6 +99,10 @@ github.com/grpc-ecosystem/grpc-gateway v1.16.0/go.mod h1:BDjrQk3hbvj6Nolgz8mAMFb
 github.com/json-iterator/go v1.1.11 h1:uVUAXhF2To8cbw/3xN3pxj6kk7TYKs98NIrTqPlMWAQ=
 github.com/json-iterator/go v1.1.11/go.mod h1:KdQUCv79m/52Kvf8AW2vK1V8akMuk1QjK/uOdHXbAo4=
 github.com/jung-kurt/gofpdf v1.0.3-0.20190309125859-24315acbbda5/go.mod h1:7Id9E/uU8ce6rXgefFLlgrJj/GYY22cpxn+r32jIOes=
+github.com/kitex-contrib/obs-opentelemetry v0.0.0-20220323032334-353a6ad0baaa h1:dw4sgjOPpaEtx6bb8YDW1dGN2kIRLgJODsQhTB2Z4A8=
+github.com/kitex-contrib/obs-opentelemetry v0.0.0-20220323032334-353a6ad0baaa/go.mod h1:qo0QaBAjBRxTuvfWitT62vL5bp6FxSmpJOB2VXJBZx4=
+github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20220323032334-353a6ad0baaa h1:MTsCASPs/IT3W5LkIJBk70GdPFMHS4r6gMqLFbA8j6A=
+github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20220323032334-353a6ad0baaa/go.mod h1:Eml/0Z+CqgGIPf9JXzLGu+N9NJoy2x5pqypN+hmKArE=
 github.com/kitex-contrib/tracer-opentracing v0.0.2 h1:O2+Rbs36jS9uQAmNWz6+nJSKuKjSmEatSfiFj22Za3g=
 github.com/kitex-contrib/tracer-opentracing v0.0.2/go.mod h1:mprt5pxqywFQxlHb7ugfiMdKbABTLI9YrBYs9WmlK5Q=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=

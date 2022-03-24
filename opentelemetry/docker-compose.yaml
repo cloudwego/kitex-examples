@@ -4,7 +4,7 @@ services:
   # Collector
   otel-collector:
     image: ${OTELCOL_IMG}
-    command: ["--config=/etc/otel-collector-config.yaml", "${OTELCOL_ARGS}"]
+    command: [ "--config=/etc/otel-collector-config.yaml", "${OTELCOL_ARGS}" ]
     volumes:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
@@ -37,8 +37,6 @@ services:
       - "2003:2003"
       - "2003:2003/udp"
       - "4242:4242"
-#    volumes:
-#      - ./data/vmdata:/storage
     command:
       - '--storageDataPath=/storage'
       - '--graphiteListenAddr=:2003'
@@ -50,10 +48,6 @@ services:
   # Grafana
   grafana:
     image: grafana/grafana:latest
-#    volumes:
-#      - ./data/grafana-data/datasources:/etc/grafana/provisioning/datasources
-#      - ./data/grafana-data/dashboards-provisioning:/etc/grafana/provisioning/dashboards
-#      - ./data/grafana-data/dashboards:/var/lib/grafana/dashboards
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
