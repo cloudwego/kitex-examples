@@ -62,6 +62,6 @@ func (c *cpuLimitHandler) OnMessage(ctx context.Context, args, result remote.Mes
 }
 
 func cpuPercent() float64 {
-	percent, _ := cpu.Percent(time.Second, false)
+	percent, _ := cpu.Percent(time.Millisecond*10, false)
 	return percent[0]
 }
