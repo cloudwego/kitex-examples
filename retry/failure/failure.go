@@ -34,7 +34,7 @@ func NewDelayMW(delay time.Duration) endpoint.Middleware {
 				time.Sleep(delay + 10*time.Millisecond)
 				return next(ctx, req, resp)
 			}
-			klog.Debugf("this is a retry request")
+			klog.Infof("this is a retry request")
 			return next(ctx, req, resp)
 		}
 	}
@@ -46,7 +46,7 @@ func NewFailureMW() endpoint.Middleware {
 			if _, exist := metainfo.GetPersistentValue(ctx, retry.TransitKey); !exist {
 				return kerrors.ErrRPCTimeout.WithCause(errors.New("you shall not pass"))
 			}
-			klog.Debugf("this is a retry request")
+			klog.Infof("this is a retry request")
 			return next(ctx, req, resp)
 		}
 	}

@@ -37,7 +37,7 @@ type Echo0Impl struct{}
 
 // Echo implements the Echo interface.
 func (s *Echo0Impl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
-	klog.Debug("echo0 called")
+	klog.Info("echo0 called")
 	return &api.Response{Message: req.Message}, nil
 }
 
@@ -46,7 +46,7 @@ type Echo1Impl struct{}
 
 // Echo implements the Echo interface.
 func (s *Echo1Impl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
-	klog.Debug("echo1 called")
+	klog.Info("echo1 called")
 	return &api.Response{Message: req.Message}, nil
 }
 

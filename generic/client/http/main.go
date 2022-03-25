@@ -51,7 +51,7 @@ func doBizMethod1(cli genericclient.Client) error {
 		klog.Fatalf("generic call failed: %v", err)
 	}
 	realResp := resp.(*generic.HTTPResponse)
-	klog.Debugf("method1 response, status code: %v, headers: %v, body: %v\n", realResp.StatusCode, realResp.Header, realResp.Body)
+	klog.Infof("method1 response, status code: %v, headers: %v, body: %v\n", realResp.StatusCode, realResp.Header, realResp.Body)
 	return nil
 }
 
@@ -78,7 +78,7 @@ func doBizMethod2(cli genericclient.Client) error {
 		klog.Fatalf("generic call failed: %v", err)
 	}
 	realResp := resp.(*generic.HTTPResponse)
-	klog.Debugf("method2 response, status code: %v, headers: %v, body: %v\n", realResp.StatusCode, realResp.Header, realResp.Body)
+	klog.Infof("method2 response, status code: %v, headers: %v, body: %v\n", realResp.StatusCode, realResp.Header, realResp.Body)
 	return nil
 }
 
@@ -105,7 +105,7 @@ func doBizMethod3(cli genericclient.Client) error {
 		klog.Fatalf("generic call failed: %v", err)
 	}
 	realResp := resp.(*generic.HTTPResponse)
-	klog.Debugf("method3 response, status code: %v, headers: %v, body: %v\n", realResp.StatusCode, realResp.Header, realResp.Body)
+	klog.Infof("method3 response, status code: %v, headers: %v, body: %v\n", realResp.StatusCode, realResp.Header, realResp.Body)
 	return nil
 }
 
