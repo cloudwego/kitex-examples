@@ -19,6 +19,8 @@ import (
 	"context"
 	"net"
 
+	"github.com/kitex-contrib/registry-nacos/registry"
+
 	"github.com/kitex-contrib/obs-opentelemetry/provider"
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 
@@ -32,7 +34,6 @@ import (
 	"github.com/cloudwego/kitex/pkg/limit"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
-	etcd "github.com/kitex-contrib/registry-etcd"
 )
 
 func Init() {
@@ -41,16 +42,16 @@ func Init() {
 }
 
 func main() {
+	r, err := registry.NewDefaultNacosRegistry()
+	if err != nil {
+		panic(err)
+	}
 	p := provider.NewOpenTelemetryProvider(
 		provider.WithServiceName(constants.NoteServiceName),
 		provider.WithInsecure(),
 	)
 	defer p.Shutdown(context.Background())
 
-	r, err := etcd.NewEtcdRegistry([]string{constants.EtcdAddress}) // r should not be reused.
-	if err != nil {
-		panic(err)
-	}
 	addr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:8888")
 	if err != nil {
 		panic(err)

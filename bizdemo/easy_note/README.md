@@ -30,7 +30,7 @@ req    resp                            │                                   res
  │      │                              │                                    │       │
  │      │                   ┌──────────▼─────────┐                          │       │
  │      │                   │                    │                          │       │
- │      │       ┌───────────►       Etcd         ◄─────────────────┐        │       │
+ │      │       ┌───────────►       Nacos        ◄─────────────────┐        │       │
  │      │       │           │                    │                 │        │       │
  │      │       │           └────────────────────┘                 │        │       │
  │      │       │                                                  │        │       │
@@ -55,7 +55,7 @@ req    resp                            │                                   res
 - Customized BoundHandler
   - achieve CPU utilization rate customized bound handler
 - Service Discovery and Register
-  - use [registry-etcd](https://github.com/kitex-contrib/registry-etcd) to discovery and register service
+  - use [registry-nacos](https://github.com/kitex-contrib/registry-nacos) to discovery and register service
 
 ### catalog introduce
 

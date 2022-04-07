@@ -19,6 +19,8 @@ import (
 	"context"
 	"time"
 
+	"github.com/kitex-contrib/registry-nacos/resolver"
+
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
@@ -28,17 +30,15 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"
-	etcd "github.com/kitex-contrib/registry-etcd"
 )
 
 var noteClient noteservice.Client
 
 func initNoteRpc() {
-	r, err := etcd.NewEtcdResolver([]string{constants.EtcdAddress})
+	r, err := resolver.NewDefaultNacosResolver()
 	if err != nil {
 		panic(err)
 	}
-
 	c, err := noteservice.NewClient(
 		constants.NoteServiceName,
 		client.WithMiddleware(middleware.CommonMiddleware),
