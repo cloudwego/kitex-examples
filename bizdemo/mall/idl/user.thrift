@@ -1,5 +1,5 @@
 include "base.thrift"
-namespace go user
+namespace go cmp.ecom.user
 
 struct User {
     1: i64 UserId,
