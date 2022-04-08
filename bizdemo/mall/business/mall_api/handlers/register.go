@@ -7,6 +7,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Register godoc
+// @Summary 用户注册
+// @Description 用户注册
+// @Tags 用户模块
+// @Accept json
+// @Produce json
+// @Param userParam body handlers.UserParam true "注册信息"
+// @Success 200 {object} handlers.Response
+// @Router /user/register [post]
 func Register(c *gin.Context) {
 	var registerParam UserParam
 	if err := c.ShouldBind(&registerParam); err != nil {

@@ -1,0 +1,86 @@
+basePath: /
+definitions:
+  handlers.LoginResponse:
+    properties:
+      code:
+        type: integer
+      expire:
+        type: string
+      token:
+        type: string
+    type: object
+  handlers.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+    type: object
+  handlers.UserParam:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: bodhisatanyao@gmail.com
+    name: Bodhisatan
+    url: https://github.com/bodhisatan
+  description: This is a mall demo using Gin and KiteX.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Mall
+  version: "1.0"
+paths:
+  /user/login:
+    post:
+      consumes:
+      - application/json
+      description: 用户登录
+      parameters:
+      - description: 账号信息
+        in: body
+        name: userParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.UserParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.LoginResponse'
+      summary: 用户登录
+      tags:
+      - 用户模块
+  /user/register:
+    post:
+      consumes:
+      - application/json
+      description: 用户注册
+      parameters:
+      - description: 注册信息
+        in: body
+        name: userParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.UserParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      summary: 用户注册
+      tags:
+      - 用户模块
+schemes:
+- http
+swagger: "2.0"
