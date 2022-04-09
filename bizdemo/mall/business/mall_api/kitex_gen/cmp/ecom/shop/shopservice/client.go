@@ -12,7 +12,7 @@ import (
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
 	SettleShop(ctx context.Context, req *shop.SettleShopReq, callOptions ...callopt.Option) (r *shop.SettleShopResp, err error)
-	GetShopIdByName(ctx context.Context, req *shop.GetShopIdByNameReq, callOptions ...callopt.Option) (r *shop.GetShopIdByNameResp, err error)
+	GetShopIdByUserId(ctx context.Context, req *shop.GetShopIdByUserIdReq, callOptions ...callopt.Option) (r *shop.GetShopIdByUserIdResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -49,7 +49,7 @@ func (p *kShopServiceClient) SettleShop(ctx context.Context, req *shop.SettleSho
 	return p.kClient.SettleShop(ctx, req)
 }
 
-func (p *kShopServiceClient) GetShopIdByName(ctx context.Context, req *shop.GetShopIdByNameReq, callOptions ...callopt.Option) (r *shop.GetShopIdByNameResp, err error) {
+func (p *kShopServiceClient) GetShopIdByUserId(ctx context.Context, req *shop.GetShopIdByUserIdReq, callOptions ...callopt.Option) (r *shop.GetShopIdByUserIdResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
-	return p.kClient.GetShopIdByName(ctx, req)
+	return p.kClient.GetShopIdByUserId(ctx, req)
 }

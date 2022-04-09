@@ -2,7 +2,8 @@ include "base.thrift"
 namespace go cmp.ecom.shop
 
 struct SettleShopReq {
-    1: string UserName,
+    1: i64 UserId,
+    2: string ShopName,
 }
 
 struct SettleShopResp {
@@ -11,11 +12,11 @@ struct SettleShopResp {
     255: base.BaseResp BaseResp
 }
 
-struct GetShopIdByNameReq {
-    1: string UserName,
+struct GetShopIdByUserIdReq {
+    1: i64 UserId,
 }
 
-struct GetShopIdByNameResp {
+struct GetShopIdByUserIdResp {
     1: i64 ShopId,
 
     255: base.BaseResp BaseResp
@@ -23,5 +24,5 @@ struct GetShopIdByNameResp {
 
 service ShopService {
     SettleShopResp SettleShop(1: SettleShopReq req)
-    GetShopIdByNameResp GetShopIdByName(1: GetShopIdByNameReq req)
+    GetShopIdByUserIdResp GetShopIdByUserId(1: GetShopIdByUserIdReq req)
 }

@@ -11,22 +11,31 @@ import (
 )
 
 type SettleShopReq struct {
-	UserName string `thrift:"UserName,1" json:"UserName"`
+	UserId   int64  `thrift:"UserId,1" json:"UserId"`
+	ShopName string `thrift:"ShopName,2" json:"ShopName"`
 }
 
 func NewSettleShopReq() *SettleShopReq {
 	return &SettleShopReq{}
 }
 
-func (p *SettleShopReq) GetUserName() (v string) {
-	return p.UserName
+func (p *SettleShopReq) GetUserId() (v int64) {
+	return p.UserId
 }
-func (p *SettleShopReq) SetUserName(val string) {
-	p.UserName = val
+
+func (p *SettleShopReq) GetShopName() (v string) {
+	return p.ShopName
+}
+func (p *SettleShopReq) SetUserId(val int64) {
+	p.UserId = val
+}
+func (p *SettleShopReq) SetShopName(val string) {
+	p.ShopName = val
 }
 
 var fieldIDToName_SettleShopReq = map[int16]string{
-	1: "UserName",
+	1: "UserId",
+	2: "ShopName",
 }
 
 func (p *SettleShopReq) Read(iprot thrift.TProtocol) (err error) {
@@ -49,8 +58,18 @@ func (p *SettleShopReq) Read(iprot thrift.TProtocol) (err error) {
 
 		switch fieldId {
 		case 1:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.I64 {
 				if err = p.ReadField1(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				if err = iprot.Skip(fieldTypeId); err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 2:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField2(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else {
@@ -89,10 +108,19 @@ ReadStructEndError:
 }
 
 func (p *SettleShopReq) ReadField1(iprot thrift.TProtocol) error {
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		p.UserId = v
+	}
+	return nil
+}
+
+func (p *SettleShopReq) ReadField2(iprot thrift.TProtocol) error {
 	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
-		p.UserName = v
+		p.ShopName = v
 	}
 	return nil
 }
@@ -105,6 +133,10 @@ func (p *SettleShopReq) Write(oprot thrift.TProtocol) (err error) {
 	if p != nil {
 		if err = p.writeField1(oprot); err != nil {
 			fieldId = 1
+			goto WriteFieldError
+		}
+		if err = p.writeField2(oprot); err != nil {
+			fieldId = 2
 			goto WriteFieldError
 		}
 
@@ -127,10 +159,10 @@ WriteStructEndError:
 }
 
 func (p *SettleShopReq) writeField1(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("UserName", thrift.STRING, 1); err != nil {
+	if err = oprot.WriteFieldBegin("UserId", thrift.I64, 1); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.UserName); err != nil {
+	if err := oprot.WriteI64(p.UserId); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -141,6 +173,23 @@ WriteFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 begin error: ", p), err)
 WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
+}
+
+func (p *SettleShopReq) writeField2(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("ShopName", thrift.STRING, 2); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.ShopName); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
 }
 
 func (p *SettleShopReq) String() string {
@@ -156,15 +205,25 @@ func (p *SettleShopReq) DeepEqual(ano *SettleShopReq) bool {
 	} else if p == nil || ano == nil {
 		return false
 	}
-	if !p.Field1DeepEqual(ano.UserName) {
+	if !p.Field1DeepEqual(ano.UserId) {
+		return false
+	}
+	if !p.Field2DeepEqual(ano.ShopName) {
 		return false
 	}
 	return true
 }
 
-func (p *SettleShopReq) Field1DeepEqual(src string) bool {
+func (p *SettleShopReq) Field1DeepEqual(src int64) bool {
 
-	if strings.Compare(p.UserName, src) != 0 {
+	if p.UserId != src {
+		return false
+	}
+	return true
+}
+func (p *SettleShopReq) Field2DeepEqual(src string) bool {
+
+	if strings.Compare(p.ShopName, src) != 0 {
 		return false
 	}
 	return true
@@ -397,26 +456,26 @@ func (p *SettleShopResp) Field255DeepEqual(src *base.BaseResp) bool {
 	return true
 }
 
-type GetShopIdByNameReq struct {
-	UserName string `thrift:"UserName,1" json:"UserName"`
+type GetShopIdByUserIdReq struct {
+	UserId int64 `thrift:"UserId,1" json:"UserId"`
 }
 
-func NewGetShopIdByNameReq() *GetShopIdByNameReq {
-	return &GetShopIdByNameReq{}
+func NewGetShopIdByUserIdReq() *GetShopIdByUserIdReq {
+	return &GetShopIdByUserIdReq{}
 }
 
-func (p *GetShopIdByNameReq) GetUserName() (v string) {
-	return p.UserName
+func (p *GetShopIdByUserIdReq) GetUserId() (v int64) {
+	return p.UserId
 }
-func (p *GetShopIdByNameReq) SetUserName(val string) {
-	p.UserName = val
-}
-
-var fieldIDToName_GetShopIdByNameReq = map[int16]string{
-	1: "UserName",
+func (p *GetShopIdByUserIdReq) SetUserId(val int64) {
+	p.UserId = val
 }
 
-func (p *GetShopIdByNameReq) Read(iprot thrift.TProtocol) (err error) {
+var fieldIDToName_GetShopIdByUserIdReq = map[int16]string{
+	1: "UserId",
+}
+
+func (p *GetShopIdByUserIdReq) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -436,7 +495,7 @@ func (p *GetShopIdByNameReq) Read(iprot thrift.TProtocol) (err error) {
 
 		switch fieldId {
 		case 1:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.I64 {
 				if err = p.ReadField1(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -465,7 +524,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetShopIdByNameReq[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetShopIdByUserIdReq[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -475,18 +534,18 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *GetShopIdByNameReq) ReadField1(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+func (p *GetShopIdByUserIdReq) ReadField1(iprot thrift.TProtocol) error {
+	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
-		p.UserName = v
+		p.UserId = v
 	}
 	return nil
 }
 
-func (p *GetShopIdByNameReq) Write(oprot thrift.TProtocol) (err error) {
+func (p *GetShopIdByUserIdReq) Write(oprot thrift.TProtocol) (err error) {
 	var fieldId int16
-	if err = oprot.WriteStructBegin("GetShopIdByNameReq"); err != nil {
+	if err = oprot.WriteStructBegin("GetShopIdByUserIdReq"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -513,11 +572,11 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *GetShopIdByNameReq) writeField1(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("UserName", thrift.STRING, 1); err != nil {
+func (p *GetShopIdByUserIdReq) writeField1(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("UserId", thrift.I64, 1); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.UserName); err != nil {
+	if err := oprot.WriteI64(p.UserId); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -530,71 +589,71 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *GetShopIdByNameReq) String() string {
+func (p *GetShopIdByUserIdReq) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("GetShopIdByNameReq(%+v)", *p)
+	return fmt.Sprintf("GetShopIdByUserIdReq(%+v)", *p)
 }
 
-func (p *GetShopIdByNameReq) DeepEqual(ano *GetShopIdByNameReq) bool {
+func (p *GetShopIdByUserIdReq) DeepEqual(ano *GetShopIdByUserIdReq) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
 		return false
 	}
-	if !p.Field1DeepEqual(ano.UserName) {
+	if !p.Field1DeepEqual(ano.UserId) {
 		return false
 	}
 	return true
 }
 
-func (p *GetShopIdByNameReq) Field1DeepEqual(src string) bool {
+func (p *GetShopIdByUserIdReq) Field1DeepEqual(src int64) bool {
 
-	if strings.Compare(p.UserName, src) != 0 {
+	if p.UserId != src {
 		return false
 	}
 	return true
 }
 
-type GetShopIdByNameResp struct {
+type GetShopIdByUserIdResp struct {
 	ShopId   int64          `thrift:"ShopId,1" json:"ShopId"`
 	BaseResp *base.BaseResp `thrift:"BaseResp,255" json:"BaseResp"`
 }
 
-func NewGetShopIdByNameResp() *GetShopIdByNameResp {
-	return &GetShopIdByNameResp{}
+func NewGetShopIdByUserIdResp() *GetShopIdByUserIdResp {
+	return &GetShopIdByUserIdResp{}
 }
 
-func (p *GetShopIdByNameResp) GetShopId() (v int64) {
+func (p *GetShopIdByUserIdResp) GetShopId() (v int64) {
 	return p.ShopId
 }
 
-var GetShopIdByNameResp_BaseResp_DEFAULT *base.BaseResp
+var GetShopIdByUserIdResp_BaseResp_DEFAULT *base.BaseResp
 
-func (p *GetShopIdByNameResp) GetBaseResp() (v *base.BaseResp) {
+func (p *GetShopIdByUserIdResp) GetBaseResp() (v *base.BaseResp) {
 	if !p.IsSetBaseResp() {
-		return GetShopIdByNameResp_BaseResp_DEFAULT
+		return GetShopIdByUserIdResp_BaseResp_DEFAULT
 	}
 	return p.BaseResp
 }
-func (p *GetShopIdByNameResp) SetShopId(val int64) {
+func (p *GetShopIdByUserIdResp) SetShopId(val int64) {
 	p.ShopId = val
 }
-func (p *GetShopIdByNameResp) SetBaseResp(val *base.BaseResp) {
+func (p *GetShopIdByUserIdResp) SetBaseResp(val *base.BaseResp) {
 	p.BaseResp = val
 }
 
-var fieldIDToName_GetShopIdByNameResp = map[int16]string{
+var fieldIDToName_GetShopIdByUserIdResp = map[int16]string{
 	1:   "ShopId",
 	255: "BaseResp",
 }
 
-func (p *GetShopIdByNameResp) IsSetBaseResp() bool {
+func (p *GetShopIdByUserIdResp) IsSetBaseResp() bool {
 	return p.BaseResp != nil
 }
 
-func (p *GetShopIdByNameResp) Read(iprot thrift.TProtocol) (err error) {
+func (p *GetShopIdByUserIdResp) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -653,7 +712,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetShopIdByNameResp[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetShopIdByUserIdResp[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -663,7 +722,7 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *GetShopIdByNameResp) ReadField1(iprot thrift.TProtocol) error {
+func (p *GetShopIdByUserIdResp) ReadField1(iprot thrift.TProtocol) error {
 	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
@@ -672,7 +731,7 @@ func (p *GetShopIdByNameResp) ReadField1(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *GetShopIdByNameResp) ReadField255(iprot thrift.TProtocol) error {
+func (p *GetShopIdByUserIdResp) ReadField255(iprot thrift.TProtocol) error {
 	p.BaseResp = base.NewBaseResp()
 	if err := p.BaseResp.Read(iprot); err != nil {
 		return err
@@ -680,9 +739,9 @@ func (p *GetShopIdByNameResp) ReadField255(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *GetShopIdByNameResp) Write(oprot thrift.TProtocol) (err error) {
+func (p *GetShopIdByUserIdResp) Write(oprot thrift.TProtocol) (err error) {
 	var fieldId int16
-	if err = oprot.WriteStructBegin("GetShopIdByNameResp"); err != nil {
+	if err = oprot.WriteStructBegin("GetShopIdByUserIdResp"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -713,7 +772,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *GetShopIdByNameResp) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *GetShopIdByUserIdResp) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("ShopId", thrift.I64, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -730,7 +789,7 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *GetShopIdByNameResp) writeField255(oprot thrift.TProtocol) (err error) {
+func (p *GetShopIdByUserIdResp) writeField255(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("BaseResp", thrift.STRUCT, 255); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -747,14 +806,14 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 255 end error: ", p), err)
 }
 
-func (p *GetShopIdByNameResp) String() string {
+func (p *GetShopIdByUserIdResp) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("GetShopIdByNameResp(%+v)", *p)
+	return fmt.Sprintf("GetShopIdByUserIdResp(%+v)", *p)
 }
 
-func (p *GetShopIdByNameResp) DeepEqual(ano *GetShopIdByNameResp) bool {
+func (p *GetShopIdByUserIdResp) DeepEqual(ano *GetShopIdByUserIdResp) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -769,14 +828,14 @@ func (p *GetShopIdByNameResp) DeepEqual(ano *GetShopIdByNameResp) bool {
 	return true
 }
 
-func (p *GetShopIdByNameResp) Field1DeepEqual(src int64) bool {
+func (p *GetShopIdByUserIdResp) Field1DeepEqual(src int64) bool {
 
 	if p.ShopId != src {
 		return false
 	}
 	return true
 }
-func (p *GetShopIdByNameResp) Field255DeepEqual(src *base.BaseResp) bool {
+func (p *GetShopIdByUserIdResp) Field255DeepEqual(src *base.BaseResp) bool {
 
 	if !p.BaseResp.DeepEqual(src) {
 		return false
@@ -787,7 +846,7 @@ func (p *GetShopIdByNameResp) Field255DeepEqual(src *base.BaseResp) bool {
 type ShopService interface {
 	SettleShop(ctx context.Context, req *SettleShopReq) (r *SettleShopResp, err error)
 
-	GetShopIdByName(ctx context.Context, req *GetShopIdByNameReq) (r *GetShopIdByNameResp, err error)
+	GetShopIdByUserId(ctx context.Context, req *GetShopIdByUserIdReq) (r *GetShopIdByUserIdResp, err error)
 }
 
 type ShopServiceClient struct {
@@ -826,11 +885,11 @@ func (p *ShopServiceClient) SettleShop(ctx context.Context, req *SettleShopReq) 
 	return _result.GetSuccess(), nil
 }
 
-func (p *ShopServiceClient) GetShopIdByName(ctx context.Context, req *GetShopIdByNameReq) (r *GetShopIdByNameResp, err error) {
-	var _args ShopServiceGetShopIdByNameArgs
+func (p *ShopServiceClient) GetShopIdByUserId(ctx context.Context, req *GetShopIdByUserIdReq) (r *GetShopIdByUserIdResp, err error) {
+	var _args ShopServiceGetShopIdByUserIdArgs
 	_args.Req = req
-	var _result ShopServiceGetShopIdByNameResult
-	if err = p.Client_().Call(ctx, "GetShopIdByName", &_args, &_result); err != nil {
+	var _result ShopServiceGetShopIdByUserIdResult
+	if err = p.Client_().Call(ctx, "GetShopIdByUserId", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
@@ -857,7 +916,7 @@ func (p *ShopServiceProcessor) ProcessorMap() map[string]thrift.TProcessorFuncti
 func NewShopServiceProcessor(handler ShopService) *ShopServiceProcessor {
 	self := &ShopServiceProcessor{handler: handler, processorMap: make(map[string]thrift.TProcessorFunction)}
 	self.AddToProcessorMap("SettleShop", &shopServiceProcessorSettleShop{handler: handler})
-	self.AddToProcessorMap("GetShopIdByName", &shopServiceProcessorGetShopIdByName{handler: handler})
+	self.AddToProcessorMap("GetShopIdByUserId", &shopServiceProcessorGetShopIdByUserId{handler: handler})
 	return self
 }
 func (p *ShopServiceProcessor) Process(ctx context.Context, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
@@ -926,16 +985,16 @@ func (p *shopServiceProcessorSettleShop) Process(ctx context.Context, seqId int3
 	return true, err
 }
 
-type shopServiceProcessorGetShopIdByName struct {
+type shopServiceProcessorGetShopIdByUserId struct {
 	handler ShopService
 }
 
-func (p *shopServiceProcessorGetShopIdByName) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
-	args := ShopServiceGetShopIdByNameArgs{}
+func (p *shopServiceProcessorGetShopIdByUserId) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+	args := ShopServiceGetShopIdByUserIdArgs{}
 	if err = args.Read(iprot); err != nil {
 		iprot.ReadMessageEnd()
 		x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err.Error())
-		oprot.WriteMessageBegin("GetShopIdByName", thrift.EXCEPTION, seqId)
+		oprot.WriteMessageBegin("GetShopIdByUserId", thrift.EXCEPTION, seqId)
 		x.Write(oprot)
 		oprot.WriteMessageEnd()
 		oprot.Flush(ctx)
@@ -944,11 +1003,11 @@ func (p *shopServiceProcessorGetShopIdByName) Process(ctx context.Context, seqId
 
 	iprot.ReadMessageEnd()
 	var err2 error
-	result := ShopServiceGetShopIdByNameResult{}
-	var retval *GetShopIdByNameResp
-	if retval, err2 = p.handler.GetShopIdByName(ctx, args.Req); err2 != nil {
-		x := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing GetShopIdByName: "+err2.Error())
-		oprot.WriteMessageBegin("GetShopIdByName", thrift.EXCEPTION, seqId)
+	result := ShopServiceGetShopIdByUserIdResult{}
+	var retval *GetShopIdByUserIdResp
+	if retval, err2 = p.handler.GetShopIdByUserId(ctx, args.Req); err2 != nil {
+		x := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing GetShopIdByUserId: "+err2.Error())
+		oprot.WriteMessageBegin("GetShopIdByUserId", thrift.EXCEPTION, seqId)
 		x.Write(oprot)
 		oprot.WriteMessageEnd()
 		oprot.Flush(ctx)
@@ -956,7 +1015,7 @@ func (p *shopServiceProcessorGetShopIdByName) Process(ctx context.Context, seqId
 	} else {
 		result.Success = retval
 	}
-	if err2 = oprot.WriteMessageBegin("GetShopIdByName", thrift.REPLY, seqId); err2 != nil {
+	if err2 = oprot.WriteMessageBegin("GetShopIdByUserId", thrift.REPLY, seqId); err2 != nil {
 		err = err2
 	}
 	if err2 = result.Write(oprot); err == nil && err2 != nil {
@@ -1312,35 +1371,35 @@ func (p *ShopServiceSettleShopResult) Field0DeepEqual(src *SettleShopResp) bool 
 	return true
 }
 
-type ShopServiceGetShopIdByNameArgs struct {
-	Req *GetShopIdByNameReq `thrift:"req,1" json:"req"`
+type ShopServiceGetShopIdByUserIdArgs struct {
+	Req *GetShopIdByUserIdReq `thrift:"req,1" json:"req"`
 }
 
-func NewShopServiceGetShopIdByNameArgs() *ShopServiceGetShopIdByNameArgs {
-	return &ShopServiceGetShopIdByNameArgs{}
+func NewShopServiceGetShopIdByUserIdArgs() *ShopServiceGetShopIdByUserIdArgs {
+	return &ShopServiceGetShopIdByUserIdArgs{}
 }
 
-var ShopServiceGetShopIdByNameArgs_Req_DEFAULT *GetShopIdByNameReq
+var ShopServiceGetShopIdByUserIdArgs_Req_DEFAULT *GetShopIdByUserIdReq
 
-func (p *ShopServiceGetShopIdByNameArgs) GetReq() (v *GetShopIdByNameReq) {
+func (p *ShopServiceGetShopIdByUserIdArgs) GetReq() (v *GetShopIdByUserIdReq) {
 	if !p.IsSetReq() {
-		return ShopServiceGetShopIdByNameArgs_Req_DEFAULT
+		return ShopServiceGetShopIdByUserIdArgs_Req_DEFAULT
 	}
 	return p.Req
 }
-func (p *ShopServiceGetShopIdByNameArgs) SetReq(val *GetShopIdByNameReq) {
+func (p *ShopServiceGetShopIdByUserIdArgs) SetReq(val *GetShopIdByUserIdReq) {
 	p.Req = val
 }
 
-var fieldIDToName_ShopServiceGetShopIdByNameArgs = map[int16]string{
+var fieldIDToName_ShopServiceGetShopIdByUserIdArgs = map[int16]string{
 	1: "req",
 }
 
-func (p *ShopServiceGetShopIdByNameArgs) IsSetReq() bool {
+func (p *ShopServiceGetShopIdByUserIdArgs) IsSetReq() bool {
 	return p.Req != nil
 }
 
-func (p *ShopServiceGetShopIdByNameArgs) Read(iprot thrift.TProtocol) (err error) {
+func (p *ShopServiceGetShopIdByUserIdArgs) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -1389,7 +1448,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_ShopServiceGetShopIdByNameArgs[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_ShopServiceGetShopIdByUserIdArgs[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -1399,17 +1458,17 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *ShopServiceGetShopIdByNameArgs) ReadField1(iprot thrift.TProtocol) error {
-	p.Req = NewGetShopIdByNameReq()
+func (p *ShopServiceGetShopIdByUserIdArgs) ReadField1(iprot thrift.TProtocol) error {
+	p.Req = NewGetShopIdByUserIdReq()
 	if err := p.Req.Read(iprot); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *ShopServiceGetShopIdByNameArgs) Write(oprot thrift.TProtocol) (err error) {
+func (p *ShopServiceGetShopIdByUserIdArgs) Write(oprot thrift.TProtocol) (err error) {
 	var fieldId int16
-	if err = oprot.WriteStructBegin("GetShopIdByName_args"); err != nil {
+	if err = oprot.WriteStructBegin("GetShopIdByUserId_args"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -1436,7 +1495,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *ShopServiceGetShopIdByNameArgs) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *ShopServiceGetShopIdByUserIdArgs) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("req", thrift.STRUCT, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -1453,14 +1512,14 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *ShopServiceGetShopIdByNameArgs) String() string {
+func (p *ShopServiceGetShopIdByUserIdArgs) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("ShopServiceGetShopIdByNameArgs(%+v)", *p)
+	return fmt.Sprintf("ShopServiceGetShopIdByUserIdArgs(%+v)", *p)
 }
 
-func (p *ShopServiceGetShopIdByNameArgs) DeepEqual(ano *ShopServiceGetShopIdByNameArgs) bool {
+func (p *ShopServiceGetShopIdByUserIdArgs) DeepEqual(ano *ShopServiceGetShopIdByUserIdArgs) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -1472,7 +1531,7 @@ func (p *ShopServiceGetShopIdByNameArgs) DeepEqual(ano *ShopServiceGetShopIdByNa
 	return true
 }
 
-func (p *ShopServiceGetShopIdByNameArgs) Field1DeepEqual(src *GetShopIdByNameReq) bool {
+func (p *ShopServiceGetShopIdByUserIdArgs) Field1DeepEqual(src *GetShopIdByUserIdReq) bool {
 
 	if !p.Req.DeepEqual(src) {
 		return false
@@ -1480,35 +1539,35 @@ func (p *ShopServiceGetShopIdByNameArgs) Field1DeepEqual(src *GetShopIdByNameReq
 	return true
 }
 
-type ShopServiceGetShopIdByNameResult struct {
-	Success *GetShopIdByNameResp `thrift:"success,0" json:"success,omitempty"`
+type ShopServiceGetShopIdByUserIdResult struct {
+	Success *GetShopIdByUserIdResp `thrift:"success,0" json:"success,omitempty"`
 }
 
-func NewShopServiceGetShopIdByNameResult() *ShopServiceGetShopIdByNameResult {
-	return &ShopServiceGetShopIdByNameResult{}
+func NewShopServiceGetShopIdByUserIdResult() *ShopServiceGetShopIdByUserIdResult {
+	return &ShopServiceGetShopIdByUserIdResult{}
 }
 
-var ShopServiceGetShopIdByNameResult_Success_DEFAULT *GetShopIdByNameResp
+var ShopServiceGetShopIdByUserIdResult_Success_DEFAULT *GetShopIdByUserIdResp
 
-func (p *ShopServiceGetShopIdByNameResult) GetSuccess() (v *GetShopIdByNameResp) {
+func (p *ShopServiceGetShopIdByUserIdResult) GetSuccess() (v *GetShopIdByUserIdResp) {
 	if !p.IsSetSuccess() {
-		return ShopServiceGetShopIdByNameResult_Success_DEFAULT
+		return ShopServiceGetShopIdByUserIdResult_Success_DEFAULT
 	}
 	return p.Success
 }
-func (p *ShopServiceGetShopIdByNameResult) SetSuccess(x interface{}) {
-	p.Success = x.(*GetShopIdByNameResp)
+func (p *ShopServiceGetShopIdByUserIdResult) SetSuccess(x interface{}) {
+	p.Success = x.(*GetShopIdByUserIdResp)
 }
 
-var fieldIDToName_ShopServiceGetShopIdByNameResult = map[int16]string{
+var fieldIDToName_ShopServiceGetShopIdByUserIdResult = map[int16]string{
 	0: "success",
 }
 
-func (p *ShopServiceGetShopIdByNameResult) IsSetSuccess() bool {
+func (p *ShopServiceGetShopIdByUserIdResult) IsSetSuccess() bool {
 	return p.Success != nil
 }
 
-func (p *ShopServiceGetShopIdByNameResult) Read(iprot thrift.TProtocol) (err error) {
+func (p *ShopServiceGetShopIdByUserIdResult) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -1557,7 +1616,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_ShopServiceGetShopIdByNameResult[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_ShopServiceGetShopIdByUserIdResult[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -1567,17 +1626,17 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *ShopServiceGetShopIdByNameResult) ReadField0(iprot thrift.TProtocol) error {
-	p.Success = NewGetShopIdByNameResp()
+func (p *ShopServiceGetShopIdByUserIdResult) ReadField0(iprot thrift.TProtocol) error {
+	p.Success = NewGetShopIdByUserIdResp()
 	if err := p.Success.Read(iprot); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *ShopServiceGetShopIdByNameResult) Write(oprot thrift.TProtocol) (err error) {
+func (p *ShopServiceGetShopIdByUserIdResult) Write(oprot thrift.TProtocol) (err error) {
 	var fieldId int16
-	if err = oprot.WriteStructBegin("GetShopIdByName_result"); err != nil {
+	if err = oprot.WriteStructBegin("GetShopIdByUserId_result"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -1604,7 +1663,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *ShopServiceGetShopIdByNameResult) writeField0(oprot thrift.TProtocol) (err error) {
+func (p *ShopServiceGetShopIdByUserIdResult) writeField0(oprot thrift.TProtocol) (err error) {
 	if p.IsSetSuccess() {
 		if err = oprot.WriteFieldBegin("success", thrift.STRUCT, 0); err != nil {
 			goto WriteFieldBeginError
@@ -1623,14 +1682,14 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 0 end error: ", p), err)
 }
 
-func (p *ShopServiceGetShopIdByNameResult) String() string {
+func (p *ShopServiceGetShopIdByUserIdResult) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("ShopServiceGetShopIdByNameResult(%+v)", *p)
+	return fmt.Sprintf("ShopServiceGetShopIdByUserIdResult(%+v)", *p)
 }
 
-func (p *ShopServiceGetShopIdByNameResult) DeepEqual(ano *ShopServiceGetShopIdByNameResult) bool {
+func (p *ShopServiceGetShopIdByUserIdResult) DeepEqual(ano *ShopServiceGetShopIdByUserIdResult) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -1642,7 +1701,7 @@ func (p *ShopServiceGetShopIdByNameResult) DeepEqual(ano *ShopServiceGetShopIdBy
 	return true
 }
 
-func (p *ShopServiceGetShopIdByNameResult) Field0DeepEqual(src *GetShopIdByNameResp) bool {
+func (p *ShopServiceGetShopIdByUserIdResult) Field0DeepEqual(src *GetShopIdByUserIdResp) bool {
 
 	if !p.Success.DeepEqual(src) {
 		return false

@@ -19,8 +19,8 @@ func NewServiceInfo() *kitex.ServiceInfo {
 	serviceName := "ShopService"
 	handlerType := (*shop.ShopService)(nil)
 	methods := map[string]kitex.MethodInfo{
-		"SettleShop":      kitex.NewMethodInfo(settleShopHandler, newShopServiceSettleShopArgs, newShopServiceSettleShopResult, false),
-		"GetShopIdByName": kitex.NewMethodInfo(getShopIdByNameHandler, newShopServiceGetShopIdByNameArgs, newShopServiceGetShopIdByNameResult, false),
+		"SettleShop":        kitex.NewMethodInfo(settleShopHandler, newShopServiceSettleShopArgs, newShopServiceSettleShopResult, false),
+		"GetShopIdByUserId": kitex.NewMethodInfo(getShopIdByUserIdHandler, newShopServiceGetShopIdByUserIdArgs, newShopServiceGetShopIdByUserIdResult, false),
 	}
 	extra := map[string]interface{}{
 		"PackageName": "shop",
@@ -54,22 +54,22 @@ func newShopServiceSettleShopResult() interface{} {
 	return shop.NewShopServiceSettleShopResult()
 }
 
-func getShopIdByNameHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
-	realArg := arg.(*shop.ShopServiceGetShopIdByNameArgs)
-	realResult := result.(*shop.ShopServiceGetShopIdByNameResult)
-	success, err := handler.(shop.ShopService).GetShopIdByName(ctx, realArg.Req)
+func getShopIdByUserIdHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*shop.ShopServiceGetShopIdByUserIdArgs)
+	realResult := result.(*shop.ShopServiceGetShopIdByUserIdResult)
+	success, err := handler.(shop.ShopService).GetShopIdByUserId(ctx, realArg.Req)
 	if err != nil {
 		return err
 	}
 	realResult.Success = success
 	return nil
 }
-func newShopServiceGetShopIdByNameArgs() interface{} {
-	return shop.NewShopServiceGetShopIdByNameArgs()
+func newShopServiceGetShopIdByUserIdArgs() interface{} {
+	return shop.NewShopServiceGetShopIdByUserIdArgs()
 }
 
-func newShopServiceGetShopIdByNameResult() interface{} {
-	return shop.NewShopServiceGetShopIdByNameResult()
+func newShopServiceGetShopIdByUserIdResult() interface{} {
+	return shop.NewShopServiceGetShopIdByUserIdResult()
 }
 
 type kClient struct {
@@ -92,11 +92,11 @@ func (p *kClient) SettleShop(ctx context.Context, req *shop.SettleShopReq) (r *s
 	return _result.GetSuccess(), nil
 }
 
-func (p *kClient) GetShopIdByName(ctx context.Context, req *shop.GetShopIdByNameReq) (r *shop.GetShopIdByNameResp, err error) {
-	var _args shop.ShopServiceGetShopIdByNameArgs
+func (p *kClient) GetShopIdByUserId(ctx context.Context, req *shop.GetShopIdByUserIdReq) (r *shop.GetShopIdByUserIdResp, err error) {
+	var _args shop.ShopServiceGetShopIdByUserIdArgs
 	_args.Req = req
-	var _result shop.ShopServiceGetShopIdByNameResult
-	if err = p.c.Call(ctx, "GetShopIdByName", &_args, &_result); err != nil {
+	var _result shop.ShopServiceGetShopIdByUserIdResult
+	if err = p.c.Call(ctx, "GetShopIdByUserId", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

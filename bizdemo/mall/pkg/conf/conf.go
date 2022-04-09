@@ -2,6 +2,7 @@ package conf
 
 const (
 	UserTableName = "t_user"
+	ShopTableName = "t_shop"
 
 	SecretKey   = "secret key"
 	IdentityKey = "id"

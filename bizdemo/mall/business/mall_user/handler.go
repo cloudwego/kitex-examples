@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_user/kitex_gen/cmp/ecom/user"
+	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_user/pack"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_user/service"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/errno"
-	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/pack"
 )
 
 // UserServiceImpl implements the last service interface defined in the IDL.
