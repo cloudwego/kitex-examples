@@ -18,6 +18,7 @@ const (
 
 	// Shop Errcode
 	ShopAlreadyExistErrCode = 12001
+	ShopNotExistErrCode     = 12002
 )
 
 type ErrNo struct {
@@ -46,6 +47,7 @@ var (
 	UserNotExistErr     = NewErrNo(UserNotExistErrCode, "User does not exists")
 	UserAlreadyExistErr = NewErrNo(UserAlreadyExistErrCode, "User already exists")
 	ShopAlreadyExistErr = NewErrNo(ShopAlreadyExistErrCode, "Shop has been settled")
+	ShopNotExistErr     = NewErrNo(ShopNotExistErrCode, "User has not settle a shop yet")
 )
 
 // ConvertErr convert error to Errno

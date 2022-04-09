@@ -17,6 +17,11 @@ definitions:
       message:
         type: string
     type: object
+  handlers.ShopSettleParam:
+    properties:
+      shop_name:
+        type: string
+    type: object
   handlers.UserParam:
     properties:
       password:
@@ -37,6 +42,54 @@ info:
   title: Mall
   version: "1.0"
 paths:
+  /shop/id:
+    get:
+      consumes:
+      - application/json
+      description: 通过用户ID查询商家ID
+      parameters:
+      - description: Bearer $token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      summary: 商家ID查询
+      tags:
+      - 商家模块
+  /shop/settle:
+    post:
+      consumes:
+      - application/json
+      description: 商家入驻，返回ShopID
+      parameters:
+      - description: 入驻材料
+        in: body
+        name: shopSettleParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.ShopSettleParam'
+      - description: Bearer $token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      summary: 商家入驻
+      tags:
+      - 商家模块
   /user/login:
     post:
       consumes:

@@ -24,6 +24,79 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/shop/id": {
+            "get": {
+                "description": "通过用户ID查询商家ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "商家模块"
+                ],
+                "summary": "商家ID查询",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer $token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/shop/settle": {
+            "post": {
+                "description": "商家入驻，返回ShopID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "商家模块"
+                ],
+                "summary": "商家入驻",
+                "parameters": [
+                    {
+                        "description": "入驻材料",
+                        "name": "shopSettleParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ShopSettleParam"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Bearer $token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.Response"
+                        }
+                    }
+                }
+            }
+        },
         "/user/login": {
             "post": {
                 "description": "用户登录",
@@ -116,6 +189,14 @@ const docTemplate = `{
                 },
                 "data": {},
                 "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "handlers.ShopSettleParam": {
+            "type": "object",
+            "properties": {
+                "shop_name": {
                     "type": "string"
                 }
             }

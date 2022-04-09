@@ -35,3 +35,7 @@ type LoginResponse struct {
 	Expire string `json:"expire"`
 	Token  string `json:"token"`
 }
+
+type ShopSettleParam struct {
+	ShopName string `json:"shop_name"`
+}

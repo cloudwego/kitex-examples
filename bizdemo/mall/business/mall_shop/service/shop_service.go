@@ -42,6 +42,9 @@ func (s *ShopService) GetShopIdByUserId(req *shop.GetShopIdByUserIdReq) (int64, 
 	if err != nil {
 		return 0, err
 	}
+	if shopInfo.ShopId == 0 {
+		return 0, errno.ShopNotExistErr
+	}
 	return shopInfo.ShopId, nil
 }
 
