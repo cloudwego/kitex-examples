@@ -5,7 +5,7 @@ go 1.16
 require (
 	github.com/apache/thrift v0.15.0
 	github.com/appleboy/gin-jwt/v2 v2.8.0
-	github.com/cloudwego/kitex v0.2.0
+	github.com/cloudwego/kitex v0.2.1
 	github.com/gin-gonic/gin v1.7.7
 	github.com/kitex-contrib/obs-opentelemetry v0.0.0-20220323032334-353a6ad0baaa
 	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20220323032334-353a6ad0baaa
