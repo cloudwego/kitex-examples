@@ -20,6 +20,161 @@
     "host": "localhost:8080",
     "basePath": "/",
     "paths": {
+        "/product/brand_create": {
+            "post": {
+                "description": "商家绑定品牌，返回品牌ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "商品模块-品牌子模块"
+                ],
+                "summary": "商家绑定品牌",
+                "parameters": [
+                    {
+                        "description": "品牌信息",
+                        "name": "shopSettleParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handlers.BrandAddParam"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Bearer $token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/brand_del": {
+            "post": {
+                "description": "商家删除品牌",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "商品模块-品牌子模块"
+                ],
+                "summary": "商家删除品牌",
+                "parameters": [
+                    {
+                        "description": "品牌信息",
+                        "name": "shopSettleParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handlers.BrandDelParam"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Bearer $token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/brand_update": {
+            "post": {
+                "description": "商家更新品牌信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "商品模块-品牌子模块"
+                ],
+                "summary": "商家更新品牌信息",
+                "parameters": [
+                    {
+                        "description": "品牌信息",
+                        "name": "shopSettleParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handlers.BrandEditParam"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Bearer $token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/get_brands": {
+            "get": {
+                "description": "商家绑定品牌查询",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "商品模块-品牌子模块"
+                ],
+                "summary": "商家绑定品牌查询",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer $token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.Response"
+                        }
+                    }
+                }
+            }
+        },
         "/shop/id": {
             "get": {
                 "description": "通过用户ID查询商家ID",
@@ -163,6 +318,51 @@
         }
     },
     "definitions": {
+        "handlers.BrandAddParam": {
+            "type": "object",
+            "properties": {
+                "brand_name": {
+                    "type": "string"
+                },
+                "brand_story": {
+                    "type": "string"
+                },
+                "logo": {
+                    "type": "string"
+                }
+            }
+        },
+        "handlers.BrandDelParam": {
+            "type": "object",
+            "required": [
+                "brand_id"
+            ],
+            "properties": {
+                "brand_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "handlers.BrandEditParam": {
+            "type": "object",
+            "required": [
+                "brand_id"
+            ],
+            "properties": {
+                "brand_id": {
+                    "type": "integer"
+                },
+                "brand_name": {
+                    "type": "string"
+                },
+                "brand_story": {
+                    "type": "string"
+                },
+                "logo": {
+                    "type": "string"
+                }
+            }
+        },
         "handlers.LoginResponse": {
             "type": "object",
             "properties": {

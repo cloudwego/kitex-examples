@@ -39,3 +39,20 @@ type LoginResponse struct {
 type ShopSettleParam struct {
 	ShopName string `json:"shop_name"`
 }
+
+type BrandAddParam struct {
+	BrandName  string `json:"brand_name"`
+	Logo       string `json:"logo"`
+	BrandStory string `json:"brand_story"`
+}
+
+type BrandEditParam struct {
+	BrandId    int64   `json:"brand_id" binding:"required"`
+	BrandName  *string `json:"brand_name"`
+	Logo       *string `json:"logo"`
+	BrandStory *string `json:"brand_story"`
+}
+
+type BrandDelParam struct {
+	BrandId int64 `json:"brand_id" binding:"required"`
+}

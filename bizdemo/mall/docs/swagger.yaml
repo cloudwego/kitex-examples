@@ -1,5 +1,34 @@
 basePath: /
 definitions:
+  handlers.BrandAddParam:
+    properties:
+      brand_name:
+        type: string
+      brand_story:
+        type: string
+      logo:
+        type: string
+    type: object
+  handlers.BrandDelParam:
+    properties:
+      brand_id:
+        type: integer
+    required:
+    - brand_id
+    type: object
+  handlers.BrandEditParam:
+    properties:
+      brand_id:
+        type: integer
+      brand_name:
+        type: string
+      brand_story:
+        type: string
+      logo:
+        type: string
+    required:
+    - brand_id
+    type: object
   handlers.LoginResponse:
     properties:
       code:
@@ -42,6 +71,108 @@ info:
   title: Mall
   version: "1.0"
 paths:
+  /product/brand_create:
+    post:
+      consumes:
+      - application/json
+      description: 商家绑定品牌，返回品牌ID
+      parameters:
+      - description: 品牌信息
+        in: body
+        name: shopSettleParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BrandAddParam'
+      - description: Bearer $token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      summary: 商家绑定品牌
+      tags:
+      - 商品模块-品牌子模块
+  /product/brand_del:
+    post:
+      consumes:
+      - application/json
+      description: 商家删除品牌
+      parameters:
+      - description: 品牌信息
+        in: body
+        name: shopSettleParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BrandDelParam'
+      - description: Bearer $token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      summary: 商家删除品牌
+      tags:
+      - 商品模块-品牌子模块
+  /product/brand_update:
+    post:
+      consumes:
+      - application/json
+      description: 商家更新品牌信息
+      parameters:
+      - description: 品牌信息
+        in: body
+        name: shopSettleParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BrandEditParam'
+      - description: Bearer $token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      summary: 商家更新品牌信息
+      tags:
+      - 商品模块-品牌子模块
+  /product/get_brands:
+    get:
+      consumes:
+      - application/json
+      description: 商家绑定品牌查询
+      parameters:
+      - description: Bearer $token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      summary: 商家绑定品牌查询
+      tags:
+      - 商品模块-品牌子模块
   /shop/id:
     get:
       consumes:

@@ -43,8 +43,38 @@
 * Kibana ES数据可视化组件
 * RocketMQ 消息组件
 ## 业务模型设计
-### 商品模块
-* category
+### 用户服务
+* t_user
+```sql
+create table t_user
+(
+    id         bigint unsigned auto_increment primary key,
+    created_at datetime(3) null,
+    updated_at datetime(3) null,
+    deleted_at datetime(3) null,
+    user_name  longtext    null,
+    password   longtext    null
+);
+```
+### 商家服务
+* t_shop
+```sql
+create table t_shop
+(
+    id         bigint unsigned auto_increment primary key,
+    created_at datetime(3)     null,
+    updated_at datetime(3)     null,
+    deleted_at datetime(3)     null,
+    shop_id    bigint          null,
+    shop_name  longtext        null,
+    user_id    bigint unsigned null
+);
+```
+### 商品服务
+* t_category
+* t_brand
+* t_product
+* t_sku
 ## api接口文档
 使用swagger进行接口文档管理&接口测试：`http://localhost:8080/swagger/index.html#/`
 ## 启动服务

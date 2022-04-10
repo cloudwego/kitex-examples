@@ -77,6 +77,13 @@ func main() {
 	shopGroup.POST("/settle", handlers.SettleShop)
 	shopGroup.GET("/id", handlers.GetShopId)
 
+	productGroup := r.Group("/product")
+	productGroup.Use(handlers.AuthMiddleware.MiddlewareFunc())
+	productGroup.POST("/brand_create", handlers.BrandCreate)
+	productGroup.POST("/brand_del", handlers.BrandDel)
+	productGroup.POST("/brand_update", handlers.BrandUpdate)
+	productGroup.GET("/get_brands", handlers.GetBrands)
+
 	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json") // The url pointing to API definition
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 

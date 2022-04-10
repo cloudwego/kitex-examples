@@ -4,4 +4,5 @@ package client
 func Init() {
 	initUserRpc()
 	initShopRpc()
+	initProductRpc()
 }

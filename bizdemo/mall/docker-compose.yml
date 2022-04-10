@@ -31,3 +31,22 @@ services:
       - ALLOW_NONE_AUTHENTICATION=yes
     ports:
       - 2379:2379
+  elasticsearch:
+    image: elasticsearch:7.6.2
+    environment:
+      - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
+      - "discovery.type=single-node" #以单一节点模式启动
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
+    ports:
+      - 9200:9200
+      - 9300:9300
+  kibana:
+    image: kibana:7.6.2
+    links:
+      - elasticsearch:es #可以用es这个域名访问elasticsearch服务
+    depends_on:
+      - elasticsearch #kibana在elasticsearch启动之后再启动
+    environment:
+      - "elasticsearch.hosts=http://es:9200" #设置访问elasticsearch的地址
+    ports:
+      - 5601:5601
