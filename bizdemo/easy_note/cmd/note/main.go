@@ -19,6 +19,8 @@ import (
 	"context"
 	"net"
 
+	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
+
 	"github.com/kitex-contrib/registry-nacos/registry"
 
 	"github.com/kitex-contrib/obs-opentelemetry/provider"
@@ -42,6 +44,9 @@ func Init() {
 }
 
 func main() {
+	klog.SetLogger(kitexlogrus.NewLogger())
+	klog.SetLevel(klog.LevelDebug)
+
 	r, err := registry.NewDefaultNacosRegistry()
 	if err != nil {
 		panic(err)

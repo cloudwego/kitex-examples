@@ -20,6 +20,8 @@ import (
 	"net/http"
 	"time"
 
+	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
+
 	"github.com/kitex-contrib/obs-opentelemetry/provider"
 
 	jwt "github.com/appleboy/gin-jwt/v2"
@@ -36,6 +38,8 @@ func Init() {
 }
 
 func main() {
+	klog.SetLogger(kitexlogrus.NewLogger())
+	klog.SetLevel(klog.LevelDebug)
 	p := provider.NewOpenTelemetryProvider(
 		provider.WithServiceName(constants.ApiServiceName),
 		provider.WithInsecure(),

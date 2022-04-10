@@ -28,7 +28,7 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"
-	trace "github.com/kitex-contrib/tracer-opentracing"
+	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 )
 
 var userClient userservice.Client
@@ -46,7 +46,7 @@ func initUserRpc() {
 		client.WithRPCTimeout(3*time.Second),              // rpc timeout
 		client.WithConnectTimeout(50*time.Millisecond),    // conn timeout
 		client.WithFailureRetry(retry.NewFailurePolicy()), // retry
-		client.WithSuite(trace.NewDefaultClientSuite()),   // tracer
+		client.WithSuite(tracing.NewClientSuite()),        // tracer
 		client.WithResolver(r),                            // resolver
 	)
 	if err != nil {
