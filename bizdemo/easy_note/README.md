@@ -51,7 +51,7 @@ req    resp                            │                                   res
 
 - Middleware、Rate Limiting、Request Retry、Timeout Control、Connection Multiplexing
 - Tracing
-  - use jaeger to tracing
+  - use jaeger and open-telemetry to tracing
 - Customized BoundHandler
   - achieve CPU utilization rate customized bound handler
 - Service Discovery and Register
