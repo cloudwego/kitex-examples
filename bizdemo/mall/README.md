@@ -73,6 +73,19 @@ create table t_shop
 ### 商品服务
 * t_category
 * t_brand
+```sql
+create table t_brand
+(
+    id          bigint unsigned auto_increment primary key,
+    created_at  datetime(3) null,
+    updated_at  datetime(3) null,
+    deleted_at  datetime(3) null,
+    shop_id     bigint      null,
+    name        longtext    null,
+    logo        longtext    null,
+    brand_story longtext    null
+);
+```
 * t_product
 * t_sku
 ## api接口文档
