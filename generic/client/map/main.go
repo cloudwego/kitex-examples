@@ -47,7 +47,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		klog.Debugf("response: %#v", resp)
+		klog.Infof("response: %#v", resp)
 		time.Sleep(time.Second)
 	}
 }

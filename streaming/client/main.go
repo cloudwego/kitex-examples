@@ -45,7 +45,7 @@ func doStreamRequestEcho(client echo.Client) error {
 	if err != nil {
 		return err
 	}
-	klog.Debugf("doStreamRequestEcho message received: %v\n", resp.Message)
+	klog.Infof("doStreamRequestEcho message received: %v\n", resp.Message)
 	return nil
 }
 
@@ -59,12 +59,12 @@ func doStreamResponseEcho(client echo.Client) error {
 	for {
 		if resp, err := streamCli.Recv(); err != nil {
 			if err == io.EOF {
-				klog.Debug("doStreamResponseEcho receive done")
+				klog.Info("doStreamResponseEcho receive done")
 				return nil
 			}
 			return err
 		} else {
-			klog.Debugf("doStreamResponseEcho message received: %v\n", resp.Message)
+			klog.Infof("doStreamResponseEcho message received: %v\n", resp.Message)
 		}
 		time.Sleep(time.Second)
 	}
@@ -92,12 +92,12 @@ func doBidirectionalEcho(client echo.Client) error {
 		for {
 			if resp, err := streamCli.Recv(); err != nil {
 				if err == io.EOF {
-					klog.Debug("doBidirectionalEcho receive done")
+					klog.Info("doBidirectionalEcho receive done")
 					return nil
 				}
 				return err
 			} else {
-				klog.Debugf("doBidirectionalEcho message received: %v\n", resp.Message)
+				klog.Infof("doBidirectionalEcho message received: %v\n", resp.Message)
 			}
 			time.Sleep(time.Second)
 		}
@@ -110,19 +110,19 @@ func main() {
 	if err != nil {
 		klog.Fatal(err)
 	}
-	klog.Debug("doStreamRequestEcho start")
+	klog.Info("doStreamRequestEcho start")
 	if err := doStreamRequestEcho(client); err != nil {
 		klog.Fatal(err)
 	}
-	klog.Debug("doStreamRequestEcho finish")
-	klog.Debug("doStreamResponseEcho start")
+	klog.Info("doStreamRequestEcho finish")
+	klog.Info("doStreamResponseEcho start")
 	if err := doStreamResponseEcho(client); err != nil {
 		klog.Fatal(err)
 	}
-	klog.Debug("doStreamResponseEcho finish")
-	klog.Debug("doBidirectionalEcho start")
+	klog.Info("doStreamResponseEcho finish")
+	klog.Info("doBidirectionalEcho start")
 	if err := doBidirectionalEcho(client); err != nil {
 		klog.Fatal(err)
 	}
-	klog.Debug("doBidirectionalEcho finish")
+	klog.Info("doBidirectionalEcho finish")
 }

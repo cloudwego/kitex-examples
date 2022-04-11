@@ -35,7 +35,7 @@ type EchoImpl struct{}
 
 // StreamRequestEcho implements the Echo interface.
 func (s *EchoImpl) StreamRequestEcho(stream pbapi.Echo_StreamRequestEchoServer) (err error) {
-	klog.Debug("StreamRequestEcho called")
+	klog.Info("StreamRequestEcho called")
 	var msgs []string
 	for {
 		req, err := stream.Recv()
@@ -45,7 +45,7 @@ func (s *EchoImpl) StreamRequestEcho(stream pbapi.Echo_StreamRequestEchoServer) 
 			}
 			return err
 		}
-		klog.Debugf("message received: %v\n", req.Message)
+		klog.Infof("message received: %v\n", req.Message)
 		msgs = append(msgs, req.Message)
 		time.Sleep(time.Second)
 	}
@@ -54,7 +54,7 @@ func (s *EchoImpl) StreamRequestEcho(stream pbapi.Echo_StreamRequestEchoServer) 
 
 // StreamResponseEcho implements the Echo interface.
 func (s *EchoImpl) StreamResponseEcho(req *pbapi.Request, stream pbapi.Echo_StreamResponseEchoServer) (err error) {
-	klog.Debug("StreamResponseEcho called")
+	klog.Info("StreamResponseEcho called")
 	resp := &pbapi.Response{}
 	for i := 0; i < 10; i++ {
 		resp.Message = fmt.Sprintf("%v -> %dth response", req.Message, i)
@@ -69,7 +69,7 @@ func (s *EchoImpl) StreamResponseEcho(req *pbapi.Request, stream pbapi.Echo_Stre
 
 // BidirectionalEcho implements the Echo interface.
 func (s *EchoImpl) BidirectionalEcho(stream pbapi.Echo_BidirectionalEchoServer) (err error) {
-	klog.Debug("BidirectionalEcho called")
+	klog.Info("BidirectionalEcho called")
 	var eg errgroup.Group
 	eg.Go(func() error {
 		for {
@@ -80,7 +80,7 @@ func (s *EchoImpl) BidirectionalEcho(stream pbapi.Echo_BidirectionalEchoServer) 
 				}
 				return err
 			}
-			klog.Debugf("message received: %v\n", req.Message)
+			klog.Infof("message received: %v\n", req.Message)
 			time.Sleep(time.Second)
 		}
 	})

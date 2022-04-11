@@ -31,7 +31,7 @@ type GenericServiceImpl struct{}
 // GenericCall implements the Echo interface.
 func (s *GenericServiceImpl) GenericCall(ctx context.Context, method string, request interface{}) (response interface{}, err error) {
 	m := request.(map[string]interface{})
-	klog.Debugf("Recv: %v\n", m)
+	klog.Infof("Recv: %v\n", m)
 	return map[string]interface{}{
 		"message": m["message"],
 	}, nil
