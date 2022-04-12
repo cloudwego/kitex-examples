@@ -17,7 +17,6 @@ package main
 
 import (
 	"context"
-	"net"
 
 	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
 
@@ -56,21 +55,16 @@ func main() {
 	)
 	defer p.Shutdown(context.Background())
 
-	addr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:8889")
-	if err != nil {
-		panic(err)
-	}
 	Init()
 	svr := user.NewServer(new(UserServiceImpl),
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: constants.UserServiceName}), // server name
 		server.WithMiddleware(middleware.CommonMiddleware),                                             // middleware
 		server.WithMiddleware(middleware.ServerMiddleware),
-		server.WithServiceAddr(addr),                                       // address
 		server.WithLimit(&limit.Option{MaxConnections: 1000, MaxQPS: 100}), // limit
-		server.WithMuxTransport(),                                          // Multiplex
-		server.WithSuite(tracing.NewServerSuite()),                         // tracer
-		server.WithBoundHandler(bound.NewCpuLimitHandler()),                // BoundHandler
-		server.WithRegistry(r),                                             // registry
+		server.WithMuxTransport(),                           // Multiplex
+		server.WithSuite(tracing.NewServerSuite()),          // tracer
+		server.WithBoundHandler(bound.NewCpuLimitHandler()), // BoundHandler
+		server.WithRegistry(r),                              // registry
 	)
 	err = svr.Run()
 	if err != nil {

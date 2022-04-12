@@ -9,7 +9,7 @@ require (
 	github.com/gin-gonic/gin v1.7.7
 	github.com/kitex-contrib/obs-opentelemetry v0.0.0-20220323032334-353a6ad0baaa
 	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20220323032334-353a6ad0baaa
-	github.com/kitex-contrib/registry-nacos v0.0.0-20220410054737-ef179f188106
+	github.com/kitex-contrib/registry-nacos v0.0.0-20220412124825-167472cc1f0a
 	github.com/shirou/gopsutil v3.21.11+incompatible
 	github.com/tklauser/go-sysconf v0.3.9 // indirect
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect

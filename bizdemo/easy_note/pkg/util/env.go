@@ -13,39 +13,19 @@
 // limitations under the License.
 //
 
-package db
+package util
 
 import (
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/util"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
-	gormopentracing "gorm.io/plugin/opentracing"
+	"os"
+
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 )
 
-var DB *gorm.DB
-
-// Init init DB
-func Init() {
-	var err error
-	DB, err = gorm.Open(mysql.Open(util.DSN()),
-		&gorm.Config{
-			PrepareStmt:            true,
-			SkipDefaultTransaction: true,
-		},
-	)
-	if err != nil {
-		panic(err)
+// DSN  Get DSN from environment variable
+func DSN() string {
+	dsn := os.Getenv(constants.DSN)
+	if len(dsn) == 0 {
+		return constants.MySQLDefaultDSN
 	}
-
-	if err = DB.Use(gormopentracing.New()); err != nil {
-		panic(err)
-	}
-
-	m := DB.Migrator()
-	if m.HasTable(&Note{}) {
-		return
-	}
-	if err = m.CreateTable(&Note{}); err != nil {
-		panic(err)
-	}
+	return dsn
 }
