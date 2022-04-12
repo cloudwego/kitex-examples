@@ -7,5 +7,6 @@ WORKDIR /code
 ADD . .
 RUN go env -w GOPROXY=https://goproxy.io,direct
 RUN go env -w GO111MODULE=on
+RUN cd cmd/api && go build -o api-server
 
-CMD cd cmd/api && sh run.sh
+CMD cd cmd/api && ./api-server
