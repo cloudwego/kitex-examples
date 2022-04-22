@@ -158,8 +158,6 @@ github.com/kitex-contrib/obs-opentelemetry v0.0.0-20220323032334-353a6ad0baaa h1
 github.com/kitex-contrib/obs-opentelemetry v0.0.0-20220323032334-353a6ad0baaa/go.mod h1:qo0QaBAjBRxTuvfWitT62vL5bp6FxSmpJOB2VXJBZx4=
 github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20220323032334-353a6ad0baaa h1:MTsCASPs/IT3W5LkIJBk70GdPFMHS4r6gMqLFbA8j6A=
 github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20220323032334-353a6ad0baaa/go.mod h1:Eml/0Z+CqgGIPf9JXzLGu+N9NJoy2x5pqypN+hmKArE=
-github.com/kitex-contrib/registry-nacos v0.0.0-20220410054737-ef179f188106 h1:+5UTgjd5x1RUe+S+z+uymWpK10EtN6zcjgW7wUsb628=
-github.com/kitex-contrib/registry-nacos v0.0.0-20220410054737-ef179f188106/go.mod h1:ZwcSWrSWc+InPuauVDDBn6E2KaGp8dORl+QA7D78xV8=
 github.com/kitex-contrib/registry-nacos v0.0.0-20220412124825-167472cc1f0a h1:dZ+N4cX/zWg/j5CkaT8hzJXA6cI0GyBRVyaaqrbd7Iw=
 github.com/kitex-contrib/registry-nacos v0.0.0-20220412124825-167472cc1f0a/go.mod h1:ZwcSWrSWc+InPuauVDDBn6E2KaGp8dORl+QA7D78xV8=
 github.com/kitex-contrib/tracer-opentracing v0.0.2/go.mod h1:mprt5pxqywFQxlHb7ugfiMdKbABTLI9YrBYs9WmlK5Q=
