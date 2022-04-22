@@ -20,22 +20,33 @@ import (
 	"net/http"
 	"time"
 
+	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
+
+	"github.com/kitex-contrib/obs-opentelemetry/provider"
+
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/handlers"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/tracer"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/gin-gonic/gin"
 )
 
 func Init() {
-	tracer.InitJaeger(constants.ApiServiceName)
 	rpc.InitRPC()
 }
 
 func main() {
+	klog.SetLogger(kitexlogrus.NewLogger())
+	klog.SetLevel(klog.LevelDebug)
+	p := provider.NewOpenTelemetryProvider(
+		provider.WithServiceName(constants.ApiServiceName),
+		provider.WithInsecure(),
+		provider.WithEnableMetrics(false),
+	)
+	defer p.Shutdown(context.Background())
+
 	Init()
 	r := gin.New()
 	authMiddleware, _ := jwt.New(&jwt.GinJWTMiddleware{

@@ -19,6 +19,8 @@ import (
 	"context"
 	"time"
 
+	"github.com/kitex-contrib/registry-nacos/resolver"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo/userservice"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
@@ -26,18 +28,16 @@ import (
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/middleware"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"
-	etcd "github.com/kitex-contrib/registry-etcd"
-	trace "github.com/kitex-contrib/tracer-opentracing"
+	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 )
 
 var userClient userservice.Client
 
 func initUserRpc() {
-	r, err := etcd.NewEtcdResolver([]string{constants.EtcdAddress})
+	r, err := resolver.NewDefaultNacosResolver()
 	if err != nil {
 		panic(err)
 	}
-
 	c, err := userservice.NewClient(
 		constants.UserServiceName,
 		client.WithMiddleware(middleware.CommonMiddleware),
@@ -46,7 +46,7 @@ func initUserRpc() {
 		client.WithRPCTimeout(3*time.Second),              // rpc timeout
 		client.WithConnectTimeout(50*time.Millisecond),    // conn timeout
 		client.WithFailureRetry(retry.NewFailurePolicy()), // retry
-		client.WithSuite(trace.NewDefaultClientSuite()),   // tracer
+		client.WithSuite(tracing.NewClientSuite()),        // tracer
 		client.WithResolver(r),                            // resolver
 	)
 	if err != nil {

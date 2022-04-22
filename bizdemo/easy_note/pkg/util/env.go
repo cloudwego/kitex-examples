@@ -13,23 +13,19 @@
 // limitations under the License.
 //
 
-package tracer
+package util
 
 import (
-	"fmt"
+	"os"
 
-	"github.com/opentracing/opentracing-go"
-	"github.com/uber/jaeger-client-go"
-	jaegercfg "github.com/uber/jaeger-client-go/config"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 )
 
-func InitJaeger(service string) {
-	cfg, _ := jaegercfg.FromEnv()
-	cfg.ServiceName = service
-	tracer, _, err := cfg.NewTracer(jaegercfg.Logger(jaeger.StdLogger))
-	if err != nil {
-		panic(fmt.Sprintf("ERROR: cannot init Jaeger: %v\n", err))
+// DSN  Get DSN from environment variable
+func DSN() string {
+	dsn := os.Getenv(constants.DSN)
+	if len(dsn) == 0 {
+		return constants.MySQLDefaultDSN
 	}
-	opentracing.InitGlobalTracer(tracer)
-	return
+	return dsn
 }

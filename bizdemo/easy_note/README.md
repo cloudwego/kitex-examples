@@ -30,7 +30,7 @@ req    resp                            │                                   res
  │      │                              │                                    │       │
  │      │                   ┌──────────▼─────────┐                          │       │
  │      │                   │                    │                          │       │
- │      │       ┌───────────►       Etcd         ◄─────────────────┐        │       │
+ │      │       ┌───────────►       Nacos        ◄─────────────────┐        │       │
  │      │       │           │                    │                 │        │       │
  │      │       │           └────────────────────┘                 │        │       │
  │      │       │                                                  │        │       │
@@ -51,11 +51,11 @@ req    resp                            │                                   res
 
 - Middleware、Rate Limiting、Request Retry、Timeout Control、Connection Multiplexing
 - Tracing
-  - use jaeger to tracing
+  - use jaeger and open-telemetry to tracing
 - Customized BoundHandler
   - achieve CPU utilization rate customized bound handler
 - Service Discovery and Register
-  - use [registry-etcd](https://github.com/kitex-contrib/registry-etcd) to discovery and register service
+  - use [registry-nacos](https://github.com/kitex-contrib/registry-nacos) to discovery and register service
 
 ### catalog introduce
 
