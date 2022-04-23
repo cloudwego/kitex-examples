@@ -31,7 +31,7 @@ import (
 // @Accept json
 // @Produce json
 // @Param shopSettleParam body handlers.BrandDelParam true "品牌信息"
-// @Param Authorization header string true "Bearer $token"
+// @Security TokenAuth
 // @Success 200 {object} handlers.Response
 // @Router /product/brand_del [post]
 func BrandDel(c *gin.Context) {

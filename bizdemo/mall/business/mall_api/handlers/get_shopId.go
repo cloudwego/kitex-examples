@@ -29,7 +29,7 @@ import (
 // @Tags 商家模块
 // @Accept json
 // @Produce json
-// @Param Authorization header string true "Bearer $token"
+// @Security TokenAuth
 // @Success 200 {object} handlers.Response
 // @Router /shop/id [get]
 func GetShopId(c *gin.Context) {

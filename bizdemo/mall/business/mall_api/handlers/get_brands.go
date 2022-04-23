@@ -30,7 +30,7 @@ import (
 // @Tags 商品模块-品牌子模块
 // @Accept json
 // @Produce json
-// @Param Authorization header string true "Bearer $token"
+// @Security TokenAuth
 // @Success 200 {object} handlers.Response
 // @Router /product/get_brands [get]
 func GetBrands(c *gin.Context) {

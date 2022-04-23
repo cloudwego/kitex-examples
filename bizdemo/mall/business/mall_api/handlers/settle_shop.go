@@ -30,7 +30,7 @@ import (
 // @Accept json
 // @Produce json
 // @Param shopSettleParam body handlers.ShopSettleParam true "入驻材料"
-// @Param Authorization header string true "Bearer $token"
+// @Security TokenAuth
 // @Success 200 {object} handlers.Response
 // @Router /shop/settle [post]
 func SettleShop(c *gin.Context) {

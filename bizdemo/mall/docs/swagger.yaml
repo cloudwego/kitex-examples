@@ -83,11 +83,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/handlers.BrandAddParam'
-      - description: Bearer $token
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -95,6 +90,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
       summary: 商家绑定品牌
       tags:
       - 商品模块-品牌子模块
@@ -110,11 +107,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/handlers.BrandDelParam'
-      - description: Bearer $token
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -122,6 +114,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
       summary: 商家删除品牌
       tags:
       - 商品模块-品牌子模块
@@ -137,11 +131,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/handlers.BrandEditParam'
-      - description: Bearer $token
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -149,6 +138,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
       summary: 商家更新品牌信息
       tags:
       - 商品模块-品牌子模块
@@ -157,12 +148,6 @@ paths:
       consumes:
       - application/json
       description: 商家绑定品牌查询
-      parameters:
-      - description: Bearer $token
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -170,6 +155,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
       summary: 商家绑定品牌查询
       tags:
       - 商品模块-品牌子模块
@@ -178,12 +165,6 @@ paths:
       consumes:
       - application/json
       description: 通过用户ID查询商家ID
-      parameters:
-      - description: Bearer $token
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -191,6 +172,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
       summary: 商家ID查询
       tags:
       - 商家模块
@@ -206,11 +189,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/handlers.ShopSettleParam'
-      - description: Bearer $token
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -218,6 +196,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
       summary: 商家入驻
       tags:
       - 商家模块
@@ -267,4 +247,9 @@ paths:
       - 用户模块
 schemes:
 - http
+securityDefinitions:
+  TokenAuth:
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"

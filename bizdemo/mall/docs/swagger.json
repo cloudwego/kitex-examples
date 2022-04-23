@@ -22,6 +22,11 @@
     "paths": {
         "/product/brand_create": {
             "post": {
+                "security": [
+                    {
+                        "TokenAuth": []
+                    }
+                ],
                 "description": "商家绑定品牌，返回品牌ID",
                 "consumes": [
                     "application/json"
@@ -42,13 +47,6 @@
                         "schema": {
                             "$ref": "#/definitions/handlers.BrandAddParam"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "Bearer $token",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -63,6 +61,11 @@
         },
         "/product/brand_del": {
             "post": {
+                "security": [
+                    {
+                        "TokenAuth": []
+                    }
+                ],
                 "description": "商家删除品牌",
                 "consumes": [
                     "application/json"
@@ -83,13 +86,6 @@
                         "schema": {
                             "$ref": "#/definitions/handlers.BrandDelParam"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "Bearer $token",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -104,6 +100,11 @@
         },
         "/product/brand_update": {
             "post": {
+                "security": [
+                    {
+                        "TokenAuth": []
+                    }
+                ],
                 "description": "商家更新品牌信息",
                 "consumes": [
                     "application/json"
@@ -124,13 +125,6 @@
                         "schema": {
                             "$ref": "#/definitions/handlers.BrandEditParam"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "Bearer $token",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -145,6 +139,11 @@
         },
         "/product/get_brands": {
             "get": {
+                "security": [
+                    {
+                        "TokenAuth": []
+                    }
+                ],
                 "description": "商家绑定品牌查询",
                 "consumes": [
                     "application/json"
@@ -156,15 +155,6 @@
                     "商品模块-品牌子模块"
                 ],
                 "summary": "商家绑定品牌查询",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Bearer $token",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -177,6 +167,11 @@
         },
         "/shop/id": {
             "get": {
+                "security": [
+                    {
+                        "TokenAuth": []
+                    }
+                ],
                 "description": "通过用户ID查询商家ID",
                 "consumes": [
                     "application/json"
@@ -188,15 +183,6 @@
                     "商家模块"
                 ],
                 "summary": "商家ID查询",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Bearer $token",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -209,6 +195,11 @@
         },
         "/shop/settle": {
             "post": {
+                "security": [
+                    {
+                        "TokenAuth": []
+                    }
+                ],
                 "description": "商家入驻，返回ShopID",
                 "consumes": [
                     "application/json"
@@ -229,13 +220,6 @@
                         "schema": {
                             "$ref": "#/definitions/handlers.ShopSettleParam"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "Bearer $token",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -407,6 +391,13 @@
                     "type": "string"
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "TokenAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }
