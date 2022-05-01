@@ -18,14 +18,12 @@ package bound
 import (
 	"context"
 	"fmt"
-	"net"
-	"time"
-
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/remote"
 	"github.com/shirou/gopsutil/cpu"
+	"net"
 )
 
 var _ remote.InboundHandler = &cpuLimitHandler{}
@@ -62,6 +60,6 @@ func (c *cpuLimitHandler) OnMessage(ctx context.Context, args, result remote.Mes
 }
 
 func cpuPercent() float64 {
-	percent, _ := cpu.Percent(time.Second, false)
+	percent, _ := cpu.Percent(0, false)
 	return percent[0]
 }
