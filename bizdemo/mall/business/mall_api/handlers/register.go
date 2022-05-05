@@ -46,7 +46,6 @@ func Register(c *gin.Context) {
 		UserName: registerParam.UserName,
 		Password: registerParam.PassWord,
 	})
-
 	if err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return

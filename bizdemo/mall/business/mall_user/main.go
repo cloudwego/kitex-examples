@@ -15,6 +15,8 @@
 package main
 
 import (
+	"net"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_user/dal"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_user/kitex_gen/cmp/ecom/user/userservice"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/conf"
@@ -22,7 +24,6 @@ import (
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	etcd "github.com/kitex-contrib/registry-etcd"
-	"net"
 )
 
 func Init() {

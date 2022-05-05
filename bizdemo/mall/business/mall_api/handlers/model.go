@@ -15,10 +15,11 @@
 package handlers
 
 import (
+	"net/http"
+
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/errno"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 var AuthMiddleware *jwt.GinJWTMiddleware

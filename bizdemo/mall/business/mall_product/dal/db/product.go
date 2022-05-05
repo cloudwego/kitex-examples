@@ -16,8 +16,7 @@ package db
 
 import "gorm.io/gorm"
 
-type SpecPrice struct {
-}
+type SpecPrice struct{}
 type Product struct {
 	gorm.Model
 	ProductId   int64    `json:"product_id"`  // 商品ID

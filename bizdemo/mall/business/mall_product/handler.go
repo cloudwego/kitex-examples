@@ -16,6 +16,7 @@ package main
 
 import (
 	"context"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_product/kitex_gen/cmp/ecom/product"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_product/pack"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_product/service"

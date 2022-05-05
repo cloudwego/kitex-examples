@@ -15,14 +15,15 @@
 package main
 
 import (
+	"log"
+	"net"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_product/dal"
 	product "github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_product/kitex_gen/cmp/ecom/product/productservice"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/conf"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	etcd "github.com/kitex-contrib/registry-etcd"
-	"log"
-	"net"
 )
 
 func Init() {

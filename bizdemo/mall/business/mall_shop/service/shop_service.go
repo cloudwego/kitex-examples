@@ -16,11 +16,12 @@ package service
 
 import (
 	"context"
+	"hash/crc32"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_shop/dal/db"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_shop/kitex_gen/cmp/ecom/shop"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/errno"
 	uuid "github.com/satori/go.uuid"
-	"hash/crc32"
 )
 
 type ShopService struct {

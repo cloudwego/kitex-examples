@@ -16,6 +16,8 @@ package client
 
 import (
 	"context"
+	"time"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_api/kitex_gen/cmp/ecom/shop"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_api/kitex_gen/cmp/ecom/shop/shopservice"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/conf"
@@ -23,7 +25,6 @@ import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"
 	etcd "github.com/kitex-contrib/registry-etcd"
-	"time"
 )
 
 var shopClient shopservice.Client

@@ -16,6 +16,7 @@ package pack
 
 import (
 	"errors"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_user/kitex_gen/base"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/errno"
 )
