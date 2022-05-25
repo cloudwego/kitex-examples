@@ -16,9 +16,10 @@ package main
 
 import (
 	"context"
+	"testing"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_user/kitex_gen/cmp/ecom/user"
 	"github.com/cloudwego/thriftgo/pkg/test"
-	"testing"
 )
 
 func TestUserServiceImpl_CreateUser(t *testing.T) {

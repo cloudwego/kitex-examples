@@ -16,6 +16,7 @@ package db
 
 import (
 	"context"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/conf"
 	"gorm.io/gorm"
 )

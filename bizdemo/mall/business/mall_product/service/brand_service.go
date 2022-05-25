@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
 package service
 
 import (
 	"context"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_product/dal/db"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_product/kitex_gen/cmp/ecom/product"
 )

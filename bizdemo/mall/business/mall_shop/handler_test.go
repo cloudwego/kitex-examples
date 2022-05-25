@@ -16,9 +16,10 @@ package main
 
 import (
 	"context"
+	"testing"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_shop/kitex_gen/cmp/ecom/shop"
 	"github.com/cloudwego/thriftgo/pkg/test"
-	"testing"
 )
 
 func TestShopServiceImpl_SettleShop(t *testing.T) {

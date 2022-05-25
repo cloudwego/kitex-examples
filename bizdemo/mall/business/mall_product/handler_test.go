@@ -16,9 +16,10 @@ package main
 
 import (
 	"context"
+	"testing"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_product/kitex_gen/cmp/ecom/product"
 	"github.com/cloudwego/thriftgo/pkg/test"
-	"testing"
 )
 
 func TestProductServiceImpl_AddBrand(t *testing.T) {

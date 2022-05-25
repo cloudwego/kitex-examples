@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
 package db
 
 import (
 	"context"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/conf"
 	"gorm.io/gorm"
 )

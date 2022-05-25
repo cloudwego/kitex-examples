@@ -12,17 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
 package main
 
 import (
+	"log"
+	"net"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_shop/dal"
 	shop "github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_shop/kitex_gen/cmp/ecom/shop/shopservice"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/conf"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	etcd "github.com/kitex-contrib/registry-etcd"
-	"log"
-	"net"
 )
 
 func Init() {

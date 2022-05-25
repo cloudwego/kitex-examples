@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
 package pack
 
 import (
 	"errors"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_product/kitex_gen/base"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/errno"
 )

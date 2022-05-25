@@ -12,16 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
 package service
 
 import (
 	"context"
 	"crypto/md5"
 	"fmt"
+	"io"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_user/dal/db"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_user/kitex_gen/cmp/ecom/user"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/errno"
-	"io"
 )
 
 type UserService struct {

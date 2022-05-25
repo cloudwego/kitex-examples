@@ -12,10 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
 package main
 
 import (
 	"context"
+	"net/http"
+	"time"
+
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_api/dal"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_api/dal/client"
@@ -27,8 +31,6 @@ import (
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"net/http"
-	"time"
 )
 
 func Init() {

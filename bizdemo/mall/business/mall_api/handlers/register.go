@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
 package handlers
 
 import (
@@ -46,7 +47,6 @@ func Register(c *gin.Context) {
 		UserName: registerParam.UserName,
 		Password: registerParam.PassWord,
 	})
-
 	if err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return
