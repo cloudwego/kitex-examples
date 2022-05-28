@@ -81,3 +81,41 @@ func (s *UserServiceImpl) CheckUser(ctx context.Context, req *user.CheckUserReq)
 	resp.BaseResp = pack.BuildBaseResp(errno.Success)
 	return resp, nil
 }
+
+// AddUserRole implements the UserServiceImpl interface.
+func (s *UserServiceImpl) AddUserRole(ctx context.Context, req *user.AddUserRoleReq) (resp *user.AddUserRoleResp, err error) {
+	resp = user.NewAddUserRoleResp()
+
+	err = service.NewUserRoleService(ctx).AddUserRole(req)
+	if err != nil {
+		resp.BaseResp = pack.BuildBaseResp(err)
+		return resp, nil
+	}
+	resp.BaseResp = pack.BuildBaseResp(errno.Success)
+	return resp, nil
+}
+
+// DelUserRole implements the UserServiceImpl interface.
+func (s *UserServiceImpl) DelUserRole(ctx context.Context, req *user.DelUserRoleReq) (resp *user.DelUserRoleResp, err error) {
+	resp = user.NewDelUserRoleResp()
+	err = service.NewUserRoleService(ctx).DelUserRole(req)
+	if err != nil {
+		resp.BaseResp = pack.BuildBaseResp(err)
+		return resp, nil
+	}
+	resp.BaseResp = pack.BuildBaseResp(errno.Success)
+	return resp, nil
+}
+
+// ValidateUserRole implements the UserServiceImpl interface.
+func (s *UserServiceImpl) ValidateUserRole(ctx context.Context, req *user.ValidateUserRolesReq) (resp *user.ValidateUserRoleResp, err error) {
+	resp = user.NewValidateUserRoleResp()
+	pass, err := service.NewUserRoleService(ctx).ValidateUserRole(req)
+	if err != nil {
+		resp.BaseResp = pack.BuildBaseResp(err)
+		return resp, nil
+	}
+	resp.IsPass = pass
+	resp.BaseResp = pack.BuildBaseResp(errno.Success)
+	return resp, nil
+}

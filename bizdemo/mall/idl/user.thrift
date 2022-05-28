@@ -16,6 +16,13 @@
 include "base.thrift"
 namespace go cmp.ecom.user
 
+enum Role {
+    Admin,                  // 超级管理员
+    CategoryOperator,       // 类目运营
+    QualificationOperator,  // 资质运营
+    ProductAuditor,         // 商品审核员
+}
+
 struct User {
     1: i64 UserId,
     2: string UserName
@@ -51,8 +58,43 @@ struct CheckUserResp {
     255: base.BaseResp BaseResp
 }
 
+struct AddUserRoleReq {
+    1: required string UserName,
+    2: required Role Role,
+}
+
+struct AddUserRoleResp {
+    255: base.BaseResp BaseResp
+}
+
+struct DelUserRoleReq {
+    1: required string UserName,
+    2: required Role Role,
+}
+
+struct DelUserRoleResp {
+    255: base.BaseResp BaseResp
+}
+
+struct ValidateUserRolesReq {
+    1: required string UserName,
+    2: required list<Role> Roles,
+}
+
+struct ValidateUserRoleResp {
+    1: bool IsPass,
+
+    255: base.BaseResp BaseResp
+}
+
 service UserService {
+    // 账户服务
     CreateUserResp CreateUser(1: CreateUserReq req)
     MGetUserResp MGetUser(1: MGetUserReq req)
     CheckUserResp CheckUser(1: CheckUserReq req)
+
+    // 权限服务
+    AddUserRoleResp AddUserRole(1: AddUserRoleReq req)
+    DelUserRoleResp DelUserRole(1: DelUserRoleReq req)
+    ValidateUserRoleResp ValidateUserRole(1: ValidateUserRolesReq req)
 }

@@ -16,9 +16,14 @@
 package conf
 
 const (
-	UserTableName  = "t_user"
-	ShopTableName  = "t_shop"
-	BrandTableName = "t_brand"
+	UserTableName              = "t_user"
+	UserRoleTableName          = "t_user_role"
+	ShopTableName              = "t_shop"
+	BrandTableName             = "t_brand"
+	CategoryTableName          = "t_category"
+	AttributeTableName         = "t_attribute"
+	ShopCategoryTableName      = "t_shop_category"
+	CategoryAttributeTableName = "t_category_attribute"
 
 	SecretKey   = "secret key"
 	IdentityKey = "id"

@@ -14,6 +14,9 @@ type Client interface {
 	CreateUser(ctx context.Context, req *user.CreateUserReq, callOptions ...callopt.Option) (r *user.CreateUserResp, err error)
 	MGetUser(ctx context.Context, req *user.MGetUserReq, callOptions ...callopt.Option) (r *user.MGetUserResp, err error)
 	CheckUser(ctx context.Context, req *user.CheckUserReq, callOptions ...callopt.Option) (r *user.CheckUserResp, err error)
+	AddUserRole(ctx context.Context, req *user.AddUserRoleReq, callOptions ...callopt.Option) (r *user.AddUserRoleResp, err error)
+	DelUserRole(ctx context.Context, req *user.DelUserRoleReq, callOptions ...callopt.Option) (r *user.DelUserRoleResp, err error)
+	ValidateUserRole(ctx context.Context, req *user.ValidateUserRolesReq, callOptions ...callopt.Option) (r *user.ValidateUserRoleResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -58,4 +61,19 @@ func (p *kUserServiceClient) MGetUser(ctx context.Context, req *user.MGetUserReq
 func (p *kUserServiceClient) CheckUser(ctx context.Context, req *user.CheckUserReq, callOptions ...callopt.Option) (r *user.CheckUserResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.CheckUser(ctx, req)
+}
+
+func (p *kUserServiceClient) AddUserRole(ctx context.Context, req *user.AddUserRoleReq, callOptions ...callopt.Option) (r *user.AddUserRoleResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.AddUserRole(ctx, req)
+}
+
+func (p *kUserServiceClient) DelUserRole(ctx context.Context, req *user.DelUserRoleReq, callOptions ...callopt.Option) (r *user.DelUserRoleResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.DelUserRole(ctx, req)
+}
+
+func (p *kUserServiceClient) ValidateUserRole(ctx context.Context, req *user.ValidateUserRolesReq, callOptions ...callopt.Option) (r *user.ValidateUserRoleResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.ValidateUserRole(ctx, req)
 }

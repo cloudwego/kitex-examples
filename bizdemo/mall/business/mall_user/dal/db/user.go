@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
 package db
 
 import (
@@ -53,7 +54,7 @@ func CreateUser(ctx context.Context, users []*User) error {
 func QueryUser(ctx context.Context, userName string) ([]*User, error) {
 	res := make([]*User, 0)
 	err := DB.WithContext(ctx).Where("user_name = ?", userName).Find(&res).Error
-	if err != nil {
+	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
 	return res, nil

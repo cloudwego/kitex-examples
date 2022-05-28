@@ -19,9 +19,12 @@ func NewServiceInfo() *kitex.ServiceInfo {
 	serviceName := "UserService"
 	handlerType := (*user.UserService)(nil)
 	methods := map[string]kitex.MethodInfo{
-		"CreateUser": kitex.NewMethodInfo(createUserHandler, newUserServiceCreateUserArgs, newUserServiceCreateUserResult, false),
-		"MGetUser":   kitex.NewMethodInfo(mGetUserHandler, newUserServiceMGetUserArgs, newUserServiceMGetUserResult, false),
-		"CheckUser":  kitex.NewMethodInfo(checkUserHandler, newUserServiceCheckUserArgs, newUserServiceCheckUserResult, false),
+		"CreateUser":       kitex.NewMethodInfo(createUserHandler, newUserServiceCreateUserArgs, newUserServiceCreateUserResult, false),
+		"MGetUser":         kitex.NewMethodInfo(mGetUserHandler, newUserServiceMGetUserArgs, newUserServiceMGetUserResult, false),
+		"CheckUser":        kitex.NewMethodInfo(checkUserHandler, newUserServiceCheckUserArgs, newUserServiceCheckUserResult, false),
+		"AddUserRole":      kitex.NewMethodInfo(addUserRoleHandler, newUserServiceAddUserRoleArgs, newUserServiceAddUserRoleResult, false),
+		"DelUserRole":      kitex.NewMethodInfo(delUserRoleHandler, newUserServiceDelUserRoleArgs, newUserServiceDelUserRoleResult, false),
+		"ValidateUserRole": kitex.NewMethodInfo(validateUserRoleHandler, newUserServiceValidateUserRoleArgs, newUserServiceValidateUserRoleResult, false),
 	}
 	extra := map[string]interface{}{
 		"PackageName": "user",
@@ -91,6 +94,60 @@ func newUserServiceCheckUserResult() interface{} {
 	return user.NewUserServiceCheckUserResult()
 }
 
+func addUserRoleHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*user.UserServiceAddUserRoleArgs)
+	realResult := result.(*user.UserServiceAddUserRoleResult)
+	success, err := handler.(user.UserService).AddUserRole(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newUserServiceAddUserRoleArgs() interface{} {
+	return user.NewUserServiceAddUserRoleArgs()
+}
+
+func newUserServiceAddUserRoleResult() interface{} {
+	return user.NewUserServiceAddUserRoleResult()
+}
+
+func delUserRoleHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*user.UserServiceDelUserRoleArgs)
+	realResult := result.(*user.UserServiceDelUserRoleResult)
+	success, err := handler.(user.UserService).DelUserRole(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newUserServiceDelUserRoleArgs() interface{} {
+	return user.NewUserServiceDelUserRoleArgs()
+}
+
+func newUserServiceDelUserRoleResult() interface{} {
+	return user.NewUserServiceDelUserRoleResult()
+}
+
+func validateUserRoleHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*user.UserServiceValidateUserRoleArgs)
+	realResult := result.(*user.UserServiceValidateUserRoleResult)
+	success, err := handler.(user.UserService).ValidateUserRole(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newUserServiceValidateUserRoleArgs() interface{} {
+	return user.NewUserServiceValidateUserRoleArgs()
+}
+
+func newUserServiceValidateUserRoleResult() interface{} {
+	return user.NewUserServiceValidateUserRoleResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -126,6 +183,36 @@ func (p *kClient) CheckUser(ctx context.Context, req *user.CheckUserReq) (r *use
 	_args.Req = req
 	var _result user.UserServiceCheckUserResult
 	if err = p.c.Call(ctx, "CheckUser", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) AddUserRole(ctx context.Context, req *user.AddUserRoleReq) (r *user.AddUserRoleResp, err error) {
+	var _args user.UserServiceAddUserRoleArgs
+	_args.Req = req
+	var _result user.UserServiceAddUserRoleResult
+	if err = p.c.Call(ctx, "AddUserRole", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) DelUserRole(ctx context.Context, req *user.DelUserRoleReq) (r *user.DelUserRoleResp, err error) {
+	var _args user.UserServiceDelUserRoleArgs
+	_args.Req = req
+	var _result user.UserServiceDelUserRoleResult
+	if err = p.c.Call(ctx, "DelUserRole", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) ValidateUserRole(ctx context.Context, req *user.ValidateUserRolesReq) (r *user.ValidateUserRoleResp, err error) {
+	var _args user.UserServiceValidateUserRoleArgs
+	_args.Req = req
+	var _result user.UserServiceValidateUserRoleResult
+	if err = p.c.Call(ctx, "ValidateUserRole", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

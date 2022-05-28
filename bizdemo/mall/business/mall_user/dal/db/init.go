@@ -12,9 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
 package db
 
 import (
+	"context"
+	"github.com/cloudwego/kitex-examples/bizdemo/mall/business/mall_user/kitex_gen/cmp/ecom/user"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/conf"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -36,10 +39,37 @@ func Init() {
 	}
 
 	m := DB.Migrator()
-	if m.HasTable(&User{}) {
+	hasUserTable := m.HasTable(&User{})
+	hasUserRoleTable := m.HasTable(&UserRole{})
+	if hasUserTable && hasUserRoleTable {
 		return
 	}
-	if err = m.CreateTable(&User{}); err != nil {
-		panic(err)
+	if !hasUserTable {
+		if err = m.CreateTable(&User{}); err != nil {
+			panic(err)
+		}
+	}
+	if !hasUserRoleTable {
+		if err = m.CreateTable(&UserRole{}); err != nil {
+			panic(err)
+		}
+		// insert admin
+		AdminUser := &User{
+			UserName: "admin",
+			Password: "admin",
+		}
+		ctx := context.TODO()
+		userList, err := QueryUser(ctx, "admin")
+		if err != nil {
+			panic(err)
+		}
+		if len(userList) == 0 {
+			if err = CreateUser(ctx, []*User{AdminUser}); err != nil {
+				panic(err)
+			}
+		}
+		if err = AddUserRole(ctx, "admin", user.Role_Admin); err != nil {
+			panic(err)
+		}
 	}
 }
