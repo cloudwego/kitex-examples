@@ -82,12 +82,12 @@ func main() {
 	fmt.Println("sequential call")
 	t0 := time.Now()
 	sequentialCall(client)
-	fmt.Println("cast time: " + time.Now().Sub(t0).String())
+	fmt.Println("cast time: " + time.Since(t0).String())
 
 	fmt.Println(strings.Repeat("=", 10))
 	fmt.Println("async parallel call")
 	t1 := time.Now()
 	asyncParallelCall(client)
-	fmt.Println("cast time: " + time.Now().Sub(t1).String())
+	fmt.Println("cast time: " + time.Since(t1).String())
 
 }
