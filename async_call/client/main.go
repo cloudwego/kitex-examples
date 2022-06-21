@@ -17,7 +17,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 	"github.com/cloudwego/kitex/client"
@@ -78,16 +77,16 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(strings.Repeat("=", 10))
-	fmt.Println("sequential call")
+	log.Println(strings.Repeat("=", 10))
+	log.Println("sequential call")
 	t0 := time.Now()
 	sequentialCall(client)
-	fmt.Println("cast time: " + time.Since(t0).String())
+	log.Println("cast time: " + time.Since(t0).String())
 
-	fmt.Println(strings.Repeat("=", 10))
-	fmt.Println("async parallel call")
+	log.Println(strings.Repeat("=", 10))
+	log.Println("async parallel call")
 	t1 := time.Now()
 	asyncParallelCall(client)
-	fmt.Println("cast time: " + time.Since(t1).String())
+	log.Println("cast time: " + time.Since(t1).String())
 
 }
