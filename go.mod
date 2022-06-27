@@ -6,7 +6,7 @@ require (
 	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
 	github.com/apache/thrift v0.13.0
 	github.com/bytedance/gopkg v0.0.0-20220531084716-665b4f21126f
-	github.com/cloudwego/kitex v0.3.1
+	github.com/cloudwego/kitex v0.3.3-0.20220624100129-57c0ee22edd9
 	github.com/kitex-contrib/obs-opentelemetry v0.0.0-20220601144657-c60210e3c928
 	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20220601144657-c60210e3c928
 	github.com/kitex-contrib/tracer-opentracing v0.0.2
