@@ -11,9 +11,9 @@ const docTemplate = `{
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
         "contact": {
-            "name": "Bodhisatan",
-            "url": "https://github.com/bodhisatan",
-            "email": "bodhisatanyao@gmail.com"
+            "name": "CloudWeGo",
+            "url": "https://github.com/cloudwego",
+            "email": "conduct@cloudwego.io"
         },
         "license": {
             "name": "Apache 2.0",
@@ -322,9 +322,6 @@ const docTemplate = `{
         },
         "handlers.BrandDelParam": {
             "type": "object",
-            "required": [
-                "brand_id"
-            ],
             "properties": {
                 "brand_id": {
                     "type": "integer"
@@ -333,9 +330,6 @@ const docTemplate = `{
         },
         "handlers.BrandEditParam": {
             "type": "object",
-            "required": [
-                "brand_id"
-            ],
             "properties": {
                 "brand_id": {
                     "type": "integer"
@@ -413,7 +407,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "/",
 	Schemes:          []string{"http"},
 	Title:            "Mall",
-	Description:      "This is a mall demo using Gin and KiteX.",
+	Description:      "This is a mall demo using Hertz and KiteX.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

@@ -16,14 +16,14 @@
 package handlers
 
 import (
+	"github.com/cloudwego/hertz/pkg/app"
 	"net/http"
 
-	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/errno"
-	"github.com/gin-gonic/gin"
+	"github.com/hertz-contrib/jwt"
 )
 
-var AuthMiddleware *jwt.GinJWTMiddleware
+var AuthMiddleware *jwt.HertzJWTMiddleware
 
 type Response struct {
 	Code    int64       `json:"code"`
@@ -32,7 +32,7 @@ type Response struct {
 }
 
 // SendResponse pack response
-func SendResponse(c *gin.Context, err error, data interface{}) {
+func SendResponse(c *app.RequestContext, err error, data interface{}) {
 	Err := errno.ConvertErr(err)
 	c.JSON(http.StatusOK, Response{
 		Code:    Err.ErrCode,
@@ -63,12 +63,12 @@ type BrandAddParam struct {
 }
 
 type BrandEditParam struct {
-	BrandId    int64   `json:"brand_id" binding:"required"`
+	BrandId    int64   `json:"brand_id,required"`
 	BrandName  *string `json:"brand_name"`
 	Logo       *string `json:"logo"`
 	BrandStory *string `json:"brand_story"`
 }
 
 type BrandDelParam struct {
-	BrandId int64 `json:"brand_id" binding:"required"`
+	BrandId int64 `json:"brand_id,required"`
 }

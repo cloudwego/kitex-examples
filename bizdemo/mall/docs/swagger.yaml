@@ -13,8 +13,6 @@ definitions:
     properties:
       brand_id:
         type: integer
-    required:
-    - brand_id
     type: object
   handlers.BrandEditParam:
     properties:
@@ -26,8 +24,6 @@ definitions:
         type: string
       logo:
         type: string
-    required:
-    - brand_id
     type: object
   handlers.LoginResponse:
     properties:
@@ -61,10 +57,10 @@ definitions:
 host: localhost:8080
 info:
   contact:
-    email: bodhisatanyao@gmail.com
-    name: Bodhisatan
-    url: https://github.com/bodhisatan
-  description: This is a mall demo using Gin and KiteX.
+    email: conduct@cloudwego.io
+    name: CloudWeGo
+    url: https://github.com/cloudwego
+  description: This is a mall demo using Hertz and KiteX.
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html

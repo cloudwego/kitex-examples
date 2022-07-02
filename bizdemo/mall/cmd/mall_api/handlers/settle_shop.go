@@ -16,12 +16,13 @@
 package handlers
 
 import (
-	jwt "github.com/appleboy/gin-jwt/v2"
+	"context"
+	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/cmd/mall_api/dal/client"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/cmd/mall_api/kitex_gen/cmp/ecom/shop"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/conf"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/errno"
-	"github.com/gin-gonic/gin"
+	"github.com/hertz-contrib/jwt"
 )
 
 // SettleShop godoc
@@ -34,9 +35,9 @@ import (
 // @Security TokenAuth
 // @Success 200 {object} handlers.Response
 // @Router /shop/settle [post]
-func SettleShop(c *gin.Context) {
+func SettleShop(ctx context.Context, c *app.RequestContext) {
 	var settleParam ShopSettleParam
-	if err := c.ShouldBind(&settleParam); err != nil {
+	if err := c.BindAndValidate(&settleParam); err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
@@ -46,9 +47,9 @@ func SettleShop(c *gin.Context) {
 		return
 	}
 
-	claims := jwt.ExtractClaims(c)
+	claims := jwt.ExtractClaims(ctx, c)
 	userID := int64(claims[conf.IdentityKey].(float64))
-	shopId, err := client.SettleShop(c, &shop.SettleShopReq{
+	shopId, err := client.SettleShop(ctx, &shop.SettleShopReq{
 		UserId:   userID,
 		ShopName: settleParam.ShopName,
 	})

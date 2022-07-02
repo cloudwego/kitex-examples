@@ -4,12 +4,12 @@
     ],
     "swagger": "2.0",
     "info": {
-        "description": "This is a mall demo using Gin and KiteX.",
+        "description": "This is a mall demo using Hertz and KiteX.",
         "title": "Mall",
         "contact": {
-            "name": "Bodhisatan",
-            "url": "https://github.com/bodhisatan",
-            "email": "bodhisatanyao@gmail.com"
+            "name": "CloudWeGo",
+            "url": "https://github.com/cloudwego",
+            "email": "conduct@cloudwego.io"
         },
         "license": {
             "name": "Apache 2.0",
@@ -318,9 +318,6 @@
         },
         "handlers.BrandDelParam": {
             "type": "object",
-            "required": [
-                "brand_id"
-            ],
             "properties": {
                 "brand_id": {
                     "type": "integer"
@@ -329,9 +326,6 @@
         },
         "handlers.BrandEditParam": {
             "type": "object",
-            "required": [
-                "brand_id"
-            ],
             "properties": {
                 "brand_id": {
                     "type": "integer"

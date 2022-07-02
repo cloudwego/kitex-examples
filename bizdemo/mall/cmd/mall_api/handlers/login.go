@@ -15,7 +15,10 @@
 
 package handlers
 
-import "github.com/gin-gonic/gin"
+import (
+	"context"
+	"github.com/cloudwego/hertz/pkg/app"
+)
 
 // Login godoc
 // @Summary 用户登录
@@ -26,6 +29,6 @@ import "github.com/gin-gonic/gin"
 // @Param userParam body handlers.UserParam true "账号信息"
 // @Success 200 {object} handlers.LoginResponse
 // @Router /user/login [post]
-func Login(c *gin.Context) {
-	AuthMiddleware.LoginHandler(c)
+func Login(ctx context.Context, c *app.RequestContext) {
+	AuthMiddleware.LoginHandler(ctx, c)
 }

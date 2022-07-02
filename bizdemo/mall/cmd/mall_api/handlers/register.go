@@ -16,10 +16,11 @@
 package handlers
 
 import (
+	"context"
+	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/cmd/mall_api/dal/client"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/cmd/mall_api/kitex_gen/cmp/ecom/user"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/errno"
-	"github.com/gin-gonic/gin"
 )
 
 // Register godoc
@@ -31,9 +32,9 @@ import (
 // @Param userParam body handlers.UserParam true "注册信息"
 // @Success 200 {object} handlers.Response
 // @Router /user/register [post]
-func Register(c *gin.Context) {
+func Register(ctx context.Context, c *app.RequestContext) {
 	var registerParam UserParam
-	if err := c.ShouldBind(&registerParam); err != nil {
+	if err := c.BindAndValidate(&registerParam); err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
@@ -43,7 +44,7 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	err := client.CreateUser(c, &user.CreateUserReq{
+	err := client.CreateUser(ctx, &user.CreateUserReq{
 		UserName: registerParam.UserName,
 		Password: registerParam.PassWord,
 	})

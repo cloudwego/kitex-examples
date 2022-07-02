@@ -16,13 +16,14 @@
 package handlers
 
 import (
-	jwt "github.com/appleboy/gin-jwt/v2"
+	"context"
+	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/cmd/mall_api/dal/client"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/cmd/mall_api/kitex_gen/cmp/ecom/product"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/cmd/mall_api/kitex_gen/cmp/ecom/shop"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/conf"
 	"github.com/cloudwego/kitex-examples/bizdemo/mall/pkg/errno"
-	"github.com/gin-gonic/gin"
+	"github.com/hertz-contrib/jwt"
 )
 
 // BrandUpdate godoc
@@ -35,16 +36,16 @@ import (
 // @Security TokenAuth
 // @Success 200 {object} handlers.Response
 // @Router /product/brand_update [post]
-func BrandUpdate(c *gin.Context) {
+func BrandUpdate(ctx context.Context, c *app.RequestContext) {
 	var brandEditParam BrandEditParam
-	if err := c.ShouldBind(&brandEditParam); err != nil {
+	if err := c.BindAndValidate(&brandEditParam); err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
 
-	claims := jwt.ExtractClaims(c)
+	claims := jwt.ExtractClaims(ctx, c)
 	userID := int64(claims[conf.IdentityKey].(float64))
-	shopId, err := client.GetShopIdByUserId(c, &shop.GetShopIdByUserIdReq{UserId: userID})
+	shopId, err := client.GetShopIdByUserId(ctx, &shop.GetShopIdByUserIdReq{UserId: userID})
 	if err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return
@@ -57,7 +58,7 @@ func BrandUpdate(c *gin.Context) {
 		Logo:       brandEditParam.Logo,
 		BrandStory: brandEditParam.BrandStory,
 	}
-	err = client.UpdateBrand(c, req)
+	err = client.UpdateBrand(ctx, req)
 	if err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return
