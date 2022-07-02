@@ -16,6 +16,23 @@
 include "base.thrift"
 namespace go cmp.ecom.product
 
+enum ModifySource {
+    Shop, // 商家
+    Governance, // 治理
+}
+
+enum Status {
+    Online, // 在线 售卖中
+    Offline, // 下线 不可售卖
+    Delete, // 删除
+}
+
+enum AuditStatus {
+    Pending, // 审核中
+    Pass, // 审核通过
+    Reject, // 审核驳回
+}
+
 struct Brand {
     1: i64 BrandId,
     2: i64 ShopId,
@@ -67,11 +84,36 @@ struct GetBrandsByShopIdResp {
     255: base.BaseResp BaseResp
 }
 
+struct PassProductReq {
+    1: i64 ProductId,
+}
+
+struct PassProductResp {
+    255: base.BaseResp BaseResp
+}
+
+struct RejectProductReq {
+    1: i64 ProductId,
+    2: string RejectReason,
+}
+
+struct RejectProductResp {
+    255: base.BaseResp BaseResp
+}
+
 service ProductService {
+    // 品牌接口
     AddBrandResp AddBrand(1: AddBrandReq req)
     UpdateBrandResp UpdateBrand(1: UpdateBrandReq req)
     DeleteBrandResp DeleteBrand(1: DeleteBrandReq req)
     GetBrandsByShopIdResp GetBrandsByShopId(1: GetBrandsByShopIdReq req)
+
+    // 类目接口
+
+    // 商品接口
+    PassProductResp PassProduct(1: PassProductReq req) // 审核通过商品
+    RejectProductResp RejectProduct(1: RejectProductReq req) // 审核驳回商品
+
 }
 
 

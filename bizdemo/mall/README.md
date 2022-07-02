@@ -46,50 +46,43 @@
 * RocketMQ 消息组件
 ## 业务模型设计
 ### 用户服务
-* t_user
-```sql
-create table t_user
-(
-    id         bigint unsigned auto_increment primary key,
-    created_at datetime(3) null,
-    updated_at datetime(3) null,
-    deleted_at datetime(3) null,
-    user_name  longtext    null,
-    password   longtext    null
-);
+* t_user 账号表
+```go
+type User struct {
+gorm.Model
+UserName string `json:"user_name"`
+Password string `json:"password"`
+}
+```
+* t_user_role 用户角色表
+```go
+type UserRole struct {
+	gorm.Model
+	UserName string `json:"user_name"`
+	Roles    string `json:"roles"`
+}
 ```
 ### 商家服务
-* t_shop
-```sql
-create table t_shop
-(
-    id         bigint unsigned auto_increment primary key,
-    created_at datetime(3)     null,
-    updated_at datetime(3)     null,
-    deleted_at datetime(3)     null,
-    shop_id    bigint          null,
-    shop_name  longtext        null,
-    user_id    bigint unsigned null
-);
+* t_shop 商家表
+```go
+type ShopDO struct {
+	gorm.Model
+	ShopId   int64  `json:"shop_id"`
+	ShopName string `json:"shop_name"`
+	UserId   uint   `json:"user_id"`
+}
 ```
 ### 商品服务
-* t_category
-* t_brand
-```sql
-create table t_brand
-(
-    id          bigint unsigned auto_increment primary key,
-    created_at  datetime(3) null,
-    updated_at  datetime(3) null,
-    deleted_at  datetime(3) null,
-    shop_id     bigint      null,
-    name        longtext    null,
-    logo        longtext    null,
-    brand_story longtext    null
-);
+* t_brand 品牌表
+```go
+type BrandDO struct {
+	gorm.Model
+	ShopId     int64  `json:"shop_id"`
+	Name       string `json:"name"`
+	Logo       string `json:"logo"`
+	BrandStory string `json:"brand_story"`
+}
 ```
-* t_product
-* t_sku
 ## api接口文档
 使用swagger进行接口文档管理&接口测试：`http://localhost:8080/swagger/index.html#/`
 ## 启动服务

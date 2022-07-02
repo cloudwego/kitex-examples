@@ -18,14 +18,21 @@ package db
 import "gorm.io/gorm"
 
 type (
-	SpecPrice struct{}
-	Product   struct {
+	Product struct {
 		gorm.Model
-		ProductId   int64    `json:"product_id"`  // 商品ID
-		ShopId      int64    `json:"shop_id"`     // 店铺ID
-		Name        string   `json:"name"`        // 商品名
-		Description string   `json:"description"` // 详情
-		Img         []string `json:"img"`         // 主图
-		Status      int64    `json:"status"`      // 商品状态
+		ProductId        int64  `json:"product_id"`        // 商品ID
+		ShopId           int64  `json:"shop_id"`           // 店铺ID
+		Name             string `json:"name"`              // 商品名
+		Description      string `json:"description"`       // 详情
+		Img              string `json:"img"`               // 主图
+		Status           int64  `json:"status"`            // 商品状态
+		AuditStatus      int64  `json:"audit_status"`      // 审核状态
+		CategoryId       int64  `json:"category_id"`       // 类目id
+		CategoryProperty string `json:"category_property"` // 类目属性 json键值对
+		BrandId          int64  `json:"brand_id"`          // 品牌id
+		RecommendRemark  string `json:"recommend_remark"`  // 推荐语
+		CommitTime       string `json:"commit_time"`       // 提交时间
+		RejectReason     string `json:"reject_reason"`     // 驳回原因
+		Extra            string `json:"extra"`
 	}
 )
