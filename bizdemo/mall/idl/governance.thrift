@@ -29,6 +29,29 @@ struct AsyncAuditProductResp {
     255: base.BaseResp BaseResp
 }
 
+struct GetProductAuditRecordsReq {
+    1: i64 ProductId,
+}
+
+enum AuditStatus {
+    Pending, // 审核中
+    Pass, // 审核通过
+    Reject, // 审核驳回
+}
+
+struct AuditRecord {
+    1: string AuditTime,
+    2: AuditStatus AuditStatus,
+    3: string RejectReason,
+}
+
+struct GetProductAuditRecordsResp {
+    1: list<AuditRecord> Records,
+
+    255: base.BaseResp BaseResp
+}
+
 service GovernanceService {
     AsyncAuditProductResp AsyncAuditProduct(1: AsyncAuditProductReq req) // 异步提审
+    GetProductAuditRecordsResp GetProductAuditRecords(1: GetProductAuditRecordsReq req) // 查询审核记录
 }
