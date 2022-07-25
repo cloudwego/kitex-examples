@@ -1,0 +1,251 @@
+basePath: /
+definitions:
+  handlers.BrandAddParam:
+    properties:
+      brand_name:
+        type: string
+      brand_story:
+        type: string
+      logo:
+        type: string
+    type: object
+  handlers.BrandDelParam:
+    properties:
+      brand_id:
+        type: integer
+    type: object
+  handlers.BrandEditParam:
+    properties:
+      brand_id:
+        type: integer
+      brand_name:
+        type: string
+      brand_story:
+        type: string
+      logo:
+        type: string
+    type: object
+  handlers.LoginResponse:
+    properties:
+      code:
+        type: integer
+      expire:
+        type: string
+      token:
+        type: string
+    type: object
+  handlers.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+    type: object
+  handlers.ShopSettleParam:
+    properties:
+      shop_name:
+        type: string
+    type: object
+  handlers.UserParam:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: conduct@cloudwego.io
+    name: CloudWeGo
+    url: https://github.com/cloudwego
+  description: This is a mall demo using Hertz and KiteX.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Mall
+  version: "1.0"
+paths:
+  /product/brand_create:
+    post:
+      consumes:
+      - application/json
+      description: 商家绑定品牌，返回品牌ID
+      parameters:
+      - description: 品牌信息
+        in: body
+        name: shopSettleParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BrandAddParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
+      summary: 商家绑定品牌
+      tags:
+      - 商品模块-品牌子模块
+  /product/brand_del:
+    post:
+      consumes:
+      - application/json
+      description: 商家删除品牌
+      parameters:
+      - description: 品牌信息
+        in: body
+        name: shopSettleParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BrandDelParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
+      summary: 商家删除品牌
+      tags:
+      - 商品模块-品牌子模块
+  /product/brand_update:
+    post:
+      consumes:
+      - application/json
+      description: 商家更新品牌信息
+      parameters:
+      - description: 品牌信息
+        in: body
+        name: shopSettleParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BrandEditParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
+      summary: 商家更新品牌信息
+      tags:
+      - 商品模块-品牌子模块
+  /product/get_brands:
+    get:
+      consumes:
+      - application/json
+      description: 商家绑定品牌查询
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
+      summary: 商家绑定品牌查询
+      tags:
+      - 商品模块-品牌子模块
+  /shop/id:
+    get:
+      consumes:
+      - application/json
+      description: 通过用户ID查询商家ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
+      summary: 商家ID查询
+      tags:
+      - 商家模块
+  /shop/settle:
+    post:
+      consumes:
+      - application/json
+      description: 商家入驻，返回ShopID
+      parameters:
+      - description: 入驻材料
+        in: body
+        name: shopSettleParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.ShopSettleParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      security:
+      - TokenAuth: []
+      summary: 商家入驻
+      tags:
+      - 商家模块
+  /user/login:
+    post:
+      consumes:
+      - application/json
+      description: 用户登录
+      parameters:
+      - description: 账号信息
+        in: body
+        name: userParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.UserParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.LoginResponse'
+      summary: 用户登录
+      tags:
+      - 用户模块
+  /user/register:
+    post:
+      consumes:
+      - application/json
+      description: 用户注册
+      parameters:
+      - description: 注册信息
+        in: body
+        name: userParam
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.UserParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.Response'
+      summary: 用户注册
+      tags:
+      - 用户模块
+schemes:
+- http
+securityDefinitions:
+  TokenAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
