@@ -24,18 +24,20 @@ import (
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 	"github.com/cloudwego/kitex/client"
+	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/transport"
 )
 
 func main() {
 	ctx := context.Background()
-	ctx = metainfo.WithValue(ctx, "temp", "temp-value")       // only present in next service
-	ctx = metainfo.WithPersistentValue(ctx, "logid", "12345") // will present in the next service and its successors
+
+	// must mark the context to receive backward meta information
+	ctx = metainfo.WithBackwardValues(ctx)
 
 	cli, err := echo.NewClient(
 		"echo",
 		client.WithHostPorts("[::1]:8888"),
-		// must use the underlying transport protocol that supports metadata, such as TTHeader, HTTP
+		// must use the underlying transport protocol that supports metainfo, such as TTHeader, HTTP
 		client.WithTransportProtocol(transport.TTHeader),
 	)
 	if err != nil {
@@ -43,11 +45,19 @@ func main() {
 	}
 	for {
 		req := &api.Request{Message: "my request"}
-		resp, err := cli.Echo(ctx, req)
+		_, err = cli.Echo(ctx, req)
 		if err != nil {
 			log.Fatal(err)
 		}
-		log.Println(resp)
+		if err == nil {
+			// receive the meta information from server side
+			val, ok := metainfo.RecvBackwardValue(ctx, "something-from-server")
+			if ok {
+				klog.Infof("something-from-server:%s", val)
+			} else {
+				klog.Warn("`something-from-server` not exist")
+			}
+		}
 		time.Sleep(time.Second)
 	}
 }
