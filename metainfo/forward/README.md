@@ -25,7 +25,7 @@ go run server-1/main.go
 run `client`,and set some metainfo into context.
 
 ```
-go run server-1/main.go
+go run client/main.go
 ```
 
 ## NOTE
