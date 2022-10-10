@@ -1,0 +1,51 @@
+# Patch thrift proxy manually
+# port should be configured based on the service port
+#
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: thrift-proxy
+spec:
+  configPatches:
+    - applyTo: NETWORK_FILTER
+      match:
+        listener:
+          # should be replaced by clusterIP_port
+          name: 10.96.73.130_8888   # sed -i .bak "s/\${thrift-sample-server-vip}/`kubectl get svc thrift-sample-server -n thrift -o=jsonpath='{.spec.clusterIP}'`/" istio/envoyfilter-thrift-proxy.yaml
+          filterChain:
+            filter:
+              name: envoy.filters.network.tcp_proxy
+      patch:
+        operation: REPLACE
+        value:
+          name: envoy.filters.network.thrift_proxy
+          typed_config:
+            "@type": "type.googleapis.com/envoy.extensions.filters.network.thrift_proxy.v3.ThriftProxy"
+            stat_prefix: "outbound|8888||kitex-server.proxyless.svc.cluster.local"
+            transport: AUTO_TRANSPORT
+            protocol: AUTO_PROTOCOL
+            thrift_filters:
+              - name: envoy.filters.thrift.router
+            route_config:
+              routes:
+                - match:
+                    method_name: "SayHello2"
+                  route:
+                    weighted_clusters:
+                      clusters:
+                        - name: "outbound|8888|v1|kitex-server.proxyless.svc.cluster.local"
+                          weight: 50
+                        - name: "outbound|8888|v2|kitex-server.proxyless.svc.cluster.local"
+                          weight: 50
+                - match:
+                    # empty string matches any request method name
+                    method_name: "SayHello2"
+                    headers:
+                        - name: "stage"
+                          exact_match: "canary"
+                  route:
+                    weighted_clusters:
+                      clusters:
+                        - name: "outbound|8888|v2|kitex-server.proxyless.svc.cluster.local"
+                          weight: 100

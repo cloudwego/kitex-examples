@@ -1,0 +1,1 @@
+kitex -module github.com/cloudwego/kitex-proxyless-test -service kitex-server idl/greet.thrift

@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: test-controller-account
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+# This cluster role binding allows anyone in the "manager" group to read secrets in any namespace.
+kind: ClusterRoleBinding
+metadata:
+  name: test-controller-clusterrole
+subjects:
+  - kind: ServiceAccount
+    name: test-controller-account # Name is case sensitive
+    namespace: proxyless
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-controller
+  template:
+    metadata:
+      labels:
+        app: test-controller
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      serviceAccountName: test-controller-account
+      containers:
+        - name: test-controller
+          image: kitex-example/proxyless-test-controller
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
