@@ -20,12 +20,11 @@ import (
 	"log"
 
 	"github.com/bytedance/gopkg/cloud/metainfo"
-	"github.com/cloudwego/kitex/client"
-	"github.com/cloudwego/kitex/transport"
-
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
+	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/cloudwego/kitex/transport"
 )
 
 var _ api.Echo = &EchoImpl{}

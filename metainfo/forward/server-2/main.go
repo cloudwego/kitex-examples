@@ -20,7 +20,6 @@ import (
 	"log"
 
 	"github.com/bytedance/gopkg/cloud/metainfo"
-
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 	"github.com/cloudwego/kitex/pkg/klog"
