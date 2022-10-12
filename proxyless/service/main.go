@@ -22,9 +22,9 @@ import (
 	_ "net/http/pprof"
 	"os"
 
-	"github.com/cloudwego/kitex-proxyless-test/config"
-	"github.com/cloudwego/kitex-proxyless-test/service/src"
-	"github.com/cloudwego/kitex-proxyless-test/service/src/benchmark"
+	"github.com/cloudwego/kitex-examples/proxyless/config"
+	"github.com/cloudwego/kitex-examples/proxyless/service/src"
+	"github.com/cloudwego/kitex-examples/proxyless/service/src/benchmark"
 )
 
 const (

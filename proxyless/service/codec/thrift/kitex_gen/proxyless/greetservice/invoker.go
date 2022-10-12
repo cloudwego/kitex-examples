@@ -3,7 +3,7 @@
 package greetservice
 
 import (
-	proxyless "github.com/cloudwego/kitex-proxyless-test/service/codec/thrift/kitex_gen/proxyless"
+	proxyless "github.com/cloudwego/kitex-examples/proxyless/service/codec/thrift/kitex_gen/proxyless"
 	server "github.com/cloudwego/kitex/server"
 )
 

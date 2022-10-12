@@ -5,7 +5,7 @@ package greetservice
 import (
 	"context"
 
-	proxyless "github.com/cloudwego/kitex-proxyless-test/service/codec/thrift/kitex_gen/proxyless"
+	proxyless "github.com/cloudwego/kitex-examples/proxyless/service/codec/thrift/kitex_gen/proxyless"
 	client "github.com/cloudwego/kitex/client"
 	callopt "github.com/cloudwego/kitex/client/callopt"
 )

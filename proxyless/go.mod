@@ -1,4 +1,4 @@
-module github.com/cloudwego/kitex-proxyless-test
+module github.com/cloudwego/kitex-examples/proxyless
 
 go 1.17
 

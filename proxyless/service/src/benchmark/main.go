@@ -35,8 +35,8 @@ import (
 	"github.com/kitex-contrib/xds"
 	"github.com/kitex-contrib/xds/xdssuite"
 
-	"github.com/cloudwego/kitex-proxyless-test/service/codec/thrift/kitex_gen/proxyless"
-	"github.com/cloudwego/kitex-proxyless-test/service/codec/thrift/kitex_gen/proxyless/greetservice"
+	"github.com/cloudwego/kitex-examples/proxyless/service/codec/thrift/kitex_gen/proxyless"
+	"github.com/cloudwego/kitex-examples/proxyless/service/codec/thrift/kitex_gen/proxyless/greetservice"
 )
 
 const (

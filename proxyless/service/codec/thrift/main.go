@@ -19,7 +19,7 @@ package main
 import (
 	"log"
 
-	proxyless "github.com/cloudwego/kitex-proxyless-test/service/codec/thrift/kitex_gen/proxyless/greetservice"
+	proxyless "github.com/cloudwego/kitex-examples/proxyless/service/codec/thrift/kitex_gen/proxyless/greetservice"
 )
 
 func main() {

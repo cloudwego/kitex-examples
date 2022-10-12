@@ -16,7 +16,7 @@
 
 package main
 
-import "github.com/cloudwego/kitex-proxyless-test/testutil/testSuite"
+import "github.com/cloudwego/kitex-examples/proxyless/testutil/testSuite"
 
 func main() {
 	tc := testSuite.NewController()

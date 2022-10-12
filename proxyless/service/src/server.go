@@ -22,9 +22,10 @@ import (
 	"os"
 
 	"github.com/bytedance/gopkg/cloud/metainfo"
-	"github.com/cloudwego/kitex-proxyless-test/service/codec/thrift/kitex_gen/proxyless"
-	"github.com/cloudwego/kitex-proxyless-test/service/codec/thrift/kitex_gen/proxyless/greetservice"
 	"github.com/cloudwego/kitex/server"
+
+	"github.com/cloudwego/kitex-examples/proxyless/service/codec/thrift/kitex_gen/proxyless"
+	"github.com/cloudwego/kitex-examples/proxyless/service/codec/thrift/kitex_gen/proxyless/greetservice"
 )
 
 // GreetServiceImpl implements the last service interface defined in the IDL.

@@ -19,7 +19,7 @@ package main
 import (
 	"context"
 
-	proxyless "github.com/cloudwego/kitex-proxyless-test/service/codec/thrift/kitex_gen/proxyless"
+	proxyless "github.com/cloudwego/kitex-examples/proxyless/service/codec/thrift/kitex_gen/proxyless"
 )
 
 // GreetServiceImpl implements the last service interface defined in the IDL.

@@ -24,12 +24,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cloudwego/kitex-proxyless-test/config"
 	"github.com/cloudwego/kitex/pkg/klog"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	corev1 "k8s.io/client-go/kubernetes/typed/core/v1"
 	"k8s.io/client-go/rest"
+
+	"github.com/cloudwego/kitex-examples/proxyless/config"
 )
 
 type TestController struct {
