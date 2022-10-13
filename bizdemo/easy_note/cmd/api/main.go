@@ -17,17 +17,16 @@ package main
 
 import (
 	"context"
-	"net/http"
 	"time"
 
-	jwt "github.com/appleboy/gin-jwt/v2"
+	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/handlers"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/tracer"
-	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/gin-gonic/gin"
+	"github.com/hertz-contrib/jwt"
 )
 
 func Init() {
@@ -37,8 +36,8 @@ func Init() {
 
 func main() {
 	Init()
-	r := gin.New()
-	authMiddleware, _ := jwt.New(&jwt.GinJWTMiddleware{
+	r := server.New(server.WithHostPorts("127.0.0.1:8080"))
+	authMiddleware, _ := jwt.New(&jwt.HertzJWTMiddleware{
 		Key:        []byte(constants.SecretKey),
 		Timeout:    time.Hour,
 		MaxRefresh: time.Hour,
@@ -50,9 +49,9 @@ func main() {
 			}
 			return jwt.MapClaims{}
 		},
-		Authenticator: func(c *gin.Context) (interface{}, error) {
+		Authenticator: func(ctx context.Context, c *app.RequestContext) (interface{}, error) {
 			var loginVar handlers.UserParam
-			if err := c.ShouldBind(&loginVar); err != nil {
+			if err := c.Bind(&loginVar); err != nil {
 				return "", jwt.ErrMissingLoginValues
 			}
 
@@ -78,8 +77,5 @@ func main() {
 	note1.POST("", handlers.CreateNote)
 	note1.PUT("/:note_id", handlers.UpdateNote)
 	note1.DELETE("/:note_id", handlers.DeleteNote)
-
-	if err := http.ListenAndServe(":8080", r); err != nil {
-		klog.Fatal(err)
-	}
+	r.Spin()
 }
