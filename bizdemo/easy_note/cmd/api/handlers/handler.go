@@ -18,7 +18,6 @@ package handlers
 import (
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
-
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
 )
 

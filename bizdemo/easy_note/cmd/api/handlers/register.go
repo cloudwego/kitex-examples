@@ -19,12 +19,9 @@ import (
 	"context"
 
 	"github.com/cloudwego/hertz/pkg/app"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
-
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
 )
 
 // Register register user info

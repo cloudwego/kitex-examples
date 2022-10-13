@@ -20,14 +20,11 @@ import (
 	"strconv"
 
 	"github.com/cloudwego/hertz/pkg/app"
-	"github.com/hertz-contrib/jwt"
-
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
+	"github.com/hertz-contrib/jwt"
 )
 
 // DeleteNote delete note info
