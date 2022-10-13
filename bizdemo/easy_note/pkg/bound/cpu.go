@@ -18,12 +18,13 @@ package bound
 import (
 	"context"
 	"fmt"
+	"net"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/remote"
 	"github.com/shirou/gopsutil/cpu"
-	"net"
 )
 
 var _ remote.InboundHandler = &cpuLimitHandler{}

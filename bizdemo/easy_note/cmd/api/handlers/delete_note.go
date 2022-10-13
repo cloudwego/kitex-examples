@@ -19,20 +19,17 @@ import (
 	"context"
 	"strconv"
 
+	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
-
-	jwt "github.com/appleboy/gin-jwt/v2"
-	"github.com/gin-gonic/gin"
+	"github.com/hertz-contrib/jwt"
 )
 
 // DeleteNote delete note info
-func DeleteNote(c *gin.Context) {
-	claims := jwt.ExtractClaims(c)
+func DeleteNote(ctx context.Context, c *app.RequestContext) {
+	claims := jwt.ExtractClaims(ctx, c)
 	userID := int64(claims[constants.IdentityKey].(float64))
 	noteIDStr := c.Param(constants.NoteID)
 	noteID, err := strconv.ParseInt(noteIDStr, 10, 64)

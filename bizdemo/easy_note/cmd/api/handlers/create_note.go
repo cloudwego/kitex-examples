@@ -18,21 +18,18 @@ package handlers
 import (
 	"context"
 
+	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
-
-	jwt "github.com/appleboy/gin-jwt/v2"
-	"github.com/gin-gonic/gin"
+	"github.com/hertz-contrib/jwt"
 )
 
 // CreateNote create note info
-func CreateNote(c *gin.Context) {
+func CreateNote(ctx context.Context, c *app.RequestContext) {
 	var noteVar NoteParam
-	if err := c.ShouldBind(&noteVar); err != nil {
+	if err := c.Bind(&noteVar); err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}
@@ -42,7 +39,7 @@ func CreateNote(c *gin.Context) {
 		return
 	}
 
-	claims := jwt.ExtractClaims(c)
+	claims := jwt.ExtractClaims(ctx, c)
 	userID := int64(claims[constants.IdentityKey].(float64))
 	err := rpc.CreateNote(context.Background(), &notedemo.CreateNoteRequest{
 		UserId:  userID,

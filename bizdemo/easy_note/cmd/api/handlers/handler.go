@@ -16,11 +16,9 @@
 package handlers
 
 import (
-	"net/http"
-
+	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
-
-	"github.com/gin-gonic/gin"
 )
 
 type Response struct {
@@ -30,9 +28,9 @@ type Response struct {
 }
 
 // SendResponse pack response
-func SendResponse(c *gin.Context, err error, data interface{}) {
+func SendResponse(c *app.RequestContext, err error, data interface{}) {
 	Err := errno.ConvertErr(err)
-	c.JSON(http.StatusOK, Response{
+	c.JSON(consts.StatusOK, Response{
 		Code:    Err.ErrCode,
 		Message: Err.ErrMsg,
 		Data:    data,

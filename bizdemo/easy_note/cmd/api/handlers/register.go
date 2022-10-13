@@ -18,19 +18,16 @@ package handlers
 import (
 	"context"
 
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
-
+	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
-
-	"github.com/gin-gonic/gin"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/userdemo"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
 )
 
 // Register register user info
-func Register(c *gin.Context) {
+func Register(ctx context.Context, c *app.RequestContext) {
 	var registerVar UserParam
-	if err := c.ShouldBind(&registerVar); err != nil {
+	if err := c.Bind(&registerVar); err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 		return
 	}

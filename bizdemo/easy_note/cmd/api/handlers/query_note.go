@@ -18,27 +18,24 @@ package handlers
 import (
 	"context"
 
+	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
+	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/constants"
 	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/pkg/errno"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/kitex_gen/notedemo"
-
-	"github.com/cloudwego/kitex-examples/bizdemo/easy_note/cmd/api/rpc"
-
-	jwt "github.com/appleboy/gin-jwt/v2"
-	"github.com/gin-gonic/gin"
+	"github.com/hertz-contrib/jwt"
 )
 
 // QueryNote query list of note info
-func QueryNote(c *gin.Context) {
-	claims := jwt.ExtractClaims(c)
+func QueryNote(ctx context.Context, c *app.RequestContext) {
+	claims := jwt.ExtractClaims(ctx, c)
 	userID := int64(claims[constants.IdentityKey].(float64))
 	var queryVar struct {
 		Limit         int64  `json:"limit" form:"limit"`
 		Offset        int64  `json:"offset" form:"offset"`
 		SearchKeyword string `json:"search_keyword" form:"search_keyword"`
 	}
-	if err := c.BindQuery(&queryVar); err != nil {
+	if err := c.Bind(&queryVar); err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)
 	}
 
