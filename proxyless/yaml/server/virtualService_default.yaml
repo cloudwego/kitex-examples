@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: kitex-server
+spec:
+  hosts:
+    - kitex-server
+  http:
+  - name: "default-route"
+    route:
+    - destination:
+        host: kitex-server
+        subset: v1
+      weight: 100

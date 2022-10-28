@@ -1,0 +1,105 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kitex-server
+spec:
+  ports:
+    - port: 80
+      targetPort: 8888
+  selector:
+    app: kitex-server
+
+# Server with two versions, v1 and v2.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kitex-server-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kitex-server
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: kitex-server
+        version: v1
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+        - name: kitex-server
+          image: kitex-example/proxyless
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: MY_SERVICE_NAME
+              value: kitex-server
+            # for test
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kitex-server-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kitex-server
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: kitex-server
+        version: v2
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: kitex-server
+        image: kitex-example/proxyless
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+        env:
+          - name: MY_SERVICE_NAME
+            value: kitex-server
+          # for test
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: kitex-server
+spec:
+  host: kitex-server
+  subsets:
+    - name: v1
+      labels:
+        version: v1
+    - name: v2
+      labels:
+        version: v2
+  trafficPolicy:
+    tls:
+      mode: DISABLE
