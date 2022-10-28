@@ -21,12 +21,11 @@ import (
 )
 
 const (
-	SuccessCode             = 0
-	ServiceErrCode          = 10001
-	ParamErrCode            = 10002
-	LoginErrCode            = 10003
-	UserNotExistErrCode     = 10004
-	UserAlreadyExistErrCode = 10005
+	SuccessCode                = 0
+	ServiceErrCode             = 10001
+	ParamErrCode               = 10002
+	UserAlreadyExistErrCode    = 10003
+	AuthorizationFailedErrCode = 10004
 )
 
 type ErrNo struct {
@@ -48,12 +47,11 @@ func (e ErrNo) WithMessage(msg string) ErrNo {
 }
 
 var (
-	Success             = NewErrNo(SuccessCode, "Success")
-	ServiceErr          = NewErrNo(ServiceErrCode, "Service is unable to start successfully")
-	ParamErr            = NewErrNo(ParamErrCode, "Wrong Parameter has been given")
-	LoginErr            = NewErrNo(LoginErrCode, "Wrong username or password")
-	UserNotExistErr     = NewErrNo(UserNotExistErrCode, "User does not exists")
-	UserAlreadyExistErr = NewErrNo(UserAlreadyExistErrCode, "User already exists")
+	Success                = NewErrNo(SuccessCode, "Success")
+	ServiceErr             = NewErrNo(ServiceErrCode, "Service is unable to start successfully")
+	ParamErr               = NewErrNo(ParamErrCode, "Wrong Parameter has been given")
+	UserAlreadyExistErr    = NewErrNo(UserAlreadyExistErrCode, "User already exists")
+	AuthorizationFailedErr = NewErrNo(AuthorizationFailedErrCode, "Authorization failed")
 )
 
 // ConvertErr convert error to Errno

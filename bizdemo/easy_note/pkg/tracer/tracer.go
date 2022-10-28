@@ -30,6 +30,6 @@ func InitJaeger(service string) {
 	if err != nil {
 		panic(fmt.Sprintf("ERROR: cannot init Jaeger: %v\n", err))
 	}
-	opentracing.InitGlobalTracer(tracer)
+	opentracing.SetGlobalTracer(tracer)
 	return
 }
