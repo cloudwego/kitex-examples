@@ -31,9 +31,9 @@ func QueryNote(ctx context.Context, c *app.RequestContext) {
 	claims := jwt.ExtractClaims(ctx, c)
 	userID := int64(claims[constants.IdentityKey].(float64))
 	var queryVar struct {
-		Limit         int64  `json:"limit" form:"limit"`
-		Offset        int64  `json:"offset" form:"offset"`
-		SearchKeyword string `json:"search_keyword" form:"search_keyword"`
+		Limit         int64  `json:"limit" form:"limit" query:"limit"`
+		Offset        int64  `json:"offset" form:"offset" query:"offset"`
+		SearchKeyword string `json:"search_keyword" form:"search_keyword" query:"search_keyword"`
 	}
 	if err := c.Bind(&queryVar); err != nil {
 		SendResponse(c, errno.ConvertErr(err), nil)

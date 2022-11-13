@@ -53,11 +53,11 @@ func (s *CheckUserService) CheckUser(req *userdemo.CheckUserRequest) (int64, err
 		return 0, err
 	}
 	if len(users) == 0 {
-		return 0, errno.UserNotExistErr
+		return 0, errno.AuthorizationFailedErr
 	}
 	u := users[0]
 	if u.Password != passWord {
-		return 0, errno.LoginErr
+		return 0, errno.AuthorizationFailedErr
 	}
 	return int64(u.ID), nil
 }

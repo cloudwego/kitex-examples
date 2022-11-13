@@ -106,9 +106,45 @@ visit `http://127.0.0.1:16686/` on  browser.
 
 <img src="images/shot.png" width="2850"  alt=""/>
 
-## API requests 
+## Custom Error Code
+
+Customise the response error code in the `errno` package.
+
+```go
+const (
+    SuccessCode                = 0
+    ServiceErrCode             = 10001
+    ParamErrCode               = 10002
+    UserAlreadyExistErrCode    = 10003
+    AuthorizationFailedErrCode = 10004
+)
+```
+
+Sample code : Replace the default error code for hertz-jwt authentication error with a custom error code.
+
+```go
+authMiddleware, _ := jwt.New(&jwt.HertzJWTMiddleware{
+    Unauthorized: func(ctx context.Context, c *app.RequestContext, code int, message string) {
+        c.JSON(code, map[string]interface{}{
+            "code":    errno.AuthorizationFailedErrCode,
+            "message": message,
+        })
+    },
+    //Unauthorized: func(ctx context.Context, c *app.RequestContext, code int, message string) {
+    //  c.JSON(code, map[string]interface{}{
+    //      "code":    code,
+    //      "message": message,
+    //  })
+    //}
+})
+```
+
+## API requests
+
+The following is a list of API requests and partial responses.
 
 ### Register
+
 ```shell
 curl --location --request POST '127.0.0.1:8080/v1/user/register' \
 --header 'Content-Type: application/json' \
@@ -120,9 +156,16 @@ curl --location --request POST '127.0.0.1:8080/v1/user/register' \
 
 #### response
 ```javascript
+// successful
 {
     "code": 0,
     "message": "Success",
+    "data": null
+}
+// failed
+{
+    "code": 10003,
+    "message": "User already exists",
     "data": null
 }
 ```
@@ -141,10 +184,17 @@ curl --location --request POST '127.0.0.1:8080/v1/user/login' \
 
 #### response
 ```javascript
+// successful
 {
-    "code": 200,
+    "code": 0,
     "expire": "2022-01-19T01:56:46+08:00",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDI1Mjg2MDYsImlkIjoxLCJvcmlnX2lhdCI6MTY0MjUyNTAwNn0.k7Ah9G4Enap9YiDP_rKr5HSzF-fc3cIxwMZAGeOySqU"
+}
+// failed
+{
+    "code": 10004,
+    "message": "Authorization failed",
+    "data": null
 }
 ```
 
@@ -161,9 +211,16 @@ curl --location --request POST '127.0.0.1:8080/v1/note' \
 
 #### response
 ```javascript
+// successful
 {
     "code": 0,
     "message": "Success",
+    "data": null
+}
+// failed
+{
+    "code": 10002,
+    "message": "Wrong Parameter has been given",
     "data": null
 }
 ```
@@ -176,6 +233,7 @@ curl --location --request GET '127.0.0.1:8080/v1/note/query?offset=0&limit=20&se
 
 #### response
 ```javascript
+// successul
 {
     "code": 0,
     "message": "Success",
@@ -194,6 +252,12 @@ curl --location --request GET '127.0.0.1:8080/v1/note/query?offset=0&limit=20&se
         "total": 1
     }
 }
+// failed
+{
+    "code":10002,
+    "message":"Wrong Parameter has been given",
+    "data":null
+}
 ```
 
 ### Update Note
@@ -209,10 +273,17 @@ curl --location --request PUT '127.0.0.1:8080/v1/note/$note_id' \
 
 #### response
 ```javascript
+// successful
 {
     "code": 0,
     "message": "Success",
     "data": null
+}
+// failed
+{
+    "code":10001,
+    "message":"strconv.ParseInt: parsing \"$note_id\": invalid syntax",
+    "data":null
 }
 ```
 
@@ -224,9 +295,16 @@ curl --location --request DELETE '127.0.0.1:8080/v1/note/$note_id' \
 
 #### response
 ```javascript
+// successful
 {
     "code": 0,
     "message": "Success",
     "data": null
+}
+// failed
+{
+    "code":10001,
+    "message":"strconv.ParseInt: parsing \"$note_id\": invalid syntax",
+    "data":null
 }
 ```
