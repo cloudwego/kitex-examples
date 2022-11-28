@@ -40,12 +40,4 @@ func Init() {
 	if err = DB.Use(gormopentracing.New()); err != nil {
 		panic(err)
 	}
-
-	m := DB.Migrator()
-	if m.HasTable(&User{}) {
-		return
-	}
-	if err = m.CreateTable(&User{}); err != nil {
-		panic(err)
-	}
 }

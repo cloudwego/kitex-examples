@@ -6,7 +6,8 @@ CREATE TABLE `user`
     `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'User account create time',
     `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'User account update time',
     `deleted_at` timestamp NULL DEFAULT NULL COMMENT 'User account delete time',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    KEY          `idx_user_name` (`user_name`, `deleted_at`) COMMENT 'UserName index'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='User account table';
 
 CREATE TABLE `note`
@@ -18,5 +19,6 @@ CREATE TABLE `note`
     `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Note creates time',
     `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Note updates time',
     `deleted_at` timestamp NULL DEFAULT NULL COMMENT 'Note deletes time',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    KEY          `idx_user_id` (`user_id`, `deleted_at`) COMMENT 'UserID index'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Note table';
