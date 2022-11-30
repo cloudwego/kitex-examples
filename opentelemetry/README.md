@@ -17,7 +17,7 @@ You can then navigate to http://localhost:3000 to access the Grafana UI. (You ca
 
 ### add datasource
 
-URL: `http://host.docker.internal:8428/`
+URL: `http://victoriametrics:8428/`
 
 ![img_1.png](static/grafana.png)
 ### add a dashboard and a panel
