@@ -5,7 +5,7 @@ receivers:
 
 exporters:
   prometheusremotewrite:
-    endpoint: "http://host.docker.internal:8428/api/v1/write"
+    endpoint: "http://victoriametrics:8428/api/v1/write"
 
   logging:
 
