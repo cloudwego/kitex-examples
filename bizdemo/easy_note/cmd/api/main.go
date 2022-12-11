@@ -41,7 +41,10 @@ func Init() {
 
 func main() {
 	Init()
-	r := server.New(server.WithHostPorts("127.0.0.1:8080"))
+	r := server.New(
+		server.WithHostPorts("127.0.0.1:8080"),
+		server.WithHandleMethodNotAllowed(true),
+	)
 	authMiddleware, _ := jwt.New(&jwt.HertzJWTMiddleware{
 		Key:        []byte(constants.SecretKey),
 		Timeout:    time.Hour,
