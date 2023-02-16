@@ -1,5 +1,7 @@
 # Kitex Examples
 
+This repo contains useful examples for Kitex.
+
 ## Build
 
 ```bash
