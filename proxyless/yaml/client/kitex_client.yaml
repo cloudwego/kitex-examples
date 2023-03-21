@@ -26,11 +26,12 @@ spec:
         app: kitex-client
         version: v1
       annotations:
-        sidecar.istio.io/inject: "false"
+        sidecar.istio.io/inject: "true"
+        proxy.istio.io/config: '{"holdApplicationUntilProxyStarts": true}'
     spec:
       containers:
         - name: kitex-client
-          image: kitex-example/proxyless
+          image: liamzqh/kitex-proxyless-example
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

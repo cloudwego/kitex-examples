@@ -52,7 +52,8 @@ func main() {
 	var svc src.TestService
 	switch serviceName {
 	case config.TestClientSvc:
-		svc = src.NewProxylessClient(fmt.Sprintf("%s.%s.%s:%s", config.TestServerSvc, namespace, config.Suffix, config.ServerServicePort))
+		svc = src.NewProxylessClient(fmt.Sprintf("%s.%s.%s:%s", config.TestServerSvc, namespace, config.Suffix, config.ServerServicePort),
+			fmt.Sprintf("%s.%s.%s:%s", config.TestServer2Svc, namespace, config.Suffix, config.ServerServicePort))
 	case config.TestServerSvc:
 		svc = src.NewProxylessServer()
 	case config.BenchmarkClient:

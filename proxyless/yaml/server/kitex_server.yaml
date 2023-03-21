@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: kitex-server
-          image: kitex-example/proxyless
+          image: liamzqh/kitex-proxyless-example
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

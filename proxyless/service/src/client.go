@@ -23,9 +23,11 @@ import (
 
 	"github.com/bytedance/gopkg/cloud/metainfo"
 	"github.com/cloudwego/kitex/client"
+	"github.com/cloudwego/kitex/pkg/klog"
 	xds2 "github.com/cloudwego/kitex/pkg/xds"
 	"github.com/cloudwego/kitex/transport"
 	"github.com/kitex-contrib/xds"
+	"github.com/kitex-contrib/xds/core/manager"
 	"github.com/kitex-contrib/xds/xdssuite"
 
 	"github.com/cloudwego/kitex-examples/proxyless/service/codec/thrift/kitex_gen/proxyless"
@@ -33,7 +35,8 @@ import (
 )
 
 type ProxylessClient struct {
-	cli greetservice.Client
+	cli1 greetservice.Client
+	cli2 greetservice.Client
 }
 
 var (
@@ -50,14 +53,15 @@ func routeByStage(ctx context.Context) map[string]string {
 	return nil
 }
 
-func NewProxylessClient(targetService string) TestService {
-	err := xds.Init()
+func NewProxylessClient(targetService1, targetService2 string) TestService {
+	err := xds.Init(xds.WithXDSServerConfig(&manager.XDSServerConfig{SvrAddr: "istiod.istio-system.svc:15012", XDSAuth: true}))
 	if err != nil {
 		panic(err)
 	}
 
-	cli, err := greetservice.NewClient(
-		targetService,
+	klog.Infof("service1: %s, service2: %s\n", targetService1, targetService2)
+	cli1, err := greetservice.NewClient(
+		targetService1,
 		client.WithXDSSuite(xds2.ClientSuite{
 			RouterMiddleware: xdssuite.NewXDSRouterMiddleware(
 				xdssuite.WithRouterMetaExtractor(routeByStage),
@@ -69,7 +73,22 @@ func NewProxylessClient(targetService string) TestService {
 	if err != nil {
 		panic(err)
 	}
-	return &ProxylessClient{cli: cli}
+
+	cli2, err := greetservice.NewClient(
+		targetService2,
+		client.WithXDSSuite(xds2.ClientSuite{
+			RouterMiddleware: xdssuite.NewXDSRouterMiddleware(
+				xdssuite.WithRouterMetaExtractor(routeByStage),
+			),
+			Resolver: xdssuite.NewXDSResolver(),
+		}),
+		client.WithTransportProtocol(transport.TTHeader),
+	)
+	if err != nil {
+		panic(err)
+	}
+
+	return &ProxylessClient{cli1: cli1, cli2: cli2}
 }
 
 func (c *ProxylessClient) Run() error {
@@ -77,7 +96,15 @@ func (c *ProxylessClient) Run() error {
 		req := &proxyless.HelloRequest{Message: "Hello!"}
 		ctx := metainfo.WithValue(context.Background(), routeKey, routeValue) // set route meta for "stage": "canary"
 		ctx = metainfo.WithBackwardValues(ctx)
-		resp, err := c.cli.SayHello2(ctx, req)
+		resp, err := c.cli1.SayHello2(ctx, req)
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			rip, _ := metainfo.RecvBackwardValue(ctx, PodNameKey)
+			fmt.Printf("Received response: %s, from %s\n", resp.Message, rip)
+		}
+
+		resp, err = c.cli2.SayHello2(ctx, req)
 		if err != nil {
 			fmt.Println(err)
 		} else {

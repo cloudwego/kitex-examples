@@ -20,6 +20,7 @@ const (
 	Namespace         = "default"
 	TestClientSvc     = "kitex-client"
 	TestServerSvc     = "kitex-server"
+	TestServer2Svc    = "kitex-server2"
 	BenchmarkClient   = "benchmark-client"
 	Suffix            = "svc.cluster.local"
 	ClientServicePort = "8888"
