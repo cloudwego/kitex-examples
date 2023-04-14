@@ -1,0 +1,11 @@
+FROM golang:1.17.2
+ENV MysqlIp="172.22.0.1"
+ENV EtcdIp="172.22.0.1"
+ENV GO111MODULE=on
+ENV GOPROXY="https://goproxy.io"
+WORKDIR $GOPATH/src/easy_note
+COPY . $GOPATH/src/easy_note
+WORKDIR $GOPATH/src/easy_note/cmd/user
+RUN ["sh", "build.sh"]
+EXPOSE 8889
+ENTRYPOINT ["./output/bootstrap.sh"]

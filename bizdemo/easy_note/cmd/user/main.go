@@ -43,7 +43,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	addr, err := net.ResolveTCPAddr("tcp", "127.0.0.1:8889")
+	ip, err := constants.GetOutBoundIP()
+	if err != nil {
+		panic(err)
+	}
+	addr, err := net.ResolveTCPAddr("tcp", ip+":8889")
 	if err != nil {
 		panic(err)
 	}
