@@ -10,7 +10,6 @@ ENV JAEGER_AGENT_PORT=6831
 WORKDIR $GOPATH/src/easy_note
 COPY . $GOPATH/src/easy_note
 WORKDIR $GOPATH/src/easy_note/cmd/api
-RUN ./run.sh
 RUN go build -o main .
 EXPOSE 8080
 ENTRYPOINT ["./main"]
