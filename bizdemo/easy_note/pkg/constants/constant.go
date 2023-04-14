@@ -30,5 +30,7 @@ const (
 	DefaultLimit            = 10
 )
 
-var MySQLDefaultDSN = "gorm:gorm@tcp(" + GetIp("MysqlIp") + ":9910)/gorm?charset=utf8&parseTime=True&loc=Local"
-var EtcdAddress = GetIp("EtcdIp") + ":2379"
+var (
+	MySQLDefaultDSN = "gorm:gorm@tcp(" + GetIp("MysqlIp") + ":9910)/gorm?charset=utf8&parseTime=True&loc=Local"
+	EtcdAddress     = GetIp("EtcdIp") + ":2379"
+)

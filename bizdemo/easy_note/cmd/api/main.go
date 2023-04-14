@@ -18,8 +18,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"time"
+
+	"github.com/cloudwego/hertz/pkg/protocol/consts"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/middlewares/server/recovery"
