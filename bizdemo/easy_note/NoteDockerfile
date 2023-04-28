@@ -1,6 +1,6 @@
 FROM golang:1.17.2
-ENV MysqlIp="172.22.0.1"
-ENV EtcdIp="172.22.0.1"
+ENV MysqlIp="192.168.32.1"
+ENV EtcdIp="192.168.32.1"
 ENV GO111MODULE=on
 ENV GOPROXY="https://goproxy.io"
 WORKDIR $GOPATH/src/easy_note
