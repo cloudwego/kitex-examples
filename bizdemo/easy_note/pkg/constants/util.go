@@ -15,22 +15,26 @@
 
 package constants
 
-const (
-	NoteTableName           = "note"
-	UserTableName           = "user"
-	SecretKey               = "secret key"
-	IdentityKey             = "id"
-	Total                   = "total"
-	Notes                   = "notes"
-	NoteID                  = "note_id"
-	ApiServiceName          = "demoapi"
-	NoteServiceName         = "demonote"
-	UserServiceName         = "demouser"
-	CPURateLimit    float64 = 80.0
-	DefaultLimit            = 10
+import (
+	"net"
+	"os"
+	"strings"
 )
 
-var (
-	MySQLDefaultDSN = "gorm:gorm@tcp(" + GetIp("MysqlIp") + ":9910)/gorm?charset=utf8&parseTime=True&loc=Local"
-	EtcdAddress     = GetIp("EtcdIp") + ":2379"
-)
+func GetIp(key string) string {
+	ip := os.Getenv(key)
+	if ip == "" {
+		ip = "localhost"
+	}
+	return ip
+}
+
+func GetOutBoundIP() (ip string, err error) {
+	conn, err := net.Dial("udp", "8.8.8.8:53")
+	if err != nil {
+		return
+	}
+	localAddr := conn.LocalAddr().(*net.UDPAddr)
+	ip = strings.Split(localAddr.String(), ":")[0]
+	return
+}

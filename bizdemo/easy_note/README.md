@@ -139,6 +139,105 @@ authMiddleware, _ := jwt.New(&jwt.HertzJWTMiddleware{
 })
 ```
 
+## Deploy with docker
+
+### 1.Setup Basic Dependence
+```shell
+docker-compose up
+```
+
+### 2.Get Default Network Gateway Ip
+``docker-compose up`` will create a default bridge network for mysql,etcd and jaeger.
+Get the gateway ip of this default network to reach three components.
+```shell
+docker inspect easy_note_default
+```
+![img.png](img.png)
+
+### 3.Replace ip in Dockerfile
+You can use gateway ip in ``step 2`` to replace MysqlIp , EtcdIp and JAEGER_AGENT_HOST.
+
+* UserDockerfile:
+  ```dockerfile
+  FROM golang:1.17.2
+  ENV GO111MODULE=on
+  ENV GOPROXY="https://goproxy.io"
+  ENV MysqlIp="your MysqlIp"
+  ENV EtcdIp="your EtcdIp"
+  ENV JAEGER_AGENT_HOST="your JAEGER_AGENT_HOST"
+  ENV JAEGER_DISABLED=false
+  ENV JAEGER_SAMPLER_TYPE="const"
+  ENV JAEGER_SAMPLER_PARAM=1
+  ENV JAEGER_REPORTER_LOG_SPANS=true
+  ENV JAEGER_AGENT_PORT=6831
+  WORKDIR $GOPATH/src/easy_note
+  COPY . $GOPATH/src/easy_note
+  WORKDIR $GOPATH/src/easy_note/cmd/user
+  RUN ["sh", "build.sh"]
+  EXPOSE 8889
+  ENTRYPOINT ["./output/bin/demouser"]
+  ```
+
+* NoteDockerfile:
+  ```dockerfile
+  FROM golang:1.17.2
+  ENV GO111MODULE=on
+  ENV GOPROXY="https://goproxy.io"
+  ENV MysqlIp="your MysqlIp"
+  ENV EtcdIp="your EtcdIp"
+  ENV JAEGER_AGENT_HOST="your JAEGER_AGENT_HOST"
+  ENV JAEGER_DISABLED=false
+  ENV JAEGER_SAMPLER_TYPE="const"
+  ENV JAEGER_SAMPLER_PARAM=1
+  ENV JAEGER_REPORTER_LOG_SPANS=true
+  ENV JAEGER_AGENT_PORT=6831
+  WORKDIR $GOPATH/src/easy_note
+  COPY . $GOPATH/src/easy_note
+  WORKDIR $GOPATH/src/easy_note/cmd/note
+  RUN ["sh", "build.sh"]
+  EXPOSE 8888
+  ENTRYPOINT ["./output/bin/demonote"]
+  ```
+
+* ApiDockerfile:
+  ```dockerfile
+  FROM golang:1.17.2
+  ENV GO111MODULE=on
+  ENV GOPROXY="https://goproxy.io"
+  ENV MysqlIp="your MysqlIp"
+  ENV EtcdIp="your EtcdIp"
+  ENV JAEGER_AGENT_HOST="your JAEGER_AGENT_HOST"
+  ENV JAEGER_DISABLED=false
+  ENV JAEGER_SAMPLER_TYPE="const"
+  ENV JAEGER_SAMPLER_PARAM=1
+  ENV JAEGER_REPORTER_LOG_SPANS=true
+  ENV JAEGER_AGENT_PORT=6831
+  WORKDIR $GOPATH/src/easy_note
+  COPY . $GOPATH/src/easy_note
+  WORKDIR $GOPATH/src/easy_note/cmd/api
+  RUN go build -o main .
+  EXPOSE 8080
+  ENTRYPOINT ["./main"]
+  ```
+
+### 4.Build images from Dockerfile
+```shell
+docker build -t easy_note/user -f UserDockerfile .
+docker build -t easy_note/note -f NoteDockerfile .
+docker build -t easy_note/api -f ApiDockerfile .
+```
+
+### 5.Run containers
+* Create bridge network for these three services.
+  ```shell
+  docker network create -d bridge easy_note
+  ```
+* Run contains in ``easy_note`` network.
+  ```shell
+  docker run -d --name user --network easy_note easy_note/user
+  docker run -d --name note --network easy_note easy_note/note
+  docker run -d -p 8080:8080 --name api --network easy_note easy_note/api
+  ```
 ## API requests
 
 [API requests](api.md)
