@@ -152,7 +152,7 @@ Get the gateway ip of this default network to reach three components.
 ```shell
 docker inspect easy_note_default
 ```
-![img.png](img.png)
+<img src="images/network.png" width="2850"  alt=""/>
 
 ### 3.Replace ip in Dockerfile
 You can use gateway ip in ``step 2`` to replace MysqlIp , EtcdIp and JAEGER_AGENT_HOST.
@@ -228,15 +228,11 @@ docker build -t easy_note/api -f ApiDockerfile .
 ```
 
 ### 5.Run containers
-* Create bridge network for these three services.
+* Run containers in ``easy_note_default`` network with the subnet inspected in the Step 2.
   ```shell
-  docker network create -d bridge easy_note
-  ```
-* Run contains in ``easy_note`` network.
-  ```shell
-  docker run -d --name user --network easy_note easy_note/user
-  docker run -d --name note --network easy_note easy_note/note
-  docker run -d -p 8080:8080 --name api --network easy_note easy_note/api
+  docker run -d --name user --network easy_note_default easy_note/user
+  docker run -d --name note --network easy_note_default easy_note/note
+  docker run -d -p 8080:8080 --name api --network easy_note_default easy_note/api
   ```
 ## API requests
 
