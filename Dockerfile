@@ -13,7 +13,7 @@
 # limitations under the License.
 #
 
-FROM golang:1.16.6-alpine
+FROM golang:1.20.7-alpine3.17
 
 RUN apk update && apk add git
 
@@ -22,5 +22,6 @@ WORKDIR /code
 COPY . .
 RUN go env -w GOPROXY=https://goproxy.io,direct
 RUN go env -w GO111MODULE=on
+RUN go mod tidy
 RUN go build -o hello-client ./hello/client
 RUN go build -o hello-server  ./hello
