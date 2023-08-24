@@ -26,3 +26,5 @@ require (
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 )
+
+replace github.com/cloudwego/kitex => github.com/Marina-Sakai/kitex v0.0.0-20230823055628-16fd962d5285
