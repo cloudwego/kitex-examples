@@ -23,13 +23,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/cloudwego/kitex-examples/grpcmultiservice/kitex_gen/multiservice"
-	"github.com/cloudwego/kitex-examples/grpcmultiservice/kitex_gen/multiservice/serviceb"
-	"github.com/cloudwego/kitex-examples/grpcmultiservice/kitex_gen/multiservice/servicex"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/transport"
 
+	"github.com/cloudwego/kitex-examples/grpcmultiservice/kitex_gen/multiservice"
 	"github.com/cloudwego/kitex-examples/grpcmultiservice/kitex_gen/multiservice/servicea"
+	"github.com/cloudwego/kitex-examples/grpcmultiservice/kitex_gen/multiservice/serviceb"
+	"github.com/cloudwego/kitex-examples/grpcmultiservice/kitex_gen/multiservice/servicex"
 )
 
 var hostport = "localhost:8888"
