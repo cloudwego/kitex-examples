@@ -27,4 +27,4 @@ require (
 	go.uber.org/atomic v1.10.0 // indirect
 )
 
-replace github.com/cloudwego/kitex => github.com/Marina-Sakai/kitex v0.0.0-20230915052524-585cc39b9251
+replace github.com/cloudwego/kitex => github.com/Marina-Sakai/kitex v0.0.0-20230915081239-c18bc8c6b558

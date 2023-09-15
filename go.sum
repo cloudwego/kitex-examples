@@ -814,8 +814,8 @@ github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym
 github.com/HdrHistogram/hdrhistogram-go v1.1.2 h1:5IcZpTvzydCQeHzK4Ef/D5rrSqwxob0t8PQPMybUNFM=
 github.com/HdrHistogram/hdrhistogram-go v1.1.2/go.mod h1:yDgFjdqOqDEKOvasDdhWNXYg9BVp4O+o5f6V/ehm6Oo=
 github.com/JohnCGriffin/overflow v0.0.0-20211019200055-46fa312c352c/go.mod h1:X0CRv0ky0k6m906ixxpzmDRLvX58TFUKS2eePweuyxk=
-github.com/Marina-Sakai/kitex v0.0.0-20230915052524-585cc39b9251 h1:RgP3gtMRIBG33p15EXVVYXndt4hkEP+PZv2ir0kOFMY=
-github.com/Marina-Sakai/kitex v0.0.0-20230915052524-585cc39b9251/go.mod h1:3KmlpIGN8deHO15llMasynMZxcnaarGsra+Xry/81qw=
+github.com/Marina-Sakai/kitex v0.0.0-20230915081239-c18bc8c6b558 h1:ju2D9+ODx5TDAU0kU6678r9TEvaHawkjL8bHMaVMn4k=
+github.com/Marina-Sakai/kitex v0.0.0-20230915081239-c18bc8c6b558/go.mod h1:3KmlpIGN8deHO15llMasynMZxcnaarGsra+Xry/81qw=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
 github.com/ajstarks/deck v0.0.0-20200831202436-30c9fc6549a9/go.mod h1:JynElWSGnm/4RlzPXRlREEwqTHAN3T56Bv2ITsFT3gY=
 github.com/ajstarks/deck/generate v0.0.0-20210309230005-c3f852c02e19/go.mod h1:T13YZdzov6OU0A1+RfKZiZN9ca6VeKdBdyDV+BY97Tk=
