@@ -40,11 +40,11 @@ func (s *EchoImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Respon
 	klog.CtxDebugf(ctx, "echo called: %s", req.GetMessage())
 	nowSec := time.Now().Second()
 	if nowSec%3 == 1 {
-		klog.CtxErrorf(ctx, "mock error %s", req.GetMessage())
+		klog.CtxErrorf(ctx, "mock error with request message: %s", req.GetMessage())
 		return nil, errors.New("mock error")
 	}
 	if nowSec%3 == 2 {
-		klog.CtxErrorf(ctx, "mock panic %s", req.GetMessage())
+		klog.CtxErrorf(ctx, "mock panic with request message: %s", req.GetMessage())
 		panic("mock panic")
 	}
 	return &api.Response{Message: req.Message}, nil
@@ -52,6 +52,7 @@ func (s *EchoImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Respon
 
 func main() {
 	klog.SetLogger(kitexlogrus.NewLogger())
+	// set level as debug when needed, default level is info
 	klog.SetLevel(klog.LevelDebug)
 
 	serviceName := "echo"

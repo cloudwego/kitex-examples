@@ -9,8 +9,8 @@ require (
 	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b
 	github.com/cloudwego/kitex v0.7.3
 	github.com/kitex-contrib/monitor-prometheus v0.2.0
-	github.com/kitex-contrib/obs-opentelemetry v0.2.4
-	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20230819133448-76093321aa8e
+	github.com/kitex-contrib/obs-opentelemetry v0.2.5
+	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20231103033707-6f0423a24fdf
 	github.com/kitex-contrib/tracer-opentracing v0.0.3
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/uber/jaeger-client-go v2.29.1+incompatible

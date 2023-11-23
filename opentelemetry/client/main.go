@@ -18,6 +18,7 @@ package main
 import (
 	"context"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
@@ -30,6 +31,8 @@ import (
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 	"go.opentelemetry.io/otel"
 )
+
+var increment int = 1
 
 func main() {
 	klog.SetLogger(kitexlogrus.NewLogger())
@@ -70,7 +73,9 @@ func call(c echo.Client) {
 	ctx, span := otel.Tracer("client").Start(context.Background(), "root")
 	defer span.End()
 
-	req := &api.Request{Message: "my request"}
+	req := &api.Request{Message: "my request " + strconv.Itoa(increment)}
+	increment++
+
 	resp, err := c.Echo(ctx, req)
 	if err != nil {
 		klog.CtxErrorf(ctx, "err %v", err)
