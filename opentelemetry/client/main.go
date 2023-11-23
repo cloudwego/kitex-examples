@@ -17,6 +17,7 @@ package main
 
 import (
 	"context"
+	"math/rand"
 	"os"
 	"strconv"
 	"time"
@@ -31,8 +32,6 @@ import (
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 	"go.opentelemetry.io/otel"
 )
-
-var increment int = 1
 
 func main() {
 	klog.SetLogger(kitexlogrus.NewLogger())
@@ -63,6 +62,8 @@ func main() {
 		klog.Fatal(err)
 	}
 
+	// Yields a constantly-changing number
+	rand.Seed(time.Now().UnixNano())
 	for {
 		call(c)
 		<-time.After(time.Second)
@@ -73,8 +74,8 @@ func call(c echo.Client) {
 	ctx, span := otel.Tracer("client").Start(context.Background(), "root")
 	defer span.End()
 
-	req := &api.Request{Message: "my request " + strconv.Itoa(increment)}
-	increment++
+	randomInt := rand.Intn(1000)
+	req := &api.Request{Message: "my request " + strconv.Itoa(randomInt)}
 
 	resp, err := c.Echo(ctx, req)
 	if err != nil {
