@@ -17,7 +17,9 @@ package main
 
 import (
 	"context"
+	"math/rand"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
@@ -60,6 +62,8 @@ func main() {
 		klog.Fatal(err)
 	}
 
+	// Yields a constantly-changing number
+	rand.Seed(time.Now().UnixNano())
 	for {
 		call(c)
 		<-time.After(time.Second)
@@ -70,7 +74,9 @@ func call(c echo.Client) {
 	ctx, span := otel.Tracer("client").Start(context.Background(), "root")
 	defer span.End()
 
-	req := &api.Request{Message: "my request"}
+	randomInt := rand.Intn(1000)
+	req := &api.Request{Message: "my request " + strconv.Itoa(randomInt)}
+
 	resp, err := c.Echo(ctx, req)
 	if err != nil {
 		klog.CtxErrorf(ctx, "err %v", err)
