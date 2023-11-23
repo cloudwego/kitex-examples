@@ -844,7 +844,6 @@ github.com/bytedance/gopkg v0.0.0-20210716082555-acbf5a2aa7e2/go.mod h1:birsdqRC
 github.com/bytedance/gopkg v0.0.0-20220413063733-65bf48ffb3a7/go.mod h1:2ZlV9BaUH4+NXIBF0aMdKKAnHTzqH+iMU4KUjAbL23Q=
 github.com/bytedance/gopkg v0.0.0-20220509134931-d1878f638986/go.mod h1:2ZlV9BaUH4+NXIBF0aMdKKAnHTzqH+iMU4KUjAbL23Q=
 github.com/bytedance/gopkg v0.0.0-20220531084716-665b4f21126f/go.mod h1:2ZlV9BaUH4+NXIBF0aMdKKAnHTzqH+iMU4KUjAbL23Q=
-github.com/bytedance/gopkg v0.0.0-20220817015305-b879a72dc90f/go.mod h1:2ZlV9BaUH4+NXIBF0aMdKKAnHTzqH+iMU4KUjAbL23Q=
 github.com/bytedance/gopkg v0.0.0-20230531144706-a12972768317/go.mod h1:FtQG3YbQG9L/91pbKSw787yBQPutC+457AvDW77fgUQ=
 github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b h1:R6PWoQtxEMpWJPHnpci+9LgFxCS7iJCfOGBvCgZeTKI=
 github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b/go.mod h1:FtQG3YbQG9L/91pbKSw787yBQPutC+457AvDW77fgUQ=
@@ -902,7 +901,6 @@ github.com/cloudwego/frugal v0.1.8/go.mod h1:F0mLIWHymuQgh6r8N0owTA/ARv1B4SOiKa8
 github.com/cloudwego/kitex v0.0.4/go.mod h1:EIjPJ4Dom2ornk7xDCdKpUpOnf4Tulevimh4Tn05OGc=
 github.com/cloudwego/kitex v0.3.2/go.mod h1:/XD07VpUD9VQWmmoepASgZ6iw//vgWikVA9MpzLC5i0=
 github.com/cloudwego/kitex v0.4.4/go.mod h1:3FcH5h9Qw+dhRljSzuGSpWuThttA8DvK0BsL7HUYydo=
-github.com/cloudwego/kitex v0.5.2/go.mod h1:JpJVDdecl6bU5hlmtxooZgcnAvLXpYTU/A7UDdrTcPk=
 github.com/cloudwego/kitex v0.6.1/go.mod h1:zI1GBrjT0qloTikcCfQTgxg3Ws+yQMyaChEEOcGNUvA=
 github.com/cloudwego/kitex v0.7.3 h1:LjlnofIAogQr/A2Fem3wPtHSVza13LMf9aYu3LDk2Ho=
 github.com/cloudwego/kitex v0.7.3/go.mod h1:x4qcCiu8fLPNbvOd9Pzh6GCsW8mD1Mgb9keRJ01zuBw=
@@ -912,7 +910,6 @@ github.com/cloudwego/netpoll v0.0.2/go.mod h1:rZOiNI0FYjuvNybXKKhAPUja03loJi/cdv
 github.com/cloudwego/netpoll v0.0.3/go.mod h1:rZOiNI0FYjuvNybXKKhAPUja03loJi/cdv2F55AE6E8=
 github.com/cloudwego/netpoll v0.2.4/go.mod h1:1T2WVuQ+MQw6h6DpE45MohSvDTKdy2DlzCx2KsnPI4E=
 github.com/cloudwego/netpoll v0.3.1/go.mod h1:1T2WVuQ+MQw6h6DpE45MohSvDTKdy2DlzCx2KsnPI4E=
-github.com/cloudwego/netpoll v0.3.2/go.mod h1:xVefXptcyheopwNDZjDPcfU6kIjZXZ4nY550k1yH9eQ=
 github.com/cloudwego/netpoll v0.4.0/go.mod h1:xVefXptcyheopwNDZjDPcfU6kIjZXZ4nY550k1yH9eQ=
 github.com/cloudwego/netpoll v0.5.1 h1:zDUF7xF0C97I10fGlQFJ4jg65khZZMUvSu/TWX44Ohc=
 github.com/cloudwego/netpoll v0.5.1/go.mod h1:xVefXptcyheopwNDZjDPcfU6kIjZXZ4nY550k1yH9eQ=
@@ -920,7 +917,6 @@ github.com/cloudwego/netpoll-http2 v0.0.4/go.mod h1:iFr5SzJCXIYgBg0ubL0fZiCQ6W36
 github.com/cloudwego/thriftgo v0.1.2/go.mod h1:LzeafuLSiHA9JTiWC8TIMIq64iadeObgRUhmVG1OC/w=
 github.com/cloudwego/thriftgo v0.2.4/go.mod h1:8i9AF5uDdWHGqzUhXDlubCjx4MEfKvWXGQlMWyR0tM4=
 github.com/cloudwego/thriftgo v0.2.7/go.mod h1:8i9AF5uDdWHGqzUhXDlubCjx4MEfKvWXGQlMWyR0tM4=
-github.com/cloudwego/thriftgo v0.2.9/go.mod h1:dAyXHEmKXo0LfMCrblVEY3mUZsdeuA5+i0vF5f09j7E=
 github.com/cloudwego/thriftgo v0.2.11/go.mod h1:dAyXHEmKXo0LfMCrblVEY3mUZsdeuA5+i0vF5f09j7E=
 github.com/cloudwego/thriftgo v0.3.2-0.20230828085742-edaddf2c17af h1:xsNmlAdSnh6zuovEON4Ab0iT+fTfQUWqZ50tk+6OGW8=
 github.com/cloudwego/thriftgo v0.3.2-0.20230828085742-edaddf2c17af/go.mod h1:AvH0iEjvKHu3cdxG7JvhSAaffkS4h2f4/ZxpJbm48W4=
@@ -1158,10 +1154,10 @@ github.com/kisielk/errcheck v1.5.0/go.mod h1:pFxgyoBC7bSaBwPgfKdkLd5X25qrDl4LWUI
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
 github.com/kitex-contrib/monitor-prometheus v0.2.0 h1:cgu8UMn1lpwLD/6rQZnf3jX98rqazTkY/ATmN9DsCwY=
 github.com/kitex-contrib/monitor-prometheus v0.2.0/go.mod h1:ZHWQOKRHnN1Bw+PgVYeOXmB9l4+k8dlOJ9wx2xz76NU=
-github.com/kitex-contrib/obs-opentelemetry v0.2.4 h1:yaRw7mbqXtfG1Nf/3NEOZtCcYct6eYlQwYtUlcYERvs=
-github.com/kitex-contrib/obs-opentelemetry v0.2.4/go.mod h1:+Hfa6yIiSOIL364QSiUyWTQARkV1OI/NU527SKw+/kk=
-github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20230819133448-76093321aa8e h1:OHusXtJsfrKodGSC/w33PRntQBiltCKuAtAvr/+SNg4=
-github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20230819133448-76093321aa8e/go.mod h1:Kf0zvMUYs1/xlqrqthhJCw4RVyWZoAsfeAWUDN6en6U=
+github.com/kitex-contrib/obs-opentelemetry v0.2.5 h1:vV0rbEQnhv7gFPJJPAas4mvp0vopOUC3RU05pnXDOAw=
+github.com/kitex-contrib/obs-opentelemetry v0.2.5/go.mod h1:+Hfa6yIiSOIL364QSiUyWTQARkV1OI/NU527SKw+/kk=
+github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20231103033707-6f0423a24fdf h1:RgZrOr7Y65+Z1ZMrLKwNtKGHBnz59vVogjDxPJxPPW4=
+github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20231103033707-6f0423a24fdf/go.mod h1:oQTDyY/+vIlKG/9FGhtYASfb+UybIiianqn1RLVhJ3A=
 github.com/kitex-contrib/tracer-opentracing v0.0.3 h1:8SI0OrHTQ8u6eWpemnuaecMBSEVEvWKCWxg2HnnONQU=
 github.com/kitex-contrib/tracer-opentracing v0.0.3/go.mod h1:mprt5pxqywFQxlHb7ugfiMdKbABTLI9YrBYs9WmlK5Q=
 github.com/klauspost/asmfmt v1.3.2/go.mod h1:AG8TuvYojzulgDAMCnYn50l/5QV3Bs/tp6j0HLHbNSE=
