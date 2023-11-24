@@ -21,8 +21,12 @@ require (
 
 require (
 	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
+	github.com/bytedance/mockey v1.2.1 // indirect
 	github.com/cloudwego/fastpb v0.0.4
 	github.com/cloudwego/frugal v0.1.8
+	github.com/kitex-contrib/obs-opentelemetry/logging/zap v0.0.0-20231103033707-6f0423a24fdf
+	github.com/sirupsen/logrus v1.9.2
+	github.com/tidwall/gjson v1.14.4 // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
-	go.uber.org/atomic v1.10.0 // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 )

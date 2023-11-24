@@ -23,4 +23,6 @@ type FullLogger interface {
 
 Extension provides the use of zap and logrus
 
+klog extension are coupled in the otel extension and use logrus would print the trace info
+
 For details on log extension, [see](https://cloudwego.cn/zh/docs/kitex/tutorials/observability/logging/)
