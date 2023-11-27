@@ -16,15 +16,17 @@ package main
 
 import (
 	"context"
-	"github.com/cloudwego/kitex-examples/kitex_gen/api"
-	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
-	"github.com/cloudwego/kitex/pkg/klog"
-	kitexzap "github.com/kitex-contrib/obs-opentelemetry/logging/zap"
-	"gopkg.in/natefinch/lumberjack.v2"
 	"log"
 	"os"
 	"path"
 	"time"
+
+	"github.com/cloudwego/kitex-examples/kitex_gen/api"
+	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
+	"github.com/cloudwego/kitex/pkg/klog"
+	kitexzap "github.com/kitex-contrib/obs-opentelemetry/logging/zap"
+	"go.uber.org/zap"
+	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 var _ api.Echo = &EchoImpl{}
@@ -59,8 +61,8 @@ func main() {
 			return
 		}
 	}
-
-	logger := kitexzap.NewLogger()
+	// klog will warp a layer of zap, so you need to calculate the depth of the caller file separately.
+	logger := kitexzap.NewLogger(kitexzap.WithZapOptions(zap.AddCallerSkip(3), zap.AddCaller()))
 	// Provides compression and deletion
 	lumberjackLogger := &lumberjack.Logger{
 		Filename:   fileName,

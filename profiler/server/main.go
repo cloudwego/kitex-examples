@@ -65,7 +65,7 @@ var sizeClassTagging remote.MessageTagging = func(ctx context.Context, msg remot
 	if data := msg.Data(); data == nil {
 		return ctx, nil
 	}
-	var tags = make([]string, 0, 2)
+	tags := make([]string, 0, 2)
 	var reqType int32
 	if args, ok := msg.Data().(ArgsGetter); ok {
 		if req := args.GetReq(); req != nil {
