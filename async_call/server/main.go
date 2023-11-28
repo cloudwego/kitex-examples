@@ -17,11 +17,12 @@ package main
 
 import (
 	"context"
+	"log"
+	"time"
+
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 	"github.com/cloudwego/kitex/pkg/klog"
-	"log"
-	"time"
 )
 
 var _ api.Echo = &EchoImpl{}
@@ -32,7 +33,7 @@ type EchoImpl struct{}
 // Echo implements the Echo interface.
 func (s *EchoImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
 	klog.Info("echo called")
-	//computing...
+	// computing...
 	time.Sleep(time.Duration(1) * time.Second)
 	return &api.Response{Message: req.Message}, nil
 }

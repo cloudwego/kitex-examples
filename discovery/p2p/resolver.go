@@ -51,6 +51,6 @@ func (p *P2PResolver) Name() string {
 // Diff computes the difference between two results.
 // When `next` is cacheable, the Change should be cacheable, too. And the `Result` field's CacheKey in
 // the return value should be set with the given cacheKey.
-func (p *P2PResolver) Diff(cacheKey string, prev discovery.Result, next discovery.Result) (discovery.Change, bool) {
+func (p *P2PResolver) Diff(cacheKey string, prev, next discovery.Result) (discovery.Change, bool) {
 	return discovery.DefaultDiff(cacheKey, prev, next)
 }

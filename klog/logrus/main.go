@@ -15,15 +15,19 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"log"
+	"os"
+	"path"
+	"runtime"
+	"time"
+
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 	"github.com/cloudwego/kitex/pkg/klog"
 	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
+	"github.com/sirupsen/logrus"
 	"gopkg.in/natefinch/lumberjack.v2"
-	"log"
-	"os"
-	"path"
-	"time"
 )
 
 var _ api.Echo = &EchoImpl{}
@@ -60,6 +64,9 @@ func main() {
 	}
 
 	logger := kitexlogrus.NewLogger()
+	logger.Logger().SetReportCaller(true)
+	// klog will warp a layer of logrus, so you need to calculate the depth of the caller file separately.
+	logger.Logger().AddHook(NewCustomHook(10))
 	// Provides compression and deletion
 	lumberjackLogger := &lumberjack.Logger{
 		Filename:   fileName,
@@ -82,4 +89,30 @@ func main() {
 	} else {
 		klog.CtxDebugf(context.Background(), "server stopped")
 	}
+}
+
+// CustomHook Custom Hook for processing logs
+type CustomHook struct {
+	CallerDepth int
+}
+
+func NewCustomHook(depth int) *CustomHook {
+	return &CustomHook{
+		CallerDepth: depth,
+	}
+}
+
+func (hook *CustomHook) Levels() []logrus.Level {
+	return logrus.AllLevels
+}
+
+func (hook *CustomHook) Fire(entry *logrus.Entry) error {
+	// Get caller information and specify depth
+	pc, file, line, ok := runtime.Caller(hook.CallerDepth)
+	if ok {
+		funcName := runtime.FuncForPC(pc).Name()
+		entry.Data["caller"] = fmt.Sprintf("%s:%d %s", file, line, funcName)
+	}
+
+	return nil
 }
