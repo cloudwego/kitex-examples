@@ -17,12 +17,13 @@ package main
 
 import (
 	"context"
-	"github.com/cloudwego/kitex-examples/kitex_gen/api"
-	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
-	"github.com/cloudwego/kitex/client"
 	"log"
 	"strings"
 	"time"
+
+	"github.com/cloudwego/kitex-examples/kitex_gen/api"
+	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
+	"github.com/cloudwego/kitex/client"
 )
 
 func NewFuture(f func() (interface{}, error)) func() (interface{}, error) {
@@ -41,9 +42,8 @@ func NewFuture(f func() (interface{}, error)) func() (interface{}, error) {
 }
 
 func sequentialCall(client echo.Client) {
-
 	for i := 1; i < 5; i++ {
-		var req = &api.Request{Message: "my request"}
+		req := &api.Request{Message: "my request"}
 		resp, err := client.Echo(context.Background(), req)
 		if err != nil {
 			log.Fatal(err)
@@ -55,7 +55,7 @@ func sequentialCall(client echo.Client) {
 func asyncParallelCall(client echo.Client) {
 	var futures []func() (interface{}, error)
 	for i := 0; i < 5; i++ {
-		var req = &api.Request{Message: "my request"}
+		req := &api.Request{Message: "my request"}
 
 		futures = append(futures, NewFuture(func() (interface{}, error) {
 			return client.Echo(context.Background(), req)
@@ -88,5 +88,4 @@ func main() {
 	t1 := time.Now()
 	asyncParallelCall(client)
 	log.Println("cast time: " + time.Since(t1).String())
-
 }

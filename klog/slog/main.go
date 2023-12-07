@@ -24,8 +24,7 @@ import (
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 	"github.com/cloudwego/kitex/pkg/klog"
-	kitexzap "github.com/kitex-contrib/obs-opentelemetry/logging/zap"
-	"go.uber.org/zap"
+	kitexslog "github.com/kitex-contrib/obs-opentelemetry/logging/slog"
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
@@ -53,7 +52,7 @@ func main() {
 	}
 
 	// Set filename to date
-	logFileName := time.Now().Format("2006-01-02") + ".log"
+	logFileName := time.Now().Format(time.DateOnly) + ".log"
 	fileName := path.Join(logFilePath, logFileName)
 	if _, err := os.Stat(fileName); err != nil {
 		if _, err := os.Create(fileName); err != nil {
@@ -61,14 +60,14 @@ func main() {
 			return
 		}
 	}
-	// klog will warp a layer of zap, so you need to calculate the depth of the caller file separately.
-	logger := kitexzap.NewLogger(kitexzap.WithZapOptions(zap.AddCallerSkip(3), zap.AddCaller()))
+	// For slog detailed settings, please refer to https://github.com/kitex-contrib/obs-opentelemetry/tree/main/logging/slog
+	logger := kitexslog.NewLogger()
 	// Provides compression and deletion
 	lumberjackLogger := &lumberjack.Logger{
 		Filename:   fileName,
 		MaxSize:    20,   // A file can be up to 20M.
-		MaxBackups: 5,    // Save up to 5 files at the same time.
-		MaxAge:     10,   // A file can exist for a maximum of 10 days.
+		MaxBackups: 5,    // Save up to 5 files at the same time
+		MaxAge:     10,   // A file can be saved for up to 10 days.
 		Compress:   true, // Compress with gzip.
 	}
 
