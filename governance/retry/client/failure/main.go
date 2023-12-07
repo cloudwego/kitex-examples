@@ -17,9 +17,10 @@ package main
 
 import (
 	"context"
-	"github.com/cloudwego/kitex-examples/governance/retry/failure"
 	"log"
 	"time"
+
+	"github.com/cloudwego/kitex-examples/governance/retry/failure"
 
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
