@@ -61,3 +61,7 @@ You can go into the related examples for information on "how to run"
 
 ## Kitex generated code
 - [protobuf](kitex/protobuf) Example of using kitex and protobuf to generate server code
+
+## Note
+
+All commands to execute the example should be executed under "kitex-example".
