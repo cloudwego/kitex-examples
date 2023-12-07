@@ -7,8 +7,6 @@ English | [中文](README_CN.md)
 You can go into the related examples for information on "how to run"
 
 ## Bizdemo
-- [basic](basic) Basic example of kitex
-- [async_call](async_call) Example of using asynchronous call in kitex server
 - [bizdemo/easy_note](bizdemo/easy_note) Example of using kitex as an rpc framework to implement a simple note service
 - [Bookinfo](https://github.com/cloudwego/biz-demo/tree/main/bookinfo) Example of using kitex as an rpc framework to implement a multi-functional book service program
 - [Open Payment Platform](https://github.com/cloudwego/biz-demo/tree/main/open-payment-platform) Example of using kitex as the rpc framework to demonstrate the usage of kitex universal calls
@@ -16,29 +14,30 @@ You can go into the related examples for information on "how to run"
 - [FreeCar](https://github.com/CyanAsterisk/FreeCar) Example of using kitex as the rpc framework to implement cloud native time-sharing car rental system suite services
 
 ## Basic features
+- [basic](basic) Basic example of kitex
+- [async_call](async_call) Example of using asynchronous call in kitex server
 - [codec](codec) Example of kitex server and client using custom codecs
-    - [codec-dubbo](https://github.com/kitex-contrib/codec-dubbo) Example of dubbo protocol codec launched by Kitex to support kitex <-> dubbo interoperability
+    - [codec-dubbo](https://github.com/kitex-contrib/codec-dubbo/tree/main/samples/helloworld) Example of dubbo protocol codec launched by Kitex to support kitex <-> dubbo interoperability
 - [long_connection](longconnection) Kitex example of using long connections between server and client
 - [streaming](streaming) Example of kitex server and client using streams
 - [middleware](middleware) Kitex Example of using middleware between server and client
 
 ## Governance Features
 - Example of kitex server using configuration center to connect to governance features
-    - [etcd](https://github.com/kitex-contrib/config-etcd) Kitex server uses etcd as an example of connecting the configuration center with governance features
-    - [nacos](https://github.com/kitex-contrib/config-nacos) Kitex server uses nacos as an example of connecting the configuration center with governance features
-    - [apollo](https://github.com/kitex-contrib/config-apollo) Kitex server uses apollo as an example of connecting the configuration center with governance features
+    - [etcd](https://github.com/kitex-contrib/config-etcd/tree/main/example) Kitex server uses etcd as an example of connecting the configuration center with governance features
+    - [nacos](https://github.com/kitex-contrib/config-nacos/tree/main/example) Kitex server uses nacos as an example of connecting the configuration center with governance features
+    - [apollo](https://github.com/kitex-contrib/config-apollo/tree/main/example) Kitex server uses apollo as an example of connecting the configuration center with governance features
 - Example of kitex server and client using service registration
-    - [etcd](https://github.com/kitex-contrib/registry-etcd) Example of kitex server and client using etcd as service registration center
-    - [nacos](https://github.com/kitex-contrib/registry-nacos) Kitex server and client use nacos as an example of service registration center
-    - [polaris](https://github.com/kitex-contrib/registry-polaris) Kitex server and client use polaris as an example of service registration center
+    - [etcd](https://github.com/kitex-contrib/registry-etcd/tree/main/example) Example of kitex server and client using etcd as service registration center
+    - [nacos](https://github.com/kitex-contrib/registry-nacos/tree/main/example) Kitex server and client use nacos as an example of service registration center
+    - [polaris](https://github.com/kitex-contrib/registry-polaris/tree/main/example) Kitex server and client use polaris as an example of service registration center
     - [zookeeper](https://github.com/kitex-contrib/registry-zookeeper) Example of kitex server and client using zookeeper as service registration center
-    - [consul](https://github.com/kitex-contrib/registry-consul) Example of kitex server and client using consul as service registration center
-    - [servicecomb](https://github.com/kitex-contrib/registry-servicecomb) Kitex server and client use servicecomb as an example of service registration center
-    - [eureka](https://github.com/kitex-contrib/registry-eureka) Kitex server and client use eureka as an example of service registration center
+    - [consul](https://github.com/kitex-contrib/registry-consul/tree/main/example) Example of kitex server and client using consul as service registration center
+    - [servicecomb](https://github.com/kitex-contrib/registry-servicecomb/tree/main/example) Kitex server and client use servicecomb as an example of service registration center
+    - [eureka](https://github.com/kitex-contrib/registry-eureka/tree/main/example) Kitex server and client use eureka as an example of service registration center
 - [discovery](discovery) Kitex server uses service discovery example
-    - [xDs](https://github.com/kitex-contrib/xds) Example of kitex server using xDS for service discovery
     - [dns](https://github.com/kitex-contrib/resolver-dns) Example of kitex server and client using dns for service discovery
-    - [resolver_rule_based](https://github.com/kitex-contrib/resolver-rule-based/tree/main) provides a rule-based resolver for kitex. It allows users to configure rules in service discovery to filter service instances and implement traffic segmentation.
+    - [resolver_rule_based](https://github.com/kitex-contrib/resolver-rule-based/tree/main/demo) provides a rule-based resolver for kitex. It allows users to configure rules in service discovery to filter service instances and implement traffic segmentation.
 - [timeout](governance/timeout) Example of using timeout control between kitex server and client
 - [limit](governance/limit) Example of using current limit on kitex server
 - [circuit_breaker](governance/circuitbreak) Example of kitex client using circuit breaker
@@ -57,7 +56,7 @@ You can go into the related examples for information on "how to run"
 - [generic](generic) kitex example of using generic calls between server and client
 - [meta_info](metainfo) Example of kitex server and client using meta information
 - [profiler](profiler) Example of kitex server and client performance analysis using request cost metrics
-- [proxyless](proxyless) kitex example of using proxyless server and client
+- [proxyless](proxyless) Example of kitex server and client using xDS to run the service proxylessly
 
 ## Kitex generated code
 - [protobuf](kitex/protobuf) Example of using kitex and protobuf to generate server code
