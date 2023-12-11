@@ -20,17 +20,18 @@ import (
 	"log"
 	"time"
 
+	"github.com/cloudwego/kitex-examples/governance/retry/failure"
+
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
-	"github.com/cloudwego/kitex-examples/retry/failure"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"
 )
 
 func main() {
-	bp := retry.NewBackupPolicy(50)
-	delayMW := failure.NewDelayMW((60 * time.Millisecond))
-	cli, err := echo.NewClient("echo", client.WithHostPorts("0.0.0.0:8888"), client.WithBackupRequest(bp), client.WithMiddleware(delayMW))
+	fp := retry.NewFailurePolicy()
+	failureMW := failure.NewFailureMW()
+	cli, err := echo.NewClient("echo", client.WithHostPorts("0.0.0.0:8888"), client.WithFailureRetry(fp), client.WithMiddleware(failureMW))
 	if err != nil {
 		log.Fatal(err)
 	}
