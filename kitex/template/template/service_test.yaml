@@ -1,0 +1,60 @@
+path: biz/service/{{ SnakeString (index .Methods 0).Name }}_test.go
+loop_method: true
+update_behavior:
+  type: skip
+body: |-
+  package service
+
+  import (
+    "context"
+    "testing"
+
+  	{{- range $path, $aliases := ( FilterImports .Imports .Methods )}}
+  		{{- if not $aliases }}
+  			"{{$path}}"
+        {{- else if or (eq $path "github.com/cloudwego/kitex/client") (eq $path "github.com/cloudwego/kitex/pkg/serviceinfo")}}
+  		{{- else}}
+  			{{- range $alias, $is := $aliases}}
+  				{{$alias}} "{{$path}}"
+  			{{- end}}
+  		{{- end}}
+  	{{- end}}
+  )
+
+  {{range .Methods}}
+
+  func Test{{.Name}}_Run(t *testing.T) {
+    ctx := context.Background()
+    s := New{{.Name}}Service(ctx)
+    // init req and assert value
+    {{range .Args}}
+    {{LowerFirst .Name}} := &{{NotPtr .Type}}{}
+    {{end}}
+
+    {{- if or .ClientStreaming .ServerStreaming}}
+    err := s.Run({{if not .ClientStreaming}}{{range .Args}}{{LowerFirst .Name}}, {{end}}{{end}}stream)
+    if err != nil {
+      t.Errorf("unexpected error: %v", err)
+    }
+    {{- else}}
+    {{- if .Void}}
+    {{- if .Oneway}}
+    {{- end}}
+
+    err := s.Run({{range .Args}}{{LowerFirst .Name}}{{end}})
+    if err != nil {
+      t.Errorf("unexpected error: %v", err)
+    }
+    // todo: edit your unit test
+
+    {{else -}}
+    resp, err := s.Run({{range .Args}}{{LowerFirst .Name}}{{end}})
+    t.Logf("err: %v", err)
+    t.Logf("resp: %v", resp)
+  
+    // todo: edit your unit test
+    {{end}}
+    {{end}}
+
+  }
+  {{end}}

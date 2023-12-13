@@ -1,0 +1,27 @@
+path: conf/dev/conf.yaml
+update_behavior:
+  type: skip
+body: |-
+  kitex:
+    service: "{{.RealServiceName}}"
+    address: ":8888"
+    log_level: info
+    log_file_name: "log/kitex.log"
+    log_max_size: 10
+    log_max_age: 3
+    log_max_backups: 50
+
+  registry:
+    registry_address:
+      - 127.0.0.1:2379
+    username: ""
+    password: ""
+
+  mysql:
+    dsn: "gorm:gorm@tcp(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local"
+  
+  redis:
+    address: "127.0.0.1:6379"
+    username: ""
+    password: ""
+    db: 0

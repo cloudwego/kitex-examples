@@ -1,8 +1,8 @@
-# *** 项目
+＃ *** 项目
 
-## 介绍
+＃＃ 介绍
 
-- 使用 [Kitex](https://github.com/cloudwego/kitex/) 框架
+- 使用[Kitex](https://github.com/cloudwego/kitex/)框架
 - 生成单元测试的基本代码。
 - 提供基本的配置功能
 - 提供最基本的MVC代码层次结构。
@@ -20,7 +20,7 @@
 
 ## 如何运行
 
-  ```shell
-  sh build.sh
-  sh output/bootstrap.sh
-  ```
+````外壳
+sh 构建.sh
+sh 输出/bootstrap.sh
+````

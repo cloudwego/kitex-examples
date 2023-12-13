@@ -1,0 +1,88 @@
+path: handler.go
+update_behavior:
+  type: append
+  key: "{{ (index .Methods 0).Name }}"
+  append_tpl: |-
+    {{range .AllMethods}}
+     {{- if or .ClientStreaming .ServerStreaming}}
+     func (s *{{$.ServiceName}}Impl) {{.Name}}({{if not .ClientStreaming}}{{range .Args}}{{LowerFirst .Name}} {{.Type}}, {{end}}{{end}}stream {{.PkgRefName}}.{{.ServiceName}}_{{.RawName}}Server) (err error) {	
+       ctx := context.Background()
+       err = service.New{{.Name}}Service(ctx).Run({{if not .ClientStreaming}}{{range .Args}}{{LowerFirst .Name}}, {{end}}{{end}}stream)
+       return
+     }
+     {{- else}}
+     {{- if .Void}}
+     // {{.Name}} implements the {{.ServiceName}}Impl interface.
+     {{- if .Oneway}}
+     // Oneway methods are not guaranteed to receive 100% of the requests sent by the client.
+     // And the client may not perceive the loss of requests due to network packet loss.
+     // If possible, do not use oneway methods.
+     {{- end}}
+     func (s *{{$.ServiceName}}Impl) {{.Name}}(ctx context.Context {{- range .Args}}, {{LowerFirst .Name}} {{.Type}}{{end}}) (err error) {
+       err = service.New{{.Name}}Service(ctx).Run({{range .Args}} {{LowerFirst .Name}}, {{end}})
+
+       return err
+     }
+     {{else -}}
+     // {{.Name}} implements the {{.ServiceName}}Impl interface.
+     func (s *{{$.ServiceName}}Impl) {{.Name}}(ctx context.Context {{range .Args}}, {{LowerFirst .Name}} {{.Type}}{{end}} ) (resp {{.Resp.Type}}, err error) {
+       resp, err = service.New{{.Name}}Service(ctx).Run({{range .Args}} {{LowerFirst .Name}}, {{end}})
+
+       return resp, err
+     }
+     {{end}}
+     {{end}}
+     {{end}}
+  import_tpl:
+    - "{{ ( index (index (index .Methods 0).Args 0).Deps 0).ImportPath }}"
+    - "{{ ( index (index .Methods 0).Resp.Deps 0).ImportPath }}"
+
+body: |-
+  package main
+  import (
+  	{{- range $path, $aliases := .Imports}}
+  		{{- if not $aliases }}
+  			"{{$path}}"
+        {{- else if or (eq $path "github.com/cloudwego/kitex/client") (eq $path "github.com/cloudwego/kitex/pkg/serviceinfo")}}
+  		{{- else}}
+  			{{- range $alias, $is := $aliases}}
+  				{{$alias}} "{{$path}}"
+  			{{- end}}
+  		{{- end}}
+  	{{- end}}
+   "{{.Module}}/biz/service"
+  )
+
+  // {{.ServiceName}}Impl implements the last service interface defined in the IDL.
+  type {{.ServiceName}}Impl struct{}
+
+  {{range .AllMethods}}
+  {{- if or .ClientStreaming .ServerStreaming}}
+  func (s *{{$.ServiceName}}Impl) {{.Name}}({{if not .ClientStreaming}}{{range .Args}}{{LowerFirst .Name}} {{.Type}}, {{end}}{{end}}stream {{.PkgRefName}}.{{.ServiceName}}_{{.RawName}}Server) (err error) {	
+    ctx := context.Background()
+    err = service.New{{.Name}}Service(ctx).Run({{if not .ClientStreaming}}{{range .Args}}{{LowerFirst .Name}}, {{end}}{{end}}stream)
+    return
+  }
+  {{- else}}
+  {{- if .Void}}
+  // {{.Name}} implements the {{.ServiceName}}Impl interface.
+  {{- if .Oneway}}
+  // Oneway methods are not guaranteed to receive 100% of the requests sent by the client.
+  // And the client may not perceive the loss of requests due to network packet loss.
+  // If possible, do not use oneway methods.
+  {{- end}}
+  func (s *{{$.ServiceName}}Impl) {{.Name}}(ctx context.Context {{- range .Args}}, {{LowerFirst .Name}} {{.Type}}{{end}}) (err error) {
+    err = service.New{{.Name}}Service(ctx).Run({{range .Args}} {{LowerFirst .Name}}, {{end}})
+
+    return err
+  }
+  {{else -}}
+  // {{.Name}} implements the {{.ServiceName}}Impl interface.
+  func (s *{{$.ServiceName}}Impl) {{.Name}}(ctx context.Context {{range .Args}}, {{LowerFirst .Name}} {{.Type}}{{end}} ) (resp {{.Resp.Type}}, err error) {
+    resp, err = service.New{{.Name}}Service(ctx).Run({{range .Args}} {{LowerFirst .Name}}, {{end}})
+
+    return resp, err
+  }
+  {{end}}
+  {{end}}
+  {{end}}

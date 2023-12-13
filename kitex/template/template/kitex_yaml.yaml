@@ -1,0 +1,7 @@
+path: kitex_info.yaml
+update_behavior:
+  type: cover
+body: |-
+  kitexinfo:
+    ServiceName: '{{.RealServiceName}}'
+    ToolVersion: '{{.Version}}'

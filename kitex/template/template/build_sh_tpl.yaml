@@ -1,0 +1,11 @@
+path: build.sh
+update_behavior:
+  type: skip
+body: |-
+  #!/usr/bin/env bash
+  RUN_NAME="{{.RealServiceName}}"
+  mkdir -p output/bin output/conf
+  cp script/* output/
+  cp -r conf/* output/conf
+  chmod +x output/bootstrap.sh
+  go build -o output/bin/${RUN_NAME}
