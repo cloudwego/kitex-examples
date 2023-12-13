@@ -59,6 +59,7 @@ You can go into the related examples for information on "how to run"
 
 ## Kitex generated code
 - [protobuf](kitex/protobuf) Example of using kitex and protobuf to generate server code
+- [template](kitex/template) Example of using kitex custom template to generate server code
 
 ## Note
 
