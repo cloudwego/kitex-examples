@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-RUN_NAME=""
+RUN_NAME="hello"
 mkdir -p output/bin output/conf
 cp script/* output/
 cp -r conf/* output/conf
