@@ -21,6 +21,6 @@
 ## 如何运行
 
 ````外壳
-sh 构建.sh
-sh 输出/bootstrap.sh
+sh build.sh
+sh output/bootstrap.sh
 ````
