@@ -1,0 +1,70 @@
+path: biz/service/{{ SnakeString (index .Methods 0).Name }}.go
+loop_method: true
+update_behavior:
+  type: skip
+body: |-
+  package service
+
+  import (
+    "context"
+
+  	{{- range $path, $aliases := ( FilterImports .Imports .Methods )}}
+  		{{- if not $aliases }}
+  			"{{$path}}"
+        {{- else if or (eq $path "github.com/cloudwego/kitex/client") (eq $path "github.com/cloudwego/kitex/pkg/serviceinfo")}}
+  		{{- else}}
+  			{{- range $alias, $is := $aliases}}
+  				{{$alias}} "{{$path}}"
+  			{{- end}}
+  		{{- end}}
+  	{{- end}}
+  )
+
+  {{range .Methods}}
+
+  type {{.Name}}Service struct {
+    ctx context.Context
+  }
+
+  {{- if or .ClientStreaming .ServerStreaming}}
+
+  // New{{.Name}}Service new {{.Name}}Service
+  func New{{.Name}}Service(ctx context.Context) *{{.Name}}Service {
+    return &{{.Name}}Service{ctx: ctx}
+  }
+
+  func (s *{{.Name}}Service) Run({{if not .ClientStreaming}}{{range .Args}}{{LowerFirst .Name}} {{.Type}}, {{end}}{{end}}stream {{.PkgRefName}}.{{.ServiceName}}_{{.RawName}}Server) (err error) {
+    return
+  }
+  {{- else}}
+  {{- if .Void}}
+  {{- if .Oneway}}
+  {{- end}}
+  
+  // New{{.Name}}Service new {{.Name}}Service
+  func New{{.Name}}Service(ctx context.Context) *{{.Name}}Service {
+    return &{{.Name}}Service{ctx: ctx}
+  }
+
+  // Run create note info
+  func (s *{{.Name}}Service) Run({{range .Args}}{{LowerFirst .Name}} {{.Type}}{{end}}) error {
+    // Finish your business logic.
+
+    return nil
+  }
+  {{else -}}
+  
+  // New{{.Name}}Service new {{.Name}}Service
+  func New{{.Name}}Service(ctx context.Context) *{{.Name}}Service {
+    return &{{.Name}}Service{ctx: ctx}
+  }
+
+  // Run create note info
+  func (s *{{.Name}}Service) Run({{range .Args}}{{LowerFirst .Name}} {{.Type}}{{end}}) (resp {{.Resp.Type}}, err error) {
+    // Finish your business logic.
+
+    return
+  }
+  {{end}}
+  {{end}}
+  {{end}}

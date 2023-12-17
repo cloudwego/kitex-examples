@@ -11,5 +11,6 @@ header:
 
   paths-ignore:
     - '**/kitex_gen/**'
+    - 'kitex/**'
 
   comment: on-failure

@@ -27,7 +27,7 @@
   - [etcd](https://github.com/kitex-contrib/config-etcd/tree/main/example) kitex 服务端使用 etcd 作为配置中心对接治理特性的示例
   - [nacos](https://github.com/kitex-contrib/config-nacos/tree/main/example) kitex 服务端使用 nacos 作为配置中心对接治理特性的示例
   - [apollo](https://github.com/kitex-contrib/config-apollo/tree/main/example) kitex 服务端使用 apollo 作为配置中心对接治理特性的示例
-- [discovery](discovery)kitex 服务端和客户端使用服务注册与发现的示例
+- [discovery](discovery) kitex 服务端和客户端使用服务注册与发现的示例
   - [etcd](https://github.com/kitex-contrib/registry-etcd/tree/main/example) kitex 服务端和客户端使用 etcd 作为服务注册中心的示例
   - [nacos](https://github.com/kitex-contrib/registry-nacos/tree/main/example) kitex 服务端和客户端使用 nacos 作为服务注册中心的示例
   - [polaris](https://github.com/kitex-contrib/registry-polaris/tree/main/example) kitex 服务端和客户端使用 polaris 作为服务注册中心的示例
@@ -59,6 +59,7 @@
 
 ## Kitex 生成代码
 - [protobuf](kitex/protobuf) 使用 kitex 与 protobuf 生成服务端代码的示例
+- [template](kitex/template) 使用 kitex 自定义模版生成服务端代码的示例
 
 ## Note
 

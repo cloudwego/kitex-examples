@@ -27,7 +27,7 @@ You can go into the related examples for information on "how to run"
     - [etcd](https://github.com/kitex-contrib/config-etcd/tree/main/example) Kitex server uses etcd as an example of connecting the configuration center with governance features
     - [nacos](https://github.com/kitex-contrib/config-nacos/tree/main/example) Kitex server uses nacos as an example of connecting the configuration center with governance features
     - [apollo](https://github.com/kitex-contrib/config-apollo/tree/main/example) Kitex server uses apollo as an example of connecting the configuration center with governance features
-- [discovery](discovery)Example of kitex server and client using service registration and discovery
+- [discovery](discovery) Example of kitex server and client using service registration and discovery
     - [etcd](https://github.com/kitex-contrib/registry-etcd/tree/main/example) Example of kitex server and client using etcd as service registration center
     - [nacos](https://github.com/kitex-contrib/registry-nacos/tree/main/example) Kitex server and client use nacos as an example of service registration center
     - [polaris](https://github.com/kitex-contrib/registry-polaris/tree/main/example) Kitex server and client use polaris as an example of service registration center
@@ -59,6 +59,7 @@ You can go into the related examples for information on "how to run"
 
 ## Kitex generated code
 - [protobuf](kitex/protobuf) Example of using kitex and protobuf to generate server code
+- [template](kitex/template) Example of using kitex custom template to generate server code
 
 ## Note
 

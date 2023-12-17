@@ -1,0 +1,15 @@
+version: '3'
+services:
+  mysql:
+    image: 'mysql:latest'
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=gorm
+      - MYSQL_USER=gorm
+      - MYSQL_PASSWORD=gorm
+      - MYSQL_RANDOM_ROOT_PASSWORD="yes"
+  redis:
+    image: 'redis:latest'
+    ports:
+      - 6379:6379
