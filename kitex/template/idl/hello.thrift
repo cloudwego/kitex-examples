@@ -2,7 +2,7 @@
 namespace go hello.example
 
 struct HelloReq {
-    1: string Name (api.query="name");
+    1: string Name;
 }
 
 struct HelloResp {
@@ -11,5 +11,5 @@ struct HelloResp {
 
 
 service HelloService {
-    HelloResp HelloMethod(1: HelloReq request) (api.get="/hello");
+    HelloResp HelloMethod(1: HelloReq request);
 }
