@@ -60,6 +60,8 @@
 ## Kitex 生成代码
 - [protobuf](kitex/protobuf) 使用 kitex 与 protobuf 生成服务端代码的示例
 - [template](kitex/template) 使用 kitex 自定义模版生成服务端代码的示例
+- [thrift](kitex/thrift) 使用 kitex 与 thrift 生成服务端代码的示例
+- [protobuf](kitex/protobuf) 使用 kitex 与 protobuf 生成服务端代码的示例
 
 ## Note
 
