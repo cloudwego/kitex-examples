@@ -20,6 +20,7 @@
   - [codec-dubbo](https://github.com/kitex-contrib/codec-dubbo/tree/main/samples/helloworld) Kitex 为了支持 kitex <-> dubbo 互通 推出的 dubbo 协议编解码器的示例
 - [long_connection](longconnection) kitex 服务端和客户端使用长连接的示例
 - [streaming](streaming) kitex 服务端和客户端使用流式调用的示例
+- [business_exception](business_exception) kitex 服务端和客户端使用业务异常的示例
 - [middleware](middleware) kitex 服务端和客户端使用中间件的示例
 
 ## 治理特性
