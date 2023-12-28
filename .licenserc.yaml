@@ -12,5 +12,6 @@ header:
   paths-ignore:
     - '**/kitex_gen/**'
     - 'kitex/**'
+    - 'grpc_multi_service/kitex_gen/**'
 
   comment: on-failure
