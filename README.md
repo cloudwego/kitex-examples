@@ -57,6 +57,8 @@ You can go into the related examples for information on "how to run"
 - [meta_info](metainfo) Example of kitex server and client using meta information
 - [profiler](profiler) Example of kitex server and client performance analysis using request cost metrics
 - [proxyless](proxyless) Example of letting Kitex services run in proxyless mode and be managed uniformly by the service mesh
+- [grpc_multi_service](grpc_multi_service) Example of kitex server and client using grpc multiservice
+
 
 ## Kitex generated code
 - [protobuf](kitex/protobuf) Example of using kitex and protobuf to generate server code
