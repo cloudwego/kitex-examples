@@ -1,5 +1,5 @@
 # Kitex-Proxyless-Example
-
+English | [中文](./README_CN.md)
 ## About
 This example shows the usage of the xDS enabled Kitex client. 
 It includes the complete procedures from Environment Setup, Deployment and Feature demonstration.

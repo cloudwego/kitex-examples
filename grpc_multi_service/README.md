@@ -1,6 +1,6 @@
 ## Create a project based on grpc multi-service
 
-[English](./README.md) | 中文
+English | [中文](./README_CN.md)
 
 ### Create a new project
 

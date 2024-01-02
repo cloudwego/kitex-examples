@@ -1,4 +1,5 @@
 # tracer example
+English | [中文](./README_CN.md)
 ## opentracing
 ### HOW-TO-RUN
 1. install docker

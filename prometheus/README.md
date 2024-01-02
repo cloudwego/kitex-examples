@@ -1,5 +1,5 @@
 # Prometheus monitoring for Kitex
-
+English | [中文](./README_CN.md)
 ## Usage Example
 
 ### Server
