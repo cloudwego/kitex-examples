@@ -1,4 +1,6 @@
 # klog
+English | [中文](./README_CN.md)
+
 You can learn about how to use Kitex klog
 
 1. By default, the logger implemented by kitex is used by default.
@@ -21,7 +23,7 @@ type FullLogger interface {
 
 ## Log Extension
 
-Extension provides the use of zap and logrus
+Extension provides the use of zap , logrus and slog
 
 klog extension are coupled in the otel extension
 
