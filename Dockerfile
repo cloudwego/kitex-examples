@@ -13,7 +13,7 @@
 # limitations under the License.
 #
 
-FROM golang:1.20.7-alpine3.17
+FROM golang:1.21.5-alpine
 
 RUN apk update && apk add git
 
