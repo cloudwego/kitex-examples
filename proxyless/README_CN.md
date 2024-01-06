@@ -26,10 +26,10 @@
 我们将在 `proxyless` 命名空间中部署我们的服务。
 因此，我们应该在此命名空间中禁用自动 sidecar 注入。
 ````
-kubectl 标签命名空间无代理 istio-injection-
+kubectl label namespace proxyless istio-injection-
 
 # 检查 sidecar 注入是否被禁用
-kubectl get 命名空间 -L istio-injection
+kubectl get namespace -L istio-injection
 ````
 
 ### 3. 部署 Kitex 应用程序
@@ -44,7 +44,7 @@ sh ./build_image.sh
 #### 使用脚本部署
 ````
 # 该脚本执行 “kubectl” 命令来部署服务器和客户端。 不要部署测试控制器。
-# 将来可能会将脚本替换为使用k8s客户端的代码来控制整个部署。
+# 将来可能会将脚本替换为使用 k8s 客户端的代码来控制整个部署。
 
 # 在本项目的根方向执行
 sh ./deploy.sh
@@ -79,7 +79,7 @@ kubectl apply -f "./yaml/testutil/controller.yaml" --namespace=proxyless
 ````
 
 #### 观察日志
-* 使用 kubectl 日志检查 kitex-client 的日志
+* 使用 `kubectl logs` 检查 kitex-client 的日志
 ````
 # 获取客户端的 podname
 kubectl get pods --namespace=proxyless

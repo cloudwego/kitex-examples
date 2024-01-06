@@ -19,7 +19,7 @@ go run client/main.go
 
 ## 监控
 
-### 查看跟踪
+### 查看链路追踪
 你可以前往 http://localhost:16686 来访问 Jaeger UI。（详情可访问Monitor Jaeger）
 ![img.png](static/jaeger.png)
 
@@ -41,7 +41,7 @@ http://victoriametrics:8428/
 - Runtime Metrics
 
 
-## 追踪相关日志
+## 链路追踪相关日志
 ### 设置 logger 实现
 ```go
 import (
@@ -55,7 +55,7 @@ func init()  {
 }
 ```
 
-### 通过 Context 记录日志
+### 日志与 Context 关联
 
 ```go
 // Echo implements the Echo interface.

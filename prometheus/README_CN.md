@@ -14,7 +14,7 @@
 
 1. 安装 docker 并启动 docker
 2. 在 prometheus.yml 中将`{{ INET_IP }}`更改为本地ip
-3. Prometheus 和 Grafana
+3. 运行 Prometheus 和 Grafana
    `docker-compose up`
 4. 运行 Kitex 服务端
    `go run server/main.go`

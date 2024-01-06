@@ -1,5 +1,5 @@
 # Easy Note
-English | [中文](./README_CN)
+English | [中文](./README_CN.md)
 ## Introduction
 
 Add a demo for `kitex` which implements a simple note service,the demo is divided into three main sections.
