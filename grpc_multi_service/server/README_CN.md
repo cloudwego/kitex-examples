@@ -1,10 +1,12 @@
-## Create a project based on grpc multi-service
+## 基于 grpc multi-service 创建 server
 
-English | [中文](./README_CN.md)
+[English](README.md) | 中文
 
-### Create a new project
+Currently, this feature only supports the gRPC transport protocol
 
-1. Create protobuf idl file in the current directory
+### 创建一个新项目
+
+1.  在当前目录下创建 protobuf idl 文件
 
 ```
 syntax = "proto3";
@@ -14,46 +16,46 @@ option go_package = "multi/service";
 package multiservice;
 
 service ServiceA {
-   rpc ChatA (RequestA) returns (Reply) {}
+  rpc ChatA (RequestA) returns (Reply) {}
 }
 
 message RequestA {
-   string name = 1;
+  string name = 1;
 }
 
 message Reply {
-   string message = 1;
+  string message = 1;
 }
 ```
 
-2. Create a new project
+2.  创建新项目
 
 ```
-// Execute under GOPATH
+// GOPATH 下执行
 kitex -service multiservice ./idl/demo.proto
 
-//Do not execute under GOPATH
+// 不在 GOPATH 下执行
 kitex -service multiservice -module grpc_multi_service ./idl/demo.proto
 
-// Organize & pull dependencies
+// 整理 & 拉取依赖
 go mod tidy
 ```
 
-3. Modify the handler and add your own logic
+3.  修改handler，添加自己的逻辑
 
 ```
 type ServiceAImpl struct{}
 
 // ChatA implements the ServiceAImpl interface.
 func (s *ServiceAImpl) ChatA(ctx context.Context, req *service.RequestA) (resp *service.Reply, err error) {
-klog.Info("ChatA called, req: ", req.Name)
-resp = new(service.Reply)
-resp.Message = "hello " + req.Name
-return
+	klog.Info("ChatA called, req: ", req.Name)
+	resp = new(service.Reply)
+	resp.Message = "hello " + req.Name
+	return
 }
 ```
 
-4. Add new service in idl
+4. 在 idl 里添加新的 service
 
 ```
 syntax = "proto3";
@@ -63,48 +65,48 @@ option go_package = "multi/service";
 package multiservice;
 
 service ServiceA {
-   rpc ChatA (RequestA) returns (Reply) {}
+  rpc ChatA (RequestA) returns (Reply) {}
 }
 
 service ServiceB {
-   rpc ChatB (RequestB) returns (Reply) {}
+  rpc ChatB (RequestB) returns (Reply) {}
 }
 
 message RequestA {
-   string name = 1;
+  string name = 1;
 }
 
 message RequestB {
-   string name = 1;
+  string name = 1;
 }
 
 
 message Reply {
-   string message = 1;
+  string message = 1;
 }
 ```
 
-5. Update project
+5.  更新项目
 
 ```
-// Execute under GOPATH
+// GOPATH 下执行
 kitex -service multiservice ./idl/demo.proto
 
-//Do not execute under GOPATH
+// 不在 GOPATH 下执行
 kitex -service multiservice -module grpc_multi_service ./idl/demo.proto
 
-// Organize & pull dependencies
+// 整理 & 拉取依赖
 go mod tidy
 ```
 
-6. Modify handler.go and main.go
+6. 修改 handler.go 和 main.go
 
-Manually added to handler.go
+手动添加到 handler.go
 ```
 type ServiceBImpl struct{}
 ```
 
-Modify ChatB logic
+修改 ChatB 逻辑
 ```
 // ChatB implements the ServiceBImpl interface.
 func (s *ServiceBImpl) ChatB(ctx context.Context, req *service.RequestB) (resp *service.Reply, err error) {
@@ -115,7 +117,7 @@ func (s *ServiceBImpl) ChatB(ctx context.Context, req *service.RequestB) (resp *
 }
 ```
 
-Modify main.go
+修改 main.go
 ```
 func main() {
 	addr, _ := net.ResolveTCPAddr("tcp", "localhost:8888")
