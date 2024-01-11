@@ -2,7 +2,7 @@
 
 [English](README.md) | 中文
 
-Currently, this feature only supports the gRPC transport protocol
+当前这个功能仅支持 gRPC 传输协议
 
 ### 创建一个新项目
 
