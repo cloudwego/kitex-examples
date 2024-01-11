@@ -27,7 +27,7 @@ import (
 )
 
 func main() {
-	clienta := servicea.MustNewClient("servicea", client.WithHostPorts("127.0.0.1:8888"))
+	clienta := servicea.MustNewClient("servicea", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
 	clientb := serviceb.MustNewClient("serviceb", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
 
 	resa, err := clienta.ChatA(context.Background(), &service.RequestA{Name: "hello,a"})

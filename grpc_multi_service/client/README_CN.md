@@ -44,9 +44,10 @@ go mod tidy
 3. 修改 main.go
 ```
 func main() {
-	clienta := servicea.MustNewClient("servicea", client.WithHostPorts("127.0.0.1:8888"))
+	clienta := servicea.MustNewClient("servicea", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
 	clientb := serviceb.MustNewClient("serviceb", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
-
+        // 新建的客户端必须添加 client.WithTransportProtocol(transport.GRPC)
+        // 否则会出现找不到 method 的问题 
 	resa, err := clienta.ChatA(context.Background(), &service.RequestA{Name: "hello,a"})
 	if err != nil {
 		klog.Error(err)
