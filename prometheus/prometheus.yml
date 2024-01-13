@@ -27,10 +27,10 @@ scrape_configs:
 
     scrape_interval: 1s
     static_configs:
-      - targets: [ "{{ INET_IP }}:9092" ]
+      - targets: [ "{{ INET_IP }}:8092" ]
 
   - job_name: "kitex-client"
 
     scrape_interval: 1s
     static_configs:
-      - targets: [ "{{ INET_IP }}:9093" ]
+      - targets: [ "{{ INET_IP }}:8093" ]

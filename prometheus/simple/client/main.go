@@ -18,36 +18,38 @@ package main
 
 import (
 	"context"
+	"log"
+	"time"
 
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 
+	kclient "github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/pkg/transmeta"
-	"github.com/cloudwego/kitex/server"
+	"github.com/cloudwego/kitex/transport"
 	prometheus "github.com/kitex-contrib/monitor-prometheus"
 )
 
-var _ api.Echo = &EchoImpl{}
-
-// EchoImpl implements the last service interface defined in the IDL.
-type EchoImpl struct{}
-
-// Echo implements the Echo interface.
-func (s *EchoImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
-	klog.Info(req.Message)
-	return &api.Response{Message: req.Message}, nil
-}
-
 func main() {
-	svr := echo.NewServer(new(EchoImpl),
-		server.WithTracer(prometheus.NewServerTracer(":9092", "/metrics")),
-		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: "kitex-server"}),
-		server.WithMetaHandler(transmeta.ServerTTHeaderHandler),
+	client, err := echo.NewClient("echo",
+		kclient.WithHostPorts("0.0.0.0:8888"),
+		kclient.WithTracer(prometheus.NewClientTracer(":8093", "/metrics")),
+		kclient.WithMetaHandler(transmeta.ClientTTHeaderHandler),
+		kclient.WithClientBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: "kitex-client"}),
+		kclient.WithTransportProtocol(transport.TTHeader),
 	)
-	if err := svr.Run(); err != nil {
-		klog.Error("server stopped with error:", err)
+	if err != nil {
+		log.Fatal(err)
 	}
-	klog.Info("server stopped")
+	for {
+		req := &api.Request{Message: "my request"}
+		resp, err := client.Echo(context.Background(), req)
+		if err != nil {
+			log.Fatal(err)
+		}
+		klog.Info(resp)
+		time.Sleep(time.Second)
+	}
 }
