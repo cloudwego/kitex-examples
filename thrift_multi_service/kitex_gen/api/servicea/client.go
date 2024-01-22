@@ -4,14 +4,14 @@ package servicea
 
 import (
 	"context"
-	service "github.com/cloudwego/kitex-examples/protobuf_multi_service/kitex_gen/multi/service"
+	api "github.com/cloudwego/kitex-examples/thrift_multi_service/kitex_gen/api"
 	client "github.com/cloudwego/kitex/client"
 	callopt "github.com/cloudwego/kitex/client/callopt"
 )
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
-	ChatA(ctx context.Context, Req *service.RequestA, callOptions ...callopt.Option) (r *service.Reply, err error)
+	EchoA(ctx context.Context, req *api.Request, callOptions ...callopt.Option) (r *api.Response, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -21,7 +21,7 @@ func NewClient(destService string, opts ...client.Option) (Client, error) {
 
 	options = append(options, opts...)
 
-	kc, err := client.NewClient(serviceInfo(), options...)
+	kc, err := client.NewClient(serviceInfoForClient(), options...)
 	if err != nil {
 		return nil, err
 	}
@@ -43,7 +43,7 @@ type kServiceAClient struct {
 	*kClient
 }
 
-func (p *kServiceAClient) ChatA(ctx context.Context, Req *service.RequestA, callOptions ...callopt.Option) (r *service.Reply, err error) {
+func (p *kServiceAClient) EchoA(ctx context.Context, req *api.Request, callOptions ...callopt.Option) (r *api.Response, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
-	return p.kClient.ChatA(ctx, Req)
+	return p.kClient.EchoA(ctx, req)
 }

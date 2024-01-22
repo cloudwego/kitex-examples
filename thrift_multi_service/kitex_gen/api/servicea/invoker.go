@@ -3,12 +3,12 @@
 package servicea
 
 import (
-	service "github.com/cloudwego/kitex-examples/protobuf_multi_service/kitex_gen/multi/service"
+	api "github.com/cloudwego/kitex-examples/thrift_multi_service/kitex_gen/api"
 	server "github.com/cloudwego/kitex/server"
 )
 
 // NewInvoker creates a server.Invoker with the given handler and options.
-func NewInvoker(handler service.ServiceA, opts ...server.Option) server.Invoker {
+func NewInvoker(handler api.ServiceA, opts ...server.Option) server.Invoker {
 	var options []server.Option
 
 	options = append(options, opts...)
