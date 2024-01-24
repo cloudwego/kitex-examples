@@ -18,6 +18,7 @@ package main
 
 import (
 	"context"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm/dao/mysql"
 	user "github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm/kitex_gen/user"
 	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm/model"
@@ -82,12 +83,13 @@ func (s *UserServiceImpl) QueryUser(ctx context.Context, req *user.QueryUserRequ
 func (s *UserServiceImpl) CreateUser(ctx context.Context, req *user.CreateUserRequest) (resp *user.CreateUserResponse, err error) {
 	resp = new(user.CreateUserResponse)
 
-	if err := mysql.CreateUser([]*model.User{{
-		Name:      req.Name,
-		Gender:    int64(req.Gender),
-		Age:       req.Age,
-		Introduce: req.Introduce,
-	},
+	if err := mysql.CreateUser([]*model.User{
+		{
+			Name:      req.Name,
+			Gender:    int64(req.Gender),
+			Age:       req.Age,
+			Introduce: req.Introduce,
+		},
 	}); err != nil {
 		resp.Msg = err.Error()
 		resp.Code = user.Code_DBErr

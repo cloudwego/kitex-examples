@@ -17,15 +17,15 @@
 package main
 
 import (
-	user "github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm/kitex_gen/user/userservice"
 	"log"
+
+	user "github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm/kitex_gen/user/userservice"
 )
 
 func main() {
 	svr := user.NewServer(new(UserServiceImpl))
 
 	err := svr.Run()
-
 	if err != nil {
 		log.Println(err.Error())
 	}
