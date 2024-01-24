@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  mysql:
+    image: 'mysql:latest'
+    volumes:
+      - ./biz/model/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 9910:3306
+    environment:
+      - MYSQL_DATABASE=gorm
+      - MYSQL_USER=gorm
+      - MYSQL_PASSWORD=gorm
+      - MYSQL_RANDOM_ROOT_PASSWORD="yes"
