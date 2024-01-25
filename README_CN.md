@@ -7,6 +7,7 @@
 您可以进入相关示例以获取有关“如何运行”的信息
 
 ## Bizdemo
+- [bizdemo/kitex_gorm](bizdemo/kitex_gorm) 使用 kitex 和 gorm 的示例
 - [bizdemo/easy_note](bizdemo/easy_note) 使用 kitex 作为 rpc 框架实现多中间键简易笔记服务的示例
 - [Bookinfo](https://github.com/cloudwego/biz-demo/tree/main/bookinfo) 使用 kitex 作为 rpc 框架实现包含 istio 服务网格，opentelemetry 监控等多功能书籍服务程序的示例
 - [Open Payment Platform](https://github.com/cloudwego/biz-demo/tree/main/open-payment-platform) 使用 kitex 作为 rpc 框架演示了 kitex 泛化调用的用法，构建了一体化支付平台
