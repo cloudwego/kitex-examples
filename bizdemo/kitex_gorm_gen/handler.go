@@ -18,8 +18,9 @@ package main
 
 import (
 	"context"
+	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/model/model"
+	"strconv"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/orm_gen"
 	user "github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/kitex_gen/user"
 	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/model/query"
 	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/pack"
@@ -31,9 +32,9 @@ type UserServiceImpl struct{}
 // UpdateUser implements the UserServiceImpl interface.
 func (s *UserServiceImpl) UpdateUser(ctx context.Context, req *user.UpdateUserRequest) (resp *user.UpdateUserResponse, err error) {
 	resp = new(user.UpdateUserResponse)
-	u := &orm_gen.User{
+	u := &model.User{
 		Name:      req.Name,
-		Gender:    int32(req.Gender),
+		Gender:    strconv.FormatInt(int64(req.Gender), 10),
 		Age:       int32(req.Age),
 		Introduce: req.Introduce,
 	}
@@ -53,7 +54,7 @@ func (s *UserServiceImpl) UpdateUser(ctx context.Context, req *user.UpdateUserRe
 func (s *UserServiceImpl) DeleteUser(ctx context.Context, req *user.DeleteUserRequest) (resp *user.DeleteUserResponse, err error) {
 	resp = new(user.DeleteUserResponse)
 
-	_, err = query.User.WithContext(ctx).Where(query.User.ID.Eq(req.UserId)).Delete()
+	_, err = query.User.WithContext(ctx).Where(query.User.ID.Eq(int32(req.UserId))).Delete()
 	if err != nil {
 		resp.Code = user.Code_DBErr
 		resp.Msg = err.Error()
@@ -81,7 +82,7 @@ func (s *UserServiceImpl) QueryUser(ctx context.Context, req *user.QueryUserRequ
 		return
 	}
 
-	var users []*orm_gen.User
+	var users []*model.User
 	if total > 0 {
 		users, err = m.Limit(int(req.PageSize)).Offset(int(req.PageSize * (req.Page - 1))).Find()
 		if err != nil {
@@ -102,9 +103,9 @@ func (s *UserServiceImpl) QueryUser(ctx context.Context, req *user.QueryUserRequ
 func (s *UserServiceImpl) CreateUser(ctx context.Context, req *user.CreateUserRequest) (resp *user.CreateUserResponse, err error) {
 	resp = new(user.CreateUserResponse)
 
-	err = query.User.WithContext(ctx).Create(&orm_gen.User{
+	err = query.User.WithContext(ctx).Create(&model.User{
 		Name:      req.Name,
-		Gender:    int32(req.Gender),
+		Gender:    strconv.FormatInt(int64(req.Gender), 10),
 		Age:       int32(req.Age),
 		Introduce: req.Introduce,
 	})

@@ -17,12 +17,13 @@
 package pack
 
 import (
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/orm_gen"
 	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/kitex_gen/user"
+	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/model/model"
+	"strconv"
 )
 
 // Users Convert orm_gen.User list to user_gorm.User list
-func Users(models []*orm_gen.User) []*user.User {
+func Users(models []*model.User) []*user.User {
 	users := make([]*user.User, 0, len(models))
 	for _, m := range models {
 		if u := User(m); u != nil {
@@ -32,15 +33,19 @@ func Users(models []*orm_gen.User) []*user.User {
 	return users
 }
 
-// User Convert orm_gen.User to user_gorm.User
-func User(model *orm_gen.User) *user.User {
+// User Convert model.User to user_gorm.User
+func User(model *model.User) *user.User {
 	if model == nil {
 		return nil
 	}
+	gender, err := strconv.ParseInt(model.Gender, 10, 64)
+	if err != nil {
+		return nil
+	}
 	return &user.User{
-		UserId:    model.ID,
+		UserId:    int64(model.ID),
 		Name:      model.Name,
-		Gender:    user.Gender(model.Gender),
+		Gender:    user.Gender(gender),
 		Age:       int64(model.Age),
 		Introduce: model.Introduce,
 	}

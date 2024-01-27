@@ -17,7 +17,6 @@
 package main
 
 import (
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/orm_gen"
 	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/dao/mysql"
 	"gorm.io/gen"
 	// reuse your gorm db
@@ -35,11 +34,8 @@ func main() {
 	// reuse your gorm db
 	g.UseDB(mysql.DB)
 
-	// Generate struct `User` based on table `users`
-	g.GenerateModel("users")
-
-	// Generate basic type-safe DAO API for struct `orm_gen.User` following conventions
-	g.ApplyBasic(orm_gen.User{})
+	// Generate basic type-safe DAO API for generated struct `model.User` following conventions
+	g.ApplyBasic(g.GenerateModel("users"))
 
 	// Generate the code
 	g.Execute()
