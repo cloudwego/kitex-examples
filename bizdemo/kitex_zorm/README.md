@@ -1,12 +1,12 @@
-# kitex_gorm
+# kitex_zorm
 
 ## Introduce
 
-A demo with `Kitex` and `Gorm`
+A demo with `Kitex` and `Zorm`
 
 - Use `thrift` IDL to define `RPC` interface
 - Use `kitex` to generate code
-- Use `Gorm` and `MySQL`
+- Use `Zorm` and `MySQL`
 
 ## IDL
 
@@ -19,21 +19,21 @@ to [kitex](https://www.cloudwego.io/docs/kitex/tutorials/code-gen/)
 
 The `kitex` commands used can be found in [Makefile](Makefile)
 
-## Gorm
+## Zorm
 
-This demo use `Gorm` to operate `MySQL` and refers to [Gorm](https://gorm.io/)
+This demo use `Zorm` to operate `MySQL` and refers to [Zorm](https://www.zorm.cn/)
 
 ## How to run
 
 ### Run mysql docker
 
 ```bash
-cd bizdemo/kitex_gorm && docker-compose up
+cd bizdemo/kitex_zorm && docker-compose up
 ```
 
 ### Run demo
 
 ```bash
-cd bizdemo/kitex_gorm
-go build -o kitex_gorm && ./kitex_gorm
+cd bizdemo/kitex_zorm
+go build -o kitex_zorm && ./kitex_zorm
 ```
