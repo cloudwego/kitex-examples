@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	hz := server.New(server.WithHostPorts("localhost:8080"))
+	hz := server.New(server.WithHostPorts("localhost:8889"))
 
 	hz.GET("/api/item", Handler)
 
@@ -47,7 +47,7 @@ func Handler(ctx context.Context, c *app.RequestContext) {
 		log.Fatal(err)
 	}
 
-	cli, err := itemservice.NewClient("example.shop.item", client.WithResolver(resolver), client.WithConnectTimeout(time.Hour), client.WithRPCTimeout(time.Hour))
+	cli, err := itemservice.NewClient("example.shop.item", client.WithResolver(resolver))
 	if err != nil {
 		log.Fatal(err)
 	}
