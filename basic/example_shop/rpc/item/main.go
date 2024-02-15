@@ -32,7 +32,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	svr := item.NewServer(new(ItemServiceImpl),
+	itemServiceImpl := new(ItemServiceImpl)
+	stockCli, err := NewStockClient("0.0.0.0:8890")
+	if err != nil {
+		log.Fatal(err)
+	}
+	itemServiceImpl.stockCli = stockCli
+
+	svr := item.NewServer(itemServiceImpl,
 		server.WithRegistry(r),
 		server.WithServerBasicInfo(
 			&rpcinfo.EndpointBasicInfo{

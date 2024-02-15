@@ -29,7 +29,9 @@ import (
 )
 
 // ItemServiceImpl implements the last service interface defined in the IDL.
-type ItemServiceImpl struct{}
+type ItemServiceImpl struct {
+	stockCli stockservice.Client
+}
 
 func NewStockClient(addr string) (stockservice.Client, error) {
 	r, err := etcd.NewEtcdResolver([]string{"127.0.0.1:2379"})
@@ -47,13 +49,13 @@ func (s *ItemServiceImpl) GetItem(ctx context.Context, req *item.GetItemReq) (re
 	resp.Item.Title = "Kitex"
 	resp.Item.Description = "Kitex is an excellent framework!"
 
-	stockCli, err := NewStockClient("0.0.0.0:8890")
-	if err != nil {
-		log.Fatal(err)
-	}
+	//stockCli, err := NewStockClient("0.0.0.0:8890")
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
 	stockReq := stock.NewGetItemStockReq()
 	stockReq.ItemId = req.GetId()
-	stockResp, err := stockCli.GetItemStock(context.Background(), stockReq)
+	stockResp, err := s.stockCli.GetItemStock(context.Background(), stockReq)
 	if err != nil {
 		log.Println(err)
 		stockResp.Stock = 0
