@@ -49,10 +49,6 @@ func (s *ItemServiceImpl) GetItem(ctx context.Context, req *item.GetItemReq) (re
 	resp.Item.Title = "Kitex"
 	resp.Item.Description = "Kitex is an excellent framework!"
 
-	//stockCli, err := NewStockClient("0.0.0.0:8890")
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
 	stockReq := stock.NewGetItemStockReq()
 	stockReq.ItemId = req.GetId()
 	stockResp, err := s.stockCli.GetItemStock(context.Background(), stockReq)
