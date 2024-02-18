@@ -7,7 +7,7 @@ exporters:
   prometheusremotewrite:
     endpoint: "http://victoriametrics:8428/api/v1/write"
 
-  logging:
+  debug:
 
   otlp/jaeger:
     endpoint: jaeger-all-in-one:4317
@@ -30,8 +30,8 @@ service:
     traces:
       receivers: [ otlp ]
       processors: [ batch ]
-      exporters: [ logging, otlp/jaeger ]
+      exporters: [ debug, otlp/jaeger ]
     metrics:
       receivers: [ otlp ]
       processors: [ batch ]
-      exporters: [ logging, prometheusremotewrite ]
+      exporters: [ debug, prometheusremotewrite ]
