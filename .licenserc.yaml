@@ -13,5 +13,6 @@ header:
     - '**/kitex_gen/**'
     - 'kitex/**'
     - 'grpc_multi_service/kitex_gen/**'
+    - 'bizdemo/kitex_ent/ent/**'
 
   comment: on-failure
