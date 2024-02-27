@@ -59,6 +59,8 @@
 - [grpc_proxy](grpcproxy) kitex 服务端和客户端使用 grpc_proxy 的示例
 - [generic](generic) kitex 服务端和客户端使用泛化调用的示例
 - [meta_info](metainfo) kitex 服务端和客户端使用元信息的示例
+- [server_hook](server_hook) kitex 服务端 启动/退出 前后定制业务逻辑的示例
+- [server_sdk](server_sdk) kitex 服务端 SDK 化的示例
 - [profiler](profiler) kitex 服务端和客户端使用请求成本度量进行性能分析的示例
 - [proxyless](proxyless) 让 Kitex 服务以 Proxyless 的模式运行，被服务网格统一纳管的示例
 - [grpc_multi_service](grpc_multi_service) kitex 服务端和客户端使用 grpc 多服务的示例
