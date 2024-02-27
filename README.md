@@ -59,6 +59,8 @@ You can go into the related examples for information on "how to run"
 - [grpc_proxy](grpcproxy) Example of kitex server and client using grpc_proxy
 - [generic](generic) kitex example of using generic calls between server and client
 - [meta_info](metainfo) Example of kitex server and client using meta information
+- [server_hook](server_hook) Examples of customizing business logic before and after kitex server startup/exit
+- [server_sdk](server_sdk) Example of kitex server-side SDKization
 - [profiler](profiler) Example of kitex server and client performance analysis using request cost metrics
 - [proxyless](proxyless) Example of letting Kitex services run in proxyless mode and be managed uniformly by the service mesh
 - [grpc_multi_service](grpc_multi_service) Example of kitex server and client using grpc multiservice
