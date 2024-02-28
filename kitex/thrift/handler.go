@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+
 	example "kitex-examples/kitex/thrift/kitex_gen/hello/example"
 )
 

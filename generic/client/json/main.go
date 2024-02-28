@@ -18,20 +18,21 @@ package main
 import (
 	"context"
 	"fmt"
+
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/client/genericclient"
 	"github.com/cloudwego/kitex/pkg/generic"
 )
 
 func main() {
-	// 本地文件 idl 解析
-	// YOUR_IDL_PATH thrift 文件路径: 举例 ./idl/example.thrift
-	// includeDirs: 指定 include 路径，默认用当前文件的相对路径寻找 include
+	// Local file idl parsing
+	// YOUR_IDL_PATH thrift file path: example ./idl/example.thrift
+	// includeDirs: Specify the include path. By default, the relative path of the current file is used to find include.
 	p, err := generic.NewThriftFileProvider("./example_service.thrift")
 	if err != nil {
 		panic(err)
 	}
-	// 构造 JSON 请求和返回类型的泛化调用
+	// Generic calls to construct JSON requests and return types
 	g, err := generic.JSONThriftGeneric(p)
 	if err != nil {
 		panic(err)
@@ -40,8 +41,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	// 'ExampleMethod' 方法名必须包含在 idl 定义中
+	// 'ExampleMethod' method name must be included in the idl definition
 	resp, err := cli.GenericCall(context.Background(), "ExampleMethod", "{\"Msg\": \"hello\"}")
+	if err != nil {
+		panic(err)
+	}
 	// resp is a JSON string
 	fmt.Println(resp)
 }

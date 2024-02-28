@@ -18,6 +18,7 @@ package main
 import (
 	"context"
 	"fmt"
+
 	"github.com/cloudwego/kitex/pkg/generic"
 	"github.com/cloudwego/kitex/server/genericserver"
 )
@@ -43,8 +44,7 @@ func main() {
 	// resp is a JSON string
 }
 
-type GenericServiceImpl struct {
-}
+type GenericServiceImpl struct{}
 
 func (g *GenericServiceImpl) GenericCall(ctx context.Context, method string, request interface{}) (response interface{}, err error) {
 	// use jsoniter or other json parse sdk to assert request

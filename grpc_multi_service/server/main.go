@@ -16,11 +16,12 @@
 package main
 
 import (
+	"log"
+	"net"
+
 	"github.com/cloudwego/kitex/server"
 	"grpc_multi_service/kitex_gen/multi/service/servicea"
 	"grpc_multi_service/kitex_gen/multi/service/serviceb"
-	"log"
-	"net"
 )
 
 func main() {

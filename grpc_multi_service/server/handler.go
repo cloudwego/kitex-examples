@@ -17,6 +17,7 @@ package main
 
 import (
 	"context"
+
 	"github.com/cloudwego/kitex/pkg/klog"
 	service "grpc_multi_service/kitex_gen/multi/service"
 )

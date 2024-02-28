@@ -17,9 +17,10 @@
 package pack
 
 import (
+	"strconv"
+
 	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/kitex_gen/user"
 	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/model/model"
-	"strconv"
 )
 
 // Users Convert orm_gen.User list to user_gorm.User list

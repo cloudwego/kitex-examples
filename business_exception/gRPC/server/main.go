@@ -17,8 +17,9 @@ package main
 
 import (
 	"context"
-	"github.com/cloudwego/kitex/pkg/kerrors"
 	"log"
+
+	"github.com/cloudwego/kitex/pkg/kerrors"
 
 	"github.com/cloudwego/kitex-examples/kitex_gen/pbapi"
 	"github.com/cloudwego/kitex-examples/kitex_gen/pbapi/echo"

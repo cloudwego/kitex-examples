@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+
 	hello "kitex-examples/kitex/protobuf/kitex_gen/hello"
 )
 

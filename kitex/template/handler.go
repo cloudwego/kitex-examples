@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+
 	"github.com/kitex/hello/biz/service"
 	example "github.com/kitex/hello/kitex_gen/hello/example"
 )

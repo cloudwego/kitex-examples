@@ -31,9 +31,7 @@ import (
 	etcd "github.com/kitex-contrib/registry-etcd"
 )
 
-var (
-	cli itemservice.Client
-)
+var cli itemservice.Client
 
 func main() {
 	resolver, err := etcd.NewEtcdResolver([]string{"127.0.0.1:2379"})
