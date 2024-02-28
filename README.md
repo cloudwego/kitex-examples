@@ -75,4 +75,4 @@ You can go into the related examples for information on "how to run"
 
 ## Note
 
-All commands to execute the example should be executed under "Kitex-example".
+All commands to execute the example should be executed under "kitex-example".

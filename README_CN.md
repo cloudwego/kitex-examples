@@ -74,4 +74,4 @@
 
 ## Note
 
-执行示例的所有命令都应在 Kitex-examples 下执行。
+执行示例的所有命令都应在 kitex-examples 下执行。
