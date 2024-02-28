@@ -2,8 +2,9 @@ package service
 
 import (
 	"context"
-	example "github.com/kitex/hello/kitex_gen/hello/example"
 	"testing"
+
+	example "github.com/kitex/hello/kitex_gen/hello/example"
 )
 
 func TestHelloMethod_Run(t *testing.T) {
@@ -17,5 +18,4 @@ func TestHelloMethod_Run(t *testing.T) {
 	t.Logf("resp: %v", resp)
 
 	// todo: edit your unit test
-
 }

@@ -18,8 +18,9 @@ package main
 
 import (
 	"context"
-	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/model/model"
 	"strconv"
+
+	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/model/model"
 
 	user "github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/kitex_gen/user"
 	"github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm_gen/model/query"

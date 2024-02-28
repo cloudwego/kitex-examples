@@ -63,7 +63,7 @@ func main() {
 	}
 
 	// Yields a constantly-changing number
-	rand.Seed(time.Now().UnixNano())
+	rand.New(rand.NewSource(time.Now().UnixNano()))
 	for {
 		call(c)
 		<-time.After(time.Second)

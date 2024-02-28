@@ -18,9 +18,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+
 	"github.com/cloudwego/kitex/server"
 	"github.com/cloudwego/localsession"
-	"log"
 
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"

@@ -17,8 +17,9 @@ package main
 
 import (
 	"context"
-	"github.com/cloudwego/kitex/server"
 	"log"
+
+	"github.com/cloudwego/kitex/server"
 
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
@@ -41,12 +42,10 @@ func main() {
 
 	server.RegisterStartHook(func() {
 		klog.Info("server hook after server started")
-		return
 	})
 
 	server.RegisterShutdownHook(func() {
 		klog.Info("server hook before server shutdown")
-		return
 	})
 
 	if err := svr.Run(); err != nil {
