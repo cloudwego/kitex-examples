@@ -11,7 +11,7 @@
 - [bizdemo/kitex_gorm_gen](bizdemo/kitex_gorm_gen) 使用 Kitex 和 gorm_gen 的示例
 - [bizdemo/kitex_zorm](bizdemo/kitex_zorm) 使用 Kitex 和 zorm 的示例
 - [bizdemo/kitex_zorm](bizdemo/kitex_zorm) 使用 Kitex 和 ent 的示例
-- [bizdemo/easy_note](bizdemo/easy_note) 使用 Kitex 作为 rpc 框架实现多中间键简易笔记服务的示例
+- [bizdemo/easy_note](bizdemo/easy_note) 使用 Kitex 作为 rpc 框架实现多中间件简易笔记服务的示例
 - [Bookinfo](https://github.com/cloudwego/biz-demo/tree/main/bookinfo) 使用 Kitex 作为 rpc 框架实现包含 istio 服务网格，OpenTelemetry 监控等多功能书籍服务程序的示例
 - [Open Payment Platform](https://github.com/cloudwego/biz-demo/tree/main/open-payment-platform) 使用 Kitex 作为 rpc 框架演示了 Kitex 泛化调用的用法，构建了一体化支付平台
 - [Book Shop](https://github.com/cloudwego/biz-demo/tree/main/book-shop) 使用 Kitex 作为 rpc 框架实现包含 ElasticSearch 搜索引擎的电子商务系统的示例
@@ -21,7 +21,7 @@
 - [basic](basic) Kitex 的基础示例
 - [async_call](async_call) 在 Kitex server 中使用异步调用的示例
 - [codec](codec) Kitex 服务端和客户端使用自定义编解码器的示例
-  - [codec-dubbo](https://github.com/kitex-contrib/codec-dubbo/tree/main/samples/helloworld) Kitex 为了支持 Kitex <-> dubbo 互通 推出的 dubbo 协议编解码器的示例
+  - [codec-Dubbo](https://github.com/kitex-contrib/codec-dubbo/tree/main/samples/helloworld) Kitex 为了支持 Kitex <-> Dubbo 互通 推出的 Dubbo 协议编解码器的示例
 - [long_connection](longconnection) Kitex 服务端和客户端使用长连接的示例
 - [streaming](streaming) Kitex 服务端和客户端使用流式调用的示例
 - [business_exception](business_exception) Kitex 服务端和客户端使用业务异常的示例
