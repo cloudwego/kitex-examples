@@ -22,10 +22,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cloudwego/kitex-examples/streaming/kitex_gen/pbapi"
-	"github.com/cloudwego/kitex-examples/streaming/kitex_gen/pbapi/echo"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"golang.org/x/sync/errgroup"
+
+	"github.com/cloudwego/kitex-examples/streaming/kitex_gen/pbapi"
+	"github.com/cloudwego/kitex-examples/streaming/kitex_gen/pbapi/echo"
 )
 
 var _ pbapi.Echo = &EchoImpl{}
@@ -54,6 +55,7 @@ func (s *EchoImpl) StreamRequestEcho(stream pbapi.Echo_StreamRequestEchoServer) 
 
 // StreamResponseEcho implements the Echo interface.
 func (s *EchoImpl) StreamResponseEcho(req *pbapi.Request, stream pbapi.Echo_StreamResponseEchoServer) (err error) {
+	// no need to call `stream.Close()` manually
 	klog.Info("StreamResponseEcho called")
 	resp := &pbapi.Response{}
 	for i := 0; i < 10; i++ {
@@ -64,7 +66,7 @@ func (s *EchoImpl) StreamResponseEcho(req *pbapi.Request, stream pbapi.Echo_Stre
 		}
 		time.Sleep(time.Second)
 	}
-	return stream.Close()
+	return
 }
 
 // BidirectionalEcho implements the Echo interface.
