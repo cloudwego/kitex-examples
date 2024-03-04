@@ -5,29 +5,29 @@ go 1.17
 require (
 	github.com/apache/thrift v0.16.0
 	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b
-	github.com/cloudwego/kitex v0.7.3
-	github.com/cloudwego/kitex-benchmark v0.0.0-20230927083943-1d08f5680fa5
+	github.com/cloudwego/kitex v0.9.0
+	github.com/cloudwego/kitex-benchmark v0.0.0-20240229111153-f43bfccbefe8
 	github.com/kitex-contrib/resolver-dns v0.0.0-20211026091019-d57feaffb777
-	github.com/kitex-contrib/xds v0.2.0
+	github.com/kitex-contrib/xds v0.3.0
 	k8s.io/apimachinery v0.28.3
 	k8s.io/client-go v0.28.3
 )
 
 require (
-	github.com/bytedance/sonic v1.9.1 // indirect
+	github.com/bytedance/sonic v1.11.1 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.0 // indirect
 	github.com/census-instrumentation/opencensus-proto v0.4.1 // indirect
-	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
-	github.com/chenzhuoyu/iasm v0.9.0 // indirect
-	github.com/choleraehyq/pid v0.0.17 // indirect
+	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
+	github.com/chenzhuoyu/iasm v0.9.1 // indirect
+	github.com/choleraehyq/pid v0.0.18 // indirect
 	github.com/cloudfoundry/gosigar v1.3.3 // indirect
 	github.com/cloudwego/configmanager v0.2.0 // indirect
-	github.com/cloudwego/dynamicgo v0.1.3 // indirect
+	github.com/cloudwego/dynamicgo v0.2.0 // indirect
 	github.com/cloudwego/fastpb v0.0.4 // indirect
-	github.com/cloudwego/frugal v0.1.8 // indirect
+	github.com/cloudwego/frugal v0.1.14 // indirect
 	github.com/cloudwego/localsession v0.0.2 // indirect
-	github.com/cloudwego/netpoll v0.5.1 // indirect
-	github.com/cloudwego/thriftgo v0.3.2-0.20230828085742-edaddf2c17af // indirect
+	github.com/cloudwego/netpoll v0.6.0 // indirect
+	github.com/cloudwego/thriftgo v0.3.6 // indirect
 	github.com/cncf/xds/go v0.0.0-20230607035331-e9ce68804cb4 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/emicklei/go-restful/v3 v3.9.0 // indirect

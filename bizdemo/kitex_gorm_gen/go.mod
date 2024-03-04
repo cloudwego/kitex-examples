@@ -6,27 +6,26 @@ replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
 	github.com/apache/thrift v0.13.0
-	github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen v0.0.0-20240105101639-d391129af4f4
-	github.com/cloudwego/kitex v0.8.0
-	github.com/cloudwego/kitex-examples/bizdemo/kitex_gorm v0.0.0-20240125052605-3cf6a171834a
+	github.com/cloudwego/kitex v0.9.0
 	gorm.io/driver/mysql v1.5.2
 	gorm.io/gen v0.3.25
-	gorm.io/gorm v1.25.5
+	gorm.io/gorm v1.25.7
+	gorm.io/plugin/dbresolver v1.5.0
 )
 
 require (
 	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b // indirect
-	github.com/bytedance/sonic v1.10.2 // indirect
+	github.com/bytedance/sonic v1.11.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.1 // indirect
-	github.com/choleraehyq/pid v0.0.17 // indirect
+	github.com/choleraehyq/pid v0.0.18 // indirect
 	github.com/cloudwego/configmanager v0.2.0 // indirect
-	github.com/cloudwego/dynamicgo v0.1.6 // indirect
+	github.com/cloudwego/dynamicgo v0.2.0 // indirect
 	github.com/cloudwego/fastpb v0.0.4 // indirect
-	github.com/cloudwego/frugal v0.1.12 // indirect
+	github.com/cloudwego/frugal v0.1.14 // indirect
 	github.com/cloudwego/localsession v0.0.2 // indirect
-	github.com/cloudwego/netpoll v0.5.1 // indirect
-	github.com/cloudwego/thriftgo v0.3.3 // indirect
+	github.com/cloudwego/netpoll v0.6.0 // indirect
+	github.com/cloudwego/thriftgo v0.3.6 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
@@ -60,5 +59,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/datatypes v1.1.1-0.20230130040222-c43177d3cf8c // indirect
 	gorm.io/hints v1.1.0 // indirect
-	gorm.io/plugin/dbresolver v1.5.0 // indirect
 )

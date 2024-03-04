@@ -4,10 +4,10 @@ go 1.16
 
 require (
 	github.com/apache/thrift v0.16.0
-	github.com/cloudwego/hertz v0.7.1
-	github.com/cloudwego/kitex v0.7.3
+	github.com/cloudwego/hertz v0.8.1
+	github.com/cloudwego/kitex v0.9.0
 	github.com/hertz-contrib/jwt v1.0.2
-	github.com/kitex-contrib/registry-etcd v0.2.0
+	github.com/kitex-contrib/registry-etcd v0.2.1
 	github.com/kitex-contrib/tracer-opentracing v0.0.3
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/shirou/gopsutil v3.21.11+incompatible
