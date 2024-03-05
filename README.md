@@ -65,6 +65,8 @@ You can go into the related examples for information on "how to run"
 - [profiler](profiler) Example of Kitex server and client performance analysis using request cost metrics
 - [proxyless](proxyless) Example of letting Kitex services run in proxyless mode and be managed uniformly by the service mesh
 - [grpc_multi_service](grpc_multi_service) Example of Kitex server and client using grpc multiservice
+- [thrift_multi_service](thrift_multi_service) Example of Kitex server and client using thrift (non-streaming) multiservice
+- [protobuf_multi_service](protobuf_multi_service) Example of Kitex server and client using protobuf (non-streaming) multiservice
 - [goroutine_local_storage](goroutine-local-storage) Example of Kitex server and client using goroutine_local_storage 
 
 

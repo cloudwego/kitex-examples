@@ -66,6 +66,8 @@
 - [profiler](profiler) Kitex 服务端和客户端使用请求成本度量进行性能分析的示例
 - [proxyless](proxyless) 让 Kitex 服务以 Proxyless 的模式运行，被服务网格统一纳管的示例
 - [grpc_multi_service](grpc_multi_service) Kitex 服务端和客户端使用 grpc 多服务的示例
+- [thrift_multi_service](thrift_multi_service) Kitex 服务端和客户端使用 thrift (non-streaming) 多服务的示例
+- [protobuf_multi_service](protobuf_multi_service) Kitex 服务端和客户端使用 protobuf (non-streaming) 多服务的示例
 - [goruntine_local_storage](goroutine-local-storage) Kitex 服务端和客户端使用 goruntine_local_storage 的示例
 
 ## Kitex 生成代码
