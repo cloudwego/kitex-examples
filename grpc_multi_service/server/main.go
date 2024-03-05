@@ -20,6 +20,7 @@ import (
 	"net"
 
 	"github.com/cloudwego/kitex/server"
+
 	"grpc_multi_service/kitex_gen/multi/service/servicea"
 	"grpc_multi_service/kitex_gen/multi/service/serviceb"
 )
@@ -28,11 +29,11 @@ func main() {
 	addr, _ := net.ResolveTCPAddr("tcp", "localhost:8888")
 
 	svr := server.NewServer(server.WithServiceAddr(addr))
-	err := svr.RegisterService(servicea.NewServiceInfo(), new(ServiceAImpl))
+	err := servicea.RegisterService(svr, new(ServiceAImpl))
 	if err != nil {
 		log.Println(err.Error())
 	}
-	err = svr.RegisterService(serviceb.NewServiceInfo(), new(ServiceBImpl))
+	err = serviceb.RegisterService(svr, new(ServiceBImpl))
 	if err != nil {
 		log.Println(err.Error())
 	}
