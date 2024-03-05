@@ -17,3 +17,6 @@
 # IDE config
 .vscode
 .idea
+
+# kitex
+thrift_streaming/output

@@ -11,6 +11,8 @@ header:
 
   paths-ignore:
     - '**/kitex_gen/**'
+    - '**/kitex_info.yaml'
+    - '**/script/bootstrap.sh'
     - 'kitex/**'
     - 'grpc_multi_service/kitex_gen/**'
     - 'bizdemo/kitex_ent/ent/**'
