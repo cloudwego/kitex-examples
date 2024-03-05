@@ -23,7 +23,8 @@ You can go into the related examples for information on "how to run"
 - [codec](codec) Example of Kitex server and client using custom codecs
     - [codec-Dubbo](https://github.com/kitex-contrib/codec-dubbo/tree/main/samples/helloworld) Example of Dubbo protocol codec launched by Kitex to support Kitex <-> Dubbo interoperability
 - [long_connection](longconnection) Kitex example of using long connections between server and client
-- [streaming](streaming) Example of Kitex server and client using streams
+- [streaming](streaming) Example of Kitex server and client using streams (based on GRPC/HTTP2, using Protobuf IDL)
+- [thrift streaming](thrift_streaming) Example of Kitex server and client using thrift streaming (based on GRPC/HTTP2, using Thrift IDL)
 - [business_exception](business_exception) Example of Kitex server and client using business exceptions
 - [middleware](middleware) Kitex Example of using middleware between server and client
 
