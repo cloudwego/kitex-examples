@@ -23,7 +23,9 @@
 - [codec](codec) Kitex 服务端和客户端使用自定义编解码器的示例
   - [codec-Dubbo](https://github.com/kitex-contrib/codec-dubbo/tree/main/samples/helloworld) Kitex 为了支持 Kitex <-> Dubbo 互通 推出的 Dubbo 协议编解码器的示例
 - [long_connection](longconnection) Kitex 服务端和客户端使用长连接的示例
-- [streaming](streaming) Kitex 服务端和客户端使用流式调用的示例
+- [streaming](streaming) Kitex 服务端和客户端使用流式调用的示例（基于 GRPC/HTTP2，使用 Protobuf IDL）
+- [thrift streaming](thrift_streaming) Kitex 服务端和客户端使用 Thrift 流式调用的示例 (基于 GRPC/HTTP2，使用 Thrift IDL)
+
 - [business_exception](business_exception) Kitex 服务端和客户端使用业务异常的示例
 - [middleware](middleware) Kitex 服务端和客户端使用中间件的示例
 
