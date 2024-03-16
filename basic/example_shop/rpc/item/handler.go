@@ -33,7 +33,7 @@ type ItemServiceImpl struct {
 	stockCli stockservice.Client
 }
 
-func NewStockClient(addr string) (stockservice.Client, error) {
+func NewStockClient() (stockservice.Client, error) {
 	r, err := etcd.NewEtcdResolver([]string{"127.0.0.1:2379"})
 	if err != nil {
 		log.Fatal(err)
