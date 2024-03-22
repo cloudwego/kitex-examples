@@ -74,7 +74,6 @@
 - [protobuf](kitex/protobuf) 使用 Kitex 与 protobuf 生成服务端代码的示例
 - [template](kitex/template) 使用 Kitex 自定义模版生成服务端代码的示例
 - [thrift](kitex/thrift) 使用 Kitex 与 thrift 生成服务端代码的示例
-- [protobuf](kitex/protobuf) 使用 Kitex 与 protobuf 生成服务端代码的示例
 
 ## Note
 
