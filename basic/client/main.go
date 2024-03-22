@@ -17,26 +17,24 @@ package main
 
 import (
 	"context"
-	"log"
-	"time"
 
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 	"github.com/cloudwego/kitex/client"
+	"github.com/cloudwego/kitex/pkg/klog"
 )
 
 func main() {
-	client, err := echo.NewClient("echo", client.WithHostPorts("[::1]:8888"))
+	cli, err := echo.NewClient("echo", client.WithHostPorts("127.0.0.1:8888"))
 	if err != nil {
-		log.Fatal(err)
+		klog.Warnf("failed to new client: %s", err)
+		return
 	}
-	for {
-		req := &api.Request{Message: "my request"}
-		resp, err := client.Echo(context.Background(), req)
-		if err != nil {
-			log.Fatal(err)
-		}
-		log.Println(resp)
-		time.Sleep(time.Second)
+	req := &api.Request{Message: "my request"}
+	resp, err := cli.Echo(context.Background(), req)
+	if err != nil {
+		klog.Warnf("failed to call: %s", err)
+		return
 	}
+	klog.Infof("resp: %s", resp.Message)
 }
