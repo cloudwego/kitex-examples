@@ -22,3 +22,9 @@ jobs:
 
       - name: Benchmark
         run: go test -bench=. -benchmem -run=none ./...
+
+
+      - name: Build and Test
+        run: |
+          go build ./...
+          go test ./...
