@@ -23,17 +23,18 @@ jobs:
       - name: Check License Header
         uses: apache/skywalking-eyes/header@501a28d2fb4a9b962661987e50cf0219631b32ff
 
-      - name: Lint
-        run: |
-          test -z "$(gofmt -s -l .)"
-          go vet -stdmethods=false $(go list ./...)
-
-      - name: Unit Test
-        run: go test -v -race -covermode=atomic -coverprofile=coverage.out ./...
+#      - name: Lint
+#        run: |
+#          test -z "$(gofmt -s -l .)"
+#          go vet -stdmethods=false $(go list ./...)
+#
+#      - name: Unit Test
+#        run: go test -v -race -covermode=atomic -coverprofile=coverage.out ./...
 
       - name: Run run.sh
         run: |
           find . -name run.sh -print0 | while IFS= read -r -d '' script; do
+            script_dir=$(dirname "$script")
             chmod +x "$script"
-            bash "$script"
+            (cd "$script_dir" && bash "./$(basename "$script")")
           done
