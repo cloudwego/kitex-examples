@@ -5,7 +5,7 @@ cd ./
 
 REPO_PATH="."
 
-project="async_call"
+project="basic"
 
 echo "---------------------------------------"
 echo "Running project: $project"

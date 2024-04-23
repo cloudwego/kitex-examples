@@ -31,9 +31,9 @@ jobs:
 #      - name: Unit Test
 #        run: go test -v -race -covermode=atomic -coverprofile=coverage.out ./...
 
-      - name: Run run.sh
+      - name: Run test.sh
         run: |
-          find . -name run.sh -print0 | while IFS= read -r -d '' script; do
+          find . -name test.sh -print0 | while IFS= read -r -d '' script; do
             script_dir=$(dirname "$script")
             chmod +x "$script"
             (cd "$script_dir" && bash "./$(basename "$script")")

@@ -5,19 +5,19 @@ cd ./
 
 REPO_PATH="."
 
-project="async_call"
+project="frugal"
 
 echo "---------------------------------------"
 echo "Running project: $project"
 
 # 启动 server
-cd "$REPO_PATH/server" || exit
-go run main.go > /dev/null 2>&1 &
+cd "$REPO_PATH" || exit
+go run . > /dev/null 2>&1 &
 server_pid=$!
 cd - > /dev/null || exit
 
 # 启动 client
-cd "$REPO_PATH/client" || exit
+cd "$REPO_PATH/codec" || exit
 go run main.go > /dev/null 2>&1 &
 client_pid=$!
 cd - > /dev/null || exit

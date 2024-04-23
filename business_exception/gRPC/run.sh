@@ -5,7 +5,7 @@ cd ./
 
 REPO_PATH="."
 
-project="async_call"
+project="business_exception_gRPC"
 
 echo "---------------------------------------"
 echo "Running project: $project"

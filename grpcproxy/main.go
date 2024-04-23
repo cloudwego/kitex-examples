@@ -34,5 +34,5 @@ func main() {
 	go server.RunServer(proxy.Ip)
 	go proxy.RunProxyServer(proxy.ProxyIp, handler)
 	time.Sleep(time.Second)
-	client.RunClient(proxy.ProxyIp)
+	client.RunClient(proxy.Ip)
 }
