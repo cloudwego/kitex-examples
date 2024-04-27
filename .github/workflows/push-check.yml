@@ -34,10 +34,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Run test.sh
+      - name: Run other test.sh scripts
         run: |
           find . -name test.sh -print0 | while IFS= read -r -d '' script; do
             script_dir=$(dirname "$script")
-            chmod +x "$script"
-            (cd "$script_dir" && bash "./$(basename "$script")")
+            if [[ "$script_dir" != "./opentelemetry" ]]; then
+              chmod +x "$script"
+              (cd "$script_dir" && bash "./$(basename "$script")")
+            fi
           done
