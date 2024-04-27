@@ -38,7 +38,7 @@ jobs:
         run: |
           find . -name test.sh -print0 | while IFS= read -r -d '' script; do
             script_dir=$(dirname "$script")
-            if [[ "$script_dir" != "./opentelemetry" ]]; then
+            if [[ "$script_dir" == "./opentelemetry" ]]; then
               chmod +x "$script"
               (cd "$script_dir" && bash "./$(basename "$script")")
             fi
