@@ -33,7 +33,7 @@ func main() {
 	}
 
 	itemServiceImpl := new(ItemServiceImpl)
-	stockCli, err := NewStockClient("0.0.0.0:8890")
+	stockCli, err := NewStockClient()
 	if err != nil {
 		log.Fatal(err)
 	}
