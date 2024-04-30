@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-RUN_NAME="example.shop.stok"
+RUN_NAME="example.shop.stock"
 
 mkdir -p output/bin
 cp script/* output/
