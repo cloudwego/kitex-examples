@@ -18,4 +18,4 @@ if [ ! -d "$KITEX_LOG_DIR/rpc" ]; then
     mkdir -p "$KITEX_LOG_DIR/rpc"
 fi
 
-exec "$CURDIR/bin/example.shop.stok"
+exec "$CURDIR/bin/example.shop.stock"
