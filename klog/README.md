@@ -27,4 +27,4 @@ Extension provides the use of zap , logrus and slog
 
 klog extension are coupled in the otel extension
 
-For details on log extension, [see](https://cloudwego.cn/zh/docs/kitex/tutorials/observability/logging/)
+For details on log extension, [see](https://cloudwego.cn/docs/kitex/tutorials/observability/logging/)

@@ -55,4 +55,4 @@ See [custom/client](./custom/client/)
    `histogram_quantile(0.9,sum(rate(kitex_server_latency_us_bucket{status="succeed"}[1m]))by(le)) / 1000`
 
 For more information about kitex monitoring, please
-click [monitoring](https://www.cloudwego.io/docs/kitex/tutorials/service-governance/monitoring/)
+click [monitoring](https://www.cloudwego.io/docs/kitex/tutorials/observability/monitoring/)
