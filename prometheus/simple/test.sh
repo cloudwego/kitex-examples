@@ -16,6 +16,9 @@ echo "Running project: $project"
 if lsof -Pi :8888 -sTCP:LISTEN -t >/dev/null ; then
     kill -9 $(lsof -t -i:8888)
 fi
+if lsof -Pi :8092 -sTCP:LISTEN -t >/dev/null ; then
+    kill -9 $(lsof -t -i:8092)
+fi
 
 # 启动 server
 
