@@ -55,7 +55,7 @@ cd - > /dev/null || exit
 sleep 1
 
 # 检查 server 和 client 是否仍在运行
-if kill -0 item_server_pid && kill -0 stock_server_pid && kill -0 $client_pid; then
+if kill -0 $item_server_pid && kill -0 $stock_server_pid && kill -0 $client_pid; then
     echo "Project run successfully: $project"
     echo "---------------------------------------"
 else
