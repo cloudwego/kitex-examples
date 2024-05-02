@@ -23,23 +23,21 @@ jobs:
       - name: Check License Header
         uses: apache/skywalking-eyes/header@501a28d2fb4a9b962661987e50cf0219631b32ff
 
-#      - name: Lint
-#        run: |
-#          test -z "$(gofmt -s -l .)"
-#          go vet -stdmethods=false $(go list ./...)
-#
-#      - name: Unit Test
-#        run: go test -v -race -covermode=atomic -coverprofile=coverage.out ./...
+      - name: Lint
+        run: |
+          test -z "$(gofmt -s -l .)"
+          go vet -stdmethods=false $(go list ./...)
+
+      - name: Unit Test
+        run: go test -v -race -covermode=atomic -coverprofile=coverage.out ./...
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Run other test.sh scripts
+      - name: Run test.sh
         run: |
           find . -name test.sh -print0 | while IFS= read -r -d '' script; do
             script_dir=$(dirname "$script")
-            if [[ "$script_dir" == "./bizdemo/easy_note" ]]; then
-              chmod +x "$script"
-              (cd "$script_dir" && bash "./$(basename "$script")")
-            fi
+            chmod +x "$script"
+            (cd "$script_dir" && bash "./$(basename "$script")")
           done
