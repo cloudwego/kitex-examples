@@ -17,13 +17,12 @@ package main
 
 import (
 	"context"
-	"log"
-
 	"github.com/cloudwego/kitex-examples/kitex_gen/pbapi"
 	"github.com/cloudwego/kitex-examples/kitex_gen/pbapi/echo"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/kerrors"
 	"github.com/cloudwego/kitex/transport"
+	"log"
 )
 
 func main() {
@@ -35,7 +34,7 @@ func main() {
 	bizErr, isBizErr := kerrors.FromBizStatusError(err)
 
 	if isBizErr {
-		log.Println(bizErr.BizMessage())
+		panic(bizErr.BizMessage())
 	} else {
 		log.Println(resp)
 	}

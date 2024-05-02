@@ -47,23 +47,6 @@ func runBidiStream(client servicea.Client) {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		for {
-			req, err := stream.Recv()
-			if err == io.EOF {
-				log.Println("「CLIENT」RECV DONE")
-				break
-			}
-			if err != nil {
-				log.Println("「CLIENT」Err:", err)
-				continue
-			}
-			log.Println("「CLIENT」RECV DATA: " + req.Message)
-		}
-	}()
-
-	wg.Add(1)
-	go func() {
-		defer wg.Done()
 		for i := 0; i < 2; i++ {
 			req := &grpcproxy.Request{Name: "kitex-" + strconv.Itoa(i)}
 			log.Println("「CLIENT」SEND DATA: " + req.Name)
@@ -81,6 +64,25 @@ func runBidiStream(client servicea.Client) {
 		log.Println("「CLIENT」SEND DONE")
 	}()
 	wg.Wait()
+
+	time.Sleep(time.Second)
+
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		for {
+			req, err := stream.Recv()
+			if err == io.EOF {
+				log.Println("「CLIENT」RECV DONE")
+				break
+			}
+			if err != nil {
+				log.Println("「CLIENT」Err:", err)
+				continue
+			}
+			log.Println("「CLIENT」RECV DATA: " + req.Message)
+		}
+	}()
 
 	log.Print("「Client」Bidi Call Done!")
 }

@@ -30,3 +30,14 @@ jobs:
 
       - name: Unit Test
         run: go test -v -race -covermode=atomic -coverprofile=coverage.out ./...
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Run test.sh
+        run: |
+          find . -name test.sh -print0 | while IFS= read -r -d '' script; do
+            script_dir=$(dirname "$script")
+            chmod +x "$script"
+            (cd "$script_dir" && bash "./$(basename "$script")")
+          done
