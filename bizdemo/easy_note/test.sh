@@ -21,7 +21,7 @@ cd "$REPO_PATH" || exit
 docker-compose up -d
 cd - > /dev/null || exit
 
-# 启动 note server
+# 启动 rpc note server
 
 cd "$REPO_PATH/cmd/note" || exit
 go run . > /dev/null 2>&1 &
@@ -32,7 +32,7 @@ cd - > /dev/null || exit
 # 等待 server 启动
 sleep 1
 
-# 启动 stock server
+# 启动 rpc stock server
 
 cd "$REPO_PATH/cmd/user" || exit
 go run . > /dev/null 2>&1 &
@@ -43,11 +43,11 @@ cd - > /dev/null || exit
 # 等待 server 启动
 sleep 1
 
-# 启动 client
+# 启动 hertx_server
 
-cd "$REPO_PATH/api" || exit
+cd "$REPO_PATH/cmd/api" || exit
 go run main.go > /dev/null 2>&1 &
-client_pid=$!
+server_pid=$!
 cd - > /dev/null || exit
 
 
@@ -55,7 +55,7 @@ cd - > /dev/null || exit
 sleep 1
 
 # 检查 server 和 client 是否仍在运行
-if kill -0 $note_server_pid && kill -0 $user_server_pid && kill -0 $client_pid; then
+if kill -0 $note_server_pid && kill -0 $user_server_pid && kill -0 $server_pid; then
     echo "Project run successfully: $project"
     echo "---------------------------------------"
 else
@@ -65,7 +65,7 @@ else
 fi
 
 # 杀死 server 和 client
-kill $user_server_pid $note_server_pid $client_pid
+kill $user_server_pid $note_server_pid $server_pid
 
 
 # 设置脚本的退出状态
