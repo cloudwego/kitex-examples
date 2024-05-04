@@ -36,7 +36,7 @@ func main() {
 	bizErr, isBizErr := kerrors.FromBizStatusError(err)
 
 	if isBizErr {
-		log.Println(bizErr.BizMessage())
+		panic(bizErr.BizMessage())
 	} else {
 		log.Println(resp)
 	}

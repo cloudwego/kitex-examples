@@ -7,9 +7,9 @@ toolchain go1.21.1
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
-	github.com/apache/thrift v0.16.0
+	github.com/apache/thrift v0.20.0
 	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b
-	github.com/cloudwego/kitex v0.9.0
+	github.com/cloudwego/kitex v0.9.1
 	github.com/cloudwego/localsession v0.0.2
 	github.com/kitex-contrib/monitor-prometheus v0.2.0
 	github.com/kitex-contrib/obs-opentelemetry v0.2.6
@@ -26,7 +26,7 @@ require (
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
-	github.com/bytedance/sonic v1.11.1 // indirect
+	github.com/bytedance/sonic v1.11.2 // indirect
 	github.com/cenkalti/backoff/v4 v4.2.1 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
