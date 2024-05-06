@@ -15,12 +15,12 @@
 ### 1. 设置 Minikube
 使用 Minikube 设置本地 Kubernetes，我们可以在其中部署控制计划和应用程序。
 
-参考：https://minikube.sigs.k8s.io/docs/start/
+参考: [https://minikube.sigs.k8s.io/docs/start/](https://minikube.sigs.k8s.io/docs/start/)
 
 ### 2.安装Istio
 在 Minikube 中下载并安装 Istio。
 
-参考：https://istio.io/latest/docs/setup/getting-started/#download
+参考: [https://istio.io/latest/docs/setup/getting-started/](https://istio.io/latest/docs/setup/getting-started/) 
 
 #### 禁用 sidecar 注入
 我们将在 `proxyless` 命名空间中部署我们的服务。

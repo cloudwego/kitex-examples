@@ -55,4 +55,4 @@
     `histogram_quantile(0.9,sum(rate(kitex_server_latency_us_bucket{status="succeed"}[1m]))by(le)) / 1000`
 
 有关 kitex 监控的更多信息，
-请点击 [monitoring](https://www.cloudwego.io/docs/kitex/tutorials/service-governance/monitoring/)
+请点击 [monitoring](https://www.cloudwego.io/zh/docs/kitex/tutorials/observability/monitoring/)

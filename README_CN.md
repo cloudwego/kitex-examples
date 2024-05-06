@@ -68,7 +68,7 @@
 - [grpc_multi_service](grpc_multi_service) Kitex 服务端和客户端使用 grpc 多服务的示例
 - [thrift_multi_service](thrift_multi_service) Kitex 服务端和客户端使用 thrift (non-streaming) 多服务的示例
 - [protobuf_multi_service](protobuf_multi_service) Kitex 服务端和客户端使用 protobuf (non-streaming) 多服务的示例
-- [goruntine_local_storage](goroutine-local-storage) Kitex 服务端和客户端使用 goruntine_local_storage 的示例
+- [goroutine_local_storage](goroutine-local-storage) Kitex 服务端和客户端使用 goroutine_local_storage 的示例
 
 ## Kitex 生成代码
 - [protobuf](kitex/protobuf) 使用 Kitex 与 protobuf 生成服务端代码的示例
