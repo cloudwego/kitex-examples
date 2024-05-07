@@ -62,6 +62,11 @@ fi
 # 杀死 server 和 client
 kill -9 $user_server_pid $note_server_pid $server_pid $(lsof -t -i:8888)
 
+# 停止并删除所有容器
+cd "$REPO_PATH" || exit
+docker-compose down
+cd - > /dev/null || exit
+
 
 # 设置脚本的退出状态
 exit $status
