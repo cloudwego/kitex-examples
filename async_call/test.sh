@@ -12,11 +12,6 @@ project="async_call"
 echo "---------------------------------------"
 echo "Running project: $project"
 
-# 检查端口是否被占用
-if lsof -Pi :8888 -sTCP:LISTEN -t >/dev/null ; then
-    kill -9 $(lsof -t -i:8888)
-fi
-
 # 启动 server
 
 cd "$REPO_PATH/server" || exit
@@ -50,7 +45,7 @@ else
 fi
 
 # 杀死 server 和 client
-kill $server_pid $client_pid
+kill -9  $server_pid $client_pid $(lsof -t -i:8888)
 
 
 # 设置脚本的退出状态

@@ -65,7 +65,7 @@ else
 fi
 
 # 杀死 server 和 client
-kill $stock_server_pid $item_server_pid $client_pid
+kill -9 $stock_server_pid $item_server_pid $client_pid $(lsof -t -i:8888)
 
 
 # 设置脚本的退出状态
