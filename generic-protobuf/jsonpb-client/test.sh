@@ -12,11 +12,6 @@ project="generic-protobuf"
 echo "---------------------------------------"
 echo "Running project: $project"
 
-# 检查端口是否被占用
-if lsof -Pi :8888 -sTCP:LISTEN -t >/dev/null ; then
-    kill -9 $(lsof -t -i:8888)
-fi
-
 # 启动 server 和 client
 
 cd "$REPO_PATH" || exit
@@ -39,7 +34,7 @@ else
 fi
 
 # 杀死 server 和 client
-kill $pid
+kill -9  $pid  $(lsof -t -i:8888)
 
 
 # 设置脚本的退出状态
