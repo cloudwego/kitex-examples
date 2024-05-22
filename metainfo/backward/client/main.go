@@ -57,6 +57,16 @@ func main() {
 			} else {
 				klog.Warn("`something-from-server` not exist")
 			}
+
+			// receive all the metainfo from server side
+			m := metainfo.RecvAllBackwardValues(ctx)
+			if m != nil {
+				for key, value := range m {
+					klog.Infof("key: %s, value: %s", key, value)
+				}
+			} else {
+				klog.Warn("No metainfo received")
+			}
 		}
 		time.Sleep(time.Second)
 	}
