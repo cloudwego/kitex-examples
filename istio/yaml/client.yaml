@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-client
+      version: v1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hello-client
+        version: v1
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - image: mse-cn-beijing.cr.volces.com/demo/hello:v0.0.1
+        imagePullPolicy: Always
+        command:
+        - ./client
+        name: c0
+        env:
+        - name: SERVICE_NAME
+          value: hello
