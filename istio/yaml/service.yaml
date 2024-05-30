@@ -42,8 +42,7 @@ spec:
     app: hello
   ports:
   - port: 8888
-    # set grpc prefix, istio detect the protocol from it. 
-    name: grpc-0
+    name: grpc
     protocol: TCP
   type: ClusterIP
 ---

@@ -31,10 +31,17 @@ const (
 	serviceNameKey = "SERVICE_NAME"
 )
 
-func main() {
+func servicehost() string {
+	// the Kubernetes Service Name, if access the Service which
+	// is not in the same namespace, should add the Namespace as
+	// suffix, format: <ServiceName>.<Namespace>
 	serviceName := os.Getenv(serviceNameKey)
+	return serviceName + ":8888"
+}
+
+func main() {
 	client, err := api.NewClient("hello",
-		client.WithHostPorts(serviceName+":8888"),
+		client.WithHostPorts(servicehost()),
 		// should use grpc protocol, thrift is not well compatible in istio.
 		client.WithTransportProtocol(transport.GRPC),
 	)

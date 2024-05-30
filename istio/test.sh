@@ -15,7 +15,7 @@ echo "Running project: $project"
 # 启动 server
 
 cd "$REPO_PATH" || exit
-go run .> /dev/null 2>&1 &
+go run server/.> /dev/null 2>&1 &
 server_pid=$!
 cd - > /dev/null || exit
 
