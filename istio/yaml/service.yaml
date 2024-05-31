@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+      version: v1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hello
+        version: v1
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - image: mse-cn-beijing.cr.volces.com/demo/hello:v0.0.1
+        imagePullPolicy: Always
+        command:
+        - ./server
+        name: c0
+        ports:
+        - containerPort: 8888
+          name: grpc
+          protocol: TCP
+        resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+spec:
+  selector:
+    app: hello
+  ports:
+  - port: 8888
+    name: grpc
+    protocol: TCP
+  type: ClusterIP
+---
