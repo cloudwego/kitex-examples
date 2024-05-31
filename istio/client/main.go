@@ -32,9 +32,9 @@ const (
 )
 
 func servicehost() string {
-	// the Kubernetes Service Name, if access the Service which
-	// is not in the same namespace, should add the Namespace as
-	// suffix, format: <ServiceName>.<Namespace>
+	// the Kubernetes Service Name, if the Service to be accessed
+	// is not in the same namespace, the Namespace should be added
+	// as the suffix, format: <ServiceName>.<Namespace>
 	serviceName := os.Getenv(serviceNameKey)
 	return serviceName + ":8888"
 }

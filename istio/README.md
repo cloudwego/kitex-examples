@@ -4,6 +4,7 @@ Istio Itegration Demo
 Introduce the journey to integrate Istio.  
 
 - Client: switch the client protocol to GRPC.
+
     ```
 	client, err := api.NewClient("hello",
 		client.WithHostPorts(serviceName+":8888"),
@@ -12,6 +13,7 @@ Introduce the journey to integrate Istio.
 	)
     ```
 - Server: specify the protocol kind in the Kubernetes `Service` [definition](https://istio.io/latest/docs/ops/configuration/traffic-management/protocol-selection/#explicit-protocol-selection) .
+
 ```
 apiVersion: v1
 kind: Service
