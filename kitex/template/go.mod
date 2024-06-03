@@ -6,7 +6,7 @@ replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
 	github.com/apache/thrift v0.13.0
-	github.com/cloudwego/kitex v0.9.0
+	github.com/cloudwego/kitex v0.9.1
 	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20240205032422-93b4c82b7dcd
 	github.com/kr/pretty v0.3.1
 	github.com/redis/go-redis/v9 v9.3.0
@@ -19,7 +19,7 @@ require (
 
 require (
 	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b // indirect
-	github.com/bytedance/sonic v1.11.1 // indirect
+	github.com/bytedance/sonic v1.11.2 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.1 // indirect
