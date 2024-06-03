@@ -1,0 +1,92 @@
+version: 2
+updates:
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /istio
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /basic/example_shop
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /grpc_multi_service/server
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /grpc_multi_service/client
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /proxyless
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /generic-protobuf/jsonpb-client
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /kitex/template
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /kitex/thrift
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /kitex/protobuf
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /bizdemo/easy_note
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /bizdemo/kitex_gorm
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /bizdemo/kitex_zorm
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /bizdemo/kitex_gorm_gen
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex
+  - package-ecosystem: gomod
+    directory: /bizdemo/kitex_ent
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/kitex

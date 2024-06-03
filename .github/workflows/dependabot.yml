@@ -1,0 +1,45 @@
+name: Update Dependabot Config
+
+on:
+  pull_request:
+    types: [ closed ]
+
+jobs:
+  update-dependabot-config:
+    if: github.event.pull_request.merged
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Generate Dependabot config
+        run: ./regenerate-dependabot-config.sh
+
+      - name: Check if Dependabot config changed
+        id: check_changes
+        run: |
+          git diff --exit-code .github/dependabot.yml
+        continue-on-error: true
+
+      - name: Stage changes
+        run: |
+          if ! git ls-remote --heads origin update-dependabot-config | grep -sw "update-dependabot-config"; then
+            git checkout -b update-dependabot-config
+            git push origin update-dependabot-config
+          fi
+          git add .github/dependabot.yml
+
+      - name: Create Pull Request
+        if: steps.check_changes.outcome == 'failure'
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: update-dependabot-config
+          base: main
+          title: "chore(ci): update dependabot config"
+          body: "Updates the Dependabot configuration file."
+          labels: "dependencies"
+          commiter: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          commit-message: "chore(ci): update dependabot config"
+        continue-on-error: true
