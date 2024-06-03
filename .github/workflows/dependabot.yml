@@ -1,9 +1,12 @@
 name: Update Dependabot Config
 
-on: [ push ]
+on:
+  pull_request:
+    types: [ closed ]
 
 jobs:
   update-dependabot-config:
+    if: github.event.pull_request.merged
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
