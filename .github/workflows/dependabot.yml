@@ -10,9 +10,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Generate Dependabot config
-        run: |
-          chmod +x regenerate-dependabot-config.sh
-          ./regenerate-dependabot-config.sh
+        run: ./regenerate-dependabot-config.sh
 
       - name: Check if Dependabot config changed
         id: check_changes
@@ -41,3 +39,4 @@ jobs:
           commiter: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           commit-message: "chore(ci): update dependabot config"
+        continue-on-error: true
