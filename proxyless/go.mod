@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/apache/thrift v0.16.0
 	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b
-	github.com/cloudwego/kitex v0.9.0
+	github.com/cloudwego/kitex v0.9.1
 	github.com/cloudwego/kitex-benchmark v0.0.0-20240229111153-f43bfccbefe8
 	github.com/kitex-contrib/resolver-dns v0.0.0-20211026091019-d57feaffb777
 	github.com/kitex-contrib/xds v0.3.0
@@ -14,7 +14,7 @@ require (
 )
 
 require (
-	github.com/bytedance/sonic v1.11.1 // indirect
+	github.com/bytedance/sonic v1.11.2 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.0 // indirect
 	github.com/census-instrumentation/opencensus-proto v0.4.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
