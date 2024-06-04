@@ -5,7 +5,7 @@ go 1.21
 require (
 	entgo.io/ent v0.12.5
 	github.com/apache/thrift v0.13.0
-	github.com/cloudwego/kitex v0.9.0
+	github.com/cloudwego/kitex v0.9.1
 )
 
 require (
@@ -13,7 +13,7 @@ require (
 	github.com/agext/levenshtein v1.2.1 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b // indirect
-	github.com/bytedance/sonic v1.11.1 // indirect
+	github.com/bytedance/sonic v1.11.2 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.1 // indirect
 	github.com/choleraehyq/pid v0.0.18 // indirect
