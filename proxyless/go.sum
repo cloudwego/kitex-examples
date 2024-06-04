@@ -658,8 +658,8 @@ github.com/bytedance/sonic v1.8.8/go.mod h1:i736AoUSYt75HyZLoJW9ERYxcy6eaN6h4BZX
 github.com/bytedance/sonic v1.9.1/go.mod h1:i736AoUSYt75HyZLoJW9ERYxcy6eaN6h4BZXU064P/U=
 github.com/bytedance/sonic v1.10.0-rc/go.mod h1:ElCzW+ufi8qKqNW0FY314xriJhyJhuoJ3gFZdAHF7NM=
 github.com/bytedance/sonic v1.10.2/go.mod h1:iZcSUejdk5aukTND/Eu/ivjQuEL0Cu9/rf50Hi0u/g4=
-github.com/bytedance/sonic v1.11.1 h1:JC0+6c9FoWYYxakaoa+c5QTtJeiSZNeByOBhXtAFSn4=
-github.com/bytedance/sonic v1.11.1/go.mod h1:iZcSUejdk5aukTND/Eu/ivjQuEL0Cu9/rf50Hi0u/g4=
+github.com/bytedance/sonic v1.11.2 h1:ywfwo0a/3j9HR8wsYGWsIWl2mvRsI950HyoxiBERw5A=
+github.com/bytedance/sonic v1.11.2/go.mod h1:iZcSUejdk5aukTND/Eu/ivjQuEL0Cu9/rf50Hi0u/g4=
 github.com/cenk/backoff v2.2.1+incompatible/go.mod h1:7FtoeaSnHoZnmZzz47cM35Y9nSW7tNyaidugnHTaFDE=
 github.com/cenkalti/backoff v2.2.1+incompatible h1:tNowT99t7UNflLxfYYSlKYsBpXdEet03Pg2g16Swow4=
 github.com/cenkalti/backoff v2.2.1+incompatible/go.mod h1:90ReRw6GdpyfrHakVjL/QHaoyV4aDUVVkXQJJJ3NXXM=
@@ -720,8 +720,8 @@ github.com/cloudwego/kitex v0.4.3/go.mod h1:7CV4Cs5oi7dWqI3fFoDTLJHyt/18z7nlHIIH
 github.com/cloudwego/kitex v0.4.4/go.mod h1:3FcH5h9Qw+dhRljSzuGSpWuThttA8DvK0BsL7HUYydo=
 github.com/cloudwego/kitex v0.6.1/go.mod h1:zI1GBrjT0qloTikcCfQTgxg3Ws+yQMyaChEEOcGNUvA=
 github.com/cloudwego/kitex v0.7.3/go.mod h1:x4qcCiu8fLPNbvOd9Pzh6GCsW8mD1Mgb9keRJ01zuBw=
-github.com/cloudwego/kitex v0.9.0 h1:syCMJz2uO309TTOlQglC0hCPlmliW6kpKgMdbMC2Ihs=
-github.com/cloudwego/kitex v0.9.0/go.mod h1:TIMYTfHfSZzdW5luw8Hs2zqYnJS/J6dGNM+9ieNpTYg=
+github.com/cloudwego/kitex v0.9.1 h1:4Rkmngk4b5nHQ6sPM9BNgnW5cb9niB7hzzQBkkfa8/s=
+github.com/cloudwego/kitex v0.9.1/go.mod h1:CBMfRKBuZ9EeSEfeoveC7cR6JG4lY1Bpo+d0Eb7zUDA=
 github.com/cloudwego/kitex-benchmark v0.0.0-20240229111153-f43bfccbefe8 h1:1zvWE6n1kXQViocgl3VBY6W2jjt0bwYgU9/EnDGJuNY=
 github.com/cloudwego/kitex-benchmark v0.0.0-20240229111153-f43bfccbefe8/go.mod h1:+QWvS5K1HhzOeGU5Y3+zPRQguBqGkOx44nrckOEpCao=
 github.com/cloudwego/localsession v0.0.2 h1:N9/IDtCPj1fCL9bCTP+DbXx3f40YjVYWcwkJG0YhQkY=
