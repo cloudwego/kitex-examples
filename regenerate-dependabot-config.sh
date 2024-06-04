@@ -4,20 +4,26 @@ function gen_dependabot_config () {
   dependabot_config=".github/dependabot.yml"
 
   mkdir -p .github
-  echo -e "version: 2\nupdates:" > $dependabot_config
+  {
+    echo "version: 2"
+    echo "updates:"
+    echo "  - package-ecosystem: gomod"
+    echo "    schedule:"
+    echo "      interval: weekly"
+    echo "    allow:"
+    echo "      - dependency-name: github.com/cloudwego/kitex"
+    echo "    groups:"
+    echo "      kitex-dependencies:"
+    echo "        patterns:"
+    echo "          - github.com/cloudwego/kitex"
+    echo "    directories:"
+  } > $dependabot_config
 
-  find . -type d -not -path '*/\.*' | while read -r dir; do
+  find . -type d -not -path '*/\.*' | sort | while read -r dir; do
     if [ -f "$dir/go.mod" ]; then
       dir="${dir/#.//}"
       dir="${dir/#\/\///}"
-      {
-        echo -e "  - package-ecosystem: gomod"
-        echo -e "    directory: $dir"
-        echo -e "    schedule:"
-        echo -e "      interval: weekly"
-        echo -e "    allow:"
-        echo -e "      - dependency-name: github.com/cloudwego/kitex"
-      } >> $dependabot_config
+      echo "      - $dir" >> $dependabot_config
     fi
   done
 }
