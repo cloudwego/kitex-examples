@@ -48,10 +48,10 @@ func (s *StorageServiceImpl) Deduct(ctx context.Context, commodityCode string, c
 
 // Calculate implements the StorageServiceImpl interface.
 func (s *StorageServiceImpl) Calculate(ctx context.Context, commodityCode string, count int32) (resp int32, err error) {
-	account, err := model.Get(ctx, mysql.DB, commodityCode)
+	commodity, err := model.Get(ctx, mysql.DB, commodityCode)
 	if err != nil {
 		klog.Errorf("get storage failed: %v", err)
 		return 0, err
 	}
-	return account.Price * count, nil
+	return commodity.Price * count, nil
 }
