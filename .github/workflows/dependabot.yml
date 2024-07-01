@@ -4,6 +4,8 @@ on:
   pull_request:
     types: [ closed ]
 
+permissions: write-all
+
 jobs:
   update-dependabot-config:
     if: github.event.pull_request.merged
@@ -42,4 +44,3 @@ jobs:
           commiter: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           commit-message: "chore(ci): update dependabot config"
-        continue-on-error: true
