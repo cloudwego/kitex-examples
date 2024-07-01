@@ -5,7 +5,7 @@ go 1.21
 require (
 	entgo.io/ent v0.12.5
 	github.com/apache/thrift v0.13.0
-	github.com/cloudwego/kitex v0.10.0
+	github.com/cloudwego/kitex v0.10.1
 )
 
 require (
@@ -22,7 +22,7 @@ require (
 	github.com/cloudwego/frugal v0.1.15 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/localsession v0.0.2 // indirect
-	github.com/cloudwego/netpoll v0.6.1 // indirect
+	github.com/cloudwego/netpoll v0.6.2 // indirect
 	github.com/cloudwego/runtimex v0.1.0 // indirect
 	github.com/cloudwego/thriftgo v0.3.6 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect

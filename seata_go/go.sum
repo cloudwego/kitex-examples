@@ -162,12 +162,12 @@ github.com/cloudwego/frugal v0.1.15/go.mod h1:26kU1r18vA8vRg12c66XPDlfv1GQHDbE1R
 github.com/cloudwego/iasm v0.0.9/go.mod h1:8rXZaNYT2n95jn+zTI1sDr+IgcD2GVs0nlbbQPiEFhY=
 github.com/cloudwego/iasm v0.2.0 h1:1KNIy1I1H9hNNFEEH3DVnI4UujN+1zjpuk6gwHLTssg=
 github.com/cloudwego/iasm v0.2.0/go.mod h1:8rXZaNYT2n95jn+zTI1sDr+IgcD2GVs0nlbbQPiEFhY=
-github.com/cloudwego/kitex v0.10.0 h1:FDQHv5dH3lUqxC9G526/CyI1ODYzV8bSsqUxK1uzbxI=
-github.com/cloudwego/kitex v0.10.0/go.mod h1:7fMLSJwWcwkZD3YB4tCIi9itUH/LsmVD13vUV/Tl0V4=
+github.com/cloudwego/kitex v0.10.1 h1:4SzfTpMfK32B6mqxyFq1O3ogcLm1hkQyWCR+2I9jMl4=
+github.com/cloudwego/kitex v0.10.1/go.mod h1:gTzLW4nxYGR7hA4R2O1XCgy6rTD02ohFTvenKGfSrNM=
 github.com/cloudwego/localsession v0.0.2 h1:N9/IDtCPj1fCL9bCTP+DbXx3f40YjVYWcwkJG0YhQkY=
 github.com/cloudwego/localsession v0.0.2/go.mod h1:kiJxmvAcy4PLgKtEnPS5AXed3xCiXcs7Z+KBHP72Wv8=
-github.com/cloudwego/netpoll v0.6.1 h1:Cjftvi6bmumsOijmuUFy6HqAUXMxAT3fKK96wsrm3XA=
-github.com/cloudwego/netpoll v0.6.1/go.mod h1:kaqvfZ70qd4T2WtIIpCOi5Cxyob8viEpzLhCrTrz3HM=
+github.com/cloudwego/netpoll v0.6.2 h1:+KdILv5ATJU+222wNNXpHapYaBeRvvL8qhJyhcxRxrQ=
+github.com/cloudwego/netpoll v0.6.2/go.mod h1:kaqvfZ70qd4T2WtIIpCOi5Cxyob8viEpzLhCrTrz3HM=
 github.com/cloudwego/runtimex v0.1.0 h1:HG+WxWoj5/CDChDZ7D99ROwvSMkuNXAqt6hnhTTZDiI=
 github.com/cloudwego/runtimex v0.1.0/go.mod h1:23vL/HGV0W8nSCHbe084AgEBdDV4rvXenEUMnUNvUd8=
 github.com/cloudwego/thriftgo v0.3.6 h1:gHHW8Ag3cAEQ/awP4emTJiRPr5yQjbANhcsmV8/Epbw=

@@ -9,7 +9,7 @@ replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 require (
 	github.com/apache/thrift v0.20.0
 	github.com/bytedance/gopkg v0.0.0-20240514070511-01b2cbcf35e1
-	github.com/cloudwego/kitex v0.10.0
+	github.com/cloudwego/kitex v0.10.1
 	github.com/cloudwego/localsession v0.0.2
 	github.com/kitex-contrib/monitor-prometheus v0.2.0
 	github.com/kitex-contrib/obs-opentelemetry v0.2.6
@@ -34,7 +34,7 @@ require (
 	github.com/cloudwego/configmanager v0.2.2 // indirect
 	github.com/cloudwego/dynamicgo v0.2.8 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
-	github.com/cloudwego/netpoll v0.6.1 // indirect
+	github.com/cloudwego/netpoll v0.6.2 // indirect
 	github.com/cloudwego/runtimex v0.1.0 // indirect
 	github.com/cloudwego/thriftgo v0.3.6 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
