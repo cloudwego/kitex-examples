@@ -9,7 +9,7 @@ replace seata.apache.org/seata-go => github.com/seata/seata-go v1.2.1-0.20240604
 require (
 	github.com/apache/thrift v0.13.0
 	github.com/bytedance/gopkg v0.0.0-20240514070511-01b2cbcf35e1
-	github.com/cloudwego/kitex v0.10.1
+	github.com/cloudwego/kitex v0.10.3
 	gorm.io/driver/mysql v1.5.6
 	gorm.io/gorm v1.25.10
 	seata.apache.org/seata-go v0.0.0-00010101000000-000000000000
@@ -31,14 +31,14 @@ require (
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect
 	github.com/cloudwego/configmanager v0.2.2 // indirect
-	github.com/cloudwego/dynamicgo v0.2.8 // indirect
+	github.com/cloudwego/dynamicgo v0.2.9 // indirect
 	github.com/cloudwego/fastpb v0.0.4 // indirect
 	github.com/cloudwego/frugal v0.1.15 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/localsession v0.0.2 // indirect
-	github.com/cloudwego/netpoll v0.6.2 // indirect
+	github.com/cloudwego/netpoll v0.6.3 // indirect
 	github.com/cloudwego/runtimex v0.1.0 // indirect
-	github.com/cloudwego/thriftgo v0.3.6 // indirect
+	github.com/cloudwego/thriftgo v0.3.15 // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/coreos/go-systemd/v22 v22.3.2 // indirect
 	github.com/creasty/defaults v1.5.2 // indirect
