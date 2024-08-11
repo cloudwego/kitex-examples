@@ -21,10 +21,10 @@ import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/transport"
-	"grpc_multi_service_client/kitex_gen/multi/service"
-	"grpc_multi_service_client/kitex_gen/multi/service/serviceb"
+	"kitex.example/grpc_multi_service_client/kitex_gen/multi/service"
+	"kitex.example/grpc_multi_service_client/kitex_gen/multi/service/serviceb"
 
-	"grpc_multi_service_client/kitex_gen/multi/service/servicea"
+	"kitex.example/grpc_multi_service_client/kitex_gen/multi/service/servicea"
 )
 
 func main() {

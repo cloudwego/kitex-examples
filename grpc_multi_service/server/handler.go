@@ -18,8 +18,9 @@ package main
 import (
 	"context"
 
+	service "kitex.example/grpc_multi_service/kitex_gen/multi/service"
+
 	"github.com/cloudwego/kitex/pkg/klog"
-	service "grpc_multi_service/kitex_gen/multi/service"
 )
 
 type ServiceAImpl struct{}

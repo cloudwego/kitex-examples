@@ -35,7 +35,7 @@ message Reply {
 kitex -service multiservice ./idl/demo.proto
 
 //Do not execute under GOPATH
-kitex -service multiservice -module grpc_multi_service ./idl/demo.proto
+kitex -service multiservice -module kitex.example/grpc_multi_service ./idl/demo.proto
 
 // Organize & pull dependencies
 go mod tidy
@@ -93,7 +93,7 @@ message Reply {
 kitex -service multiservice ./idl/demo.proto
 
 //Do not execute under GOPATH
-kitex -service multiservice -module grpc_multi_service ./idl/demo.proto
+kitex -service multiservice -module kitex.example/grpc_multi_service ./idl/demo.proto
 
 // Organize & pull dependencies
 go mod tidy
@@ -102,38 +102,41 @@ go mod tidy
 6. Modify handler.go and main.go
 
 Manually added to handler.go
+
 ```
 type ServiceBImpl struct{}
 ```
 
 Modify ChatB logic
+
 ```
 // ChatB implements the ServiceBImpl interface.
 func (s *ServiceBImpl) ChatB(ctx context.Context, req *service.RequestB) (resp *service.Reply, err error) {
-	klog.Info("ChatB called, req: ", req.Name)
-	resp = new(service.Reply)
-	resp.Message = "hello " + req.Name
-	return
+ klog.Info("ChatB called, req: ", req.Name)
+ resp = new(service.Reply)
+ resp.Message = "hello " + req.Name
+ return
 }
 ```
 
 Modify main.go
+
 ```
 func main() {
-	addr, _ := net.ResolveTCPAddr("tcp", "localhost:8888")
+ addr, _ := net.ResolveTCPAddr("tcp", "localhost:8888")
 
-	svr := server.NewServer(server.WithServiceAddr(addr))
-	err := svr.RegisterService(servicea.NewServiceInfo(), new(ServiceAImpl))
-	if err != nil {
-		log.Println(err.Error())
-	}
-	err = svr.RegisterService(serviceb.NewServiceInfo(), new(ServiceBImpl))
-	if err != nil {
-		log.Println(err.Error())
-	}
-	err = svr.Run()
-	if err != nil {
-		log.Println(err.Error())
-	}
+ svr := server.NewServer(server.WithServiceAddr(addr))
+ err := svr.RegisterService(servicea.NewServiceInfo(), new(ServiceAImpl))
+ if err != nil {
+  log.Println(err.Error())
+ }
+ err = svr.RegisterService(serviceb.NewServiceInfo(), new(ServiceBImpl))
+ if err != nil {
+  log.Println(err.Error())
+ }
+ err = svr.Run()
+ if err != nil {
+  log.Println(err.Error())
+ }
 }
 ```

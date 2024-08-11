@@ -6,7 +6,7 @@
 
 ### 创建一个新项目
 
-1.  在当前目录下创建 protobuf idl 文件
+1. 在当前目录下创建 protobuf idl 文件
 
 ```
 syntax = "proto3";
@@ -28,40 +28,41 @@ message Reply {
 }
 ```
 
-2.  创建新项目
+2. 创建新项目
 
 ```
 // GOPATH 下执行
 kitex ./idl/demo.proto
 
 // 不在 GOPATH 下执行
-kitex -module grpc_multi_service ./idl/demo.proto
+kitex -module kitex.example/grpc_multi_service_client ./idl/demo.proto
 
 // 整理 & 拉取依赖
 go mod tidy
 ```
 
 3. 修改 main.go
+
 ```
 func main() {
-	clienta := servicea.MustNewClient("servicea", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
-	clientb := serviceb.MustNewClient("serviceb", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
+ clienta := servicea.MustNewClient("servicea", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
+ clientb := serviceb.MustNewClient("serviceb", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
         // 新建的客户端必须添加 client.WithTransportProtocol(transport.GRPC)
         // 否则会出现找不到 method 的问题 
-	resa, err := clienta.ChatA(context.Background(), &service.RequestA{Name: "hello,a"})
-	if err != nil {
-		klog.Error(err)
-		return
-	}
+ resa, err := clienta.ChatA(context.Background(), &service.RequestA{Name: "hello,a"})
+ if err != nil {
+  klog.Error(err)
+  return
+ }
 
-	resb, err := clientb.ChatB(context.Background(), &service.RequestB{Name: "hello,b"})
-	if err != nil {
-		klog.Error(err)
-		return
-	}
+ resb, err := clientb.ChatB(context.Background(), &service.RequestB{Name: "hello,b"})
+ if err != nil {
+  klog.Error(err)
+  return
+ }
 
-	klog.Info("resa: ", resa.Message)
-	klog.Info("resb: ", resb.Message)
+ klog.Info("resa: ", resa.Message)
+ klog.Info("resb: ", resb.Message)
 }
 
 ```
