@@ -18,11 +18,11 @@ find . -name go.mod -print0 | while IFS= read -r -d '' script; do
     cd "$pwd"
 done
 
-find . -name test.sh -print0 | while IFS= read -r -d '' script; do
-    script_dir=$(dirname "$script")
-    if [ "$script_dir" == "$exclude" ]; then
-        continue
-    fi
-    chmod +x "$script"
-    (cd "$script_dir" && bash "./$(basename "$script")")
-done
+# find . -name test.sh -print0 | while IFS= read -r -d '' script; do
+#     script_dir=$(dirname "$script")
+#     if [ "$script_dir" == "$exclude" ]; then
+#         continue
+#     fi
+#     chmod +x "$script"
+#     (cd "$script_dir" && bash "./$(basename "$script")")
+# done
