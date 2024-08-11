@@ -37,4 +37,4 @@ jobs:
           export GOROOT=$PWD/go1.23
           export PATH=$GOROOT/bin:$PATH
           go version
-          sh ./update_kitex.sh 0bc4a44e9521a73914965c8c3b236e100edd1a95
+          ./update_kitex.sh 0bc4a44e9521a73914965c8c3b236e100edd1a95
