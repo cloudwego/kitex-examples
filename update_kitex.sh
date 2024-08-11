@@ -1,14 +1,14 @@
 #!/bin/bash
 
 version=$1
-
+exclude=$2
 
 # find go.mod and update dependencies
 find . -name go.mod -print0 | while IFS= read -r -d '' script; do
     # get absolute dir path
     pwd=$(pwd)
     script_dir=$(dirname "$script")
-    if [ "$script_dir" == "./go1.23" ]; then
+    if [ "$script_dir" == "$exclude" ]; then
         continue
     fi
     echo $script_dir
@@ -20,7 +20,7 @@ done
 
 find . -name test.sh -print0 | while IFS= read -r -d '' script; do
     script_dir=$(dirname "$script")
-    if [ "$script_dir" == "./go1.23" ]; then
+    if [ "$script_dir" == "$exclude" ]; then
         continue
     fi
     chmod +x "$script"
