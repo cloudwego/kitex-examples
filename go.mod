@@ -8,20 +8,23 @@ replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
 	github.com/apache/thrift v0.20.0
-	github.com/bytedance/gopkg v0.0.0-20240514070511-01b2cbcf35e1
+	github.com/bytedance/gopkg v0.1.0
+	github.com/cloudwego/fastpb v0.0.5
+	github.com/cloudwego/frugal v0.2.0
 	github.com/cloudwego/kitex v0.10.3
 	github.com/cloudwego/localsession v0.0.2
 	github.com/kitex-contrib/monitor-prometheus v0.2.0
-	github.com/kitex-contrib/obs-opentelemetry v0.2.6
+	github.com/kitex-contrib/obs-opentelemetry v0.2.7
 	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20240205032422-93b4c82b7dcd
 	github.com/kitex-contrib/obs-opentelemetry/logging/slog v0.0.0-20240205032422-93b4c82b7dcd
-	github.com/kitex-contrib/tracer-opentracing v0.0.3
-	github.com/opentracing/opentracing-go v1.2.0
+	github.com/kitex-contrib/obs-opentelemetry/logging/zap v0.0.0-20240515092919-1f776656cb66
 	github.com/prometheus/client_golang v1.18.0
-	github.com/uber/jaeger-client-go v2.29.1+incompatible
+	github.com/sirupsen/logrus v1.9.2
 	go.opentelemetry.io/otel v1.19.0
+	go.uber.org/zap v1.26.0
 	golang.org/x/sync v0.3.0
 	google.golang.org/protobuf v1.31.0
+	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 )
 
 require (
@@ -33,6 +36,7 @@ require (
 	github.com/cloudwego/base64x v0.1.4 // indirect
 	github.com/cloudwego/configmanager v0.2.2 // indirect
 	github.com/cloudwego/dynamicgo v0.2.9 // indirect
+	github.com/cloudwego/gopkg v0.1.0 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/netpoll v0.6.3 // indirect
 	github.com/cloudwego/runtimex v0.1.0 // indirect
@@ -52,13 +56,12 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/gls v0.0.0-20220109145502-612d0167dce5 // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
-	github.com/oleiade/lane v1.0.1 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_model v0.5.0 // indirect
 	github.com/prometheus/common v0.45.0 // indirect
 	github.com/prometheus/procfs v0.12.0 // indirect
-	github.com/stretchr/testify v1.8.4 // indirect
+	github.com/stretchr/testify v1.9.0 // indirect
+	github.com/tidwall/gjson v1.14.4 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
@@ -74,7 +77,6 @@ require (
 	go.opentelemetry.io/otel/sdk/metric v1.19.0 // indirect
 	go.opentelemetry.io/otel/trace v1.19.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.0.0 // indirect
-	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.2.0 // indirect
 	golang.org/x/net v0.17.0 // indirect
@@ -85,16 +87,4 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231016165738-49dd2c1f3d0b // indirect
 	google.golang.org/grpc v1.59.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-)
-
-require (
-	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
-	github.com/cloudwego/fastpb v0.0.4
-	github.com/cloudwego/frugal v0.1.15
-	github.com/kitex-contrib/obs-opentelemetry/logging/zap v0.0.0-20231103033707-6f0423a24fdf
-	github.com/sirupsen/logrus v1.9.2
-	github.com/tidwall/gjson v1.14.4 // indirect
-	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
-	go.uber.org/zap v1.26.0
-	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 )
