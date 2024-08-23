@@ -53,7 +53,6 @@
 ## 可观测性
 - [opentelemetry](opentelemetry) Kitex 服务端和客户端使用 OpenTelemetry 的示例
 - [prometheus](prometheus) Kitex 服务端和客户端使用 prometheus 的示例
-- [tracer](tracer) Kitex 服务端和客户端使用 tracer 的示例
 - [klog](klog) Kitex 服务端使用 klog 日志的示例
 
 ## 高级特性
