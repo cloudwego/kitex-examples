@@ -4,11 +4,11 @@ go 1.17
 
 require (
 	github.com/apache/thrift v0.16.0
-	github.com/bytedance/gopkg v0.0.0-20240514070511-01b2cbcf35e1
+	github.com/bytedance/gopkg v0.1.0
 	github.com/cloudwego/kitex v0.10.3
 	github.com/cloudwego/kitex-benchmark v0.0.0-20240229111153-f43bfccbefe8
 	github.com/kitex-contrib/resolver-dns v0.0.0-20211026091019-d57feaffb777
-	github.com/kitex-contrib/xds v0.3.0
+	github.com/kitex-contrib/xds v0.4.0
 	k8s.io/apimachinery v0.28.3
 	k8s.io/client-go v0.28.3
 )
@@ -29,6 +29,7 @@ require (
 	github.com/cloudwego/netpoll v0.6.3 // indirect
 	github.com/cloudwego/runtimex v0.1.0 // indirect
 	github.com/cloudwego/thriftgo v0.3.15 // indirect
+	github.com/cncf/udpa/go v0.0.0-20220112060539-c52dc94e7fbe // indirect
 	github.com/cncf/xds/go v0.0.0-20230607035331-e9ce68804cb4 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/emicklei/go-restful/v3 v3.9.0 // indirect
@@ -67,6 +68,7 @@ require (
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
+	go.uber.org/atomic v1.11.0 // indirect
 	golang.org/x/arch v0.2.0 // indirect
 	golang.org/x/net v0.17.0 // indirect
 	golang.org/x/oauth2 v0.8.0 // indirect
