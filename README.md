@@ -11,10 +11,10 @@ You can go into the related examples for information on "how to run"
 - [bizdemo/kitex_gorm_gen](bizdemo/kitex_gorm_gen) Example of using Kitex and gorm_gen
 - [bizdemo/kitex_zorm](bizdemo/kitex_zorm) Example of using Kitex and zorm
 - [bizdemo/kitex_ent](bizdemo/kitex_ent) Example of using Kitex and ent
-- [bizdemo/easy_note](bizdemo/easy_note) Example of using Kitex as an rpc framework to implement a simple note service with multiple middlewares
-- [Bookinfo](https://github.com/cloudwego/biz-demo/tree/main/bookinfo) Example of using Kitex as the rpc framework to implement multi-functional book service programs including istio, OpenTelemetry, etc.
+- [bizdemo/easy_note](bizdemo/easy_note) Example of using Kitex as a rpc framework to implement a simple note service with multiple middlewares
+- [Bookinfo](https://github.com/cloudwego/biz-demo/tree/main/bookinfo) Example of using Kitex as the rpc framework to implement multi-functional book service programs including Istio, OpenTelemetry, etc.
 - [Open Payment Platform](https://github.com/cloudwego/biz-demo/tree/main/open-payment-platform) Example of using Kitex as the rpc framework to demonstrate the usage of Kitex generic call, and builds an integrated payment platform.
-- [Book Shop](https://github.com/cloudwego/biz-demo/tree/main/book-shop) Example of using Kitex as an rpc framework to implement an e-commerce system including an ElasticSearch search engine
+- [Book Shop](https://github.com/cloudwego/biz-demo/tree/main/book-shop) Example of using Kitex as a rpc framework to implement an e-commerce system including an ElasticSearch search engine
 - [FreeCar](https://github.com/CyanAsterisk/FreeCar) Example of using Kitex as the rpc framework to implement cloud native time-sharing car rental system suite services
 
 ## Basic features
@@ -52,7 +52,6 @@ You can go into the related examples for information on "how to run"
 ## Observability
 - [opentelemetry](opentelemetry) Example of Kitex server and client using OpenTelemetry
 - [prometheus](prometheus) Example of Kitex server and client using prometheus
-- [tracer](tracer) Example of using tracer on Kitex server and client
 - [klog](klog) Example of using klog logs on the Kitex server
 
 ## Advanced features
