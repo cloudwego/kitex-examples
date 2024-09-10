@@ -22,6 +22,7 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/bytedance/gopkg/lang/dirtmake"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/remote"
 	"github.com/cloudwego/kitex/pkg/remote/codec"
@@ -83,11 +84,14 @@ func (jc *JsonCodec) Encode(ctx context.Context, message remote.Message, out rem
 }
 
 func (jc *JsonCodec) Decode(ctx context.Context, message remote.Message, in remote.ByteBuffer) error {
-	length, err := in.ReadBinary(8)
+	length := dirtmake.Bytes(8, 8)
+	_, err := in.ReadBinary(length)
 	if err != nil {
 		return perrors.NewProtocolError(fmt.Errorf("json decode, read length failed: %w", err))
 	}
-	buf, err := in.ReadBinary(int(binary.BigEndian.Uint64(length)))
+	l := int(binary.BigEndian.Uint64(length))
+	buf := dirtmake.Bytes(l, l)
+	_, err = in.ReadBinary(buf)
 	if err != nil {
 		return perrors.NewProtocolError(fmt.Errorf("json decode, read data failed: %w", err))
 	}
