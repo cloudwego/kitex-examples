@@ -1,14 +1,14 @@
 module github.com/cloudwego/kitex-examples/proxyless
 
-go 1.17
+go 1.18
 
 require (
 	github.com/apache/thrift v0.16.0
-	github.com/bytedance/gopkg v0.1.0
+	github.com/bytedance/gopkg v0.1.1
 	github.com/cloudwego/kitex v0.10.3
 	github.com/cloudwego/kitex-benchmark v0.0.0-20240229111153-f43bfccbefe8
-	github.com/kitex-contrib/resolver-dns v0.0.0-20211026091019-d57feaffb777
-	github.com/kitex-contrib/xds v0.4.0
+	github.com/kitex-contrib/resolver-dns v0.1.0
+	github.com/kitex-contrib/xds v0.4.1
 	k8s.io/apimachinery v0.28.3
 	k8s.io/client-go v0.28.3
 )
@@ -63,19 +63,19 @@ require (
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/stretchr/testify v1.8.3 // indirect
+	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/tidwall/gjson v1.9.3 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	golang.org/x/arch v0.2.0 // indirect
-	golang.org/x/net v0.17.0 // indirect
+	golang.org/x/net v0.24.0 // indirect
 	golang.org/x/oauth2 v0.8.0 // indirect
-	golang.org/x/sync v0.1.0 // indirect
-	golang.org/x/sys v0.13.0 // indirect
-	golang.org/x/term v0.13.0 // indirect
-	golang.org/x/text v0.13.0 // indirect
+	golang.org/x/sync v0.8.0 // indirect
+	golang.org/x/sys v0.19.0 // indirect
+	golang.org/x/term v0.19.0 // indirect
+	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20230526203410-71b5a4ffd15e // indirect
