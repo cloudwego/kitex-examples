@@ -6,7 +6,7 @@
 
 ### 创建一个新项目
 
-1.  在当前目录下创建 protobuf idl 文件
+1. 在当前目录下创建 protobuf idl 文件
 
 ```
 syntax = "proto3";
@@ -28,30 +28,30 @@ message Reply {
 }
 ```
 
-2.  创建新项目
+2. 创建新项目
 
 ```
 // GOPATH 下执行
 kitex -service multiservice ./idl/demo.proto
 
 // 不在 GOPATH 下执行
-kitex -service multiservice -module grpc_multi_service ./idl/demo.proto
+kitex -service multiservice -module kitex.example/grpc_multi_service ./idl/demo.proto
 
 // 整理 & 拉取依赖
 go mod tidy
 ```
 
-3.  修改handler，添加自己的逻辑
+3. 修改handler，添加自己的逻辑
 
 ```
 type ServiceAImpl struct{}
 
 // ChatA implements the ServiceAImpl interface.
 func (s *ServiceAImpl) ChatA(ctx context.Context, req *service.RequestA) (resp *service.Reply, err error) {
-	klog.Info("ChatA called, req: ", req.Name)
-	resp = new(service.Reply)
-	resp.Message = "hello " + req.Name
-	return
+ klog.Info("ChatA called, req: ", req.Name)
+ resp = new(service.Reply)
+ resp.Message = "hello " + req.Name
+ return
 }
 ```
 
@@ -86,14 +86,14 @@ message Reply {
 }
 ```
 
-5.  更新项目
+5. 更新项目
 
 ```
 // GOPATH 下执行
 kitex -service multiservice ./idl/demo.proto
 
 // 不在 GOPATH 下执行
-kitex -service multiservice -module grpc_multi_service ./idl/demo.proto
+kitex -service multiservice -module kitex.example/grpc_multi_service ./idl/demo.proto
 
 // 整理 & 拉取依赖
 go mod tidy
@@ -102,38 +102,41 @@ go mod tidy
 6. 修改 handler.go 和 main.go
 
 手动添加到 handler.go
+
 ```
 type ServiceBImpl struct{}
 ```
 
 修改 ChatB 逻辑
+
 ```
 // ChatB implements the ServiceBImpl interface.
 func (s *ServiceBImpl) ChatB(ctx context.Context, req *service.RequestB) (resp *service.Reply, err error) {
-	klog.Info("ChatB called, req: ", req.Name)
-	resp = new(service.Reply)
-	resp.Message = "hello " + req.Name
-	return
+ klog.Info("ChatB called, req: ", req.Name)
+ resp = new(service.Reply)
+ resp.Message = "hello " + req.Name
+ return
 }
 ```
 
 修改 main.go
+
 ```
 func main() {
-	addr, _ := net.ResolveTCPAddr("tcp", "localhost:8888")
+ addr, _ := net.ResolveTCPAddr("tcp", "localhost:8888")
 
-	svr := server.NewServer(server.WithServiceAddr(addr))
-	err := svr.RegisterService(servicea.NewServiceInfo(), new(ServiceAImpl))
-	if err != nil {
-		log.Println(err.Error())
-	}
-	err = svr.RegisterService(serviceb.NewServiceInfo(), new(ServiceBImpl))
-	if err != nil {
-		log.Println(err.Error())
-	}
-	err = svr.Run()
-	if err != nil {
-		log.Println(err.Error())
-	}
+ svr := server.NewServer(server.WithServiceAddr(addr))
+ err := svr.RegisterService(servicea.NewServiceInfo(), new(ServiceAImpl))
+ if err != nil {
+  log.Println(err.Error())
+ }
+ err = svr.RegisterService(serviceb.NewServiceInfo(), new(ServiceBImpl))
+ if err != nil {
+  log.Println(err.Error())
+ }
+ err = svr.Run()
+ if err != nil {
+  log.Println(err.Error())
+ }
 }
 ```

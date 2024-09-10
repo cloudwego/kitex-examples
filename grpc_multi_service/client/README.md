@@ -35,33 +35,34 @@ message Reply {
 kitex ./idl/demo.proto
 
 //Do not execute under GOPATH
-kitex -module grpc_multi_service ./idl/demo.proto
+kitex -module kitex.example/grpc_multi_service_client ./idl/demo.proto
 
 // Organize & pull dependencies
 go mod tidy
 ```
 
 3. Modify main.go
+
 ```
 func main() {
-	clienta := servicea.MustNewClient("servicea", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
-	clientb := serviceb.MustNewClient("serviceb", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
+ clienta := servicea.MustNewClient("servicea", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
+ clientb := serviceb.MustNewClient("serviceb", client.WithTransportProtocol(transport.GRPC), client.WithHostPorts("127.0.0.1:8888"))
         // The newly created client must add client.WithTransportProtocol(transport.GRPC)
         // Otherwise, there will be a problem that method cannot be found
-	resa, err := clienta.ChatA(context.Background(), &service.RequestA{Name: "hello,a"})
-	if err != nil {
-		klog.Error(err)
-		return
-	}
+ resa, err := clienta.ChatA(context.Background(), &service.RequestA{Name: "hello,a"})
+ if err != nil {
+  klog.Error(err)
+  return
+ }
 
-	resb, err := clientb.ChatB(context.Background(), &service.RequestB{Name: "hello,b"})
-	if err != nil {
-		klog.Error(err)
-		return
-	}
+ resb, err := clientb.ChatB(context.Background(), &service.RequestB{Name: "hello,b"})
+ if err != nil {
+  klog.Error(err)
+  return
+ }
 
-	klog.Info("resa: ", resa.Message)
-	klog.Info("resb: ", resb.Message)
+ klog.Info("resa: ", resa.Message)
+ klog.Info("resb: ", resb.Message)
 }
 
 ```

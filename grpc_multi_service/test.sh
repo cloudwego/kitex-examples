@@ -15,7 +15,7 @@ echo "Running project: $project"
 # 启动 server
 
 cd "$REPO_PATH/server" || exit
-go run main.go > /dev/null 2>&1 &
+(sh build.sh && sh output/bootstrap.sh) > /dev/null 2>&1 &
 server_pid=$!
 cd - > /dev/null || exit
 
