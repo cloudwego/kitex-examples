@@ -7,7 +7,7 @@ toolchain go1.21.4
 require (
 	github.com/apache/thrift v0.16.0
 	github.com/cloudwego/hertz v0.9.3
-	github.com/cloudwego/kitex v0.11.0
+	github.com/cloudwego/kitex v0.11.3
 	github.com/hertz-contrib/jwt v1.0.2
 	github.com/kitex-contrib/registry-etcd v0.2.5
 	github.com/kitex-contrib/tracer-opentracing v0.0.3
@@ -31,7 +31,7 @@ require (
 	github.com/cloudwego/dynamicgo v0.4.0 // indirect
 	github.com/cloudwego/fastpb v0.0.5 // indirect
 	github.com/cloudwego/frugal v0.2.0 // indirect
-	github.com/cloudwego/gopkg v0.1.1 // indirect
+	github.com/cloudwego/gopkg v0.1.2 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/localsession v0.0.2 // indirect
 	github.com/cloudwego/netpoll v0.6.4 // indirect
