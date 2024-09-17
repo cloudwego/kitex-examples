@@ -11,7 +11,7 @@ require (
 	github.com/bytedance/gopkg v0.1.1
 	github.com/cloudwego/fastpb v0.0.5
 	github.com/cloudwego/frugal v0.2.0
-	github.com/cloudwego/kitex v0.11.0
+	github.com/cloudwego/kitex v0.11.3
 	github.com/cloudwego/localsession v0.0.2
 	github.com/kitex-contrib/monitor-prometheus v0.2.0
 	github.com/kitex-contrib/obs-opentelemetry v0.2.7
@@ -36,7 +36,7 @@ require (
 	github.com/cloudwego/base64x v0.1.4 // indirect
 	github.com/cloudwego/configmanager v0.2.2 // indirect
 	github.com/cloudwego/dynamicgo v0.4.0 // indirect
-	github.com/cloudwego/gopkg v0.1.1 // indirect
+	github.com/cloudwego/gopkg v0.1.2 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/netpoll v0.6.4 // indirect
 	github.com/cloudwego/runtimex v0.1.0 // indirect

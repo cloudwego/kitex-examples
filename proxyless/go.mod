@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/apache/thrift v0.16.0
 	github.com/bytedance/gopkg v0.1.1
-	github.com/cloudwego/kitex v0.11.0
+	github.com/cloudwego/kitex v0.11.3
 	github.com/cloudwego/kitex-benchmark v0.0.0-20240229111153-f43bfccbefe8
 	github.com/kitex-contrib/resolver-dns v0.1.0
 	github.com/kitex-contrib/xds v0.4.1
@@ -24,7 +24,7 @@ require (
 	github.com/cloudwego/dynamicgo v0.4.0 // indirect
 	github.com/cloudwego/fastpb v0.0.5 // indirect
 	github.com/cloudwego/frugal v0.2.0 // indirect
-	github.com/cloudwego/gopkg v0.1.1 // indirect
+	github.com/cloudwego/gopkg v0.1.2 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/localsession v0.0.2 // indirect
 	github.com/cloudwego/netpoll v0.6.4 // indirect

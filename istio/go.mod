@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/cloudwego/fastpb v0.0.5
-	github.com/cloudwego/kitex v0.11.0
+	github.com/cloudwego/kitex v0.11.3
 	google.golang.org/protobuf v1.28.1
 )
 
@@ -17,7 +17,7 @@ require (
 	github.com/cloudwego/configmanager v0.2.2 // indirect
 	github.com/cloudwego/dynamicgo v0.4.0 // indirect
 	github.com/cloudwego/frugal v0.2.0 // indirect
-	github.com/cloudwego/gopkg v0.1.1 // indirect
+	github.com/cloudwego/gopkg v0.1.2 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/localsession v0.0.2 // indirect
 	github.com/cloudwego/netpoll v0.6.4 // indirect
