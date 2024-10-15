@@ -1,0 +1,251 @@
+# Generated with thrift-gen-rpc-swagger
+# https://github.com/hertz-contrib/swagger-generate/thrift-gen-rpc-swagger
+
+openapi: 3.0.3
+info:
+    title: kitex example swagger doc
+    description: UserService描述
+    version: 0.0.1
+servers:
+    - url: http://127.0.0.1:8888
+paths:
+    /CreateUser:
+        post:
+            tags:
+                - UserService
+            operationId: UserService_CreateUser
+            parameters:
+                - name: ttheader
+                  in: query
+                  description: metainfo for request
+                  schema:
+                    type: object
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreateUserRequest'
+            responses:
+                "200":
+                    description: Successful response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateUserResponse'
+    /DeleteUser:
+        post:
+            tags:
+                - UserService
+            operationId: UserService_DeleteUser
+            parameters:
+                - name: ttheader
+                  in: query
+                  description: metainfo for request
+                  schema:
+                    type: object
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/DeleteUserRequest'
+            responses:
+                "200":
+                    description: Successful response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteUserResponse'
+    /QueryUser:
+        post:
+            tags:
+                - UserService
+            operationId: UserService_QueryUser
+            parameters:
+                - name: ttheader
+                  in: query
+                  description: metainfo for request
+                  schema:
+                    type: object
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/QueryUserRequest'
+            responses:
+                "200":
+                    description: Successful response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/QueryUserResponse'
+    /UpdateUser:
+        post:
+            tags:
+                - UserService
+            operationId: UserService_UpdateUser
+            parameters:
+                - name: ttheader
+                  in: query
+                  description: metainfo for request
+                  schema:
+                    type: object
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateUserRequest'
+            responses:
+                "200":
+                    description: Successful response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateUserResponse'
+components:
+    schemas:
+        CreateUserRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                gender:
+                    enum:
+                        - Unknown
+                        - Male
+                        - Female
+                    type: string
+                    format: enum
+                age:
+                    type: integer
+                    format: int64
+                introduce:
+                    type: string
+        CreateUserResponse:
+            type: object
+            properties:
+                code:
+                    enum:
+                        - Success
+                        - ParamInvalid
+                        - DBErr
+                    type: string
+                    format: enum
+                msg:
+                    type: string
+        DeleteUserRequest:
+            type: object
+            properties:
+                user_id:
+                    type: integer
+                    description: 用户编号
+                    format: int64
+        DeleteUserResponse:
+            type: object
+            properties:
+                code:
+                    enum:
+                        - Success
+                        - ParamInvalid
+                        - DBErr
+                    type: string
+                    format: enum
+                msg:
+                    type: string
+        QueryUserRequest:
+            type: object
+            properties:
+                Keyword:
+                    type: string
+                page:
+                    type: integer
+                    format: int64
+                page_size:
+                    type: integer
+                    format: int64
+        QueryUserResponse:
+            type: object
+            properties:
+                code:
+                    enum:
+                        - Success
+                        - ParamInvalid
+                        - DBErr
+                    type: string
+                    format: enum
+                msg:
+                    type: string
+                users:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/User'
+                total:
+                    type: integer
+                    format: int64
+        UpdateUserRequest:
+            type: object
+            properties:
+                user_id:
+                    type: integer
+                    format: int64
+                name:
+                    type: string
+                gender:
+                    enum:
+                        - Unknown
+                        - Male
+                        - Female
+                    type: string
+                    description: 性别
+                    format: enum
+                age:
+                    type: integer
+                    format: int64
+                introduce:
+                    type: string
+        UpdateUserResponse:
+            title: Hello - response
+            required:
+                - msg
+            type: object
+            properties:
+                code:
+                    enum:
+                        - Success
+                        - ParamInvalid
+                        - DBErr
+                    type: string
+                    format: enum
+                msg:
+                    title: response content
+                    maxLength: 80
+                    minLength: 1
+                    type: string
+                    description: response content
+            description: Hello - response
+        User:
+            type: object
+            properties:
+                user_id:
+                    type: integer
+                    format: int64
+                name:
+                    title: Name
+                    maxLength: 50
+                    minLength: 1
+                    type: string
+                    description: Name
+                gender:
+                    enum:
+                        - Unknown
+                        - Male
+                        - Female
+                    type: string
+                    format: enum
+                age:
+                    type: integer
+                    format: int64
+                introduce:
+                    type: string
+tags:
+    - name: UserService
+      description: UserService描述

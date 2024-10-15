@@ -11,6 +11,7 @@ You can go into the related examples for information on "how to run"
 - [bizdemo/kitex_gorm_gen](bizdemo/kitex_gorm_gen) Example of using Kitex and gorm_gen
 - [bizdemo/kitex_zorm](bizdemo/kitex_zorm) Example of using Kitex and zorm
 - [bizdemo/kitex_ent](bizdemo/kitex_ent) Example of using Kitex and ent
+- [bizdemo/kitex_swagger_gen](bizdemo/kitex_swagger_gen) Example of using Kitex and swagger generate
 - [bizdemo/easy_note](bizdemo/easy_note) Example of using Kitex as a rpc framework to implement a simple note service with multiple middlewares
 - [Bookinfo](https://github.com/cloudwego/biz-demo/tree/main/bookinfo) Example of using Kitex as the rpc framework to implement multi-functional book service programs including Istio, OpenTelemetry, etc.
 - [Open Payment Platform](https://github.com/cloudwego/biz-demo/tree/main/open-payment-platform) Example of using Kitex as the rpc framework to demonstrate the usage of Kitex generic call, and builds an integrated payment platform.

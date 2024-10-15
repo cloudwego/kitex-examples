@@ -4,6 +4,7 @@ Basic examples of kitex framework and ORM. For advanced examples of obs, load ba
 - [bizdemo/kitex_gorm_gen](bizdemo/kitex_gorm_gen) Example of using kitex and gorm_gen
 - [bizdemo/kitex_zorm](bizdemo/kitex_zorm) Example of using kitex and zorm
 - [bizdemo/kitex_zorm](bizdemo/kitex_zorm) Example of using kitex and ent
+- [bizdemo/kitex_swagger_gen](bizdemo/kitex_swagger_gen) Example of using kitex and swagger generate
 
 Integrated more components and more complete biz-demo
 - [bizdemo/easy_note](bizdemo/easy_note) Example of using kitex as an rpc framework to implement a simple note service with multiple middlewares
