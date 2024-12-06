@@ -86,4 +86,5 @@ service NoteService {
     DeleteNoteResponse DeleteNote(1:DeleteNoteRequest req)
     QueryNoteResponse QueryNote(1:QueryNoteRequest req)
     UpdateNoteResponse UpdateNote(1:UpdateNoteRequest req)
+    UpdateNoteResponse UpdateNote2(1:UpdateNoteRequest req)
 }
