@@ -15,11 +15,8 @@
 
 namespace go notedemo
 
-struct BaseResp {
-    1:i64 status_code
-    2:string status_message
-    3:i64 service_time
-}
+include "base.thrift"
+
 
 struct Note {
     1:i64 note_id
@@ -38,7 +35,7 @@ struct CreateNoteRequest {
 }
 
 struct CreateNoteResponse {
-    1:BaseResp base_resp
+    1:base.BaseResp base_resp
 }
 
 struct DeleteNoteRequest {
@@ -47,7 +44,7 @@ struct DeleteNoteRequest {
 }
 
 struct DeleteNoteResponse {
-    1:BaseResp base_resp
+    1:base.BaseResp base_resp
 }
 
 struct UpdateNoteRequest {
@@ -58,7 +55,7 @@ struct UpdateNoteRequest {
 }
 
 struct UpdateNoteResponse {
-    1:BaseResp base_resp
+    1:base.BaseResp base_resp
 }
 
 struct MGetNoteRequest {
@@ -67,7 +64,7 @@ struct MGetNoteRequest {
 
 struct MGetNoteResponse {
     1:list<Note> notes
-    2:BaseResp base_resp
+    2:base.BaseResp base_resp
 }
 
 struct QueryNoteRequest {
@@ -80,7 +77,7 @@ struct QueryNoteRequest {
 struct QueryNoteResponse {
     1:list<Note> notes
     2:i64 total
-    3:BaseResp base_resp
+    3:base.BaseResp base_resp
 }
 
 service NoteService {
