@@ -5,7 +5,7 @@ namespace java base
 
 struct TrafficEnv {
     1: bool Open = false,
-    2: string Env = "",
+    2: string En111v = "",
 }
 
 struct Base {
