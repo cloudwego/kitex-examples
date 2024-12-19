@@ -22,7 +22,7 @@ import (
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api/echo"
 
-	"github.com/apache/thrift/lib/go/thrift"
+	"github.com/cloudwego/gopkg/protocol/thrift"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/utils"
 	"github.com/cloudwego/kitex/server/invoke"
@@ -48,12 +48,11 @@ func main() {
 	msg := invoke.NewMessage(local, remote)
 
 	// setup request payload
-	codec := utils.NewThriftMessageCodec()
 	args := api.NewEchoEchoArgs()
 	args.SetReq(&api.Request{
 		Message: "hello",
 	})
-	reqPayload, err := codec.Encode("echo", thrift.CALL, 0, args)
+	reqPayload, err := thrift.MarshalFastMsg("echo", thrift.CALL, 0, args)
 	if err != nil {
 		klog.Fatal(err)
 	}
@@ -74,7 +73,7 @@ func main() {
 	}
 
 	res := api.NewEchoEchoResult()
-	method, _, err := codec.Decode(respPayload, res)
+	method, _, err := thrift.UnmarshalFastMsg(respPayload, res)
 	if err != nil {
 		klog.Fatal(err)
 	}

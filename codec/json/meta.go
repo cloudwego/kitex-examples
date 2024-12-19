@@ -15,7 +15,7 @@
 
 package json
 
-import "github.com/apache/thrift/lib/go/thrift"
+import "github.com/cloudwego/gopkg/protocol/thrift"
 
 type Meta struct {
 	ServiceName string
@@ -34,5 +34,5 @@ func (e Exception) Error() string {
 	if e.Message != "" {
 		return e.Message
 	}
-	return thrift.NewTApplicationException(e.TypeID, "").Error()
+	return thrift.NewApplicationException(e.TypeID, "").Error()
 }

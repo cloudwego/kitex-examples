@@ -20,33 +20,34 @@ import (
 	"log"
 	"time"
 
-	"github.com/apache/thrift/lib/go/thrift"
+	"github.com/cloudwego/kitex/transport"
+
+	"github.com/cloudwego/gopkg/protocol/thrift"
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/client/genericclient"
 	"github.com/cloudwego/kitex/pkg/generic"
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/cloudwego/kitex/pkg/utils"
 )
 
 func main() {
-	genericCli, err := genericclient.NewClient("echo", generic.BinaryThriftGeneric(), client.WithHostPorts("0.0.0.0:8888"))
+	genericCli, err := genericclient.NewClient("echo", generic.BinaryThriftGeneric(), client.WithTransportProtocol(transport.TTHeader), client.WithHostPorts("0.0.0.0:8888"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	codec := utils.NewThriftMessageCodec()
 	for {
 		ctx := context.Background()
-		buf, err := codec.Encode("echo", thrift.CALL, 0, &api.EchoEchoArgs{Req: &api.Request{Message: "my request"}})
+		buf, err := thrift.MarshalFastMsg("echo", thrift.CALL, 0, &api.EchoEchoArgs{Req: &api.Request{Message: "my request"}})
 		if err != nil {
 			klog.Fatal(err)
 		}
 		resp, err := genericCli.GenericCall(ctx, "echo", buf)
 		if err != nil {
 			klog.Errorf("call echo failed: %w\n", err)
+			continue
 		}
 		result := &api.EchoEchoResult{}
-		_, _, err = codec.Decode(resp.([]byte), result)
+		_, _, err = thrift.UnmarshalFastMsg(resp.([]byte), result)
 		if err != nil {
 			klog.Fatal(err)
 		}
