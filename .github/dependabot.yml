@@ -16,6 +16,7 @@ updates:
       - /bizdemo/kitex_ent
       - /bizdemo/kitex_gorm
       - /bizdemo/kitex_gorm_gen
+      - /bizdemo/kitex_swagger_gen
       - /bizdemo/kitex_zorm
       - /generic-protobuf/jsonpb-client
       - /grpc_multi_service/client
