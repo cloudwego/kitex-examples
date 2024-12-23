@@ -79,3 +79,5 @@ You can go into the related examples for information on "how to run"
 ## Note
 
 All commands to execute the example should be executed under "kitex-examples".
+
+Execute 'regenerate-idl.sh' to re-generate all kitex_gen (include sub mods)

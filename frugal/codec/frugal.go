@@ -19,9 +19,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/apache/thrift/lib/go/thrift"
 	"github.com/cloudwego/frugal"
-	"github.com/cloudwego/kitex/pkg/protocol/bthrift"
+	"github.com/cloudwego/gopkg/protocol/thrift"
 
 	"github.com/cloudwego/kitex-examples/kitex_gen/api"
 )
@@ -45,19 +44,18 @@ func FrugalEncode(data interface{}, meta Meta) ([]byte, error) {
 		return nil, fmt.Errorf("frugal tag missing")
 	}
 	// calculate and malloc message buffer
-	msgBeginLen := bthrift.Binary.MessageBeginLength(meta.MethodName, meta.MessageType, meta.SeqID)
-	msgEndLen := bthrift.Binary.MessageEndLength()
+	msgBeginLen := thrift.Binary.MessageBeginLength(meta.MethodName)
+	msgEndLen := 0
 	objectLen := frugal.EncodedSize(data)
 	buf := make([]byte, msgBeginLen+objectLen+msgEndLen)
 
 	// encode message
-	offset := bthrift.Binary.WriteMessageBegin(buf, meta.MethodName, meta.MessageType, meta.SeqID)
+	offset := thrift.Binary.WriteMessageBegin(buf, meta.MethodName, meta.MessageType, meta.SeqID)
 	writeLen, err := frugal.EncodeObject(buf[offset:], nil, data)
 	if err != nil {
 		return buf, fmt.Errorf("thrift marshal, frugal.EncodeObject failed: %s", err.Error())
 	}
 	offset += writeLen
-	bthrift.Binary.WriteMessageEnd(buf[offset:])
 	return buf, nil
 }
 
@@ -65,7 +63,7 @@ func FrugalDecode(buf []byte, data interface{}) (Meta, error) {
 	if !HasFrugalTag(data) {
 		return Meta{}, fmt.Errorf("frugal tag missing")
 	}
-	methodName, messageType, seqID, length, err := bthrift.Binary.ReadMessageBegin(buf)
+	methodName, messageType, seqID, length, err := thrift.Binary.ReadMessageBegin(buf)
 	if err != nil {
 		return Meta{}, err
 	}
