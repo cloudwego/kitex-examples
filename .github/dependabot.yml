@@ -26,4 +26,3 @@ updates:
       - /kitex/template
       - /kitex/thrift
       - /proxyless
-      - /seata_go
