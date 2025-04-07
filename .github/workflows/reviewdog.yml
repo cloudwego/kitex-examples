@@ -5,7 +5,9 @@ jobs:
     name: runner / staticcheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      # checkout code
+      - uses: actions/checkout@v4
+
       - uses: reviewdog/action-staticcheck@v1
         with:
           github_token: ${{ secrets.github_token }}
@@ -13,7 +15,7 @@ jobs:
           reporter: github-pr-review
           # Report all results.
           filter_mode: nofilter
-          # Exit with 1 when it find at least one finding.
+          # Exit with 1 when it finds at least one finding.
           fail_on_error: true
           # Set staticcheck flags
           staticcheck_flags: -checks=inherit,-SA1029,-ST1005
