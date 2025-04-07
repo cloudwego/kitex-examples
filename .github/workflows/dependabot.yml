@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Generate Dependabot config
         run: ./regenerate-dependabot-config.sh
@@ -41,6 +41,6 @@ jobs:
           title: "chore(ci): update dependabot config"
           body: "Updates the Dependabot configuration file."
           labels: "dependencies"
-          commiter: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          committer: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           commit-message: "chore(ci): update dependabot config"
