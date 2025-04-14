@@ -7,7 +7,7 @@ require (
 	github.com/cloudwego/fastpb v0.0.5
 	github.com/cloudwego/frugal v0.2.5
 	github.com/cloudwego/gopkg v0.1.4
-	github.com/cloudwego/kitex v0.13.0
+	github.com/cloudwego/kitex v0.13.1
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20241219022956-e15b7a1a61d2
 	github.com/cloudwego/localsession v0.1.2
 	github.com/kitex-contrib/monitor-prometheus v0.2.0
