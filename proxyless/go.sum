@@ -86,8 +86,8 @@ github.com/cloudwego/iasm v0.2.0/go.mod h1:8rXZaNYT2n95jn+zTI1sDr+IgcD2GVs0nlbbQ
 github.com/cloudwego/kitex v0.0.1/go.mod h1:NTTu8szFfMKY9pxa7JmI/4FZpD15p5YUHLTYMqsXj9o=
 github.com/cloudwego/kitex v0.3.2/go.mod h1:/XD07VpUD9VQWmmoepASgZ6iw//vgWikVA9MpzLC5i0=
 github.com/cloudwego/kitex v0.4.3/go.mod h1:7CV4Cs5oi7dWqI3fFoDTLJHyt/18z7nlHIIHsQQNnbE=
-github.com/cloudwego/kitex v0.13.0 h1:0ZLMrdrIls2eonh+PwqHj/F/Y/rIjLGe4D8kq7qnUOM=
-github.com/cloudwego/kitex v0.13.0/go.mod h1:eHEp//JKqEnQYFPLifEMOikxuLikEnfVXKKniroLTjA=
+github.com/cloudwego/kitex v0.13.1 h1:oPJS/hy9gvo0rlfQmJAKJj8F4PMLG74IYzpaPlCRgg8=
+github.com/cloudwego/kitex v0.13.1/go.mod h1:eHEp//JKqEnQYFPLifEMOikxuLikEnfVXKKniroLTjA=
 github.com/cloudwego/kitex-benchmark v0.0.0-20240229111153-f43bfccbefe8 h1:1zvWE6n1kXQViocgl3VBY6W2jjt0bwYgU9/EnDGJuNY=
 github.com/cloudwego/kitex-benchmark v0.0.0-20240229111153-f43bfccbefe8/go.mod h1:+QWvS5K1HhzOeGU5Y3+zPRQguBqGkOx44nrckOEpCao=
 github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20241219082347-7ceeb8ef1405 h1:rqDRS+k+pgrqVseNA0D+S7tS/LNOt6lP5hvdSqSm/qQ=

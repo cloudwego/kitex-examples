@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/apache/thrift v0.16.0
 	github.com/bytedance/gopkg v0.1.2
-	github.com/cloudwego/kitex v0.13.0
+	github.com/cloudwego/kitex v0.13.1
 	github.com/cloudwego/kitex-benchmark v0.0.0-20240229111153-f43bfccbefe8
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20241219082347-7ceeb8ef1405
 	github.com/kitex-contrib/resolver-dns v0.1.0
