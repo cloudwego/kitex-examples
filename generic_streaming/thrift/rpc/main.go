@@ -17,9 +17,9 @@ package main
 
 import (
 	echo "generic_streaming_demo_thrift/kitex_gen/echo/testservice"
-	"log"
-	"github.com/cloudwego/kitex/server"
 	"github.com/cloudwego/kitex/pkg/transmeta"
+	"github.com/cloudwego/kitex/server"
+	"log"
 )
 
 func main() {
