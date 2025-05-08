@@ -37,7 +37,13 @@ cd - > /dev/null || exit
 
 # Cleanup
 echo "Cleaning up..."
-kill -9 $SERVER_PID $(lsof -t -i:8888) 2>/dev/null || true
+if kill -0 $SERVER_PID 2>/dev/null; then
+    kill $SERVER_PID
+fi
+
+if lsof -i :8888 > /dev/null 2>&1; then
+    lsof -t -i:8888 | xargs kill -9
+fi
 
 # Set script exit status
 exit $status 
