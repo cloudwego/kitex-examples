@@ -27,8 +27,8 @@ import (
 	"github.com/cloudwego/kitex/client/genericclient"
 	"github.com/cloudwego/kitex/pkg/generic"
 	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/cloudwego/kitex/pkg/transmeta"
 	"github.com/cloudwego/kitex/transport"
-	"github.com/cloudwego/kitex/transport/transmeta"
 )
 
 func main() {
@@ -50,7 +50,7 @@ func main() {
 		g,
 		client.WithTransportProtocol(transport.GRPC),
 		client.WithHostPorts("127.0.0.1:8888"),
-		client.WithMetaHandler(transmeta.ClientHTTP2Handler),
+		client.WithMetaHandler(transmeta.ClientTTHeaderHandler),
 	)
 	if err != nil {
 		log.Fatal(err)

@@ -20,13 +20,11 @@ import (
 	"log"
 	"github.com/cloudwego/kitex/server"
 	"github.com/cloudwego/kitex/pkg/transmeta"
-	"github.com/cloudwego/kitex/transport"
 )
 
 func main() {
 	svr := echo.NewServer(new(TestServiceImpl),
-		server.WithMetaHandler(transmeta.ServerHTTP2Handler),
-		server.WithTransportProtocol(transport.GRPC),
+		server.WithMetaHandler(transmeta.ServerTTHeaderHandler),
 	)
 
 	err := svr.Run()
