@@ -31,19 +31,19 @@ import (
 )
 
 func main() {
-	// 1. 创建 Thrift 文件提供者
+	// 1. Create Thrift file provider
 	p, err := generic.NewThriftFileProvider("../idl/streaming.thrift")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// 2. 创建 JSON Thrift 泛化调用
+	// 2. Create JSON Thrift generic call
 	g, err := generic.JSONThriftGeneric(p)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// 3. 创建流式客户端
+	// 3. Create streaming client
 	cli, err := genericclient.NewStreamingClient(
 		"streaming_service",
 		g,
@@ -56,34 +56,34 @@ func main() {
 
 	ctx := context.Background()
 
-	// 4.1 测试普通请求-响应模式
+	// 4.1 Test pingpong mode
 	fmt.Println("Testing EchoPingPong...")
 	if err := testEchoPingPong(ctx, cli); err != nil {
 		log.Printf("EchoPingPong failed: %v", err)
 	}
 
-	// 4.2 测试客户端流模式
+	// 4.2 Test client streaming mode
 	fmt.Println("\nTesting EchoClient...")
 	if err := testEchoClient(ctx, cli); err != nil {
 		log.Printf("EchoClient failed: %v", err)
 	}
 
-	// 4.3 测试服务端流模式
+	// 4.3 Test server streaming mode
 	fmt.Println("\nTesting EchoServer...")
 	if err := testEchoServer(ctx, cli); err != nil {
 		log.Printf("EchoServer failed: %v", err)
 	}
 
-	// 4.4 测试双向流模式
+	// 4.4 Test bidirectional streaming mode
 	fmt.Println("\nTesting Echo (Bidirectional)...")
 	if err := testEchoBidirectional(ctx, cli); err != nil {
 		log.Printf("Echo failed: %v", err)
 	}
 }
 
-// 测试普通请求-响应模式
+// Test pingpong mode
 func testEchoPingPong(ctx context.Context, cli genericclient.Client) error {
-	resp, err := cli.GenericCall(ctx, "EchoPingPong", `{"message": "unary request"}`)
+	resp, err := cli.GenericCall(ctx, "EchoPingPong", `{"message": "pingpong request"}`)
 	if err != nil {
 		return err
 	}
@@ -94,14 +94,14 @@ func testEchoPingPong(ctx context.Context, cli genericclient.Client) error {
 	return nil
 }
 
-// 测试客户端流模式
+// Test client streaming mode
 func testEchoClient(ctx context.Context, cli genericclient.Client) error {
 	streamCli, err := genericclient.NewClientStreaming(ctx, cli, "EchoClient")
 	if err != nil {
 		return fmt.Errorf("failed to create client streaming: %v", err)
 	}
 
-	// 发送多个请求
+	// Send multiple requests
 	for i := 0; i < 3; i++ {
 		req := fmt.Sprintf(`{"message": "grpc client streaming generic %dth request"}`, i)
 		if err = streamCli.Send(req); err != nil {
@@ -110,7 +110,7 @@ func testEchoClient(ctx context.Context, cli genericclient.Client) error {
 		time.Sleep(time.Second)
 	}
 
-	// 接收最终响应
+	// Receive final response
 	resp, err := streamCli.CloseAndRecv()
 	if err != nil {
 		return fmt.Errorf("failed to receive: %v", err)
@@ -123,14 +123,14 @@ func testEchoClient(ctx context.Context, cli genericclient.Client) error {
 	return nil
 }
 
-// 测试服务端流模式
+// Test server streaming mode
 func testEchoServer(ctx context.Context, cli genericclient.Client) error {
 	streamCli, err := genericclient.NewServerStreaming(ctx, cli, "EchoServer", `{"message": "grpc server streaming generic request"}`)
 	if err != nil {
 		return fmt.Errorf("failed to create server streaming: %v", err)
 	}
 
-	// 接收多个响应
+	// Receive multiple responses
 	for {
 		resp, err := streamCli.Recv()
 		if err == io.EOF {
@@ -148,7 +148,7 @@ func testEchoServer(ctx context.Context, cli genericclient.Client) error {
 	return nil
 }
 
-// 测试双向流模式
+// Test bidirectional streaming mode
 func testEchoBidirectional(ctx context.Context, cli genericclient.Client) error {
 	streamCli, err := genericclient.NewBidirectionalStreaming(ctx, cli, "Echo")
 	if err != nil {
@@ -159,7 +159,7 @@ func testEchoBidirectional(ctx context.Context, cli genericclient.Client) error 
 	wg.Add(2)
 	var sendErr, recvErr error
 
-	// 发送消息
+	// Send messages
 	go func() {
 		defer func() {
 			if p := recover(); p != nil {
@@ -179,7 +179,7 @@ func testEchoBidirectional(ctx context.Context, cli genericclient.Client) error 
 		}
 	}()
 
-	// 接收消息
+	// Receive messages
 	go func() {
 		defer func() {
 			if p := recover(); p != nil {
@@ -207,7 +207,7 @@ func testEchoBidirectional(ctx context.Context, cli genericclient.Client) error 
 
 	wg.Wait()
 
-	// 检查错误
+	// Check errors
 	if sendErr != nil {
 		return sendErr
 	}
