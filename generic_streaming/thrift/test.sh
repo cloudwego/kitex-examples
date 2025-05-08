@@ -24,6 +24,7 @@ trap cleanup EXIT
 cd ./
 
 REPO_PATH="."
+status=0
 project="generic-streaming-thrift"
 
 echo "---------------------------------------"
@@ -37,21 +38,27 @@ SERVER_PID=$!
 cd - > /dev/null || exit
 
 # Wait for server to start
-echo "Waiting for server to start..."
-sleep 3
+sleep 1
 
-# Check if server is running
-if ! kill -0 $SERVER_PID 2>/dev/null; then
-    echo "Error: Server failed to start"
-    exit 1
+# Check if server is still running
+if kill -0 $SERVER_PID 2>/dev/null; then
+    echo "Project run successfully: $project"
+    echo "---------------------------------------"
+else
+    echo "Project failed to run: $project"
+    echo "---------------------------------------"
+    status=1
 fi
 
-# Run client and check output
+# Run client
 echo "Running client..."
 cd "$REPO_PATH/client" || exit
 OUTPUT=$(go run main.go)
 echo "$OUTPUT"
 cd - > /dev/null || exit
 
-# Exit with success
-exit 0 
+# Cleanup processes
+kill -9 $SERVER_PID $(lsof -t -i:8888)
+
+# Set script exit status
+exit $status 

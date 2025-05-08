@@ -1,24 +1,14 @@
 #!/bin/bash
 
-# Exit on error
-set -e
+# Set working directory to project directory
+cd ./
 
-# Function to cleanup
-cleanup() {
-    echo "Cleaning up..."
-    if [ ! -z "$SERVER_PID" ]; then
-        if kill -0 $SERVER_PID 2>/dev/null; then
-            kill $SERVER_PID
-        fi
-    fi
-    # If port 8888 is still in use, force release
-    if lsof -i :8888 > /dev/null 2>&1; then
-        lsof -t -i:8888 | xargs kill -9 2>/dev/null || true
-    fi
-}
+REPO_PATH="."
+status=0
+project="generic-streaming-pb"
 
-# Set up trap to ensure cleanup happens
-trap cleanup EXIT
+echo "---------------------------------------"
+echo "Running project: $project"
 
 # Start server
 echo "Starting server..."
@@ -26,20 +16,27 @@ go run . &
 SERVER_PID=$!
 
 # Wait for server to start
-echo "Waiting for server to start..."
-sleep 2
+sleep 1
 
-# Check if server is running
-if ! kill -0 $SERVER_PID 2>/dev/null; then
-    echo "Server failed to start"
-    exit 1
+# Check if server is still running
+if kill -0 $SERVER_PID 2>/dev/null; then
+    echo "Project run successfully: $project"
+    echo "---------------------------------------"
+else
+    echo "Project failed to run: $project"
+    echo "---------------------------------------"
+    status=1
 fi
 
-# Run client and check output
+# Run client
 echo "Running client..."
 cd client
 OUTPUT=$(go run main.go)
 echo "$OUTPUT"
+cd - > /dev/null || exit
 
-# Exit with success
-exit 0
+# Cleanup processes
+kill -9 $SERVER_PID $(lsof -t -i:8888)
+
+# Set script exit status
+exit $status
