@@ -1,6 +1,6 @@
 module generic_streaming_demo_thrift
 
-go 1.24.2
+go 1.18
 
 require (
 	github.com/cloudwego/gopkg v0.1.4
