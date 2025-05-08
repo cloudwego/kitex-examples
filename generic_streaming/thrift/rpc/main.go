@@ -24,7 +24,7 @@ import (
 
 func main() {
 	svr := echo.NewServer(new(TestServiceImpl),
-		server.WithMetaHandler(transmeta.ServerTTHeaderHandler),
+		server.WithMetaHandler(transmeta.ServerHTTP2Handler),
 	)
 
 	err := svr.Run()

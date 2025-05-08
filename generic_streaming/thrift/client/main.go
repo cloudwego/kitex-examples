@@ -50,7 +50,7 @@ func main() {
 		g,
 		client.WithTransportProtocol(transport.GRPC),
 		client.WithHostPorts("127.0.0.1:8888"),
-		client.WithMetaHandler(transmeta.ClientTTHeaderHandler),
+		client.WithMetaHandler(transmeta.ClientHTTP2Handler),
 	)
 	if err != nil {
 		log.Fatal(err)

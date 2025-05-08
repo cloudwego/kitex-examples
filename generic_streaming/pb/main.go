@@ -23,7 +23,7 @@ import (
 
 func main() {
 	svr := pb.NewServer(new(StreamingServiceImpl),
-		server.WithMetaHandler(transmeta.ServerTTHeaderHandler),
+		server.WithMetaHandler(transmeta.ServerHTTP2Handler),
 	)
 
 	err := svr.Run()
