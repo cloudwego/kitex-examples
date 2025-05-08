@@ -17,10 +17,16 @@ package main
 import (
 	"log"
 	pb "pb_generic_streaming_demo/kitex_gen/pb/streamingservice"
+	"github.com/cloudwego/kitex/server"
+	"github.com/cloudwego/kitex/pkg/transmeta"
+	"github.com/cloudwego/kitex/transport"
 )
 
 func main() {
-	svr := pb.NewServer(new(StreamingServiceImpl))
+	svr := pb.NewServer(new(StreamingServiceImpl),
+		server.WithMetaHandler(transmeta.ServerHTTP2Handler),
+		server.WithTransportProtocol(transport.GRPC),
+	)
 
 	err := svr.Run()
 

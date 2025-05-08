@@ -18,10 +18,16 @@ package main
 import (
 	echo "generic_streaming_demo_thrift/kitex_gen/echo/testservice"
 	"log"
+	"github.com/cloudwego/kitex/server"
+	"github.com/cloudwego/kitex/pkg/transmeta"
+	"github.com/cloudwego/kitex/transport"
 )
 
 func main() {
-	svr := echo.NewServer(new(TestServiceImpl))
+	svr := echo.NewServer(new(TestServiceImpl),
+		server.WithMetaHandler(transmeta.ServerHTTP2Handler),
+		server.WithTransportProtocol(transport.GRPC),
+	)
 
 	err := svr.Run()
 
