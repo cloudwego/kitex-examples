@@ -168,7 +168,7 @@ func testEchoBidirectional(ctx context.Context, cli genericclient.Client) error 
 			}
 			wg.Done()
 		}()
-		
+
 		for i := 0; i < 3; i++ {
 			req := fmt.Sprintf(`{"message": "grpc bidirectional streaming generic %dth request"}`, i)
 			if err = streamCli.Send(req); err != nil {

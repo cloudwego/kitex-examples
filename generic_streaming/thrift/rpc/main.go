@@ -16,8 +16,8 @@
 package main
 
 import (
-	"log"
 	echo "generic_streaming_demo_thrift/kitex_gen/echo/testservice"
+	"log"
 )
 
 func main() {

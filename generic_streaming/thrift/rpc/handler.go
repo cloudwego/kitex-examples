@@ -19,8 +19,8 @@ import (
 	"io"
 	"strconv"
 
-	"github.com/cloudwego/kitex/pkg/klog"
 	echo "generic_streaming_demo_thrift/kitex_gen/echo"
+	"github.com/cloudwego/kitex/pkg/klog"
 )
 
 // TestServiceImpl implements echo.TestService interface
@@ -96,4 +96,3 @@ func (s *TestServiceImpl) EchoPingPong(ctx context.Context, req *echo.Request) (
 	klog.Infof("EchoPingPong: received request: %v, sending response: %v", req, resp)
 	return resp, nil
 }
-
