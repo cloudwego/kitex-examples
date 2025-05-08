@@ -17,6 +17,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	pb "pb_generic_streaming_demo/kitex_gen/pb"
 )
 
@@ -30,18 +31,19 @@ func (s *StreamingServiceImpl) StreamRequestEcho(stream pb.StreamingService_Stre
 	var messages []string
 	for {
 		req, err := stream.Recv()
+		if err == io.EOF {
+			// When receiving io.EOF, summarize all received messages and send the final response
+			resp := &pb.Response{
+				Message: fmt.Sprintf("Received %d messages: %v", len(messages), messages),
+			}
+			return stream.SendAndClose(resp)
+		}
 		if err != nil {
-			break
+			return err
 		}
 		messages = append(messages, req.Message)
 		fmt.Printf("Received message: %s\n", req.Message)
 	}
-
-	// Return summary of all received messages
-	resp := &pb.Response{
-		Message: fmt.Sprintf("Received %d messages: %v", len(messages), messages),
-	}
-	return stream.SendAndClose(resp)
 }
 
 // StreamResponseEcho implements server streaming:
@@ -66,8 +68,12 @@ func (s *StreamingServiceImpl) StreamResponseEcho(req *pb.Request, stream pb.Str
 func (s *StreamingServiceImpl) BidirectionalEcho(stream pb.StreamingService_BidirectionalEchoServer) (err error) {
 	for {
 		req, err := stream.Recv()
+		if err == io.EOF {
+			// When receiving io.EOF, the client has closed the sending direction. End the stream.
+			return nil
+		}
 		if err != nil {
-			break
+			return err
 		}
 		fmt.Printf("Received: %s\n", req.Message)
 
@@ -79,7 +85,6 @@ func (s *StreamingServiceImpl) BidirectionalEcho(stream pb.StreamingService_Bidi
 			return err
 		}
 	}
-	return nil
 }
 
 // UnaryEcho implements traditional request-response:
