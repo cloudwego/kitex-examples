@@ -168,7 +168,10 @@ func testEchoBidirectional(ctx context.Context, cli genericclient.Client) error 
 			}
 			wg.Done()
 		}()
-		defer streamCli.Close()
+		// CloseSend signals the server that we're done sending messages
+		// This is a business behavior, not a resource cleanup operation
+		// The stream will remain open until both sides are done
+		defer streamCli.CloseSend()
 
 		for i := 0; i < 3; i++ {
 			req := fmt.Sprintf(`{"message": "grpc bidirectional streaming generic %dth request"}`, i)
