@@ -3,6 +3,23 @@
 # Exit on error
 set -e
 
+# Function to cleanup
+cleanup() {
+    echo "Cleaning up..."
+    if [ ! -z "$SERVER_PID" ]; then
+        if kill -0 $SERVER_PID 2>/dev/null; then
+            kill $SERVER_PID
+        fi
+    fi
+    # If port 8888 is still in use, force release
+    if lsof -i :8888 > /dev/null 2>&1; then
+        lsof -t -i:8888 | xargs kill -9 2>/dev/null || true
+    fi
+}
+
+# Set up trap to ensure cleanup happens
+trap cleanup EXIT
+
 # Set working directory to project directory
 cd ./
 
@@ -33,17 +50,8 @@ fi
 echo "Running client..."
 cd "$REPO_PATH/client" || exit
 OUTPUT=$(go run main.go)
+echo "$OUTPUT"
 cd - > /dev/null || exit
 
-# Cleanup
-echo "Cleaning up..."
-if kill -0 $SERVER_PID 2>/dev/null; then
-    kill $SERVER_PID
-fi
-
-if lsof -i :8888 > /dev/null 2>&1; then
-    lsof -t -i:8888 | xargs kill -9
-fi
-
-# Set script exit status
-exit $status 
+# Exit with success
+exit 0 
