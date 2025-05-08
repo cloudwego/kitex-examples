@@ -36,7 +36,7 @@ func (s *StreamingServiceImpl) StreamRequestEcho(stream pb.StreamingService_Stre
 		messages = append(messages, req.Message)
 		fmt.Printf("Received message: %s\n", req.Message)
 	}
-	
+
 	// Return summary of all received messages
 	resp := &pb.Response{
 		Message: fmt.Sprintf("Received %d messages: %v", len(messages), messages),
@@ -70,7 +70,7 @@ func (s *StreamingServiceImpl) BidirectionalEcho(stream pb.StreamingService_Bidi
 			break
 		}
 		fmt.Printf("Received: %s\n", req.Message)
-		
+
 		// Send response
 		resp := &pb.Response{
 			Message: fmt.Sprintf("Echo: %s", req.Message),
