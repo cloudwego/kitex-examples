@@ -88,9 +88,10 @@ func testEchoPingPong(ctx context.Context, cli genericclient.Client) error {
 		return err
 	}
 	strResp, ok := resp.(string)
-	if ok {
-		fmt.Printf("EchoPingPong response: %v\n", strResp)
+	if !ok {
+		return fmt.Errorf("unexpected response type: %T", resp)
 	}
+	fmt.Printf("EchoPingPong response: %v\n", strResp)
 	return nil
 }
 
