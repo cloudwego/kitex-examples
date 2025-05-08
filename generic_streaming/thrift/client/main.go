@@ -168,11 +168,7 @@ func testEchoBidirectional(ctx context.Context, cli genericclient.Client) error 
 			}
 			wg.Done()
 		}()
-		// CloseSend signals the server that we're done sending messages
-		// This is a business behavior, not a resource cleanup operation
-		// The stream will remain open until both sides are done
-		defer streamCli.CloseSend()
-
+		
 		for i := 0; i < 3; i++ {
 			req := fmt.Sprintf(`{"message": "grpc bidirectional streaming generic %dth request"}`, i)
 			if err = streamCli.Send(req); err != nil {
@@ -180,6 +176,10 @@ func testEchoBidirectional(ctx context.Context, cli genericclient.Client) error 
 				break
 			}
 			klog.Infof("BidirectionalStreamingTest send: req = %+v", req)
+		}
+		// Close the client-to-server direction of the stream after sending all messages
+		if cerr := streamCli.Close(); cerr != nil {
+			sendErr = fmt.Errorf("stream close failed: %v", cerr)
 		}
 	}()
 
@@ -195,7 +195,8 @@ func testEchoBidirectional(ctx context.Context, cli genericclient.Client) error 
 		for {
 			resp, err := streamCli.Recv()
 			if err == io.EOF {
-				klog.Infof("bidirectionalStreaming message receive done. stream is closed")
+				// Server has closed its side of the stream
+				klog.Infof("Server closed the stream")
 				break
 			} else if err != nil {
 				recvErr = fmt.Errorf("failed to recv: %v", err)
