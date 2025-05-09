@@ -1,41 +1,44 @@
 #!/bin/bash
 
-# 设置工作目录为项目目录
+# Set working directory to project directory
 cd ./
 
 REPO_PATH="."
-
-# 初始化状态变量
 status=0
 project="grpc_multi_service"
 
 echo "---------------------------------------"
 echo "Running project: $project"
 
-# 启动 server
-
+# Start server
+echo "Starting server..."
 cd "$REPO_PATH/server" || exit
-go run main.go > /dev/null 2>&1 &
-server_pid=$!
+go run . &
+SERVER_PID=$!
 cd - > /dev/null || exit
 
-
-# 等待 server 启动
+# Wait for server to start
 sleep 1
 
-# 启动 client
+# Check if server is still running
+if kill -0 $SERVER_PID 2>/dev/null; then
+    echo "Server started successfully"
+else
+    echo "Server failed to start"
+    echo "---------------------------------------"
+    exit 1
+fi
 
+# Run client
+echo "Running client..."
 cd "$REPO_PATH/client" || exit
-go run main.go > /dev/null 2>&1 &
-client_pid=$!
+OUTPUT=$(go run main.go)
+echo "$OUTPUT"
+client_status=$?
 cd - > /dev/null || exit
 
-
-# 等待 client 启动
-sleep 1
-
-# 检查 server 和 client 是否仍在运行
-if kill -0 $server_pid && kill -0 $client_pid; then
+# Check execution status
+if [ $client_status -eq 0 ]; then
     echo "Project run successfully: $project"
     echo "---------------------------------------"
 else
@@ -44,9 +47,8 @@ else
     status=1
 fi
 
-# 杀死 server 和 client
-kill -9  $server_pid $client_pid  $(lsof -t -i:8888)
+# Cleanup processes
+kill -9 $SERVER_PID $(lsof -t -i:8888) 2>/dev/null || true
 
-
-# 设置脚本的退出状态
+# Set script exit status
 exit $status

@@ -4,26 +4,37 @@
 cd ./
 
 REPO_PATH="."
-
 project="grpc_multi_service"
 
 echo "---------------------------------------"
 echo "Running project: $project"
 
-# 启动 server
+# Start server
+echo "Starting server..."
 cd "$REPO_PATH/server" || exit
-go run main.go > /dev/null 2>&1 &
+go run . > /dev/null 2>&1 &
 server_pid=$!
 cd - > /dev/null || exit
 
-# 启动 client
+# Wait for server to start
+sleep 1
+
+# Check if server is still running
+if ! kill -0 $server_pid 2>/dev/null; then
+    echo "Error: Server failed to start"
+    exit 1
+fi
+echo "Server started successfully (PID: $server_pid)"
+
+# Run client
+echo "Running client..."
 cd "$REPO_PATH/client" || exit
-go run main.go > /dev/null 2>&1 &
-client_pid=$!
+go run main.go
+client_status=$?
 cd - > /dev/null || exit
 
-# 当脚本退出时，停止 server 和 client
-trap 'kill $server_pid $client_pid' EXIT
+# Cleanup processes
+kill -9 $server_pid $(lsof -t -i:8888)
 
-# 等待 server 和 client 结束
-wait $server_pid $client_pid
+# Set script exit status
+exit $client_status
