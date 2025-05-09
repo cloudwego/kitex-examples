@@ -1,6 +1,6 @@
 module pb_generic_streaming_demo
 
-go 1.18
+go 1.19
 
 require (
 	github.com/cloudwego/dynamicgo v0.6.3
