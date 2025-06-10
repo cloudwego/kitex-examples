@@ -4,7 +4,7 @@ services:
   mysql:
     image: 'mysql:latest'
     volumes:
-      - ./biz/model/sql:/docker-entrypoint-initdb.d
+      - ./model/sql:/docker-entrypoint-initdb.d
     ports:
       - 9910:3306
     environment:
