@@ -38,7 +38,7 @@ func (s *UserServiceImpl) UpdateUser(ctx context.Context, req *user.UpdateUserRe
 		Introduce: req.Introduce,
 	}
 
-	if err := mysql.UpdateUser(u); err != nil {
+	if err = mysql.UpdateUser(u); err != nil {
 		resp.Msg = err.Error()
 		resp.Code = user.Code_DBErr
 		return
@@ -52,7 +52,7 @@ func (s *UserServiceImpl) UpdateUser(ctx context.Context, req *user.UpdateUserRe
 func (s *UserServiceImpl) DeleteUser(ctx context.Context, req *user.DeleteUserRequest) (resp *user.DeleteUserResponse, err error) {
 	resp = new(user.DeleteUserResponse)
 
-	if err := mysql.DeleteUser(req.UserId); err != nil {
+	if err = mysql.DeleteUser(req.UserId); err != nil {
 		resp.Msg = err.Error()
 		resp.Code = user.Code_DBErr
 		return
@@ -70,6 +70,7 @@ func (s *UserServiceImpl) QueryUser(ctx context.Context, req *user.QueryUserRequ
 	if err != nil {
 		resp.Msg = err.Error()
 		resp.Code = user.Code_DBErr
+		return
 	}
 
 	resp.Totoal = total
@@ -83,7 +84,7 @@ func (s *UserServiceImpl) QueryUser(ctx context.Context, req *user.QueryUserRequ
 func (s *UserServiceImpl) CreateUser(ctx context.Context, req *user.CreateUserRequest) (resp *user.CreateUserResponse, err error) {
 	resp = new(user.CreateUserResponse)
 
-	if err := mysql.CreateUser([]*model.User{
+	if err = mysql.CreateUser([]*model.User{
 		{
 			Name:      req.Name,
 			Gender:    int64(req.Gender),
@@ -93,6 +94,7 @@ func (s *UserServiceImpl) CreateUser(ctx context.Context, req *user.CreateUserRe
 	}); err != nil {
 		resp.Msg = err.Error()
 		resp.Code = user.Code_DBErr
+		return
 	}
 
 	resp.Code = user.Code_Success
