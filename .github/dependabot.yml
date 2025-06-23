@@ -19,6 +19,8 @@ updates:
       - /bizdemo/kitex_swagger_gen
       - /bizdemo/kitex_zorm
       - /generic-protobuf/jsonpb-client
+      - /generic_streaming/pb
+      - /generic_streaming/thrift
       - /grpc_multi_service/client
       - /grpc_multi_service/server
       - /istio
