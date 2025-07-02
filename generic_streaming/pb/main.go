@@ -15,10 +15,11 @@
 package main
 
 import (
-	"github.com/cloudwego/kitex/pkg/transmeta"
-	"github.com/cloudwego/kitex/server"
 	"log"
 	pb "pb_generic_streaming_demo/kitex_gen/pb/streamingservice"
+
+	"github.com/cloudwego/kitex/pkg/transmeta"
+	"github.com/cloudwego/kitex/server"
 )
 
 func main() {

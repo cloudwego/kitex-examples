@@ -58,7 +58,7 @@ echo "$OUTPUT"
 cd - > /dev/null || exit
 
 # Cleanup processes
-kill -9 $SERVER_PID $(lsof -t -i:8888)
+kill -9 $SERVER_PID $(lsof -t -i:8888) 2>/dev/null || true
 
 # Set script exit status
 exit $status 
