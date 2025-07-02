@@ -52,7 +52,7 @@ func main() {
 
 	// Initialize streaming client
 	cli, err := genericclient.NewStreamingClient(
-		"streaming",
+		"StreamingService",
 		g,
 		client.WithTransportProtocol(transport.GRPC),
 		client.WithHostPorts("127.0.0.1:8888"),
