@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/cloudwego/fastpb v0.0.5
-	github.com/cloudwego/kitex v0.14.0
+	github.com/cloudwego/kitex v0.14.1
 	google.golang.org/protobuf v1.33.0
 )
 
