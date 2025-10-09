@@ -24,7 +24,6 @@ cd - > /dev/null || exit
 sleep 1
 
 # 启动 client
-
 cd "$REPO_PATH/client" || exit
 go run main.go > /dev/null 2>&1 &
 client_pid=$!

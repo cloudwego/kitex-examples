@@ -32,6 +32,15 @@ function gen_protobuf() {
     $kitex $module $idl
 }
 
+function gen_streaming_protobuf() {
+    echo "Generate streaming protobuf to kitex_gen..."
+    module='-module github.com/cloudwego/kitex-examples'
+    idl=echo.proto
+    cd streaming
+    $kitex $module $idl
+    cd ..
+}
+
 function regenerate_submod() {
     original_dir=$(pwd)
     local path=$1
@@ -52,6 +61,7 @@ function regenerate_submod() {
 gen_thrift
 gen_thrift_slim
 gen_protobuf
+gen_streaming_protobuf
 
 regenerate_submod "basic/example_shop" "example_shop" "idl/item.thrift"
 regenerate_submod "basic/example_shop" "example_shop" "idl/stock.thrift"
@@ -64,4 +74,5 @@ regenerate_submod "bizdemo/kitex_zorm" "github.com/cloudwego/kitex-examples/bizd
 regenerate_submod "generic" " github.com/cloudwego/kitex-examples" "http/http.thrift"
 regenerate_submod "hello" " github.com/cloudwego/kitex-examples" "hello.thrift"
 regenerate_submod "thrift_multi_service" " github.com/cloudwego/kitex-examples" "idl/demo.thrift"
+regenerate_submod "streaming" " github.com/cloudwego/kitex-examples" "idl/demo.thrift"
 
