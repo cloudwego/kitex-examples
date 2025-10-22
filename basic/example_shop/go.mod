@@ -9,7 +9,7 @@ replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 require (
 	github.com/cloudwego/gopkg v0.1.6
 	github.com/cloudwego/hertz v0.9.3
-	github.com/cloudwego/kitex v0.15.1
+	github.com/cloudwego/kitex v0.15.2
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20241219022956-e15b7a1a61d2
 	github.com/kitex-contrib/registry-etcd v0.2.5
 )

@@ -46,8 +46,8 @@ github.com/cloudwego/gopkg v0.1.6/go.mod h1:FQuXsRWRsSqJLsMVd5SYzp8/Z1y5gXKnVvRr
 github.com/cloudwego/hertz v0.9.6 h1:Kj5SSPlKBC32NIN7+B/tt8O1pdDz8brMai00rqqjULQ=
 github.com/cloudwego/hertz v0.9.6/go.mod h1:X5Ez52XhtszU4t+CTBGIJI4PqmcI1oSf8ULBz0SWfLo=
 github.com/cloudwego/kitex v0.0.4/go.mod h1:EIjPJ4Dom2ornk7xDCdKpUpOnf4Tulevimh4Tn05OGc=
-github.com/cloudwego/kitex v0.15.1 h1:/i0dNmX4FrTEFYoCtMlzEwv1teXBznY3cy58tGM/zsc=
-github.com/cloudwego/kitex v0.15.1/go.mod h1:IiThcGN0SokNWdaoUyh8+yB65zn17mOIWIrRjWTqjq4=
+github.com/cloudwego/kitex v0.15.2 h1:YeVBnQ4KZ1+lS5rjcJfad+6dLV/nKgIcx5T93eKCwrk=
+github.com/cloudwego/kitex v0.15.2/go.mod h1:IiThcGN0SokNWdaoUyh8+yB65zn17mOIWIrRjWTqjq4=
 github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250324094909-ecb71e12f410 h1:WdlT9e95CLIu6xzD0bsVO+xaFYoHv1kcgKUZpAotiB0=
 github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250324094909-ecb71e12f410/go.mod h1:OP63V8YwwSlPVFqHZblV3mJXLPIjcIdwkT6ZYjEggcI=
 github.com/cloudwego/localsession v0.1.2 h1:RBmeLDO5sKr4ujd8iBp5LTMmuVKLdu88jjIneq/fEZ8=

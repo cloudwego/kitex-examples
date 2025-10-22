@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/cloudwego/gopkg v0.1.6
-	github.com/cloudwego/kitex v0.15.1
+	github.com/cloudwego/kitex v0.15.2
 )
 
 require (
