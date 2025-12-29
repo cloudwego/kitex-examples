@@ -4,8 +4,8 @@ go 1.21
 
 require (
 	entgo.io/ent v0.12.5
-	github.com/cloudwego/gopkg v0.1.6
-	github.com/cloudwego/kitex v0.15.3
+	github.com/cloudwego/gopkg v0.1.8
+	github.com/cloudwego/kitex v0.15.4
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20241219022956-e15b7a1a61d2
 )
 

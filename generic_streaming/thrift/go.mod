@@ -3,8 +3,8 @@ module generic_streaming_demo_thrift
 go 1.19
 
 require (
-	github.com/cloudwego/gopkg v0.1.6
-	github.com/cloudwego/kitex v0.15.3
+	github.com/cloudwego/gopkg v0.1.8
+	github.com/cloudwego/kitex v0.15.4
 )
 
 require (
