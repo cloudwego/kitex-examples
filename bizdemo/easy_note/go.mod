@@ -3,9 +3,9 @@ module github.com/cloudwego/kitex-examples/bizdemo/easy_note
 go 1.22
 
 require (
-	github.com/cloudwego/gopkg v0.1.6
+	github.com/cloudwego/gopkg v0.1.8
 	github.com/cloudwego/hertz v0.9.6
-	github.com/cloudwego/kitex v0.15.3
+	github.com/cloudwego/kitex v0.15.4
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250324094909-ecb71e12f410
 	github.com/hertz-contrib/jwt v1.0.4
 	github.com/kitex-contrib/registry-etcd v0.2.6

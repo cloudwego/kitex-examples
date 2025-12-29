@@ -41,13 +41,13 @@ github.com/cloudwego/fastpb v0.0.5/go.mod h1:Bho7aAKBUtT9RPD2cNVkTdx4yQumfSv3If7
 github.com/cloudwego/frugal v0.3.0 h1:tgAP0nytiJuyoIM3V3TDOGzjrSNRAIlNG1HHOAzZ3Cs=
 github.com/cloudwego/frugal v0.3.0/go.mod h1:pMk46fFyAwUbW7q7lfdK7c6HsD6bWtu6/3Vhz63CgsY=
 github.com/cloudwego/gopkg v0.1.4/go.mod h1:FQuXsRWRsSqJLsMVd5SYzp8/Z1y5gXKnVvRrWUOsCMI=
-github.com/cloudwego/gopkg v0.1.6 h1:EMlOHg975CxKX1/BtIVYKGW8hxNptTkjjJ7bvfXu4L4=
-github.com/cloudwego/gopkg v0.1.6/go.mod h1:FQuXsRWRsSqJLsMVd5SYzp8/Z1y5gXKnVvRrWUOsCMI=
+github.com/cloudwego/gopkg v0.1.8 h1:ma9oACsY3v6xJwQ8NUc/h19GLV2ZCIjx0P6hqaSIlt4=
+github.com/cloudwego/gopkg v0.1.8/go.mod h1:FQuXsRWRsSqJLsMVd5SYzp8/Z1y5gXKnVvRrWUOsCMI=
 github.com/cloudwego/hertz v0.9.6 h1:Kj5SSPlKBC32NIN7+B/tt8O1pdDz8brMai00rqqjULQ=
 github.com/cloudwego/hertz v0.9.6/go.mod h1:X5Ez52XhtszU4t+CTBGIJI4PqmcI1oSf8ULBz0SWfLo=
 github.com/cloudwego/kitex v0.0.4/go.mod h1:EIjPJ4Dom2ornk7xDCdKpUpOnf4Tulevimh4Tn05OGc=
-github.com/cloudwego/kitex v0.15.3 h1:JnPI1mN+/P54wqd8X/DNpEulL40ALXyjnJ7/YdlRSYE=
-github.com/cloudwego/kitex v0.15.3/go.mod h1:6Egd4ay8J85gv0f07kcAe9hGu0lRW+r9F96QGBzAKvQ=
+github.com/cloudwego/kitex v0.15.4 h1:mFg3Vg21aEsoQRNc1FK/hOEtEm47EZEJGyorlnsP9nQ=
+github.com/cloudwego/kitex v0.15.4/go.mod h1:Zsr4TATU+M3/t+R7CuK7FKQzT2jIhc8ytzEDqjTZmwk=
 github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250324094909-ecb71e12f410 h1:WdlT9e95CLIu6xzD0bsVO+xaFYoHv1kcgKUZpAotiB0=
 github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250324094909-ecb71e12f410/go.mod h1:OP63V8YwwSlPVFqHZblV3mJXLPIjcIdwkT6ZYjEggcI=
 github.com/cloudwego/localsession v0.2.1 h1:obiuwSP2MQX+fFot3HjOQjvR5o7FlSc8Z4e5EM+NqRY=

@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/cloudwego/fastpb v0.0.5
-	github.com/cloudwego/kitex v0.15.3
+	github.com/cloudwego/kitex v0.15.4
 	google.golang.org/protobuf v1.33.0
 )
 
@@ -16,7 +16,7 @@ require (
 	github.com/cloudwego/configmanager v0.2.3 // indirect
 	github.com/cloudwego/dynamicgo v0.7.1 // indirect
 	github.com/cloudwego/frugal v0.3.0 // indirect
-	github.com/cloudwego/gopkg v0.1.6 // indirect
+	github.com/cloudwego/gopkg v0.1.8 // indirect
 	github.com/cloudwego/localsession v0.2.1 // indirect
 	github.com/cloudwego/netpoll v0.7.2 // indirect
 	github.com/cloudwego/runtimex v0.1.1 // indirect

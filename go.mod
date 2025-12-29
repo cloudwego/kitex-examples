@@ -6,8 +6,8 @@ require (
 	github.com/bytedance/gopkg v0.1.3
 	github.com/cloudwego/fastpb v0.0.5
 	github.com/cloudwego/frugal v0.3.0
-	github.com/cloudwego/gopkg v0.1.6
-	github.com/cloudwego/kitex v0.15.3
+	github.com/cloudwego/gopkg v0.1.8
+	github.com/cloudwego/kitex v0.15.4
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250926083420-b00f1323d7a3
 	github.com/cloudwego/localsession v0.2.1
 	github.com/cloudwego/prutal v0.1.3
