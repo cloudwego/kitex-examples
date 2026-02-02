@@ -5,9 +5,9 @@ go 1.21
 require (
 	github.com/bytedance/gopkg v0.1.3
 	github.com/cloudwego/fastpb v0.0.5
-	github.com/cloudwego/frugal v0.3.0
+	github.com/cloudwego/frugal v0.3.1
 	github.com/cloudwego/gopkg v0.1.8
-	github.com/cloudwego/kitex v0.15.4
+	github.com/cloudwego/kitex v0.16.0
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250926083420-b00f1323d7a3
 	github.com/cloudwego/localsession v0.2.1
 	github.com/cloudwego/prutal v0.1.3
@@ -28,13 +28,13 @@ require (
 require (
 	github.com/apache/thrift v0.16.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
-	github.com/bytedance/sonic v1.14.2 // indirect
-	github.com/bytedance/sonic/loader v0.4.0 // indirect
+	github.com/bytedance/sonic v1.15.0 // indirect
+	github.com/bytedance/sonic/loader v0.5.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/cloudwego/base64x v0.1.6 // indirect
 	github.com/cloudwego/configmanager v0.2.3 // indirect
-	github.com/cloudwego/dynamicgo v0.7.1 // indirect
+	github.com/cloudwego/dynamicgo v0.8.0 // indirect
 	github.com/cloudwego/netpoll v0.7.2 // indirect
 	github.com/cloudwego/runtimex v0.1.1 // indirect
 	github.com/cloudwego/thriftgo v0.4.3 // indirect
