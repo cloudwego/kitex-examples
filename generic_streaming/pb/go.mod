@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/cloudwego/dynamicgo v0.8.0
-	github.com/cloudwego/kitex v0.16.0
+	github.com/cloudwego/kitex v0.16.1
 	github.com/cloudwego/prutal v0.1.3
 )
 

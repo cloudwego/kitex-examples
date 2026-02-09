@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/cloudwego/fastpb v0.0.5
-	github.com/cloudwego/kitex v0.16.0
+	github.com/cloudwego/kitex v0.16.1
 	google.golang.org/protobuf v1.33.0
 )
 

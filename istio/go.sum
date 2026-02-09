@@ -22,8 +22,8 @@ github.com/cloudwego/frugal v0.3.1/go.mod h1:pMk46fFyAwUbW7q7lfdK7c6HsD6bWtu6/3V
 github.com/cloudwego/gopkg v0.1.4/go.mod h1:FQuXsRWRsSqJLsMVd5SYzp8/Z1y5gXKnVvRrWUOsCMI=
 github.com/cloudwego/gopkg v0.1.8 h1:ma9oACsY3v6xJwQ8NUc/h19GLV2ZCIjx0P6hqaSIlt4=
 github.com/cloudwego/gopkg v0.1.8/go.mod h1:FQuXsRWRsSqJLsMVd5SYzp8/Z1y5gXKnVvRrWUOsCMI=
-github.com/cloudwego/kitex v0.16.0 h1:VJ7BP1drt0OMhoj4q5xjV2oDCPZRl4+1TeC9ay1uU0Y=
-github.com/cloudwego/kitex v0.16.0/go.mod h1:sQ41/oUhbcPm/aYqW16YT6omdxpvIc+GWvkw/K3VZ60=
+github.com/cloudwego/kitex v0.16.1 h1:EPOND7ra6fS7egM/q4FoRSUyH6tXxXccfL93e37PDK4=
+github.com/cloudwego/kitex v0.16.1/go.mod h1:sQ41/oUhbcPm/aYqW16YT6omdxpvIc+GWvkw/K3VZ60=
 github.com/cloudwego/localsession v0.2.1 h1:obiuwSP2MQX+fFot3HjOQjvR5o7FlSc8Z4e5EM+NqRY=
 github.com/cloudwego/localsession v0.2.1/go.mod h1:J4uams2YT/2d4t7OI6A7NF7EcG8OlHJsOX2LdPbqoyc=
 github.com/cloudwego/netpoll v0.7.2 h1:4qDBGQ6CG2SvEXhZSDxMdtqt/NLDxjAVk0PC/biKiJo=
