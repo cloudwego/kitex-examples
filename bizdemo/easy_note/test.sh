@@ -13,7 +13,7 @@ echo "---------------------------------------"
 echo "Running project: $project"
 
 cd "$REPO_PATH" || exit
-docker-compose up -d
+docker compose up -d
 cd - > /dev/null || exit
 
 # 启动 rpc note server
