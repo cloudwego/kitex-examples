@@ -33,7 +33,7 @@
 ### 运行 MySQL docker
 
 ```bash
-cd bizdemo/kitex_swagger_gen && docker-compose up
+cd bizdemo/kitex_swagger_gen && docker compose up
 ```
 
 ### 运行示例

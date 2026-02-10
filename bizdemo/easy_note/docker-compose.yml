@@ -13,11 +13,9 @@
 # limitations under the License.
 #
 
-version: '3'
-
 services:
   mysql:
-    image: 'mysql:latest'
+    image: "mysql:latest"
     volumes:
       - ./pkg/configs/sql:/docker-entrypoint-initdb.d
     ports:

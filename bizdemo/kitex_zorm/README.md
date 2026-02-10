@@ -28,7 +28,7 @@ This demo use `Zorm` to operate `MySQL` and refers to [Zorm](https://www.zorm.cn
 ### Run mysql docker
 
 ```bash
-cd bizdemo/kitex_zorm && docker-compose up
+cd bizdemo/kitex_zorm && docker compose up
 ```
 
 ### Run demo

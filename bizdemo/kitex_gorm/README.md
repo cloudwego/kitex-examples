@@ -28,7 +28,7 @@ This demo use `Gorm` to operate `MySQL` and refers to [Gorm](https://gorm.io/)
 ### Run mysql docker
 
 ```bash
-cd bizdemo/kitex_gorm && docker-compose up
+cd bizdemo/kitex_gorm && docker compose up
 ```
 
 ### Run demo
