@@ -25,7 +25,14 @@ services:
       - MYSQL_USER=gorm
       - MYSQL_PASSWORD=gorm
       - MYSQL_RANDOM_ROOT_PASSWORD="yes"
-  Etcd:
+    restart: unless-stopped # 容器异常退出时自动重启
+    healthcheck: # 健康检查，确保MySQL启动完成
+      test:
+        ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "gorm", "-pgorm"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  etcd:
     image: "quay.io/coreos/etcd:v3.6.2"
     environment:
       - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
@@ -33,8 +40,18 @@ services:
       - ETCDCTL_API=3
     ports:
       - 2379:2379
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "etcdctl", "endpoint", "health"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   jaeger:
     image: jaegertracing/all-in-one:latest
     ports:
       - "6831:6831/udp"
       - "16686:16686"
+    restart: unless-stopped
+    depends_on: # 依赖etcd，确保etcd先启动
+      etcd:
+        condition: service_healthy
