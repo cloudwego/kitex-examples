@@ -130,7 +130,7 @@ func echo(cli testservice.Client) {
 	// Send
 	go func() {
 		defer wg.Done()
-		defer stream.CloseSend(ctx) // Tell the server there'll be no more message from client
+		defer stream.CloseSend(stream.Context()) // Tell the server there'll be no more message from client
 		for i := 0; i < 3; i++ {
 			req := &test.Request{Message: "client, " + strconv.Itoa(i)}
 			if err = stream.Send(ctx, req); err != nil {
@@ -163,13 +163,13 @@ func echo(cli testservice.Client) {
 
 func echoClient(cli testservice.Client) {
 	ctx := context.Background()
-	stream, err := cli.EchoClient(context.Background())
+	stream, err := cli.EchoClient(ctx)
 	if err != nil {
 		panic("failed to call Echo: " + err.Error())
 	}
 	for i := 0; i < 3; i++ {
 		req := &test.Request{Message: "hello, " + strconv.Itoa(i)}
-		err := stream.Send(ctx, req)
+		err := stream.Send(stream.Context(), req)
 		if err != nil {
 			panic("failed to send Echo: " + err.Error())
 		}
@@ -186,14 +186,13 @@ func echoClient(cli testservice.Client) {
 }
 
 func echoServer(cli testservice.Client) {
-	ctx := context.Background()
 	req := &test.Request{Message: "hello"}
 	stream, err := cli.EchoServer(context.Background(), req)
 	if err != nil {
 		panic("failed to call Echo: " + err.Error())
 	}
 	for {
-		resp, err := stream.Recv(ctx)
+		resp, err := stream.Recv(stream.Context())
 		// make sure you receive and io.EOF or other non-nil error
 		// otherwise RPCFinish event will not be recorded
 		if err == io.EOF {
