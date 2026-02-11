@@ -1,11 +1,11 @@
-path: docker compose.yaml
+path: docker-compose.yaml
 update_behavior:
   type: skip
 body: |-
   version: '3'
   services:
     mysql:
-      image: 'mysql:latest'
+      image: 'mysql:8'
       ports:
         - 3306:3306
       environment:
