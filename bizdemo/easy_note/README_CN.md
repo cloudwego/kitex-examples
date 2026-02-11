@@ -74,7 +74,7 @@ req    resp                            │                                   res
 
 ### 1.设置基本依赖
 ```shell
-docker-compose up
+docker compose up
 ```
 
 ### 2.运行 Note RPC 服务器
@@ -143,11 +143,11 @@ authMiddleware, _ := jwt.New(&jwt.HertzJWTMiddleware{
 
 ### 1.设置基本依赖
 ```shell
-docker-compose up
+docker compose up
 ```
 
 ### 2.获取网关 IP
-``docker-compose up`` 将为 mysql、etcd 和 jaeger 创建一个默认的桥接网络。
+``docker compose up`` 将为 mysql、etcd 和 jaeger 创建一个默认的桥接网络。
 获取此默认网络中的网关 IP 以访问三个组件。
 ```shell
 docker inspect easy_note_default

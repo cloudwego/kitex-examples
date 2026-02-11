@@ -13,7 +13,7 @@ echo "---------------------------------------"
 echo "Running project: $project"
 
 cd "$REPO_PATH" || exit
-docker-compose up -d
+docker compose up -d
 cd - > /dev/null || exit
 
 # 启动 server
@@ -53,7 +53,7 @@ kill -9  $server_pid  $client_pid $(lsof -t -i:8888)
 
 # 停止并删除所有容器
 cd "$REPO_PATH" || exit
-docker-compose down
+docker compose down
 cd - > /dev/null || exit
 
 

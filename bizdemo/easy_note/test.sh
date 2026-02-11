@@ -13,7 +13,7 @@ echo "---------------------------------------"
 echo "Running project: $project"
 
 cd "$REPO_PATH" || exit
-docker-compose up -d
+docker compose up -d --wait
 cd - > /dev/null || exit
 
 # 启动 rpc note server
@@ -25,7 +25,7 @@ cd - > /dev/null || exit
 
 
 # 等待 server 启动
-sleep 1
+sleep 3
 
 # 启动 rpc stock server
 
@@ -36,7 +36,7 @@ cd - > /dev/null || exit
 
 
 # 等待 server 启动
-sleep 1
+sleep 3
 
 # 启动 hertx_server
 
@@ -47,7 +47,7 @@ cd - > /dev/null || exit
 
 
 # 等待 client 启动
-sleep 1
+sleep 3
 
 # 检查 server 和 client 是否仍在运行
 if kill -0 $note_server_pid && kill -0 $user_server_pid && kill -0 $server_pid; then
@@ -64,7 +64,7 @@ kill -9 $user_server_pid $note_server_pid $server_pid $(lsof -t -i:8888)
 
 # 停止并删除所有容器
 cd "$REPO_PATH" || exit
-docker-compose down
+docker compose down
 cd - > /dev/null || exit
 
 

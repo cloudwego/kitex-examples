@@ -5,7 +5,7 @@ English | [中文](./README_CN.md)
 Ensure Docker has been installed. 
 ### Run opentelemetry-collector, jaeger, victoriametrics, grafana
 ```
-docker-compose up -d
+docker compose up -d
 ```
 ### Run Kitex server
 ```
