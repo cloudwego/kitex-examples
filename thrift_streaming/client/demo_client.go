@@ -23,8 +23,8 @@ import (
 	"time"
 
 	"github.com/cloudwego/kitex/client"
-	"github.com/cloudwego/kitex/client/streamclient"
 	"github.com/cloudwego/kitex/pkg/endpoint"
+	"github.com/cloudwego/kitex/pkg/endpoint/cep"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/streaming"
 	"github.com/cloudwego/kitex/pkg/transmeta"
@@ -36,12 +36,12 @@ import (
 )
 
 var (
-	streamClient = testservice.MustNewStreamClient(
+	streamClient = testservice.MustNewClient(
 		"server_name_for_discovery",
-		streamclient.WithHostPorts("127.0.0.1:8888"),
+		client.WithHostPorts("127.0.0.1:8888"),
 
 		// client middleware
-		streamclient.WithMiddleware(func(e endpoint.Endpoint) endpoint.Endpoint {
+		client.WithMiddleware(func(e endpoint.Endpoint) endpoint.Endpoint {
 			return func(ctx context.Context, req, resp interface{}) (err error) {
 				method, _ := kitexutil.GetMethod(ctx)
 				klog.Infof("[%s] streamclient middleware, req = %v", method, req)
@@ -52,25 +52,27 @@ var (
 		}),
 
 		// send middleware
-		streamclient.WithSendMiddleware(func(next endpoint.SendEndpoint) endpoint.SendEndpoint {
-			return func(stream streaming.Stream, req interface{}) (err error) {
-				method, _ := kitexutil.GetMethod(stream.Context())
-				err = next(stream, req)
-				klog.Infof("[%s] streamclient send middleware, err = %v, req = %v", method, err, req)
-				return err
-			}
-		}),
+		client.WithStreamOptions(
+			client.WithStreamSendMiddleware(func(next cep.StreamSendEndpoint) cep.StreamSendEndpoint {
+				return func(ctx context.Context, stream streaming.ClientStream, req interface{}) (err error) {
+					method, _ := kitexutil.GetMethod(stream.Context())
+					err = next(ctx, stream, req)
+					klog.Infof("[%s] streamclient send middleware, err = %v, req = %v", method, err, req)
+					return err
+				}
+			}),
 
-		// recv middleware
-		// NOTE: message (response from server) will NOT be available until `next` returns
-		streamclient.WithRecvMiddleware(func(next endpoint.RecvEndpoint) endpoint.RecvEndpoint {
-			return func(stream streaming.Stream, resp interface{}) (err error) {
-				method, _ := kitexutil.GetMethod(stream.Context())
-				err = next(stream, resp)
-				klog.Infof("[%s] streamclient recv middleware, err = %v, resp = %v", method, err, resp)
-				return err
-			}
-		}),
+			// recv middleware
+			// NOTE: message (response from server) will NOT be available until `next` returns
+			client.WithStreamRecvMiddleware(func(next cep.StreamRecvEndpoint) cep.StreamRecvEndpoint {
+				return func(ctx context.Context, stream streaming.ClientStream, resp interface{}) (err error) {
+					method, _ := kitexutil.GetMethod(stream.Context())
+					err = next(ctx, stream, resp)
+					klog.Infof("[%s] streamclient recv middleware, err = %v, resp = %v", method, err, resp)
+					return err
+				}
+			}),
+		),
 	)
 
 	pingPongClient = testservice.MustNewClient(
@@ -105,7 +107,7 @@ func echoPingPong(cli testservice.Client) {
 	klog.Infof("echoPingPong: rsp = %v", rsp)
 }
 
-func echoUnary(cli testservice.StreamClient) {
+func echoUnary(cli testservice.Client) {
 	ctx := context.Background()
 	req := &test.Request{Message: "hello"}
 	rsp, err := cli.EchoUnary(ctx, req)
@@ -116,7 +118,7 @@ func echoUnary(cli testservice.StreamClient) {
 	klog.Infof("echoPingPong: rsp = %v", rsp)
 }
 
-func echo(cli testservice.StreamClient) {
+func echo(cli testservice.Client) {
 	ctx := context.Background()
 	stream, err := cli.Echo(ctx)
 	if err != nil {
@@ -128,10 +130,10 @@ func echo(cli testservice.StreamClient) {
 	// Send
 	go func() {
 		defer wg.Done()
-		defer stream.Close() // Tell the server there'll be no more message from client
+		defer stream.CloseSend(ctx) // Tell the server there'll be no more message from client
 		for i := 0; i < 3; i++ {
 			req := &test.Request{Message: "client, " + strconv.Itoa(i)}
-			if err = stream.Send(req); err != nil {
+			if err = stream.Send(ctx, req); err != nil {
 				klog.Warnf("echo.send: failed, err = " + err.Error())
 				break
 			}
@@ -143,7 +145,7 @@ func echo(cli testservice.StreamClient) {
 	go func() {
 		defer wg.Done()
 		for {
-			resp, err := stream.Recv()
+			resp, err := stream.Recv(ctx)
 			// make sure you receive and io.EOF or other non-nil error
 			// otherwise RPCFinish event will not be recorded
 			if err == io.EOF {
@@ -159,14 +161,15 @@ func echo(cli testservice.StreamClient) {
 	wg.Wait()
 }
 
-func echoClient(cli testservice.StreamClient) {
+func echoClient(cli testservice.Client) {
+	ctx := context.Background()
 	stream, err := cli.EchoClient(context.Background())
 	if err != nil {
 		panic("failed to call Echo: " + err.Error())
 	}
 	for i := 0; i < 3; i++ {
 		req := &test.Request{Message: "hello, " + strconv.Itoa(i)}
-		err := stream.Send(req)
+		err := stream.Send(ctx, req)
 		if err != nil {
 			panic("failed to send Echo: " + err.Error())
 		}
@@ -174,7 +177,7 @@ func echoClient(cli testservice.StreamClient) {
 	}
 
 	// Recv
-	resp, err := stream.CloseAndRecv()
+	resp, err := stream.CloseAndRecv(ctx)
 	if err != nil {
 		klog.Warnf("failed to recv Echo: " + err.Error())
 	} else {
@@ -182,14 +185,15 @@ func echoClient(cli testservice.StreamClient) {
 	}
 }
 
-func echoServer(cli testservice.StreamClient) {
+func echoServer(cli testservice.Client) {
+	ctx := context.Background()
 	req := &test.Request{Message: "hello"}
 	stream, err := cli.EchoServer(context.Background(), req)
 	if err != nil {
 		panic("failed to call Echo: " + err.Error())
 	}
 	for {
-		resp, err := stream.Recv()
+		resp, err := stream.Recv(ctx)
 		// make sure you receive and io.EOF or other non-nil error
 		// otherwise RPCFinish event will not be recorded
 		if err == io.EOF {

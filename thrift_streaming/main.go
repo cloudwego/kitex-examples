@@ -20,6 +20,7 @@ import (
 	"log"
 
 	"github.com/cloudwego/kitex/pkg/endpoint"
+	"github.com/cloudwego/kitex/pkg/endpoint/sep"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/streaming"
 	"github.com/cloudwego/kitex/pkg/utils/kitexutil"
@@ -41,26 +42,28 @@ func main() {
 			}
 		}),
 
-		// recv middleware
-		// NOTE: message (request from client) will NOT be available until `next` returns
-		server.WithRecvMiddleware(func(next endpoint.RecvEndpoint) endpoint.RecvEndpoint {
-			return func(stream streaming.Stream, req interface{}) (err error) {
-				method, _ := kitexutil.GetMethod(stream.Context())
-				err = next(stream, req)
-				klog.Infof("[%s] server recv middleware, err = %#v, req = %#v", method, err, req)
-				return err
-			}
-		}),
+		server.WithStreamOptions(
+			// recv middleware
+			// NOTE: message (request from client) will NOT be available until `next` returns
+			server.WithStreamRecvMiddleware(func(next sep.StreamRecvEndpoint) sep.StreamRecvEndpoint {
+				return func(ctx context.Context, stream streaming.ServerStream, req interface{}) (err error) {
+					method, _ := kitexutil.GetMethod(ctx)
+					err = next(ctx, stream, req)
+					klog.Infof("[%s] server recv middleware, err = %#v, req = %#v", method, err, req)
+					return err
+				}
+			}),
 
-		// send middleware
-		server.WithSendMiddleware(func(next endpoint.SendEndpoint) endpoint.SendEndpoint {
-			return func(stream streaming.Stream, resp interface{}) (err error) {
-				method, _ := kitexutil.GetMethod(stream.Context())
-				err = next(stream, resp)
-				klog.Infof("[%s] server send middleware, err = %#v, resp = %#v", method, err, resp)
-				return err
-			}
-		}),
+			// send middleware
+			server.WithStreamSendMiddleware(func(next sep.StreamSendEndpoint) sep.StreamSendEndpoint {
+				return func(ctx context.Context, stream streaming.ServerStream, resp interface{}) (err error) {
+					method, _ := kitexutil.GetMethod(ctx)
+					err = next(ctx, stream, resp)
+					klog.Infof("[%s] server send middleware, err = %#v, resp = %#v", method, err, resp)
+					return err
+				}
+			}),
+		),
 	)
 
 	err := svr.Run()

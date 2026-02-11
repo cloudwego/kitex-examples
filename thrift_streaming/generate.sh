@@ -31,4 +31,4 @@ echo "kitex: using `which $kitex` $kitex_version"
 echo -e "\nMake sure you're using kitex >= v0.9.0 && thriftgo >= v0.3.6\n"
 
 set -x
-$kitex $verbose $module $service $idl
+$kitex -streamx $verbose $module $service $idl
