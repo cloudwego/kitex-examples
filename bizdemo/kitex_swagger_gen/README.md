@@ -33,7 +33,7 @@ For more details, refer to [swagger-generate](https://github.com/hertz-contrib/s
 ### Running MySQL Docker
 
 ```bash
-cd bizdemo/kitex_swagger_gen && docker-compose up
+cd bizdemo/kitex_swagger_gen && docker compose up
 ```
 
 ### Running the Example

@@ -5,7 +5,7 @@
 确保 Docker 已安装。
 ### 运行 opentelemetry-collector、jaeger、victoriametrics、grafana
 ````
-docker-compose up -d
+docker compose up -d
 ````
 ### 运行 Kitex 服务端
 ````

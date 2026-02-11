@@ -29,7 +29,7 @@ See [custom/client](./custom/client/)
 1. install docker and start docker
 2. change `{{ INET_IP }}` to local ip in prometheus.yml
 3. run Prometheus and Grafana  
-   `docker-compose up`
+   `docker compose up`
 4. run Kitex server  
    `go run simple/server/main.go`
 5. run Kitex client  

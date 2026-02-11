@@ -1,4 +1,4 @@
-path: docker-compose.yaml
+path: docker compose.yaml
 update_behavior:
   type: skip
 body: |-

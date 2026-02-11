@@ -1,15 +1,14 @@
-version: '3'
-
 services:
   etcd:
-    image: bitnami/etcd:3.5
-    container_name: etcd
+    image: "quay.io/coreos/etcd:v3.6.7"
+    environment:
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://0.0.0.0:2379
     ports:
       - 2379:2379
-      - 2380:2380
-    volumes:
-      - ./etcd/data:/bitnami/etcd-data
-    environment:
-      - TZ=Asia/Shanghai
-      - ALLOW_NONE_AUTHENTICATION=yes
-      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+    healthcheck:
+      test: ["CMD", "etcdctl", "endpoint", "health"] # The health check command
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 15s

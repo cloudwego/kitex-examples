@@ -74,7 +74,7 @@ req    resp                            │                                   res
 
 ### 1.Setup Basic Dependence
 ```shell
-docker-compose up
+docker compose up
 ```
 
 ### 2.Run Note RPC Server
@@ -143,11 +143,11 @@ authMiddleware, _ := jwt.New(&jwt.HertzJWTMiddleware{
 
 ### 1.Setup Basic Dependence
 ```shell
-docker-compose up
+docker compose up
 ```
 
 ### 2.Get Default Network Gateway Ip
-``docker-compose up`` will create a default bridge network for mysql,etcd and jaeger.
+``docker compose up`` will create a default bridge network for mysql,etcd and jaeger.
 Get the gateway ip of this default network to reach three components.
 ```shell
 docker inspect easy_note_default

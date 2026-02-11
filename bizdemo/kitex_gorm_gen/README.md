@@ -48,7 +48,7 @@ go run generate.go
 ### Run mysql docker
 
 ```bash
-cd bizdemo/kitex_gorm_gen && docker-compose up
+cd bizdemo/kitex_gorm_gen && docker compose up
 ```
 
 ### Run demo

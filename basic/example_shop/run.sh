@@ -23,7 +23,7 @@ cd - > /dev/null || exit
 
 
 # 等待 item server 启动
-sleep 1
+sleep 3
 
 # 启动 stock server
 
@@ -34,7 +34,7 @@ cd - > /dev/null || exit
 
 
 # 等待 stock server 启动
-sleep 1
+sleep 3
 
 # 启动 client
 
@@ -45,7 +45,7 @@ cd - > /dev/null || exit
 
 
 # 等待 client 启动
-sleep 1
+sleep 3
 
 # 检查 server 和 client 是否仍在运行
 if kill -0 $item_server_pid && kill -0 $stock_server_pid && kill -0 $client_pid ; then
