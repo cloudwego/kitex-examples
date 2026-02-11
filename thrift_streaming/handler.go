@@ -31,7 +31,7 @@ import (
 type TestServiceImpl struct{}
 
 // Echo is bidirectional streaming
-func (s *TestServiceImpl) Echo(stream echo.TestService_EchoServer) (err error) {
+func (s *TestServiceImpl) Echo(ctx context.Context, stream echo.TestService_EchoServer) (err error) {
 	// no need to call `stream.Close()` manually
 	wg := sync.WaitGroup{}
 	wg.Add(2)
@@ -44,7 +44,7 @@ func (s *TestServiceImpl) Echo(stream echo.TestService_EchoServer) (err error) {
 			wg.Done()
 		}()
 		for {
-			msg, recvErr := stream.Recv()
+			msg, recvErr := stream.Recv(ctx)
 			// make sure you receive and io.EOF or other non-nil error
 			// otherwise RPCFinish event will not be recorded
 			if recvErr == io.EOF {
@@ -67,7 +67,7 @@ func (s *TestServiceImpl) Echo(stream echo.TestService_EchoServer) (err error) {
 		}()
 		for i := 0; i < 3; i++ {
 			msg := &echo.Response{Message: "server, " + strconv.Itoa(i)}
-			if sendErr := stream.Send(msg); sendErr != nil {
+			if sendErr := stream.Send(ctx, msg); sendErr != nil {
 				err = sendErr
 				return
 			}
@@ -79,23 +79,23 @@ func (s *TestServiceImpl) Echo(stream echo.TestService_EchoServer) (err error) {
 }
 
 // EchoClient is client streaming
-func (s *TestServiceImpl) EchoClient(stream echo.TestService_EchoClientServer) (err error) {
+func (s *TestServiceImpl) EchoClient(ctx context.Context, stream echo.TestService_EchoClientServer) (err error) {
 	for i := 0; i < 3; i++ {
-		msg, err := stream.Recv()
+		msg, err := stream.Recv(ctx)
 		if err != nil {
 			return err
 		}
 		klog.Infof("EchoClient: recv message = %s", msg)
 	}
-	return stream.SendAndClose(&echo.Response{Message: "echoClient"})
+	return stream.SendAndClose(ctx, &echo.Response{Message: "echoClient"})
 }
 
 // EchoServer is server streaming
-func (s *TestServiceImpl) EchoServer(req *echo.Request, stream echo.TestService_EchoServerServer) (err error) {
+func (s *TestServiceImpl) EchoServer(ctx context.Context, req *echo.Request, stream echo.TestService_EchoServerServer) (err error) {
 	klog.Infof("EchoServer called, req = %+v", req)
 	for i := 0; i < 3; i++ {
 		msg := &echo.Response{Message: "server, " + strconv.Itoa(i)}
-		if err = stream.Send(msg); err != nil {
+		if err = stream.Send(ctx, msg); err != nil {
 			return
 		}
 		klog.Infof("EchoServer: sent message = %s", msg)
