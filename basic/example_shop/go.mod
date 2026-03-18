@@ -5,8 +5,8 @@ go 1.22
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
-	github.com/cloudwego/gopkg v0.1.8
-	github.com/cloudwego/hertz v0.9.6
+	github.com/cloudwego/gopkg v0.1.10
+	github.com/cloudwego/hertz v0.10.4
 	github.com/cloudwego/kitex v0.16.1
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250926083420-b00f1323d7a3
 	github.com/kitex-contrib/registry-etcd v0.2.6
@@ -43,7 +43,6 @@ require (
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
-	github.com/nyaruka/phonenumbers v1.0.55 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/stretchr/testify v1.10.0 // indirect

@@ -5,8 +5,8 @@ go 1.22
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
-	github.com/bytedance/gopkg v0.1.3
-	github.com/cloudwego/gopkg v0.1.8
+	github.com/bytedance/gopkg v0.1.4
+	github.com/cloudwego/gopkg v0.1.10
 	github.com/cloudwego/hertz v0.9.6
 	github.com/cloudwego/kitex v0.16.1
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250926083420-b00f1323d7a3
@@ -61,7 +61,7 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	golang.org/x/arch v0.14.0 // indirect
 	golang.org/x/net v0.25.0 // indirect
-	golang.org/x/sync v0.10.0 // indirect
+	golang.org/x/sync v0.11.0 // indirect
 	golang.org/x/sys v0.30.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d // indirect

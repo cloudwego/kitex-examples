@@ -5,7 +5,7 @@ go 1.22
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
-	github.com/cloudwego/gopkg v0.1.8
+	github.com/cloudwego/gopkg v0.1.10
 	github.com/cloudwego/kitex v0.16.1
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250926083420-b00f1323d7a3
 	gorm.io/driver/mysql v1.5.7

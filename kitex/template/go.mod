@@ -8,7 +8,7 @@ require (
 	github.com/apache/thrift v0.16.0
 	github.com/cloudwego/kitex v0.16.1
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250926083420-b00f1323d7a3
-	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20240205032422-93b4c82b7dcd
+	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20251121033812-f6c3e41f13e9
 	github.com/kr/pretty v0.3.1
 	github.com/redis/go-redis/v9 v9.3.0
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
@@ -57,7 +57,6 @@ require (
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	go.opentelemetry.io/otel v1.25.0 // indirect
-	go.opentelemetry.io/otel/sdk v1.25.0 // indirect
 	go.opentelemetry.io/otel/trace v1.25.0 // indirect
 	golang.org/x/arch v0.14.0 // indirect
 	golang.org/x/net v0.25.0 // indirect
