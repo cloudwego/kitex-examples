@@ -18,5 +18,7 @@
 .vscode
 .idea
 
+.DS_Store
+
 # kitex
 thrift_streaming/output
