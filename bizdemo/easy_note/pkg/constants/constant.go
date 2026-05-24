@@ -15,10 +15,14 @@
 
 package constants
 
+import (
+	"fmt"
+	"os"
+)
+
 const (
 	NoteTableName           = "note"
 	UserTableName           = "user"
-	SecretKey               = "secret key"
 	IdentityKey             = "id"
 	Total                   = "total"
 	Notes                   = "notes"
@@ -30,7 +34,26 @@ const (
 	DefaultLimit            = 10
 )
 
+func SecretKey() string {
+	key := os.Getenv("JWT_SECRET_KEY")
+	if key == "" {
+		fmt.Fprintf(os.Stderr, "fatal: JWT_SECRET_KEY is not set. Generate one with: openssl rand -base64 32
+")
+		os.Exit(1)
+	}
+	return key
+}
+
+func MySQLDSN() string {
+	dsn := os.Getenv("DB_DSN")
+	if dsn == "" {
+		fmt.Fprintf(os.Stderr, "fatal: DB_DSN is not set
+")
+		os.Exit(1)
+	}
+	return dsn
+}
+
 var (
-	MySQLDefaultDSN = "gorm:gorm@tcp(" + GetIp("MysqlIp") + ":9910)/gorm?charset=utf8&parseTime=True&loc=Local"
-	EtcdAddress     = GetIp("EtcdIp") + ":2379"
+	EtcdAddress = GetIp("EtcdIp") + ":2379"
 )

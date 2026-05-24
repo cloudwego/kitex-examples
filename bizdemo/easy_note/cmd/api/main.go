@@ -47,7 +47,7 @@ func main() {
 		server.WithHandleMethodNotAllowed(true),
 	)
 	authMiddleware, _ := jwt.New(&jwt.HertzJWTMiddleware{
-		Key:        []byte(constants.SecretKey),
+		Key:        []byte(constants.SecretKey()),
 		Timeout:    time.Hour,
 		MaxRefresh: time.Hour,
 		PayloadFunc: func(data interface{}) jwt.MapClaims {
