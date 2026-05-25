@@ -4,16 +4,16 @@ go 1.23.0
 
 require (
 	github.com/bytedance/gopkg v0.1.4
-	github.com/cloudwego/fastpb v0.0.5
+	github.com/cloudwego/fastpb v0.0.6
 	github.com/cloudwego/frugal v0.3.1
-	github.com/cloudwego/gopkg v0.1.10
-	github.com/cloudwego/kitex v0.16.1
+	github.com/cloudwego/gopkg v0.2.0
+	github.com/cloudwego/kitex v0.16.2
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250926083420-b00f1323d7a3
 	github.com/cloudwego/localsession v0.2.1
 	github.com/cloudwego/prutal v0.1.3
 	github.com/kitex-contrib/monitor-prometheus v0.2.0
 	github.com/kitex-contrib/obs-opentelemetry v0.3.0
-	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20240205032422-93b4c82b7dcd
+	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20251121033812-f6c3e41f13e9
 	github.com/kitex-contrib/obs-opentelemetry/logging/slog v0.0.0-20240205032422-93b4c82b7dcd
 	github.com/kitex-contrib/obs-opentelemetry/logging/zap v0.0.0-20240515092919-1f776656cb66
 	github.com/prometheus/client_golang v1.18.0
@@ -37,7 +37,7 @@ require (
 	github.com/cloudwego/dynamicgo v0.8.0 // indirect
 	github.com/cloudwego/netpoll v0.7.2 // indirect
 	github.com/cloudwego/runtimex v0.1.1 // indirect
-	github.com/cloudwego/thriftgo v0.4.3 // indirect
+	github.com/cloudwego/thriftgo v0.4.5 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
@@ -77,7 +77,7 @@ require (
 	go.opentelemetry.io/proto/otlp v1.1.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.14.0 // indirect
-	golang.org/x/net v0.25.0 // indirect
+	golang.org/x/net v0.26.0 // indirect
 	golang.org/x/sys v0.33.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	google.golang.org/genproto v0.0.0-20240227224415-6ceb2ff114de // indirect
