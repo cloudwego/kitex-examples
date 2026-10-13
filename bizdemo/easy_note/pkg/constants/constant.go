@@ -16,44 +16,39 @@
 package constants
 
 import (
-	"fmt"
 	"os"
 )
 
 const (
-	NoteTableName           = "note"
-	UserTableName           = "user"
-	IdentityKey             = "id"
-	Total                   = "total"
-	Notes                   = "notes"
-	NoteID                  = "note_id"
-	ApiServiceName          = "demoapi"
-	NoteServiceName         = "demonote"
-	UserServiceName         = "demouser"
-	CPURateLimit    float64 = 80.0
-	DefaultLimit            = 10
+	NoteTableName            = "note"
+	UserTableName            = "user"
+	IdentityKey              = "id"
+	Total                    = "total"
+	Notes                    = "notes"
+	NoteID                   = "note_id"
+	ApiServiceName           = "demoapi"
+	NoteServiceName          = "demonote"
+	UserServiceName          = "demouser"
+	CPURateLimit     float64 = 80.0
+	DefaultLimit             = 10
+	defaultSecretKey         = "secret key"
 )
 
 func SecretKey() string {
-	key := os.Getenv("JWT_SECRET_KEY")
-	if key == "" {
-		fmt.Fprintf(os.Stderr, "fatal: JWT_SECRET_KEY is not set. Generate one with: openssl rand -base64 32
-")
-		os.Exit(1)
+	if key := os.Getenv("JWT_SECRET_KEY"); key != "" {
+		return key
 	}
-	return key
+	return defaultSecretKey
 }
 
 func MySQLDSN() string {
-	dsn := os.Getenv("DB_DSN")
-	if dsn == "" {
-		fmt.Fprintf(os.Stderr, "fatal: DB_DSN is not set
-")
-		os.Exit(1)
+	if dsn := os.Getenv("DB_DSN"); dsn != "" {
+		return dsn
 	}
-	return dsn
+	return MySQLDefaultDSN
 }
 
 var (
-	EtcdAddress = GetIp("EtcdIp") + ":2379"
+	MySQLDefaultDSN = "gorm:gorm@tcp(" + GetIp("MysqlIp") + ":9910)/gorm?charset=utf8&parseTime=True&loc=Local"
+	EtcdAddress     = GetIp("EtcdIp") + ":2379"
 )

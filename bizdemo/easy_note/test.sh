@@ -60,7 +60,7 @@ else
 fi
 
 # 杀死 server 和 client
-kill -9 $user_server_pid $note_server_pid $server_pid $(lsof -t -i:8888)
+kill -9 $user_server_pid $note_server_pid $server_pid $(lsof -t -i:8888 -i:8889 -i:8080 2>/dev/null) 2>/dev/null || true
 
 # 停止并删除所有容器
 cd "$REPO_PATH" || exit
