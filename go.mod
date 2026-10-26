@@ -6,10 +6,10 @@ require (
 	github.com/bytedance/gopkg v0.1.4
 	github.com/cloudwego/fastpb v0.0.6
 	github.com/cloudwego/frugal v0.3.1
-	github.com/cloudwego/gopkg v0.2.0
-	github.com/cloudwego/kitex v0.16.3
+	github.com/cloudwego/gopkg v0.2.1
+	github.com/cloudwego/kitex v0.16.4
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250926083420-b00f1323d7a3
-	github.com/cloudwego/localsession v0.2.1
+	github.com/cloudwego/localsession v0.2.2
 	github.com/cloudwego/prutal v0.1.3
 	github.com/kitex-contrib/monitor-prometheus v0.2.0
 	github.com/kitex-contrib/obs-opentelemetry v0.3.0
@@ -34,9 +34,9 @@ require (
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/cloudwego/base64x v0.1.6 // indirect
 	github.com/cloudwego/configmanager v0.2.3 // indirect
-	github.com/cloudwego/dynamicgo v0.8.0 // indirect
+	github.com/cloudwego/dynamicgo v0.9.2 // indirect
 	github.com/cloudwego/netpoll v0.7.2 // indirect
-	github.com/cloudwego/runtimex v0.1.1 // indirect
+	github.com/cloudwego/runtimex v0.1.2 // indirect
 	github.com/cloudwego/thriftgo v0.4.5 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
